@@ -21,8 +21,8 @@ El objetivo es construir un flujo trazable y reproducible para:
 - Estructura base de trabajo creada para firmware, MATLAB, datos, reportes y prompts.
 - Documentacion de control y reglas de ejecucion establecidas.
 - Sin implementacion funcional final de firmware ni scripts MATLAB productivos todavia.
-- PlatformIO CLI pendiente de habilitacion en PATH para fases siguientes.
-- La definicion de `.vscode/tasks.json` se difiere a una fase posterior para evitar tareas ficticias sin toolchain completo.
+- PlatformIO disponible por ruta local verificada (`%USERPROFILE%\\.platformio\\penv\\Scripts\\pio.exe`), aunque no este en PATH global.
+- `.vscode/tasks.json` ya incluye tareas reales de build/upload/monitor/clean para `firmware/single_node_calibration`.
 
 ## Estructura de Carpetas
 ```text
@@ -55,6 +55,16 @@ El objetivo es construir un flujo trazable y reproducible para:
 4. Implementacion de scripts MATLAB de calibracion y analisis.
 5. Validacion por sensor, emision de reportes y decisiones (`pass`, `suspect`, `fail`).
 6. Consolidacion de resultados, hardening y entregables finales.
+
+## Toolchain de Firmware en VS Code
+- Estrategia activa: ejecutar PlatformIO por ruta local verificada (sin depender de PATH global).
+- Comando base usado por tareas:
+  - `${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe`
+- Tareas disponibles:
+  - Build Single Calibration
+  - Upload Single Calibration
+  - Monitor Single Calibration
+  - Clean Single Calibration
 
 ## Responsabilidades: Codex vs Operador Humano
 - Codex:

@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Firmware: Build Single Calibration",
+      "type": "process",
+      "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+      "args": [
+        "run",
+        "--environment",
+        "esp32dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}\\firmware\\single_node_calibration"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Firmware: Upload Single Calibration",
+      "type": "process",
+      "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+      "args": [
+        "run",
+        "--target",
+        "upload",
+        "--environment",
+        "esp32dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}\\firmware\\single_node_calibration"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Firmware: Monitor Single Calibration",
+      "type": "process",
+      "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+      "args": [
+        "device",
+        "monitor",
+        "--environment",
+        "esp32dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}\\firmware\\single_node_calibration"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Firmware: Clean Single Calibration",
+      "type": "process",
+      "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",
+      "args": [
+        "run",
+        "--target",
+        "clean",
+        "--environment",
+        "esp32dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}\\firmware\\single_node_calibration"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
