@@ -1,0 +1,16 @@
+{
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "editor.renderWhitespace": "selection",
+  "search.exclude": {
+    "**/.venv": true,
+    "**/.pio": true,
+    "**/__pycache__": true
+  },
+  "files.exclude": {
+    "**/.venv": true,
+    "**/.pio": true,
+    "**/__pycache__": true
+  }
+}

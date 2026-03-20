@@ -1,0 +1,4 @@
+sensor_id,status,notes,last_test_date,calibration_file,decision
+sensor_A,pending,,,,
+sensor_B,pending,,,,
+sensor_C,pending,,,,

@@ -1,8 +1,29 @@
-.vscode/
-.pio/
+# Entornos y toolchains locales
 .venv/
+venv/
+.pio/
+
+# Cache y temporales de Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# MATLAB / Simulink temporales y artefactos locales
 *.asv
-*.mexa64
-*.mexw64
+*.autosave
 *.slxc
-*.autosave.venv/
+*.mex*
+slprj/
+
+# Logs y basura de editor/SO
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.orig
+.DS_Store
+Thumbs.db

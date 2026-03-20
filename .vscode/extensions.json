@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "openai.chatgpt",
+    "mathworks.language-matlab",
+    "platformio.platformio-ide",
+    "yzhang.markdown-all-in-one"
+  ]
+}
