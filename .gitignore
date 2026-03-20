@@ -1,0 +1,8 @@
+.vscode/
+.pio/
+.venv/
+*.asv
+*.mexa64
+*.mexw64
+*.slxc
+*.autosave
