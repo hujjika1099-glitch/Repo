@@ -75,6 +75,32 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze Single Capture Baseline",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/analyze_single_capture_baseline.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze Repeatability Same Pose",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/analyze_repeatability_same_pose.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

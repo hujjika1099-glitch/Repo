@@ -1,0 +1,2 @@
+run_file,samples,duration_s,freq_hz,seq_jumps,raw_x_mean,raw_y_mean,raw_z_mean,mv_x_mean,mv_y_mean,mv_z_mean
+sensor_A_z_plus_static_20260320_132709.csv,1199,11.97913,100.007262630926,0,1809.70725604671,1729.78315262719,1040.18682235196,1637.22518765638,1570.34445371143,1000.6105087573
