@@ -62,6 +62,19 @@
         "cwd": "${workspaceFolder}\\firmware\\single_node_calibration"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Capture Single Sensor Baseline",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/calibration/capture_single_sensor_baseline.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }
