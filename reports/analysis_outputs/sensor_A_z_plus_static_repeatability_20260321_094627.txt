@@ -1,0 +1,10 @@
+analysis_script: matlab/analysis/analyze_repeatability_same_pose.m
+sensor_id: sensor_A
+pose_label: z_plus_static
+runs_found: 5
+min_runs_target: 5
+use_latest_n_runs: 5
+overview_csv: reports\analysis_outputs\sensor_A_z_plus_static_repeatability_20260321_094627.csv
+ready_for_comparison: true
+mv_z_mean_range: 158.754512
+raw_z_mean_range: 193.004295

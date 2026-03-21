@@ -1,0 +1,19 @@
+capture_script: matlab/calibration/capture_single_sensor_baseline.m
+sensor_id: sensor_C
+pose_label: z_plus_static
+port: COM5
+baud: 115200
+requested_duration_s: 12.000
+real_duration_wall_s: 12.014
+real_duration_stream_s: 12.070
+samples_captured: 1208
+estimated_frequency_hz: 100.000
+seq_jumps: 0
+invalid_lines_ignored: 1
+header_seen: false
+capture_start_local: 2026-03-21 09:27:28 -0500
+capture_end_local: 2026-03-21 09:28:00 -0500
+csv_path: C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\data\raw\sensor_C\sensor_C_z_plus_static_20260321_092728.csv
+metadata_line_count: 0
+metadata_lines_begin
+metadata_lines_end

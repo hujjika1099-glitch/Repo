@@ -2,11 +2,66 @@
 % Captura baseline individual ADXL335 desde ESP32 por puerto serial.
 
 %% Configuracion de captura
-port = "COM5";
-baud = 115200;
-duration_s = 12;
-sensor_id = "sensor_A";
-pose_label = "z_plus_static";
+default_port = "COM5";
+default_baud = 115200;
+default_duration_s = 12;
+default_sensor_id = "sensor_A";
+default_pose_label = "z_plus_static";
+
+if exist("port", "var") && strlength(string(port)) > 0
+    port = string(port);
+else
+    env_port = string(getenv("ADXL_PORT"));
+    if strlength(env_port) > 0
+        port = env_port;
+    else
+        port = default_port;
+    end
+end
+
+if exist("baud", "var") && ~isempty(baud)
+    baud = double(baud);
+else
+    env_baud = str2double(getenv("ADXL_BAUD"));
+    if ~isnan(env_baud) && env_baud > 0
+        baud = env_baud;
+    else
+        baud = default_baud;
+    end
+end
+
+if exist("duration_s", "var") && ~isempty(duration_s)
+    duration_s = double(duration_s);
+else
+    env_duration = str2double(getenv("ADXL_DURATION_S"));
+    if ~isnan(env_duration) && env_duration > 0
+        duration_s = env_duration;
+    else
+        duration_s = default_duration_s;
+    end
+end
+
+if exist("sensor_id", "var") && strlength(string(sensor_id)) > 0
+    sensor_id = string(sensor_id);
+else
+    env_sensor = string(getenv("ADXL_SENSOR_ID"));
+    if strlength(env_sensor) > 0
+        sensor_id = env_sensor;
+    else
+        sensor_id = default_sensor_id;
+    end
+end
+
+if exist("pose_label", "var") && strlength(string(pose_label)) > 0
+    pose_label = string(pose_label);
+else
+    env_pose = string(getenv("ADXL_POSE_LABEL"));
+    if strlength(env_pose) > 0
+        pose_label = env_pose;
+    else
+        pose_label = default_pose_label;
+    end
+end
 
 %% Rutas de salida (sin sobrescritura)
 script_dir = fileparts(mfilename("fullpath"));

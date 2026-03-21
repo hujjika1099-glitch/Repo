@@ -2,9 +2,54 @@
 % Analisis comparativo de corridas repetidas para mismo sensor y pose.
 
 %% Configuracion
-sensor_id = "sensor_A";
-pose_label = "z_plus_static";
-min_runs_target = 3;   % objetivo operativo recomendado
+default_sensor_id = "sensor_A";
+default_pose_label = "z_plus_static";
+default_min_runs_target = 3;   % objetivo operativo recomendado
+default_use_latest_n_runs = 0; % 0 = usar todas las corridas
+
+if exist("sensor_id", "var") && strlength(string(sensor_id)) > 0
+    sensor_id = string(sensor_id);
+else
+    env_sensor = string(getenv("ADXL_SENSOR_ID"));
+    if strlength(env_sensor) > 0
+        sensor_id = env_sensor;
+    else
+        sensor_id = default_sensor_id;
+    end
+end
+
+if exist("pose_label", "var") && strlength(string(pose_label)) > 0
+    pose_label = string(pose_label);
+else
+    env_pose = string(getenv("ADXL_POSE_LABEL"));
+    if strlength(env_pose) > 0
+        pose_label = env_pose;
+    else
+        pose_label = default_pose_label;
+    end
+end
+
+if exist("min_runs_target", "var") && ~isempty(min_runs_target)
+    min_runs_target = double(min_runs_target);
+else
+    env_min_runs = str2double(getenv("ADXL_MIN_RUNS_TARGET"));
+    if ~isnan(env_min_runs) && env_min_runs > 0
+        min_runs_target = env_min_runs;
+    else
+        min_runs_target = default_min_runs_target;
+    end
+end
+
+if exist("use_latest_n_runs", "var") && ~isempty(use_latest_n_runs)
+    use_latest_n_runs = double(use_latest_n_runs);
+else
+    env_latest_n = str2double(getenv("ADXL_USE_LATEST_N_RUNS"));
+    if ~isnan(env_latest_n) && env_latest_n >= 1
+        use_latest_n_runs = env_latest_n;
+    else
+        use_latest_n_runs = default_use_latest_n_runs;
+    end
+end
 
 %% Rutas
 script_dir = fileparts(mfilename("fullpath"));
@@ -23,6 +68,10 @@ end
 
 [~, order] = sort([files.datenum], "ascend");
 files = files(order);
+
+if use_latest_n_runs >= 1 && numel(files) > use_latest_n_runs
+    files = files((end - use_latest_n_runs + 1):end);
+end
 
 %% Recoleccion de metricas por corrida
 run_names = strings(numel(files), 1);
@@ -91,6 +140,7 @@ fprintf(fid, "sensor_id: %s\n", sensor_id);
 fprintf(fid, "pose_label: %s\n", pose_label);
 fprintf(fid, "runs_found: %d\n", numel(files));
 fprintf(fid, "min_runs_target: %d\n", min_runs_target);
+fprintf(fid, "use_latest_n_runs: %d\n", use_latest_n_runs);
 fprintf(fid, "overview_csv: %s\n", strrep(csv_out, [repo_dir filesep], ""));
 fprintf(fid, "ready_for_comparison: %s\n", string(numel(files) >= min_runs_target));
 
@@ -105,6 +155,7 @@ end
 fprintf("\nREPEATABILITY_PREP_OK\n");
 fprintf("RUNS_FOUND: %d\n", numel(files));
 fprintf("MIN_RUNS_TARGET: %d\n", min_runs_target);
+fprintf("USE_LATEST_N_RUNS: %d\n", use_latest_n_runs);
 fprintf("OVERVIEW_CSV: %s\n", strrep(csv_out, [repo_dir filesep], ""));
 fprintf("OVERVIEW_TXT: %s\n", strrep(txt_out, [repo_dir filesep], ""));
 fprintf("READY_FOR_COMPARISON: %s\n", string(numel(files) >= min_runs_target));

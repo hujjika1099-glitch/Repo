@@ -1,0 +1,16 @@
+analysis_script: matlab/analysis/analyze_sensor_screening_same_pose.m
+pose_label: z_plus_static
+runs_per_sensor: 5
+run_csv: reports\analysis_outputs\sensor_screening_z_plus_static_20260321_095249_runs.csv
+summary_csv: reports\analysis_outputs\sensor_screening_z_plus_static_20260321_095249_summary.csv
+candidate_preferred_sensor: sensor_C
+system_label: fixture_issue
+sensor_sensor_A_label: sensor_suspect
+sensor_sensor_A_raw_z_mean_range: 193.004295
+sensor_sensor_A_mv_z_mean_range: 158.754512
+sensor_sensor_B_label: sensor_suspect
+sensor_sensor_B_raw_z_mean_range: 223.533501
+sensor_sensor_B_mv_z_mean_range: 185.666667
+sensor_sensor_C_label: sensor_ok
+sensor_sensor_C_raw_z_mean_range: 0.887757
+sensor_sensor_C_mv_z_mean_range: 1.099573

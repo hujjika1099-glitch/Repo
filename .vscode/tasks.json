@@ -101,6 +101,91 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Capture Baseline Parametrizable",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "sensor_id='${input:sensorId}'; pose_label='${input:poseLabel}'; port='${input:serialPort}'; duration_s=str2double('${input:captureDurationS}'); run('matlab/calibration/capture_single_sensor_baseline.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze Repeatability Parametrizable",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "sensor_id='${input:sensorId}'; pose_label='${input:poseLabel}'; min_runs_target=str2double('${input:minRunsTarget}'); use_latest_n_runs=str2double('${input:latestRunsN}'); run('matlab/analysis/analyze_repeatability_same_pose.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze Sensor Screening Same Pose",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/analyze_sensor_screening_same_pose.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "sensorId",
+      "type": "pickString",
+      "description": "Sensor a procesar",
+      "options": [
+        "sensor_A",
+        "sensor_B",
+        "sensor_C"
+      ],
+      "default": "sensor_A"
+    },
+    {
+      "id": "poseLabel",
+      "type": "pickString",
+      "description": "Pose de adquisicion",
+      "options": [
+        "z_plus_static"
+      ],
+      "default": "z_plus_static"
+    },
+    {
+      "id": "serialPort",
+      "type": "promptString",
+      "description": "Puerto serial",
+      "default": "COM5"
+    },
+    {
+      "id": "captureDurationS",
+      "type": "promptString",
+      "description": "Duracion de captura en segundos",
+      "default": "12"
+    },
+    {
+      "id": "minRunsTarget",
+      "type": "promptString",
+      "description": "Minimo de corridas objetivo",
+      "default": "5"
+    },
+    {
+      "id": "latestRunsN",
+      "type": "promptString",
+      "description": "Usar ultimas N corridas (0 = todas)",
+      "default": "5"
     }
   ]
 }
