@@ -1,0 +1,9 @@
+script: matlab/analysis/validate_sensorC_static_calibration.m
+sensor_id: sensor_C
+calibration_mat: data\processed\sensor_C_static_calibration_20260321_151516.mat
+run_csv: data\processed\sensor_C_static_validation_20260321_151629.csv
+pose_csv: data\processed\sensor_C_static_validation_20260321_151629_poses.csv
+seq_ok: true
+norm_ok: false
+axis_ok: false
+final_decision: calibrated_but_review_needed

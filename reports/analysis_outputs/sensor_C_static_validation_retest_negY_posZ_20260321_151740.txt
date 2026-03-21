@@ -1,0 +1,13 @@
+script: matlab/analysis/compare_sensorC_static_validation_vs_phase10.m
+baseline_pose_csv: data\processed\sensor_C_static_validation_20260321_140524_poses.csv
+candidate_pose_csv: data\processed\sensor_C_static_validation_20260321_151629_poses.csv
+comparison_csv: reports\analysis_outputs\sensor_C_static_validation_retest_negY_posZ_20260321_151740_comparison_vs_phase10.csv
+seq_ok: true
+axis_ok: false
+neg_y_improved: false
+pos_z_improved: false
+global_simple_mean_abs_gnorm_err: 0.097112843
+global_retest_mean_abs_gnorm_err: 1.215344240
+global_improved: false
+final_decision: calibrated_but_review_needed
+ready_for_next_stage: false
