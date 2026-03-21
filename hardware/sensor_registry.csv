@@ -1,4 +1,4 @@
 sensor_id,status,notes,last_test_date,calibration_file,decision
 sensor_A,pending,,,,
 sensor_B,pending,,,,
-sensor_C,candidate_preferred_sensor,multipose_inconsistent_z_pair_dominant_x_retest_required,2026-03-21,,suspect
+sensor_C,candidate_preferred_sensor,zpair_retest_still_inconsistent_dominant_x_ratio_0.958792,2026-03-21,,suspect

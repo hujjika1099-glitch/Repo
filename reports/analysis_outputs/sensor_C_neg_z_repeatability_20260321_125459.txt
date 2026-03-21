@@ -1,0 +1,14 @@
+analysis_script: matlab/analysis/analyze_repeatability_same_pose.m
+sensor_id: sensor_C
+pose_label: neg_z
+runs_found: 5
+min_runs_target: 5
+use_latest_n_runs: 5
+overview_csv: reports\analysis_outputs\sensor_C_neg_z_repeatability_20260321_125459.csv
+ready_for_comparison: true
+raw_x_mean_range: 1782.460520
+raw_y_mean_range: 12.304803
+mv_z_mean_range: 12.288877
+mv_x_mean_range: 1234.652572
+mv_y_mean_range: 10.478847
+raw_z_mean_range: 15.853114

@@ -1,0 +1,13 @@
+analysis_script: matlab/analysis/analyze_sensorC_zpair_retest.m
+sensor_id: sensor_C
+runs_per_pose: 5
+run_csv: reports\analysis_outputs\sensor_C_zpair_retest_20260321_125701_runs.csv
+pose_csv: reports\analysis_outputs\sensor_C_zpair_retest_20260321_125701_poses.csv
+comparison_csv: reports\analysis_outputs\sensor_C_zpair_retest_20260321_125701_comparison.csv
+baseline_pair_csv: reports\analysis_outputs\sensor_C_multipose_static_20260321_120320_pairs.csv
+baseline_found: true
+final_decision: z_pair_still_inconsistent
+retest_dominant_axis: x
+retest_delta_mv_z: 390.129135
+retest_dominance_ratio: 0.958792
+retest_pair_coherent: false

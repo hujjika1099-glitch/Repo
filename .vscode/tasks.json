@@ -153,6 +153,19 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze sensor_C Z-Pair Retest",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/analyze_sensorC_zpair_retest.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
