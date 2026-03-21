@@ -140,6 +140,19 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Analyze sensor_C Multipose Static",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/analyze_sensorC_multipose_static.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [

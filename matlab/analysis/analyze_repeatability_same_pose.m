@@ -145,10 +145,18 @@ fprintf(fid, "overview_csv: %s\n", strrep(csv_out, [repo_dir filesep], ""));
 fprintf(fid, "ready_for_comparison: %s\n", string(numel(files) >= min_runs_target));
 
 if numel(files) >= 2
+    fprintf(fid, "raw_x_mean_range: %.6f\n", max(raw_x_mean) - min(raw_x_mean));
+    fprintf(fid, "raw_y_mean_range: %.6f\n", max(raw_y_mean) - min(raw_y_mean));
     fprintf(fid, "mv_z_mean_range: %.6f\n", max(mv_z_mean) - min(mv_z_mean));
+    fprintf(fid, "mv_x_mean_range: %.6f\n", max(mv_x_mean) - min(mv_x_mean));
+    fprintf(fid, "mv_y_mean_range: %.6f\n", max(mv_y_mean) - min(mv_y_mean));
     fprintf(fid, "raw_z_mean_range: %.6f\n", max(raw_z_mean) - min(raw_z_mean));
 else
+    fprintf(fid, "raw_x_mean_range: <insufficient_runs>\n");
+    fprintf(fid, "raw_y_mean_range: <insufficient_runs>\n");
     fprintf(fid, "mv_z_mean_range: <insufficient_runs>\n");
+    fprintf(fid, "mv_x_mean_range: <insufficient_runs>\n");
+    fprintf(fid, "mv_y_mean_range: <insufficient_runs>\n");
     fprintf(fid, "raw_z_mean_range: <insufficient_runs>\n");
 end
 

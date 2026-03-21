@@ -1,0 +1,4 @@
+pair_name,expected_axis,pos_pose,neg_pose,delta_mv_x,delta_mv_y,delta_mv_z,dominant_axis,delta_expected_mv,dominance_ratio,axis_dominant,opposed_sign,pair_coherent
+x_pair,x,pos_x,neg_x,-658.554209927293,1.38300402601158,-15.9641388596888,x,-658.554209927293,41.2520973235967,1,1,1
+y_pair,y,pos_y,neg_y,-31.1809737583069,-592.745000092686,-134.867894733341,y,-592.745000092686,4.39500446911145,1,1,1
+z_pair,z,pos_z,neg_z,-1406.10411329146,185.599602142748,379.110408683733,x,379.110408683733,0.269617594529539,0,1,0
