@@ -8,7 +8,8 @@ neg_pose = "neg_z";
 runs_per_pose = 5;
 min_delta_mv = 50;
 dominance_ratio_min = 1.2;
-baseline_pair_csv_relpath = "reports/analysis_outputs/sensor_C_multipose_static_20260321_120320_pairs.csv";
+phase9_pair_csv_relpath = "reports/analysis_outputs/sensor_C_multipose_static_20260321_120320_pairs.csv";
+phase91_comparison_csv_relpath = "reports/analysis_outputs/sensor_C_zpair_retest_20260321_125701_comparison.csv";
 
 %% Rutas
 script_dir = fileparts(mfilename("fullpath"));
@@ -129,46 +130,77 @@ max_other_abs = max(abs([delta_mv_x, delta_mv_y]));
 dominance_ratio = abs(delta_expected_mv) / max(max_other_abs, eps);
 axis_dominant = dominant_axis == "z";
 opposed_sign = abs(delta_expected_mv) >= min_delta_mv;
-pair_coherent = axis_dominant && opposed_sign && (dominance_ratio >= dominance_ratio_min);
+dominance_condition = dominance_ratio >= dominance_ratio_min;
+seq_condition = all(seq_jumps_total == 0);
+pair_coherent = axis_dominant && opposed_sign && dominance_condition;
+approval_all_conditions = axis_dominant && dominance_condition && opposed_sign && seq_condition;
 
-if pair_coherent
+if approval_all_conditions
     final_decision = "z_pair_fixed";
 else
     final_decision = "z_pair_still_inconsistent";
 end
 
-%% Comparacion contra fase 9
-baseline_csv_path = fullfile(repo_dir, char(baseline_pair_csv_relpath));
-baseline_found = isfile(baseline_csv_path);
+%% Comparacion contra fase 9 y 9.1
+phase9_csv_path = fullfile(repo_dir, char(phase9_pair_csv_relpath));
+phase9_found = isfile(phase9_csv_path);
+phase91_csv_path = fullfile(repo_dir, char(phase91_comparison_csv_relpath));
+phase91_found = isfile(phase91_csv_path);
 
-baseline_delta_mv_x = NaN;
-baseline_delta_mv_y = NaN;
-baseline_delta_mv_z = NaN;
-baseline_dominant_axis = "<NOT_FOUND>";
-baseline_dominance_ratio = NaN;
-baseline_pair_coherent = false;
+phase9_delta_mv_x = NaN;
+phase9_delta_mv_y = NaN;
+phase9_delta_mv_z = NaN;
+phase9_dominant_axis = "<NOT_FOUND>";
+phase9_dominance_ratio = NaN;
+phase9_pair_coherent = false;
+phase9_seq_condition = true;
 
-if baseline_found
-    baseline_tbl = readtable(baseline_csv_path, "Delimiter", ",", "TextType", "string");
-    zid = baseline_tbl.pair_name == "z_pair";
+if phase9_found
+    phase9_tbl = readtable(phase9_csv_path, "Delimiter", ",", "TextType", "string");
+    zid = phase9_tbl.pair_name == "z_pair";
     if any(zid)
-        baseline_delta_mv_x = double(baseline_tbl.delta_mv_x(zid));
-        baseline_delta_mv_y = double(baseline_tbl.delta_mv_y(zid));
-        baseline_delta_mv_z = double(baseline_tbl.delta_mv_z(zid));
-        baseline_dominant_axis = string(baseline_tbl.dominant_axis(zid));
-        baseline_dominance_ratio = double(baseline_tbl.dominance_ratio(zid));
-        baseline_pair_coherent = logical(baseline_tbl.pair_coherent(zid));
+        phase9_delta_mv_x = double(phase9_tbl.delta_mv_x(zid));
+        phase9_delta_mv_y = double(phase9_tbl.delta_mv_y(zid));
+        phase9_delta_mv_z = double(phase9_tbl.delta_mv_z(zid));
+        phase9_dominant_axis = string(phase9_tbl.dominant_axis(zid));
+        phase9_dominance_ratio = double(phase9_tbl.dominance_ratio(zid));
+        phase9_pair_coherent = logical(phase9_tbl.pair_coherent(zid));
     end
 end
 
+phase91_delta_mv_x = NaN;
+phase91_delta_mv_y = NaN;
+phase91_delta_mv_z = NaN;
+phase91_dominant_axis = "<NOT_FOUND>";
+phase91_dominance_ratio = NaN;
+phase91_pair_coherent = false;
+phase91_seq_condition = true;
+
+if phase91_found
+    phase91_tbl = readtable(phase91_csv_path, "Delimiter", ",", "TextType", "string");
+    phase91_delta_mv_x = double(phase91_tbl.retest_delta_mv_x(1));
+    phase91_delta_mv_y = double(phase91_tbl.retest_delta_mv_y(1));
+    phase91_delta_mv_z = double(phase91_tbl.retest_delta_mv_z(1));
+    phase91_dominant_axis = string(phase91_tbl.retest_dominant_axis(1));
+    phase91_dominance_ratio = double(phase91_tbl.retest_dominance_ratio(1));
+    phase91_pair_coherent = logical(phase91_tbl.retest_pair_coherent(1));
+end
+
 comparison_tbl = table( ...
-    baseline_delta_mv_x, baseline_delta_mv_y, baseline_delta_mv_z, ...
-    baseline_dominant_axis, baseline_dominance_ratio, baseline_pair_coherent, ...
-    delta_mv_x, delta_mv_y, delta_mv_z, dominant_axis, dominance_ratio, pair_coherent, ...
-    'VariableNames', {'baseline_delta_mv_x','baseline_delta_mv_y','baseline_delta_mv_z', ...
-    'baseline_dominant_axis','baseline_dominance_ratio','baseline_pair_coherent', ...
-    'retest_delta_mv_x','retest_delta_mv_y','retest_delta_mv_z', ...
-    'retest_dominant_axis','retest_dominance_ratio','retest_pair_coherent'});
+    phase9_delta_mv_x, phase9_delta_mv_y, phase9_delta_mv_z, ...
+    phase9_dominant_axis, phase9_dominance_ratio, phase9_pair_coherent, phase9_seq_condition, ...
+    phase91_delta_mv_x, phase91_delta_mv_y, phase91_delta_mv_z, ...
+    phase91_dominant_axis, phase91_dominance_ratio, phase91_pair_coherent, phase91_seq_condition, ...
+    delta_mv_x, delta_mv_y, delta_mv_z, dominant_axis, dominance_ratio, ...
+    pair_coherent, seq_condition, axis_dominant, dominance_condition, opposed_sign, ...
+    approval_all_conditions, final_decision, ...
+    'VariableNames', {'phase9_delta_mv_x','phase9_delta_mv_y','phase9_delta_mv_z', ...
+    'phase9_dominant_axis','phase9_dominance_ratio','phase9_pair_coherent','phase9_seq_condition', ...
+    'phase91_delta_mv_x','phase91_delta_mv_y','phase91_delta_mv_z', ...
+    'phase91_dominant_axis','phase91_dominance_ratio','phase91_pair_coherent','phase91_seq_condition', ...
+    'phase92_delta_mv_x','phase92_delta_mv_y','phase92_delta_mv_z','phase92_dominant_axis','phase92_dominance_ratio', ...
+    'phase92_pair_coherent','phase92_seq_condition','cond1_dominant_axis_z','cond2_dominance_ratio_ok', ...
+    'cond3_abs_delta_mv_z_ok','cond4_seq_jumps_zero','final_decision'});
 
 %% Guardado de artefactos
 stamp = string(datetime("now", "Format", "yyyyMMdd_HHmmss"));
@@ -194,13 +226,20 @@ fprintf(fid, "runs_per_pose: %d\n", runs_per_pose);
 fprintf(fid, "run_csv: %s\n", strrep(run_csv_out, [repo_dir filesep], ""));
 fprintf(fid, "pose_csv: %s\n", strrep(pose_csv_out, [repo_dir filesep], ""));
 fprintf(fid, "comparison_csv: %s\n", strrep(cmp_csv_out, [repo_dir filesep], ""));
-fprintf(fid, "baseline_pair_csv: %s\n", strrep(baseline_csv_path, [repo_dir filesep], ""));
-fprintf(fid, "baseline_found: %s\n", string(baseline_found));
+fprintf(fid, "phase9_pair_csv: %s\n", strrep(phase9_csv_path, [repo_dir filesep], ""));
+fprintf(fid, "phase9_found: %s\n", string(phase9_found));
+fprintf(fid, "phase91_comparison_csv: %s\n", strrep(phase91_csv_path, [repo_dir filesep], ""));
+fprintf(fid, "phase91_found: %s\n", string(phase91_found));
 fprintf(fid, "final_decision: %s\n", final_decision);
-fprintf(fid, "retest_dominant_axis: %s\n", dominant_axis);
-fprintf(fid, "retest_delta_mv_z: %.6f\n", delta_mv_z);
-fprintf(fid, "retest_dominance_ratio: %.6f\n", dominance_ratio);
-fprintf(fid, "retest_pair_coherent: %s\n", string(pair_coherent));
+fprintf(fid, "phase92_dominant_axis: %s\n", dominant_axis);
+fprintf(fid, "phase92_delta_mv_z: %.6f\n", delta_mv_z);
+fprintf(fid, "phase92_dominance_ratio: %.6f\n", dominance_ratio);
+fprintf(fid, "phase92_pair_coherent: %s\n", string(pair_coherent));
+fprintf(fid, "cond1_dominant_axis_z: %s\n", string(axis_dominant));
+fprintf(fid, "cond2_dominance_ratio_ok: %s\n", string(dominance_condition));
+fprintf(fid, "cond3_abs_delta_mv_z_ok: %s\n", string(opposed_sign));
+fprintf(fid, "cond4_seq_jumps_zero: %s\n", string(seq_condition));
+fprintf(fid, "approval_all_conditions: %s\n", string(approval_all_conditions));
 
 %% Salida por consola
 fprintf("\nZPAIR_RETEST_OK\n");
