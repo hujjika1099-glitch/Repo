@@ -1,4 +1,4 @@
 sensor_id,status,notes,last_test_date,calibration_file,decision
 sensor_A,pending,,,,
 sensor_B,pending,,,,
-sensor_C,calibrated_review_needed,static_6pose_calibrated_norm_review_needed_ready_for_next_stage_no,2026-03-21,data/processed/sensor_C_static_calibration_20260321_140044.mat,suspect
+sensor_C,calibrated_review_needed,phase101_affine3x3_no_global_improvement_keep_simple_model_ready_for_next_stage_no,2026-03-21,data/processed/sensor_C_static_calibration_20260321_140044.mat,suspect

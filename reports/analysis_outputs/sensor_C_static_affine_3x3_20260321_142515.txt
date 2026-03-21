@@ -1,0 +1,13 @@
+script: matlab/calibration/calibrate_sensorC_static_affine_3x3.m
+sensor_id: sensor_C
+dataset_mode: from_phase10_calibration
+dataset_source: phase10_calibration_mat
+reference_simple_calibration_mat: data\processed\sensor_C_static_calibration_20260321_140044.mat
+coeff_mat: data\processed\sensor_C_static_affine_3x3_20260321_142515.mat
+coeff_csv: data\processed\sensor_C_static_affine_3x3_20260321_142515.csv
+run_csv: reports\analysis_outputs\sensor_C_static_affine_3x3_20260321_142515_runs.csv
+dataset_csv: reports\analysis_outputs\sensor_C_static_affine_3x3_20260321_142515_dataset.csv
+mv_fit_rmse_g: 0.273127462
+raw_fit_rmse_g: 0.273162050
+mv_bias: [1743.470158209 1649.757214315 1680.350714441]
+raw_bias: [1938.526551865 1825.116794990 1862.031307769]

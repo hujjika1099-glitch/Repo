@@ -1,0 +1,17 @@
+script: matlab/analysis/validate_sensorC_static_affine_3x3.m
+sensor_id: sensor_C
+affine_mat: data\processed\sensor_C_static_affine_3x3_20260321_142515.mat
+simple_pose_csv: data\processed\sensor_C_static_validation_20260321_140524_poses.csv
+run_csv: data\processed\sensor_C_static_affine_3x3_validation_20260321_142847.csv
+pose_csv: data\processed\sensor_C_static_affine_3x3_validation_20260321_142847_poses.csv
+comparison_csv: reports\analysis_outputs\sensor_C_static_affine_3x3_validation_20260321_142847_comparison_vs_simple.csv
+seq_ok: true
+axis_ok: false
+norm_ok: false
+overall_simple_mean_abs_gnorm_err: 0.097112843
+overall_affine_mean_abs_gnorm_err: 0.147430669
+overall_improved: false
+focus_neg_y_improved: false
+focus_pos_z_improved: true
+final_decision: calibrated_but_review_needed
+ready_for_next_stage: false
