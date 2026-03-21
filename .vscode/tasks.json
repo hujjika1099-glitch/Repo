@@ -166,6 +166,32 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Calibrate sensor_C Static 6-Pose",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/calibration/calibrate_sensorC_static_6pose.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Validate sensor_C Static Calibration",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/validate_sensorC_static_calibration.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
