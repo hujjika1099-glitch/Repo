@@ -1,0 +1,7 @@
+pose_fisica,canal_dominante_observado,signo_observado,canal_esperado,signo_esperado,estado
+pos_x,x,1,x,1,ok
+neg_x,x,1,x,-1,sign_inverted
+pos_y,x,1,y,1,axis_permuted
+neg_y,x,1,y,-1,axis_permuted
+pos_z,x,1,z,1,axis_permuted
+neg_z,x,1,z,-1,axis_permuted

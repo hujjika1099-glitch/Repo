@@ -1,0 +1,4 @@
+axis_pair,delta_mv_x,delta_mv_y,delta_mv_z,dominant_channel_observed,dominant_sign_observed,dominance_ratio,expected_channel,expected_sign,status
+x,599.452592832102,-569.890056416772,-571.350244452079,x,1,1.04918585167837,x,1,ambiguous
+y,-835.834304815429,163.811382693797,161.591379315124,x,-1,5.1024189593577,y,1,axis_permuted
+z,-0.567846958647806,407.589336590097,407.095867477249,y,1,1.00121216930033,z,1,ambiguous

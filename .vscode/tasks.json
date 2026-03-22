@@ -168,6 +168,19 @@
       "problemMatcher": []
     },
     {
+      "label": "MATLAB: Diagnose sensor_C Axis Convention",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/diagnose_sensorC_axis_convention.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "MATLAB: Calibrate sensor_C Static 6-Pose",
       "type": "process",
       "command": "matlab",

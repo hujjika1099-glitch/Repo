@@ -1,0 +1,23 @@
+capture_script: matlab/calibration/capture_single_sensor_baseline.m
+sensor_id: sensor_C
+pose_label: neg_z
+port: COM5
+baud: 115200
+requested_duration_s: 8.000
+real_duration_wall_s: 8.004
+real_duration_stream_s: 7.959
+samples_captured: 797
+estimated_frequency_hz: 100.011
+seq_jumps: 0
+invalid_lines_ignored: 0
+header_seen: true
+capture_start_local: 2026-03-22 10:48:55 -0500
+capture_end_local: 2026-03-22 10:49:07 -0500
+csv_path: C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\data\raw\sensor_C\sensor_C_neg_z_20260322_104855.csv
+metadata_line_count: 4
+metadata_lines_begin
+# adxl335_single_node_baseline
+# board=esp32dev
+# pins:x=GPIO32,y=GPIO33,z=GPIO34
+# sample_hz=100
+metadata_lines_end

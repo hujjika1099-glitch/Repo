@@ -1,0 +1,11 @@
+script: matlab/analysis/diagnose_sensorC_axis_convention.m
+sensor_id: sensor_C
+dataset_source: manifest
+dataset_source_detail: reports\analysis_outputs\sensor_C_axis_convention_dataset_phase103.csv
+dominance_ratio_min: 1.200
+run_csv: reports\analysis_outputs\sensor_C_axis_convention_diagnosis_20260322_105051_runs.csv
+pose_csv: reports\analysis_outputs\sensor_C_axis_convention_diagnosis_20260322_105051_poses.csv
+inference_csv: reports\analysis_outputs\sensor_C_axis_convention_diagnosis_20260322_105051_inference.csv
+axis_pair_csv: reports\analysis_outputs\sensor_C_axis_convention_diagnosis_20260322_105051_axis_pairs.csv
+high_level_conclusion: inconclusive
+final_decision: mapping_inconclusive

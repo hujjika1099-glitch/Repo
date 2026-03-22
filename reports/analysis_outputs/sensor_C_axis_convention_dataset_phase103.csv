@@ -1,0 +1,13 @@
+pose,run_file
+pos_x,sensor_C_pos_x_20260322_100543.csv
+pos_x,sensor_C_pos_x_20260322_100727.csv
+neg_x,sensor_C_neg_x_20260322_102138.csv
+neg_x,sensor_C_neg_x_20260322_102310.csv
+pos_y,sensor_C_pos_y_20260322_102733.csv
+pos_y,sensor_C_pos_y_20260322_102903.csv
+neg_y,sensor_C_neg_y_20260322_103241.csv
+neg_y,sensor_C_neg_y_20260322_103426.csv
+pos_z,sensor_C_pos_z_20260322_103811.csv
+pos_z,sensor_C_pos_z_20260322_103938.csv
+neg_z,sensor_C_neg_z_20260322_104725.csv
+neg_z,sensor_C_neg_z_20260322_104855.csv
