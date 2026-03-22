@@ -1,0 +1,29 @@
+script: matlab/analysis/search_sensorC_axis_mapping_hypotheses.m
+sensor_id: sensor_C
+dataset_manifest: reports\analysis_outputs\sensor_C_axis_mapping_search_dataset_20260322_121904.csv
+hypothesis_count: 48
+search_space: 6 permutations x 8 sign combinations
+score_formula: score=100*(0.23*norm_mean + 0.10*norm_max + 0.15*expected_axis_strength + 0.10*cross_axis_term + 0.14*axis_match + 0.10*sign_match + 0.10*exact_match + 0.04*seq_term + 0.04*sens_term)
+metrics_terms: norm_mean=1/(1+overall_mean_abs_gnorm_err), norm_max=1/(1+overall_max_abs_gnorm_err), expected_axis_strength=clamp((avg_expected_axis_strength+1)/2,0,1), cross_axis_term=1/(1+avg_cross_axis_abs), axis_match=pose_axis_match_count/6, sign_match=pose_sign_match_count/6, exact_match=exact_pose_match_count/6, seq_term=1/(1+total_seq_jumps), sens_term=1/(1+invalid_sensitivity_count)
+hypothesis_csv: reports\analysis_outputs\sensor_C_axis_mapping_search_20260322_122519_hypotheses.csv
+top10_csv: reports\analysis_outputs\sensor_C_axis_mapping_search_20260322_122519_top10.csv
+best_runs_csv: reports\analysis_outputs\sensor_C_axis_mapping_search_20260322_122519_best_runs.csv
+best_poses_csv: reports\analysis_outputs\sensor_C_axis_mapping_search_20260322_122519_best_poses.csv
+best_hypothesis_id: 41
+best_mapping: phys_x<=mv_x,phys_y<=mv_y,phys_z<=mv_z
+best_signs: [-1,-1,-1]
+best_score: 48.784647
+best_overall_mean_abs_gnorm_err: 10.540518471
+best_overall_max_abs_gnorm_err: 29.728883074
+best_pose_axis_match_count: 3
+best_pose_sign_match_count: 6
+best_exact_pose_match_count: 3
+best_average_expected_axis_strength: 1.000000000
+best_average_cross_axis_abs: 5.820154276
+best_total_seq_jumps: 0
+second_best_score: 48.784647
+score_gap: 0.000000
+score_gap_relative: 0.000000
+quality_strong: false
+quality_weak: false
+final_decision: mapping_ambiguous
