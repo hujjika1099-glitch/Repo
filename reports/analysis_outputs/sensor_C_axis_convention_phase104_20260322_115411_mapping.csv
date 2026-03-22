@@ -1,0 +1,4 @@
+real_axis,inferred_channel,inferred_sign,inferred_sign_code,dominance_ratio,dominant_abs_mv,status,notes
+x,x,sign_inverted,-1,1.13016252875134,64.7969853527065,ambiguous,dominance_ratio_low
+y,z,sign_normal,1,1.00009120589723,311.153431666,ambiguous,dominance_ratio_low
+z,z,sign_normal,1,1.00374786913145,319.362936521568,ambiguous,dominance_ratio_low

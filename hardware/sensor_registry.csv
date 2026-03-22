@@ -1,4 +1,4 @@
 sensor_id,status,notes,last_test_date,calibration_file,decision
 sensor_A,pending,,,,
 sensor_B,pending,,,,
-sensor_C,calibrated_review_needed,phase103_axis_convention_mapping_inconclusive_sign_and_axis_issue_detected,2026-03-22,data/processed/sensor_C_static_calibration_20260321_140044.mat,suspect
+sensor_C,calibrated_review_needed,phase104_reinforced_axis_diagnosis_mapping_inconclusive_pair_ambiguity_persists,2026-03-22,data/processed/sensor_C_static_calibration_20260321_140044.mat,suspect
