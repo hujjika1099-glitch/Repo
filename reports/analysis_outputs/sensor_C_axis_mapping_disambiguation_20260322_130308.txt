@@ -1,0 +1,33 @@
+script: matlab/analysis/disambiguate_sensorC_axis_mapping_physical.m
+sensor_id: sensor_C
+dataset_manifest: reports\analysis_outputs\sensor_C_axis_mapping_search_dataset_20260322_121904.csv
+hypotheses_evaluated: 48
+families_evaluated: 6
+score_formula_base: base=100*(0.08*norm_mean + 0.05*norm_max + 0.10*pose_axis + 0.07*pose_exact + 0.14*pair_axis + 0.14*pair_sign + 0.11*pair_dom_avg + 0.10*pair_dom_worst + 0.07*expected_axis + 0.06*cross_axis + 0.05*raw_pair_sign + 0.02*raw_pair_dom + 0.01*seq_term)
+score_formula_global: score_global=base + 6*family_rank_metric + 3*family_gap_bonus - 4*family_tie_penalty
+null_reference: shuffled pose labels (400 iter), same best permutation/sign
+hypotheses_csv: reports\analysis_outputs\sensor_C_axis_mapping_disambiguation_20260322_130308_hypotheses.csv
+families_csv: reports\analysis_outputs\sensor_C_axis_mapping_disambiguation_20260322_130308_families.csv
+top10_csv: reports\analysis_outputs\sensor_C_axis_mapping_disambiguation_20260322_130308_top10.csv
+best_poses_csv: reports\analysis_outputs\sensor_C_axis_mapping_disambiguation_20260322_130308_best_poses.csv
+best_pairs_csv: reports\analysis_outputs\sensor_C_axis_mapping_disambiguation_20260322_130308_best_pairs.csv
+best_hypothesis_id: 39
+best_permutation_family: phys_x<=mv_x,phys_y<=mv_z,phys_z<=mv_y
+best_mapping: phys_x<=mv_x,phys_y<=mv_z,phys_z<=mv_y
+best_signs: [-1,+1,+1]
+best_base_score: 50.169274
+best_score: 57.169274
+second_score: 55.869207
+score_gap: 1.300068
+best_family_score: 57.169274
+second_family_score: 55.869207
+family_score_gap: 1.300068
+null_score_mean: 34.976489
+null_score_std: 8.808397
+null_score_p95: 51.794230
+null_score_max: 68.266658
+best_vs_null_mean: 15.192785
+best_vs_null_p95: -1.624956
+rule_identified_weak: false
+rule_not_supported: true
+final_decision: mapping_not_supported

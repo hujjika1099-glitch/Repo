@@ -207,6 +207,19 @@
       "problemMatcher": []
     },
     {
+      "label": "MATLAB: Disambiguate sensor_C Axis Mapping Physical",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/disambiguate_sensorC_axis_mapping_physical.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "MATLAB: Calibrate sensor_C Static 6-Pose",
       "type": "process",
       "command": "matlab",
