@@ -1,0 +1,19 @@
+script: matlab/calibration/fit_sensorC_coupled_linear_model.m
+sensor_id: sensor_C
+dataset_manifest_source: reports\analysis_outputs\sensor_C_coupled_model_dataset_20260322_131311.csv
+dataset_manifest_used: reports\analysis_outputs\sensor_C_coupled_model_dataset_20260322_131829.csv
+model_form_main: g_est = A * v + c
+model_form_equiv: g_est = M * (v - b)
+b_solve_method: inverse
+is_invertible: true
+cond_A: 5393.790651644
+rcond_A: 0.000177428
+rmse_x: 0.563454779
+rmse_y: 0.418587612
+rmse_z: 0.402393228
+rmse_overall: 0.467124961
+total_seq_jumps: 0
+coeff_csv: data\processed\sensor_C_coupled_linear_model_20260322_131829.csv
+coeff_mat: data\processed\sensor_C_coupled_linear_model_20260322_131829.mat
+runs_csv: reports\analysis_outputs\sensor_C_coupled_linear_model_20260322_131829_runs.csv
+poses_csv: reports\analysis_outputs\sensor_C_coupled_linear_model_20260322_131829_poses.csv

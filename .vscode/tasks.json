@@ -220,6 +220,32 @@
       "problemMatcher": []
     },
     {
+      "label": "MATLAB: Fit sensor_C Coupled Linear Model",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/calibration/fit_sensorC_coupled_linear_model.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "MATLAB: Validate sensor_C Coupled Linear Model",
+      "type": "process",
+      "command": "matlab",
+      "args": [
+        "-batch",
+        "run('matlab/analysis/validate_sensorC_coupled_linear_model.m')"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "MATLAB: Calibrate sensor_C Static 6-Pose",
       "type": "process",
       "command": "matlab",
