@@ -1,96 +1,62 @@
-# Proyecto de Maestria: Validacion y Calibracion de Sensores ADXL335 con ESP32
+# Proyecto de Maestria: ADXL335 + ESP32 (Flujo Operativo)
 
-## Proposito
-Este repositorio concentra el trabajo tecnico de validacion, calibracion y analisis de sensores ADXL335 usando una unica ESP32 de referencia para comparacion individual por sensor.
+## Estado operativo actual
+- `sensor_B`: fuente operativa primaria.
+- `sensor_A`: backup operativo.
+- `sensor_C`: referencia historica/provisional.
+- `sensor_D`: descartado.
 
-El objetivo es construir un flujo trazable y reproducible para:
-- adquisicion de datos por sensor,
-- calibracion por sensor (no por nodo),
-- analisis en MATLAB,
-- reporte tecnico de resultados y decisiones.
+## Objetivo vigente
+Pasar de validacion de sensor a uso funcional real en vivo:
+1. Captura live MATLAB desde serial.
+2. Ingesta operativa.
+3. Bloque funcional post-ingesta (features + segmentos de movimiento).
+4. Preparacion de migracion a transporte ESP-NOW sin romper el parser MATLAB.
 
-## Alcance Tecnico
-- Firmware base para ensayos individuales y comparativos (fase posterior).
-- Estructura de datos crudos y procesados con trazabilidad.
-- Analisis y apoyo de calibracion en MATLAB (fase posterior).
-- Documentacion de hardware, pinout y registro de sensores.
-- Gobernanza operativa entre agente Codex y operador humano.
+## Scripts clave (MATLAB)
+- Captura baseline serial:
+  - `matlab/calibration/capture_single_sensor_baseline.m`
+- Sesion live MATLAB (Fase 14A):
+  - `matlab/live/run_sensorB_live_session.m`
+  - `matlab/live/parse_adxl335_stream_line.m`
+  - `matlab/live/estimate_sensorB_accel_g.m`
+- Ingesta operativa:
+  - `matlab/analysis/run_sensorB_operational_ingest.m`
+- Bloque funcional post-ingesta:
+  - `matlab/analysis/run_sensorB_operational_feature_block.m`
 
-## Estado Actual del Proyecto
-- Repositorio Git local ya inicializado y vinculado a `origin/main`.
-- Estructura base de trabajo creada para firmware, MATLAB, datos, reportes y prompts.
-- Documentacion de control y reglas de ejecucion establecidas.
-- Sin implementacion funcional final de firmware ni scripts MATLAB productivos todavia.
-- PlatformIO disponible por ruta local verificada (`%USERPROFILE%\\.platformio\\penv\\Scripts\\pio.exe`), aunque no este en PATH global.
-- `.vscode/tasks.json` ya incluye tareas reales de build/upload/monitor/clean para `firmware/single_node_calibration`.
+## Scripts clave (PowerShell)
+- Captura operativa corta:
+  - `scripts/run_sensorB_operational_capture.ps1`
+- Sesion live (sin abrir configuracion manual):
+  - `scripts/run_sensorB_live_session.ps1`
 
-## Estructura de Carpetas
-```text
-.
-|-- .codex/
-|-- .vscode/
-|-- data/
-|   |-- raw/
-|   |   |-- sensor_A/
-|   |   |-- sensor_B/
-|   |   `-- sensor_C/
-|   `-- processed/
-|-- firmware/
-|   |-- single_node_calibration/
-|   `-- dual_node_espnow/
-|-- hardware/
-|-- matlab/
-|   |-- calibration/
-|   `-- analysis/
-|-- prompts/
-|-- reports/
-|-- AGENTS.md
-`-- README.md
-```
+## Modo recomendado para pruebas repetidas (sin abrir muchas instancias)
+1. Abrir una sola ventana de MATLAB.
+2. Ejecutar:
+   - `run('live_session_hub/sensorB_live_prompt_session.m')`
+3. En consola MATLAB indicar:
+   - duracion,
+   - nombre de sesion,
+   - prefijo,
+   - carpeta de salida,
+   - si guardar CSV/MAT.
 
-## Flujo de Trabajo por Fases
-1. Bootstrap local del repositorio (estructura, reglas, trazabilidad, documentacion).
-2. Definicion de toolchain y tareas de entorno (sin alterar remoto por defecto).
-3. Implementacion de firmware minimo para adquisicion controlada.
-4. Implementacion de scripts MATLAB de calibracion y analisis.
-5. Validacion por sensor, emision de reportes y decisiones (`pass`, `suspect`, `fail`).
-6. Consolidacion de resultados, hardening y entregables finales.
+## Carpeta de apoyo live
+- `live_session_hub/`
+  - `sensorB_live_prompt_session.m` (launcher interactivo en MATLAB)
+  - `matlab_live_session_code.txt` (codigo MATLAB de prueba)
+  - `arduino_esp32_firmware_code.txt` (codigo Arduino flasheado actual)
 
-## Toolchain de Firmware en VS Code
-- Estrategia activa: ejecutar PlatformIO por ruta local verificada (sin depender de PATH global).
-- Comando base usado por tareas:
+## Contrato 14B (preparacion ESP-NOW)
+- `firmware/dual_node_espnow/phase14b_transport_contract.json`
+- Regla principal:
+  - El receptor por USB debe emitir el mismo CSV:
+    - `seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`
+  - Asi MATLAB reutiliza el mismo parser.
+
+## Toolchain
+- PlatformIO local:
   - `${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe`
-- Tareas disponibles:
-  - Build Single Calibration
-  - Upload Single Calibration
-  - Monitor Single Calibration
-  - Clean Single Calibration
-
-## Responsabilidades: Codex vs Operador Humano
-- Codex:
-  - Gestion de estructura del repo, documentacion y automatizaciones locales.
-  - Propuesta e implementacion de cambios de software aprobados.
-  - Registro tecnico de cambios en `reports/change_log.md`.
-- Operador humano:
-  - Conexion de hardware, mediciones fisicas y manipulacion de sensores.
-  - Autenticaciones y confirmaciones requeridas por el sistema.
-  - Validacion de decisiones tecnicas de alto impacto.
-
-## Estrategia de Versionado
-- Commits pequenos, trazables y orientados por fase.
-- Un cambio relevante debe quedar documentado en `reports/change_log.md`.
-- No aplicar cambios irreversibles sin verificacion previa.
-- No crear ni recrear remoto por defecto cuando ya existe `origin`.
-
-## Estrategia de Validacion y Calibracion por Sensor
-- La unidad de evaluacion es el sensor individual.
-- Se utiliza una sola ESP32 de referencia para comparar sensores bajo el mismo entorno.
-- Los datos crudos en `data/raw/` se preservan como evidencia (sin sobrescritura).
-- Cada analisis debe producir evidencia en `reports/`.
-- Criterio de decision por sensor:
-  - `pass`: comportamiento consistente y tolerancias aceptables.
-  - `suspect`: variabilidad/anomalias que requieren repeticion o revision.
-  - `fail`: incoherencia fisica o desviacion fuera de criterios aceptables.
-
-## Nota Sobre el Remoto
-`origin` ya existe y se encuentra configurado. Este repositorio no debe recrear remoto por defecto ni modificarlo sin instruccion explicita.
+- Entorno de firmware actual:
+  - `firmware/single_node_calibration`
