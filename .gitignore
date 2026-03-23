@@ -17,6 +17,11 @@ __pycache__/
 *.mex*
 slprj/
 
+# LaTeX temporales
+*.aux
+*.out
+*.toc
+
 # Logs y basura de editor/SO
 *.log
 *.tmp

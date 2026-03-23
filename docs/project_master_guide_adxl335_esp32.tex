@@ -1,0 +1,461 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{lastpage}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{listings}
+
+\geometry{margin=2.35cm}
+\setstretch{1.12}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.2cm,itemsep=0.25em,topsep=0.2em}
+\setlist[enumerate]{leftmargin=1.2cm,itemsep=0.25em,topsep=0.2em}
+
+\definecolor{Primary}{HTML}{123B63}
+\definecolor{Secondary}{HTML}{1F5E8A}
+\definecolor{Accent}{HTML}{D9E7F2}
+\definecolor{Soft}{HTML}{F5F8FB}
+\definecolor{Line}{HTML}{C8D4E0}
+\definecolor{TextGray}{HTML}{4A5563}
+\definecolor{Success}{HTML}{2D7A46}
+\definecolor{Warn}{HTML}{9A6A00}
+\definecolor{Muted}{HTML}{7A8795}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Primary,
+  urlcolor=Secondary,
+  pdftitle={Guía técnica y operativa del proyecto ADXL335 + ESP32},
+  pdfauthor={Proyecto de validación y operación ADXL335 + ESP32}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{Muted}{Guía técnica y operativa del proyecto ADXL335 + ESP32}}
+\fancyhead[R]{\textcolor{Muted}{Versión 2026-03-22}}
+\fancyfoot[L]{\textcolor{Muted}{Documento maestro del proyecto}}
+\fancyfoot[R]{\textcolor{Muted}{Página \thepage\ de \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\Large\bfseries\color{Primary}}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{Secondary}}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{Primary}}{\thesubsubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+\titlespacing*{\subsection}{0pt}{1.0em}{0.35em}
+\titlespacing*{\subsubsection}{0pt}{0.8em}{0.25em}
+
+\newtcolorbox{summarybox}{
+  colback=Soft,
+  colframe=Primary,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm
+}
+
+\newtcolorbox{infobox}{
+  colback=white,
+  colframe=Line,
+  boxrule=0.6pt,
+  arc=1.7mm,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm
+}
+
+\newtcolorbox{roadmapbox}{
+  colback=Accent,
+  colframe=Secondary,
+  boxrule=0.7pt,
+  arc=1.7mm,
+  left=3mm,
+  right=3mm,
+  top=2mm,
+  bottom=2mm
+}
+
+\lstdefinestyle{cmdstyle}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{Line},
+  xleftmargin=2mm,
+  xrightmargin=2mm,
+  framerule=0.5pt
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\thispagestyle{empty}
+\colorbox{Primary}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\vspace{0.35cm}\hfill}}
+
+\vspace{1.4cm}
+
+{\Huge\bfseries\color{Primary} Guía técnica y operativa del proyecto \\
+ADXL335 + ESP32\par}
+
+\vspace{0.6cm}
+
+{\Large\color{TextGray} Estado actual, arquitectura funcional, flujo de trabajo y hoja de ruta inmediata\par}
+
+\vspace{1.2cm}
+
+\begin{summarybox}
+\textbf{Propósito del documento}\par
+Este documento consolida, en lenguaje técnico claro y orientado a múltiples perfiles profesionales, el estado real del proyecto ADXL335 + ESP32, las decisiones de ingeniería adoptadas, el flujo operativo vigente, los artefactos principales del repositorio y la ruta inmediata para evolucionar hacia captura en vivo y transporte inalámbrico por ESP-NOW.
+\end{summarybox}
+
+\vspace{1.0cm}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{4.3cm}X}
+Proyecto & Validación, captura, procesamiento e integración operativa de un acelerómetro ADXL335 con ESP32 \\
+Versión del documento & 2026-03-22 \\
+Estado general & Operación funcional con \texttt{sensor\_B} como módulo primario; \texttt{sensor\_A} como respaldo; \texttt{sensor\_C} como referencia histórica; \texttt{sensor\_D} descartado \\
+Nivel de madurez & Captura validada, ingestión estable, extracción de features implementada y preparación de siguiente etapa live + ESP-NOW \\
+Público objetivo & Equipos técnicos, áreas operativas, responsables de implementación, directores de proyecto y profesionales no especializados en electrónica \\
+\end{tabularx}
+
+\vfill
+
+\begin{infobox}
+\textbf{Mensaje clave}\par
+El proyecto ya no está detenido en la caracterización del sensor. La cadena funcional de captura, ingestión y preparación de datos operativos está resuelta. El siguiente salto de valor es consolidar una sesión live en MATLAB y, sobre ese mismo contrato de datos, migrar el transporte a ESP-NOW con un receptor serial dedicado.
+\end{infobox}
+
+\vspace{0.8cm}
+\colorbox{Primary}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\vspace{0.35cm}\hfill}}
+\end{titlepage}
+\clearpage
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
+
+\tableofcontents
+\newpage
+
+\section{Propósito y alcance}
+
+Esta guía reúne de forma estructurada lo que ya se consiguió en el proyecto, cómo debe usarse hoy el sistema, qué decisiones quedaron cerradas y cuál es la ruta más eficiente para continuar. El documento busca ser útil tanto para perfiles electrónicos como para profesionales de otras disciplinas que necesiten entender el estado del sistema, sus capacidades actuales y la forma correcta de operarlo.
+
+El alcance cubre cinco frentes: descripción del sistema, estado actual del desarrollo, flujo operativo diario, activos técnicos principales del repositorio y hoja de ruta inmediata hacia visualización en vivo y transporte inalámbrico.
+
+\section{Resumen ejecutivo}
+
+\begin{summarybox}
+\begin{itemize}
+  \item El sistema ADXL335 + ESP32 ya dispone de un flujo funcional completo de captura, validación básica, ingestión de datos y generación de bloques procesados útiles para etapas posteriores.
+  \item El cuello de botella principal asociado a la caracterización extensa del sensor fue superado mediante una estrategia de selección operativa de módulos y reglas de aceptación rápida.
+  \item La decisión vigente del proyecto establece a \texttt{sensor\_B} como módulo operativo primario, a \texttt{sensor\_A} como respaldo, a \texttt{sensor\_C} como referencia histórica y a \texttt{sensor\_D} como módulo descartado.
+  \item El repositorio ya cuenta con scripts para captura normal, ingestión operativa y extracción de features, de modo que los datos capturados pueden transformarse en artefactos listos para lógica de aplicación y análisis.
+  \item El cableado estándar quedó estabilizado en ADC1 del ESP32, lo cual preserva compatibilidad futura con Wi-Fi y ESP-NOW.
+  \item La etapa siguiente ya no debe centrarse en recalibración extensa, sino en una sesión live en MATLAB y luego en una arquitectura dual-node basada en ESP-NOW con salida serial hacia PC.
+\end{itemize}
+\end{summarybox}
+
+\section{Descripción general del sistema}
+
+El proyecto implementa un sistema de adquisición de movimiento basado en un acelerómetro analógico ADXL335 conectado a una ESP32. La ESP32 realiza la lectura de los tres ejes del sensor, transmite la información en un formato serial estructurado y el entorno MATLAB se encarga de la captura, validación, transformación y preparación de los datos para consumo downstream.
+
+Desde una perspectiva funcional, el sistema cumple cuatro etapas consecutivas:
+
+\begin{enumerate}
+  \item \textbf{Adquisición:} lectura continua del ADXL335 en los tres ejes.
+  \item \textbf{Transporte:} envío de datos por serial en formato CSV legible y trazable.
+  \item \textbf{Procesamiento:} normalización temporal, centrado por corrida y consolidación de artefactos procesados.
+  \item \textbf{Interpretación:} extracción de features por ventanas y detección de segmentos de movimiento para alimentar la siguiente lógica del proyecto.
+\end{enumerate}
+
+\begin{infobox}
+\textbf{Lectura simple para perfiles no electrónicos}\par
+En términos prácticos, el sistema toma movimiento físico, lo convierte en datos numéricos organizados, revisa si la captura es sana y deja un archivo listo para análisis o para alimentar un módulo de aplicación. La complejidad del hardware no cambia la experiencia final del flujo: capturar, validar, transformar y reutilizar.
+\end{infobox}
+
+\section{Estado actual del proyecto}
+
+\subsection{Decisión operativa vigente}
+
+La selección de módulos quedó cerrada bajo una lógica pragmática de operación rápida, evitando reabrir campañas largas de caracterización. El estado vigente es el siguiente:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.4cm}p{3.2cm}X}
+\toprule
+Módulo & Estado resumido & Interpretación operativa \\
+\midrule
+\texttt{sensor\_B} & Primario operativo & Módulo principal para captura y procesamiento corriente. En el registro técnico corresponde a \texttt{primary\_operational\_ready}. \\
+\texttt{sensor\_A} & Respaldo operativo & Respaldo inmediato. Debe usarse si \texttt{sensor\_B} falla una validación corta puntual. En el registro técnico corresponde a \texttt{backup\_operational\_ready}. \\
+\texttt{sensor\_C} & Referencia histórica & Referencia técnica e histórica del proceso de calibración. No debe seguir usándose como líder de hardware. En el registro técnico corresponde a \texttt{historical\_reference\_provisional}. \\
+\texttt{sensor\_D} & Módulo descartado & Módulo descartado por inconsistencias físicas detectadas en el quickcheck. En el registro técnico corresponde a \texttt{rejected\_module}. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Qué quedó resuelto}
+
+A la fecha, el proyecto cuenta con los siguientes hitos cerrados:
+
+\begin{itemize}
+  \item Cadena de captura serial estable y validada.
+  \item Reglas de aceptación rápida para nuevos módulos, evitando semanas de caracterización por sensor.
+  \item Captura operativa oficial de \texttt{sensor\_B} con \texttt{SEQ\_JUMPS = 0}, frecuencia cercana a 100 Hz y sin saturación relevante.
+  \item Script de ingestión operativa que convierte el CSV raw en un archivo procesado reutilizable.
+  \item Bloque funcional que transforma el archivo procesado en features por ventana y segmentos de movimiento.
+\end{itemize}
+
+\subsection{Qué no debe volver a hacerse}
+
+El proyecto ya no debe regresar a un esquema de trabajo basado en campañas largas para cerrar identidad perfecta por módulo, ni en intentos repetitivos de calibración compleja sin retorno operacional. La línea correcta es consolidar uso real con \texttt{sensor\_B} y avanzar al siguiente bloque funcional.
+
+\section{Arquitectura funcional del sistema}
+
+\subsection{Arquitectura actual}
+
+\begin{roadmapbox}
+\textbf{Flujo vigente}\par
+ADXL335 $\rightarrow$ ESP32 (lectura analógica) $\rightarrow$ serial CSV $\rightarrow$ captura MATLAB $\rightarrow$ ingestión operativa $\rightarrow$ features y segmentos $\rightarrow$ siguiente bloque funcional del proyecto
+\end{roadmapbox}
+
+\subsection{Arquitectura objetivo a corto plazo}
+
+\begin{roadmapbox}
+\textbf{Evolución inmediata prevista}\par
+ADXL335 $\rightarrow$ ESP32 nodo sensor $\rightarrow$ ESP-NOW $\rightarrow$ ESP32 receptor $\rightarrow$ serial USB $\rightarrow$ MATLAB live session $\rightarrow$ guardado y postanálisis
+\end{roadmapbox}
+
+La clave de diseño es que MATLAB debe seguir recibiendo prácticamente el mismo contrato de datos, aunque el transporte cambie de serial directo a un esquema inalámbrico con receptor dedicado.
+
+\section{Cableado estándar y decisiones de ingeniería}
+
+\subsection{Mapa de conexiones}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}p{3.8cm}X}
+\toprule
+Pin ADXL335 & Pin ESP32 & Observación \\
+\midrule
+VCC & 3V3 & Alimentación estable; no usar 5 V \\
+GND & GND & Referencia común obligatoria \\
+X-OUT & GPIO32 (ADC1\_CH4) & Canal analógico X \\
+Y-OUT & GPIO33 (ADC1\_CH5) & Canal analógico Y \\
+Z-OUT & GPIO34 (ADC1\_CH6) & Canal analógico Z; GPIO34 es solo entrada, pero válido para ADC \\
+ST (pad lateral) & GPIO23 & Uso diagnóstico; no es requisito del flujo operativo diario \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Justificación técnica}
+
+\begin{itemize}
+  \item Se usa \textbf{ADC1} exclusivamente para los tres ejes porque es el dominio correcto cuando se prevé uso futuro de Wi-Fi y ESP-NOW.
+  \item Se evita \textbf{ADC2} para las salidas del sensor, reduciendo incompatibilidades futuras con radio.
+  \item El pin \texttt{ST} se mantiene disponible como instrumento diagnóstico, pero no debe convertirse en condición obligatoria de la operación normal del sistema.
+  \item El cableado se mantuvo deliberadamente simple, repetible y fácil de revisar para perfiles no especializados.
+\end{itemize}
+
+\section{Flujo operativo vigente}
+
+\subsection{Captura operativa}
+
+El flujo operativo base consiste en ejecutar una captura de duración definida, validar automáticamente la sanidad de la corrida y guardar los artefactos raw para su transformación posterior.
+
+\begin{infobox}
+\textbf{Regla práctica}\par
+La operación diaria debe iniciar siempre con \texttt{sensor\_B}. Si una corrida corta falla criterios básicos de sanidad, se repite una sola vez. Si persiste el problema, se conmuta a \texttt{sensor\_A} sin detener el proyecto.
+\end{infobox}
+
+\subsection{Criterios de aceptación rápida}
+
+Antes de utilizar una corrida como entrada del siguiente módulo, se recomienda verificar:
+
+\begin{itemize}
+  \item \texttt{SEQ\_JUMPS = 0}
+  \item \texttt{95 \textless= FREQ\_HZ \textless= 105}
+  \item \texttt{SAT\_PCT\_ANY\_AXIS \textless= 1.0}
+\end{itemize}
+
+Si una corrida no cumple estas reglas, la acción correcta no es reabrir el proyecto, sino revisar cableado y puerto, repetir una única captura corta y usar \texttt{sensor\_A} como respaldo si el problema persiste.
+
+\section{Procesamiento actual del dato}
+
+\subsection{Ingestión operativa}
+
+Una vez generada la captura raw, el repositorio transforma esa corrida en un archivo procesado que unifica columnas base y columnas derivadas. El objetivo de este paso es producir una entrada estable para el bloque funcional siguiente sin depender de una calibración transferida de \texttt{sensor\_C}.
+
+\subsection{Bloque funcional}
+
+Sobre el archivo procesado, el bloque funcional realiza ventaneo temporal, extracción de métricas y segmentación simple de movimiento. Esto convierte una corrida lineal en un conjunto de features y eventos reutilizables por la siguiente lógica del proyecto.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.4cm}X}
+\toprule
+Etapa & Resultado \\
+\midrule
+CSV raw & Datos crudos del acelerómetro capturados desde la ESP32 \\
+CSV processed & Señales temporales alineadas, centradas por corrida y listas para consumo downstream \\
+CSV de features & Variables por ventana, útiles para clasificación, detección o lógica de aplicación \\
+CSV de motion segments & Segmentos donde el sistema detecta actividad o cambio de régimen \\
+MAT de soporte & Paquete consolidado con tablas y metadatos de ejecución \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Artefactos oficiales actuales}
+
+\subsection{Corrida raw oficial de referencia}
+
+La captura que consolidó a \texttt{sensor\_B} como fuente operativa fue una corrida de 90 segundos con resultados sanos de frecuencia, secuencia y saturación. Ese archivo es la referencia raw más importante del estado actual del proyecto.
+
+\subsection{Archivo processed oficial}
+
+A partir de la corrida raw, el proyecto generó un CSV processed que quedó como entrada formal del siguiente módulo funcional. Este artefacto es importante porque representa el punto exacto donde el proyecto deja atrás la validación del sensor y entra en procesamiento downstream.
+
+\subsection{Salida funcional ya conseguida}
+
+El repositorio también generó, a partir del archivo processed, un bloque de features y motion segments. Esta salida demuestra que el dato capturado por \texttt{sensor\_B} ya puede convertirse en estructuras funcionales para etapas posteriores, sin volver a hardware ni al self-test.
+
+\section{Estructura del repositorio}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.7cm}X}
+\toprule
+Ruta principal & Función \\
+\midrule
+\texttt{firmware/} & Código de la ESP32 para adquisición y transporte de datos \\
+\texttt{matlab/calibration/} & Scripts de captura y utilidades de prueba de banco \\
+\texttt{matlab/analysis/} & Ingestión, evaluación y bloques funcionales downstream \\
+\texttt{scripts/} & Helpers de ejecución desde PowerShell para captura y automatización operativa \\
+\texttt{data/raw/} & Corridas crudas, organizadas por módulo \\
+\texttt{data/processed/} & Salidas procesadas, features, segmentos y paquetes intermedios \\
+\texttt{reports/} & Resúmenes, runbooks, criterios y documentos técnicos \\
+\texttt{hardware/} & Pinout, wiring estándar, registros de módulos y documentación física \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Capacidad actual frente a usuarios y operación}
+
+Desde el punto de vista de uso práctico, el sistema ya puede entregar valor en tres niveles:
+
+\begin{enumerate}
+  \item \textbf{Captura controlada:} registrar una prueba con duración definida y guardar los datos con trazabilidad.
+  \item \textbf{Procesamiento repetible:} transformar la corrida en un formato más limpio y reutilizable.
+  \item \textbf{Preparación para visualización y automatización:} generar insumos listos para una etapa live y para módulos de análisis o clasificación.
+\end{enumerate}
+
+Esto es importante porque permite que el proyecto sea comprendido y utilizado por equipos de trabajo con distintos niveles de especialización: desde quienes manipulan el hardware hasta quienes solo requieren resultados claros y archivos consistentes para análisis o toma de decisiones.
+
+\section{Hoja de ruta inmediata}
+
+\subsection{Fase siguiente recomendada: sesión live en MATLAB}
+
+El siguiente paso con mejor retorno consiste en una sesión live que permita:
+
+\begin{itemize}
+  \item seleccionar nombre de archivo antes de la prueba,
+  \item definir duración,
+  \item ver en vivo las señales medidas,
+  \item estimar aceleración por eje de forma nominal,
+  \item guardar automáticamente los artefactos raw y processed al finalizar.
+\end{itemize}
+
+\subsection{Fase posterior: transporte por ESP-NOW}
+
+Una vez estabilizada la sesión live sobre serial, la evolución natural es un esquema de dos ESP32:
+
+\begin{itemize}
+  \item \textbf{Nodo sensor:} lee el ADXL335 y transmite el paquete por ESP-NOW.
+  \item \textbf{Nodo receptor:} recibe el paquete y lo reemite por serial USB al PC.
+  \item \textbf{MATLAB:} mantiene el mismo parser y la misma lógica de sesión, reduciendo cambios aguas abajo.
+\end{itemize}
+
+\begin{roadmapbox}
+\textbf{Principio de continuidad}\par
+La meta no es reemplazar todo el sistema, sino cambiar el medio de transporte preservando el contrato de datos. De este modo, el esfuerzo invertido en el parser, la ingesta y el bloque funcional se conserva.
+\end{roadmapbox}
+
+\section{Recomendaciones de operación y mantenimiento}
+
+\begin{itemize}
+  \item Mantener \texttt{sensor\_B} como módulo predeterminado mientras siga pasando sanidad operativa.
+  \item Usar \texttt{sensor\_A} únicamente como respaldo inmediato.
+  \item No reabrir el trabajo de identidad fina de \texttt{sensor\_C} como condición para avanzar.
+  \item No usar \texttt{ST} como puerta de acceso diaria; reservarlo para diagnóstico puntual.
+  \item Conservar la disciplina de artefactos: capturas en \texttt{data/raw}, salidas procesadas en \texttt{data/processed} y resúmenes en \texttt{reports/analysis\_outputs}. 
+\end{itemize}
+
+\section{Conclusión}
+
+El proyecto ADXL335 + ESP32 ya dispone de una base operativa suficientemente sólida para dejar atrás la etapa de bloqueo por validación del sensor y pasar a una fase de uso real. La selección de módulos quedó resuelta, el flujo de captura y procesamiento está estabilizado y la transición natural del trabajo es una sesión live en MATLAB seguida por una migración ordenada del transporte a ESP-NOW.
+
+El valor principal de este punto de madurez no está en prometer una metrología perfecta, sino en haber construido un sistema utilizable, trazable, comprensible y escalable. Esa es la base correcta para seguir desarrollando el proyecto sin volver a caer en ciclos extensos de caracterización por cada módulo nuevo.
+
+\appendix
+
+\section{Comandos de referencia rápida}
+
+\subsection*{Build de firmware}
+\begin{lstlisting}[style=cmdstyle]
+$env:PLATFORMIO_EXE="$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
+& $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration
+\end{lstlisting}
+
+\subsection*{Upload de firmware}
+\begin{lstlisting}[style=cmdstyle]
+$env:PLATFORMIO_EXE="$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
+& $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration -t upload
+\end{lstlisting}
+
+\subsection*{Captura operativa típica con \texttt{sensor\_B}}
+\begin{lstlisting}[style=cmdstyle]
+.\scripts\run_sensorB_operational_capture.ps1 -Port COM5 -DurationS 90 -PoseLabel operational_run
+\end{lstlisting}
+
+\subsection*{Ingestión operativa}
+\begin{lstlisting}[style=cmdstyle]
+matlab -batch "sensor_id='sensor_B'; input_csv_abs='data/raw/sensor_B/sensor_B_operational_run_90s_<timestamp>.csv'; run('matlab/analysis/run_sensorB_operational_ingest.m')"
+\end{lstlisting}
+
+\subsection*{Bloque funcional}
+\begin{lstlisting}[style=cmdstyle]
+matlab -batch "sensor_id='sensor_B'; input_processed_csv='data/processed/sensor_B_operational_ingest_<timestamp>.csv'; run('matlab/analysis/run_sensorB_operational_feature_block.m')"
+\end{lstlisting}
+
+\section{Activos mínimos que deben conservarse en el repositorio}
+
+\begin{itemize}
+  \item El archivo fuente \LaTeX{} de esta guía para permitir actualización controlada.
+  \item El PDF compilado para consulta rápida por equipos técnicos y no técnicos.
+  \item Los runbooks operativos específicos por fase o módulo, cuando agreguen valor práctico.
+  \item Los registros de selección de módulos y artefactos oficiales de referencia.
+\end{itemize}
+
+\end{document}

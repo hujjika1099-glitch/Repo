@@ -162,10 +162,10 @@ Regla clave para no romper MATLAB:
 - el receptor USB debe emitir la misma linea CSV actual:
 `seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`
 
-## 12) Guia PDF para entrega
-Documentacion formal para cliente:
-- `reports/client_operational_guide.md`
-- `reports/client_operational_guide.pdf`
+## 12) Documentacion principal del proyecto
+Guia maestra editable y compilada:
+- `docs/project_master_guide_adxl335_esp32.tex`
+- `docs/project_master_guide_adxl335_esp32.pdf`
 
 ## 13) Comandos utiles de referencia
 ### Build de firmware (PlatformIO local)
@@ -194,4 +194,4 @@ Checklist rapido cuando algo no corre:
 5. Revisar resumen `.txt` en `reports/analysis_outputs/`.
 
 ---
-Repositorio preparado para operacion real y para compartir URL con cliente.
+Repositorio preparado para operacion real y para compartir URL de referencia tecnica.
