@@ -1,0 +1,167 @@
+{
+  "config": {
+    "repo_root": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo",
+    "sensor_id": "sensor_B",
+    "plot_sensor_numeric_id": 1,
+    "second_sensor_numeric_id": 2,
+    "port": "COM4",
+    "baud": 115200,
+    "duration_s": 60.0,
+    "session_name": "live",
+    "file_prefix": "sensor_B_live",
+    "output_dir_relpath": "data/raw/sensor_B_live",
+    "processed_dir_relpath": "data/processed",
+    "analysis_out_relpath": "reports/analysis_outputs",
+    "save_csv": true,
+    "save_session_json": true,
+    "dual_precheck_enabled": true,
+    "dual_precheck_duration_s": 10.0,
+    "dual_precheck_min_samples_per_sensor": 250,
+    "dual_precheck_max_seq_jump_ratio": 0.1,
+    "dual_precheck_max_saturation_pct": 20.0,
+    "dual_precheck_min_mv_axis_span": 0.5,
+    "port_probe_timeout_s": 1.6,
+    "bias_init_s": 2.0,
+    "nominal_sens_mv_per_g": 300.0,
+    "sensorB_sens_mv_per_g": [
+      300.0,
+      300.0,
+      300.0
+    ],
+    "accel_mode": "nominal_quick_g"
+  },
+  "requested_port": "COM4",
+  "port_resolution": {
+    "port": "COM4",
+    "selection_mode": "preferred_port",
+    "selection_detail": "puerto indicado explicitamente por el usuario",
+    "inventory": [
+      {
+        "device": "COM18",
+        "description": "Serie est\u00e1ndar sobre el v\u00ednculo Bluetooth (COM18)",
+        "hwid": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_VID&000105D6_PID&000A\\8&31EDC3E0&0&90EF4A51E905_C00000000",
+        "usb_like": false
+      },
+      {
+        "device": "COM3",
+        "description": "Serie est\u00e1ndar sobre el v\u00ednculo Bluetooth (COM3)",
+        "hwid": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&0000\\8&31EDC3E0&0&000000000000_00000007",
+        "usb_like": false
+      },
+      {
+        "device": "COM4",
+        "description": "USB-SERIAL CH340 (COM4)",
+        "hwid": "USB VID:PID=1A86:7523 SER= LOCATION=1-1",
+        "usb_like": true
+      }
+    ],
+    "probes": []
+  },
+  "metadata_lines": [
+    "#STAT,relay=receiver,rx=3913,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=4911,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=5894,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=6882,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=7868,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=8864,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=9851,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=10834,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=11812,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=12793,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=13768,invalid=0,queue_drops=0",
+    "#STAT,relay=receiver,rx=14756,invalid=0,queue_drops=0"
+  ],
+  "header_seen": false,
+  "invalid_lines": 1,
+  "seq_jumps": 37,
+  "stream_duration_s": 59.98399999999674,
+  "freq_hz": 197.18591624434254,
+  "sensor_summaries": [
+    {
+      "sensor_id": 1,
+      "sensor_label": "sensor_B",
+      "samples": 5972,
+      "seq_jumps": 37,
+      "stream_duration_s": 60.080001,
+      "freq_hz": 99.38415280652208,
+      "g_norm_median": 0.047890077204916046,
+      "max_saturation_pct": 0.0,
+      "min_mv_span": 376.0,
+      "logic_status": "fail",
+      "logic_reason": "g_norm_implausible"
+    },
+    {
+      "sensor_id": 2,
+      "sensor_label": "sensor_A",
+      "samples": 5857,
+      "seq_jumps": 138,
+      "stream_duration_s": 60.080002,
+      "freq_hz": 97.47003670206269,
+      "g_norm_median": 0.2373522130744837,
+      "max_saturation_pct": 0.0,
+      "min_mv_span": 632.0,
+      "logic_status": "fail",
+      "logic_reason": "g_norm_implausible"
+    }
+  ],
+  "capture_integrity": {
+    "logic_status": "pass",
+    "logic_reason": "dual_integrity_ok",
+    "samples": 11829,
+    "invalid_lines": 1,
+    "header_seen": false,
+    "sensor_checks": [
+      {
+        "sensor_id": 1,
+        "sensor_label": "sensor_B",
+        "samples": 5972,
+        "freq_hz": 99.38415280652208,
+        "seq_jumps": 37,
+        "seq_backtracks": 0,
+        "t_backtracks": 0,
+        "max_saturation_pct": 0.0,
+        "max_zero_axis_pct": 0.0,
+        "max_flatline_142_pct": 0.0,
+        "g_norm_median": 0.047890077204916046,
+        "logic_status": "pass",
+        "logic_reason": "integrity_ok"
+      },
+      {
+        "sensor_id": 2,
+        "sensor_label": "sensor_A",
+        "samples": 5857,
+        "freq_hz": 97.47003670206269,
+        "seq_jumps": 138,
+        "seq_backtracks": 0,
+        "t_backtracks": 0,
+        "max_saturation_pct": 0.0,
+        "max_zero_axis_pct": 0.0,
+        "max_flatline_142_pct": 0.0,
+        "g_norm_median": 0.2373522130744837,
+        "logic_status": "pass",
+        "logic_reason": "integrity_ok"
+      }
+    ]
+  },
+  "primary_g_info": {
+    "route": "nominal_quick_g",
+    "bias_mv": [
+      1659.231156,
+      1568.472362,
+      1220.844221
+    ],
+    "sens_mv_per_g": [
+      300.0,
+      300.0,
+      300.0
+    ],
+    "samples_used_for_bias": 199
+  },
+  "artifacts": {
+    "raw_csv_relpath": "data/raw/sensor_B_live/sensor_B_live_live_20260412_134921_raw.csv",
+    "processed_csv_relpath": "data/processed/sensor_B_live_live_20260412_134921_processed.csv",
+    "session_json_relpath": "data/processed/sensor_B_live_live_20260412_134921_session.json",
+    "summary_txt_relpath": "reports/analysis_outputs/sensor_B_live_live_20260412_134921_summary.txt",
+    "precheck_txt_relpath": "reports/analysis_outputs/sensor_B_live_live_20260412_134921_precheck.txt"
+  }
+}

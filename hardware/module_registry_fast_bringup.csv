@@ -1,0 +1,9 @@
+module_id,run_timestamp,port,run_file,final_state,samples,freq_hz,seq_jumps,max_sat_pct,next_action,st_diagnostic_recommended,notes
+sensor_C,2026-03-22 18:18:51 -0500,COM5,sensor_C_st_off_20260322_171250.csv,rejected_module,782,100.010141873542,0,99.1048593350384,replace_or_rewire_module_then_repeat_quickcheck_only,1,
+sensor_C,2026-03-22 18:27:45 -0500,COM5,sensor_C_st_off_20260322_171250.csv,rejected_module,782,100.010141873542,0,99.1048593350384,replace_or_rewire_module_then_repeat_quickcheck_only,1,
+sensor_D,2026-03-22 18:37:40 -0500,COM5,sensor_D_quickcheck_static_20260322_183345.csv,rejected_module,784,100.010090417807,0,100,replace_or_rewire_module_then_repeat_quickcheck_only,1,
+sensor_D,2026-03-22 18:38:54 -0500,COM5,sensor_D_quickcheck_static_20260322_183838.csv,rejected_module,778,100.010181216646,0,99.6143958868895,replace_or_rewire_module_then_repeat_quickcheck_only,1,
+sensor_D,2026-03-22 18:41:38 -0500,COM5,sensor_D_quickcheck_static_20260322_184119.csv,rejected_module,799,100.009562317801,0,99.1239048811014,replace_or_rewire_module_then_repeat_quickcheck_only,1,
+sensor_C,2026-03-22 18:44:54 -0500,COM5,sensor_C_quickcheck_static_20260322_184404.csv,hardware_review_needed,3005,100.000003328895,0,38.9683860232945,review_wiring_and_retake_single_quickcheck,1,
+sensor_B,2026-03-22 18:47:33 -0500,COM5,sensor_B_quickcheck_static_20260322_184656.csv,ready_for_operational_use,2990,100.002552758373,0,0,register_module_and_continue,0,
+sensor_A,2026-03-22 18:50:43 -0500,COM5,sensor_A_quickcheck_static_20260322_184959.csv,ready_for_operational_use,2981,100.002557112366,0,0,register_module_and_continue,0,

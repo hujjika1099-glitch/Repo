@@ -1,0 +1,38 @@
+{
+  "phase": "phase12_fast_bringup",
+  "registry_relpath": "hardware/module_registry_fast_bringup.csv",
+  "standard_wiring": {
+    "vcc": "3V3",
+    "gnd": "GND",
+    "x_out": "GPIO32_ADC1_CH4",
+    "y_out": "GPIO33_ADC1_CH5",
+    "z_out": "GPIO34_ADC1_CH6",
+    "st": "GPIO23_digital_output"
+  },
+  "states": [
+    "ready_for_operational_use",
+    "ready_for_operational_use_provisional",
+    "hardware_review_needed",
+    "rejected_module"
+  ],
+  "st_policy": "optional_diagnostic_fallback",
+  "quickcheck": {
+    "pose_label": "quickcheck_static",
+    "duration_s": 8,
+    "thresholds": {
+      "min_samples": 500,
+      "freq_hz_min": 85,
+      "freq_hz_max": 115,
+      "strict_freq_hz_min": 95,
+      "strict_freq_hz_max": 105,
+      "seq_jumps_max": 1,
+      "sat_hi_raw": 4094,
+      "sat_lo_raw": 1,
+      "min_raw_span_counts": 4,
+      "stuck_rail_span_max": 2,
+      "sat_pct_ready_max": 1.0,
+      "sat_pct_review_max": 5.0,
+      "sat_pct_reject_min": 80.0
+    }
+  }
+}

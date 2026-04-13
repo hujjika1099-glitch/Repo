@@ -2,6 +2,36 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "GUI: Install Live Requirements",
+      "type": "process",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\install_gui_requirements.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "GUI: Launch Live Session",
+      "type": "process",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\run_sensorB_live_session.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Firmware: Build Single Calibration",
       "type": "process",
       "command": "${env:USERPROFILE}\\.platformio\\penv\\Scripts\\pio.exe",

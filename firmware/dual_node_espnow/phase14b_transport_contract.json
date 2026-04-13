@@ -1,0 +1,54 @@
+{
+  "phase": "14C_transport_espnow_relay_dual_sensor",
+  "goal": "Transport two ADXL335 sensors through one ESPNOW relay while preserving MATLAB ingestion and sensor-level traceability.",
+  "matlab_stream_contract": {
+    "line_type_data_csv_header": "sensor_id,seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z",
+    "line_type_data_csv_fields": [
+      "sensor_id",
+      "seq",
+      "t_us",
+      "raw_x",
+      "raw_y",
+      "raw_z",
+      "mv_x",
+      "mv_y",
+      "mv_z"
+    ],
+    "metadata_prefix": "#",
+    "parser_target": "matlab/live/parse_adxl335_stream_line.m"
+  },
+  "sensor_node_packet_contract": {
+    "payload_fields": [
+      "sensor_id_u8",
+      "version_u8",
+      "reserved_u16",
+      "seq_u32",
+      "t_us_u32",
+      "raw_x_u16",
+      "raw_y_u16",
+      "raw_z_u16",
+      "mv_x_u16",
+      "mv_y_u16",
+      "mv_z_u16"
+    ],
+    "sample_rate_hz_target": 100,
+    "notes": "No ST commands required for normal operation path. Identity is explicit per physical sensor, not inferred from node."
+  },
+  "receiver_node_contract": {
+    "input": "espnow_payload_from_sensor_node",
+    "output_to_usb_serial": "csv_line_matching_matlab_stream_contract_with_sensor_id",
+    "startup_metadata_examples": [
+      "# relay=espnow_receiver",
+      "# source=sensor_node",
+      "# sample_hz_target=100",
+      "# source_sensor_id=1,source_sensor_label=sensor_B,source_mac=..",
+      "# source_sensor_id=2,source_sensor_label=sensor_A,source_mac=.."
+    ]
+  },
+  "expected_repo_targets_for_next_step": [
+    "firmware/dual_node_espnow/src/sensor_node_main.cpp",
+    "firmware/dual_node_espnow/src/receiver_node_main.cpp",
+    "matlab/live/parse_adxl335_stream_line.m",
+    "matlab/live/run_sensorB_live_session.m"
+  ]
+}

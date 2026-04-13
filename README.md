@@ -1,197 +1,239 @@
-# Proyecto de Maestria: ADXL335 + ESP32 (Operacion Real)
+# Proyecto de Maestria: ADXL335 + ESP32
 
-## 1) Estado actual del proyecto
-Este repositorio ya paso la etapa de validacion larga de sensores y esta en uso operativo real.
+## 1. Estado actual del proyecto
 
-Estado de modulos:
-- `sensor_B`: modulo primario para trabajo diario.
-- `sensor_A`: backup operativo.
-- `sensor_C`: referencia historica/provisional.
-- `sensor_D`: descartado.
+Operacion real en curso. El sistema captura aceleracion con dos sensores ADXL335
+conectados a ESP32s en topologia ESP-NOW inalambrica. La aplicacion de escritorio
+(GUI Python) recibe el stream USB, hace precheck de integridad y guarda los datos.
 
-Decision operativa vigente:
-- El proyecto avanza con `sensor_B`.
-- No se reabre Fase 11 ni self-test como gate de uso normal.
-- El flujo prioriza captura en vivo, procesamiento y bloques funcionales.
+**Estado de modulos:**
 
-## 2) Que problema resuelve este repo
-Permite capturar datos de aceleracion con ESP32 + ADXL335 y convertirlos en artefactos listos para analisis funcional:
-1. Captura en vivo (serial -> MATLAB).
-2. Ingesta operativa (limpieza y estandarizacion).
-3. Bloque funcional post-ingesta (features + segmentos de movimiento).
-4. Preparacion de migracion futura a ESP-NOW sin romper MATLAB.
+| Sensor   | Estado       | Rol                                    |
+|----------|--------------|----------------------------------------|
+| sensor_B | **Primario** | Uso diario. sensor_id = 1 en stream.   |
+| sensor_A | Backup       | Fallback. sensor_id = 2 en stream.     |
+| sensor_C | Referencia   | Historico/provisional.                 |
+| sensor_D | Descartado   | Fuera de uso.                          |
 
-## 3) Estructura de carpetas (guia rapida)
-Rutas clave:
-- `firmware/single_node_calibration/`
-  Firmware operativo actual del ESP32.
-- `firmware/dual_node_espnow/phase14b_transport_contract.json`
-  Contrato para migracion a arquitectura dual-node (14B).
-- `matlab/live/`
-  Sesion live en tiempo real.
-- `matlab/analysis/`
-  Ingesta operativa y bloque funcional.
-- `scripts/`
-  Helpers PowerShell para ejecucion rapida.
-- `live_session_hub/`
-  Lanzador para correr multiples pruebas en una sola instancia MATLAB.
-- `data/raw/`
-  Evidencia primaria (no se sobrescribe).
-- `data/processed/`
-  Datos derivados listos para modulos siguientes.
-- `reports/analysis_outputs/`
-  Resumenes y trazabilidad de ejecucion.
+---
 
-## 4) Requisitos minimos
-- Windows + PowerShell.
-- MATLAB instalado y licenciado.
-- ESP32 con firmware de `firmware/single_node_calibration`.
-- ADXL335 cableado en el pinout estandar:
-  - `VCC -> 3V3`
-  - `GND -> GND`
-  - `X-OUT -> GPIO32`
-  - `Y-OUT -> GPIO33`
-  - `Z-OUT -> GPIO34`
-  - `ST -> GPIO23` (solo diagnostico; no requerido para operacion normal)
+## 2. Que hace este repositorio
 
-## 5) Flujo operativo recomendado (diario)
-### Opcion A: sesion live manual en una sola ventana MATLAB (recomendada)
-Evita abrir nuevas instancias y reduce carga del PC.
+1. Captura en vivo via GUI Python con graficas en tiempo real.
+2. Precheck dual de integridad antes de aceptar una sesion.
+3. Genera automaticamente `_raw.csv`, `_processed.csv`, `_session.json`,
+   `_summary.txt` y `_precheck.txt` por sesion.
+4. Distribuye la aplicacion como `.exe` standalone (sin instalar Python).
+5. Mantiene firmware ESP32 para el nodo sensor y el receptor USB.
 
-1. Abrir MATLAB una sola vez.
-2. Ejecutar:
-```matlab
-run('live_session_hub/sensorB_live_prompt_session.m')
-```
-3. Responder en consola:
-- duracion en segundos,
-- nombre de sesion,
-- prefijo,
-- carpeta de salida,
-- guardar CSV/MAT,
-- modo de grafica.
+**Guia de Claude:** ver [`AGENTS.md`](AGENTS.md) para estado completo, convenciones y reglas.
 
-Salida esperada al terminar:
-- CSV raw en `data/raw/sensor_B_live/`
-- CSV processed en `data/processed/`
-- MAT de sesion en `data/processed/`
-- TXT resumen en `reports/analysis_outputs/`
+---
 
-### Opcion B: captura rapida por PowerShell
-```powershell
-.\scripts\run_sensorB_operational_capture.ps1 -Port COM5 -DurationS 90 -PoseLabel operational_run
+## 3. Estructura de carpetas
+
+```text
+Repo/
+├── gui/                          # Aplicacion de captura live (Python/Tkinter)
+│   ├── adxl_live_gui.py          #   Punto de entrada y UI
+│   └── adxl_live_core.py         #   Logica de captura, serial, guardado
+├── firmware/
+│   ├── single_node_calibration/  #   Firmware operativo actual (PlatformIO)
+│   └── dual_node_espnow/         #   Arquitectura ESP-NOW Fase 14B/14C
+├── data/
+│   ├── raw/sensor_B_live/        #   CSVs crudos (NO modificar)
+│   └── processed/                #   CSVs procesados + JSONs de sesion
+├── reports/
+│   ├── analysis_outputs/         #   _summary.txt y _precheck.txt por sesion
+│   └── change_log.md             #   Registro tecnico de cambios
+├── live_session_hub/             # Launchers de sesion
+├── scripts/                      # Helpers PowerShell
+├── config/                       # Plantillas de configuracion JSON
+├── matlab/                       # Analisis historico (no es ruta operativa)
+├── docs/                         # Guia maestra LaTeX + PDF
+├── hardware/                     # Pinout y registro de sensores
+├── handoff/                      # Exports de handoff por rol (Fase 14C.1)
+│
+├── adxl_captura.spec             # Spec PyInstaller para compilar el .exe
+├── build_exe.ps1                 # Compila .exe y genera ZIP de distribucion
+├── build_manual_pdf.py           # Genera el manual de usuario PDF
+├── ADXL335_Captura_Manual.pdf    # Manual de usuario (generado)
+├── requirements-gui.txt          # Dependencias Python (pyserial==3.5)
+├── AGENTS.md                     # Guia operativa para Claude
+└── README.md                     # Este archivo
 ```
 
-Este helper entrega sanidad automatica:
-- `FREQ_HZ`
-- `SEQ_JUMPS`
-- `SAT_PCT_ANY_AXIS`
-- `SANITY_STATUS`
+Carpetas en `.gitignore` (generadas, no commitear):
 
-## 6) Flujo de procesamiento (post-captura)
-### Paso 1: ingesta operativa
-Convierte un raw CSV en paquete procesado para el siguiente modulo.
-
-Ejemplo:
-```powershell
-matlab -batch "sensor_id='sensor_B'; input_csv_abs='data/raw/sensor_B/sensor_B_operational_run_90s_20260322_191502.csv'; run('matlab/analysis/run_sensorB_operational_ingest.m')"
+```text
+.venv/        # Entorno virtual Python
+dist/         # .exe compilado y ZIP de distribucion
+build_work/   # Artefactos intermedios de PyInstaller
 ```
 
-Resultado principal:
-- `data/processed/sensor_B_operational_ingest_<timestamp>.csv`
+---
 
-### Paso 2: bloque funcional
-Genera features por ventana y segmentos de movimiento.
+## 4. Requisitos
 
-Ejemplo:
-```powershell
-matlab -batch "sensor_id='sensor_B'; input_processed_csv='data/processed/sensor_B_operational_ingest_20260322_193323.csv'; run('matlab/analysis/run_sensorB_operational_feature_block.m')"
+- Windows 10/11 de 64 bits + PowerShell.
+- Python 3.10+ con `tkinter` (para desarrollo; no necesario para el `.exe`).
+- ESP32 con firmware de `firmware/single_node_calibration/`.
+- ADXL335 cableado:
+
+  | Pin ADXL335 | Pin ESP32 |
+  |-------------|-----------|
+  | VCC         | 3V3       |
+  | GND         | GND       |
+  | X-OUT       | GPIO32    |
+  | Y-OUT       | GPIO33    |
+  | Z-OUT       | GPIO34    |
+  | ST          | GPIO23 (solo diagnostico) |
+
+---
+
+## 5. Uso rapido — ejecutable standalone
+
+La forma mas facil de usar el sistema sin instalar nada:
+
+1. Descargar `dist/ADXL335_Captura_dist.zip` y extraer en cualquier carpeta.
+2. Conectar la ESP32 por USB.
+3. Ejecutar `ADXL335_Captura.exe`.
+4. La app detecta el puerto automaticamente, hace el precheck y captura.
+
+Los datos se guardan junto al `.exe`:
+
+```text
+data\raw\sensor_B_live\    ← CSVs crudos
+data\processed\            ← CSVs procesados + JSONs
+reports\analysis_outputs\  ← Resumenes y reportes de precheck
 ```
 
-Resultados principales:
-- `data/processed/sensor_B_operational_features_<timestamp>.csv`
-- `data/processed/sensor_B_operational_motion_segments_<timestamp>.csv`
-- `data/processed/sensor_B_operational_feature_block_<timestamp>.mat`
+Ver `ADXL335_Captura_Manual.pdf` para la descripcion completa de la interfaz
+y el significado de cada campo en los archivos exportados.
 
-## 7) Evidencia de funcionamiento real
-Captura operativa oficial ya validada:
-- `data/raw/sensor_B/sensor_B_operational_run_90s_20260322_191502.csv`
+---
 
-Resumen validado:
-- `CAPTURE_OK`
-- `SAMPLES: 8991`
-- `FREQ_EST_HZ: 100.001`
-- `SEQ_JUMPS: 0`
-- `SAT_PCT_ANY_AXIS: 0.000`
-- `SANITY_STATUS: pass`
+## 6. Uso en desarrollo — GUI desde el repo
 
-Ingesta oficial derivada:
-- `data/processed/sensor_B_operational_ingest_20260322_193323.csv`
+Instalar dependencias (una sola vez):
 
-Con esto, el pipeline ya esta operando de extremo a extremo en condiciones reales.
-
-## 8) Que archivos usar como entrada del siguiente modulo
-Entrada oficial recomendada para desarrollo funcional:
-- `data/processed/sensor_B_operational_ingest_20260322_193323.csv`
-
-Si el siguiente bloque requiere features en ventanas, usar:
-- `data/processed/sensor_B_operational_features_<timestamp>.csv`
-
-## 9) Reglas de calidad rapidas antes de usar una corrida
-Una corrida se considera util para continuar si cumple:
-- `SEQ_JUMPS = 0`
-- `95 <= FREQ_HZ <= 105`
-- `SAT_PCT_ANY_AXIS <= 1.0`
-
-Si no cumple:
-1. revisar cableado y puerto,
-2. repetir una sola captura corta,
-3. si persiste, fallback a `sensor_A`.
-
-## 10) Fallback operativo
-Regla de fallback:
-- si `sensor_B` falla sanidad en dos corridas cortas consecutivas, cambiar temporalmente a `sensor_A`.
-- mantener mismo flujo de captura e ingesta.
-- registrar el incidente en `reports/analysis_outputs/`.
-
-## 11) Preparacion de Fase 14B (ESP-NOW)
-El contrato ya esta definido en:
-- `firmware/dual_node_espnow/phase14b_transport_contract.json`
-
-Regla clave para no romper MATLAB:
-- el receptor USB debe emitir la misma linea CSV actual:
-`seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`
-
-## 12) Documentacion principal del proyecto
-Guia maestra editable y compilada:
-- `docs/project_master_guide_adxl335_esp32.tex`
-- `docs/project_master_guide_adxl335_esp32.pdf`
-
-## 13) Comandos utiles de referencia
-### Build de firmware (PlatformIO local)
 ```powershell
-$env:PLATFORMIO_EXE="$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
+.\scripts\install_gui_requirements.ps1
+```
+
+Lanzar la GUI:
+
+```powershell
+.\live_session_hub\sensorB_live_gui_session.ps1
+```
+
+O con parametros:
+
+```powershell
+.venv\Scripts\python.exe gui\adxl_live_gui.py `
+    --duration-s 30 `
+    --session-name ensayo1 `
+    --port COM4
+```
+
+---
+
+## 7. Compilar el ejecutable
+
+```powershell
+.\build_exe.ps1
+```
+
+Instala PyInstaller si falta, compila `dist\ADXL335_Captura.exe` y genera
+`dist\ADXL335_Captura_dist.zip` listo para distribuir.
+
+---
+
+## 8. Generar el manual PDF
+
+```powershell
+.venv\Scripts\pip install fpdf2
+.venv\Scripts\python.exe build_manual_pdf.py
+```
+
+Genera `ADXL335_Captura_Manual.pdf` en la raiz del repo.
+
+---
+
+## 9. Firmware ESP32
+
+Build:
+
+```powershell
+$env:PLATFORMIO_EXE = "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
 & $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration
 ```
 
-### Upload de firmware
+Upload (puede requerir mantener BOOT presionado):
+
 ```powershell
-$env:PLATFORMIO_EXE="$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
 & $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration -t upload
 ```
 
-### Si el upload no entra automatico
-- Presionar y mantener `BOOT`.
-- Lanzar el comando de upload.
-- Soltar `BOOT` cuando aparezca `Connecting...`.
+---
 
-## 14) Soporte rapido
-Checklist rapido cuando algo no corre:
-1. Confirmar puerto COM correcto.
-2. Cerrar otro programa que use el puerto serial.
-3. Verificar que el firmware este cargado.
-4. Ejecutar una corrida corta de 10-20s.
-5. Revisar resumen `.txt` en `reports/analysis_outputs/`.
+## 10. Flujo de datos y archivos exportados
+
+```text
+ESP32 (firmware)
+    │  serial USB 115200 baud
+    ▼
+GUI Python (adxl_live_gui.py)
+    │  precheck dual 10 s → rechaza si falla
+    │  captura 10-90 s
+    ▼
+Archivos por sesion:
+    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_raw.csv
+    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_processed.csv
+    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_session.json
+    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_summary.txt
+    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_precheck.txt
+```
+
+Campos del CSV procesado:
+
+```text
+sensor_id, seq, t_us, wall_s, raw_x, raw_y, raw_z,
+mv_x, mv_y, mv_z, gx_est, gy_est, gz_est, g_norm_est
+```
+
+Ver `ADXL335_Captura_Manual.pdf` para descripcion completa de cada campo.
 
 ---
-Repositorio preparado para operacion real y para compartir URL de referencia tecnica.
+
+## 11. Reglas de calidad rapidas
+
+Una captura es util si cumple:
+
+- `SEQ_JUMPS = 0` (o muy pocos saltos de secuencia)
+- `95 <= FREQ_HZ <= 105` Hz por sensor
+- `SAT_PCT_ANY_AXIS <= 1.0 %`
+
+Si no cumple: revisar cableado, cerrar monitores seriales externos y repetir.
+
+---
+
+## 12. Fallback operativo
+
+Si `sensor_B` falla sanidad en dos corridas cortas consecutivas:
+
+1. Cambiar temporalmente a `sensor_A` (mismo flujo de captura).
+2. Registrar el incidente en `reports/analysis_outputs/`.
+3. Investigar la causa antes de volver a `sensor_B`.
+
+---
+
+## 13. Documentacion adicional
+
+| Documento | Descripcion |
+|-----------|-------------|
+| `AGENTS.md` | Guia completa para Claude: estado, convenciones, formatos |
+| `ADXL335_Captura_Manual.pdf` | Manual de usuario del .exe |
+| `docs/project_master_guide_adxl335_esp32.pdf` | Guia tecnica maestra del proyecto |
+| `reports/change_log.md` | Registro cronologico de todos los cambios |
+| `reports/gui_live_runtime_migration_20260412.md` | Reporte de migracion MATLAB→GUI |

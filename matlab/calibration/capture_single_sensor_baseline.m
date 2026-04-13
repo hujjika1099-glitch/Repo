@@ -2,11 +2,12 @@
 % Captura baseline individual ADXL335 desde ESP32 por puerto serial.
 
 %% Configuracion de captura
-default_port = "COM5";
+default_port = "";
 default_baud = 115200;
 default_duration_s = 12;
 default_sensor_id = "sensor_A";
 default_pose_label = "z_plus_static";
+default_port_probe_timeout_s = 1.6;
 
 if exist("port", "var") && strlength(string(port)) > 0
     port = string(port);
@@ -63,9 +64,17 @@ else
     end
 end
 
+if exist("port_probe_timeout_s", "var") && ~isempty(port_probe_timeout_s)
+    port_probe_timeout_s = double(port_probe_timeout_s);
+else
+    port_probe_timeout_s = default_port_probe_timeout_s;
+end
+
 %% Rutas de salida (sin sobrescritura)
 script_dir = fileparts(mfilename("fullpath"));
 repo_dir = fileparts(fileparts(script_dir));
+common_dir = fullfile(repo_dir, "matlab", "common");
+addpath(common_dir);
 out_dir = fullfile(repo_dir, "data", "raw", char(sensor_id));
 if ~isfolder(out_dir)
     mkdir(out_dir);
@@ -84,6 +93,13 @@ while isfile(csv_path) || isfile(session_path)
     suffix = suffix + 1;
 end
 
+requested_port = string(port);
+[port, port_resolution] = resolve_adxl_serial_port( ...
+    "preferred_port", requested_port, ...
+    "baud", baud, ...
+    "probe_timeout_s", port_probe_timeout_s, ...
+    "verbose", true);
+
 %% Captura serial
 expected_header = "seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z";
 metadata_lines = strings(0, 1);
@@ -92,6 +108,12 @@ invalid_lines = 0;
 header_seen = false;
 
 capture_start_local = datetime("now", "TimeZone", "local", "Format", "yyyy-MM-dd HH:mm:ss Z");
+if strlength(requested_port) == 0
+    fprintf("Puerto solicitado: (auto)\n");
+else
+    fprintf("Puerto solicitado: %s\n", requested_port);
+end
+fprintf("Modo resolucion puerto: %s\n", port_resolution.selection_mode);
 fprintf("Iniciando captura en %s @ %d baud por %.1f s...\n", port, baud, duration_s);
 
 s = serialport(port, baud, "Timeout", 1);
@@ -178,7 +200,14 @@ cleanup_fid = onCleanup(@() fclose(fid));
 fprintf(fid, "capture_script: matlab/calibration/capture_single_sensor_baseline.m\n");
 fprintf(fid, "sensor_id: %s\n", sensor_id);
 fprintf(fid, "pose_label: %s\n", pose_label);
+if strlength(requested_port) == 0
+    fprintf(fid, "requested_port: (auto)\n");
+else
+    fprintf(fid, "requested_port: %s\n", requested_port);
+end
 fprintf(fid, "port: %s\n", port);
+fprintf(fid, "port_resolution_mode: %s\n", port_resolution.selection_mode);
+fprintf(fid, "port_resolution_detail: %s\n", port_resolution.selection_detail);
 fprintf(fid, "baud: %d\n", baud);
 fprintf(fid, "requested_duration_s: %.3f\n", duration_s);
 fprintf(fid, "real_duration_wall_s: %.3f\n", capture_wall_s);

@@ -1,0 +1,32 @@
+{
+  "sensor_id": "sensor_C",
+  "generated_at": "2026-03-22 17:56:07 -0500",
+  "source": "run_sensorC_selftest_identity_check",
+  "identity": {
+    "status": "identity_not_closed",
+    "method": "adxl335_selftest_signature",
+    "confidence": 0.0045944161838188131,
+    "evidence": "sign_pattern_failed neg=0 pos=0",
+    "st_off_run_file": "sensor_C_st_off_20260322_175318.csv",
+    "st_on_run_file": "sensor_C_st_on_20260322_175332.csv",
+    "channel_to_chip_axis": {
+      "x": "unknown",
+      "y": "unknown",
+      "z": "unknown"
+    }
+  },
+  "convention": {
+    "definition": "axis_plus_points_against_gravity",
+    "chip_axis_to_operational_axis": {
+      "x": "x",
+      "y": "y",
+      "z": "z"
+    },
+    "chip_axis_sign_to_operational": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    }
+  },
+  "baseline_calibration_mat_relpath": "data/processed/sensor_C_static_calibration_20260321_140044.mat"
+}

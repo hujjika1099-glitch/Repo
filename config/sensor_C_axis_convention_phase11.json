@@ -1,0 +1,35 @@
+{
+  "sensor_id": "sensor_C",
+  "phase": "phase11_axis_identity_and_convention",
+  "created_at": "2026-03-22",
+  "baseline_calibration_mat_relpath": "data/processed/sensor_C_static_calibration_20260321_140044.mat",
+  "identity": {
+    "status": "provisional_identity_assumed",
+    "method": "pending_selftest_signature",
+    "confidence": 0.2,
+    "channel_to_chip_axis": {
+      "x": "x",
+      "y": "y",
+      "z": "z"
+    },
+    "evidence": "no_st_dataset_loaded"
+  },
+  "convention": {
+    "definition": "axis_plus_points_against_gravity",
+    "chip_axis_to_operational_axis": {
+      "x": "x",
+      "y": "y",
+      "z": "z"
+    },
+    "chip_axis_sign_to_operational": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    }
+  },
+  "promotion_rules": {
+    "requires_identity_status": "identity_closed",
+    "requires_pair_axis_match_count_min": 2,
+    "requires_pair_sign_opposition_count_min": 2
+  }
+}

@@ -22,6 +22,11 @@ slprj/
 *.out
 *.toc
 
+# Artefactos de build (PyInstaller)
+dist/
+build_work/
+*.spec.bak
+
 # Logs y basura de editor/SO
 *.log
 *.tmp

@@ -1,40 +1,46 @@
 param(
-    [string]$Port = "COM5",
+    [string]$Port = "",
     [int]$DurationS = 20,
-    [string]$SessionName = "live_demo",
+    [string]$SessionName = "live",
     [string]$FilePrefix = "sensor_B_live",
     [string]$OutputDirRelpath = "data/raw/sensor_B_live",
     [string]$ProcessedDirRelpath = "data/processed",
-    [switch]$NoCsv,
-    [switch]$NoMat,
-    [string]$LivePlotMode = "mv"
+    [double]$PrecheckDurationS = 10,
+    [double]$PlotWindowS = 30,
+    [switch]$AutoStart
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $repoRoot
 
-$saveCsvText = if ($NoCsv) { "false" } else { "true" }
-$saveMatText = if ($NoMat) { "false" } else { "true" }
+$pythonExe = Join-Path $repoRoot ".venv\Scripts\python.exe"
+if (-not (Test-Path $pythonExe)) {
+    throw "No se encontro .venv\\Scripts\\python.exe. Ejecute scripts\\install_gui_requirements.ps1 si aun no preparo el entorno."
+}
 
-$cmd = @"
-try
-    sensor_id='sensor_B';
-    port='$Port';
-    duration_s=$DurationS;
-    session_name='$SessionName';
-    file_prefix='$FilePrefix';
-    output_dir_relpath='$OutputDirRelpath';
-    processed_dir_relpath='$ProcessedDirRelpath';
-    save_csv=$saveCsvText;
-    save_mat=$saveMatText;
-    prompt_user=false;
-    live_plot_mode='$LivePlotMode';
-    show_live_plot=true;
-    run('matlab/live/run_sensorB_live_session.m');
-catch ME
-    disp(getReport(ME,'extended'));
-end
-"@
+$guiScript = Join-Path $repoRoot "gui\adxl_live_gui.py"
+if (-not (Test-Path $guiScript)) {
+    throw "No se encontro la GUI en gui\\adxl_live_gui.py."
+}
 
-matlab -r $cmd
+$args = @(
+    $guiScript,
+    "--duration-s", "$DurationS",
+    "--session-name", $SessionName,
+    "--file-prefix", $FilePrefix,
+    "--output-dir-relpath", $OutputDirRelpath,
+    "--processed-dir-relpath", $ProcessedDirRelpath,
+    "--precheck-duration-s", "$PrecheckDurationS",
+    "--plot-window-s", "$PlotWindowS"
+)
+
+if ($Port) {
+    $args += @("--port", $Port)
+}
+
+if ($AutoStart) {
+    $args += "--autostart"
+}
+
+& $pythonExe @args
