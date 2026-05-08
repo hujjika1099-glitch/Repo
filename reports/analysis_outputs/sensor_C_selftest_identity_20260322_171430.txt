@@ -1,0 +1,25 @@
+script: matlab/analysis/run_sensorC_selftest_identity_check.m
+sensor_id: sensor_C
+st_off_run_file: sensor_C_st_off_20260322_171250.csv
+st_on_run_file: sensor_C_st_on_20260322_171303.csv
+n_samples_st_off: 782
+n_samples_st_on: 777
+delta_mv_floor: 8.0000
+zscore_min: 8.0000
+yz_ratio_min: 1.1000
+final_decision: identity_not_closed
+identity_status: identity_not_closed
+reason: sign_pattern_failed neg=1 pos=0
+confidence: 0.042491
+yz_ratio: NaN
+channel_csv: reports\analysis_outputs\sensor_C_selftest_identity_20260322_171430_channels.csv
+manifest_csv: reports\analysis_outputs\sensor_C_selftest_identity_20260322_171430_manifest.csv
+channel_x_delta_mv: -1222.493884
+channel_x_delta_zscore: -723.555562
+channel_x_inferred_chip_axis: unknown
+channel_y_delta_mv: -2.751036
+channel_y_delta_zscore: -2.529668
+channel_y_inferred_chip_axis: unknown
+channel_z_delta_mv: -3.235069
+channel_z_delta_zscore: -3.252966
+channel_z_inferred_chip_axis: unknown

@@ -1,0 +1,46 @@
+MATLAB - DUAL SENSOR ESP-NOW
+
+Copiar estos archivos del repo exactamente como estan:
+
+1. matlab/common/resolve_adxl_serial_port.m
+   Ruta:
+   C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\matlab\common\resolve_adxl_serial_port.m
+
+2. matlab/live/parse_adxl335_stream_line.m
+   Ruta:
+   C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\matlab\live\parse_adxl335_stream_line.m
+
+3. matlab/live/run_sensorB_live_session.m
+   Ruta:
+   C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\matlab\live\run_sensorB_live_session.m
+
+4. live_session_hub/sensorB_live_prompt_session.m
+   Ruta:
+   C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\live_session_hub\sensorB_live_prompt_session.m
+
+5. Si usas la copia de referencia del launcher en txt, tambien actualizar:
+   Ruta:
+   C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\live_session_hub\matlab_live_session_code.txt
+
+Resumen del cambio:
+- MATLAB ahora acepta filas:
+  sensor_id,seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z
+- El sensor principal graficado es sensor_id=1.
+- El segundo sensor evaluado logicamente es sensor_id=2.
+- El resumen final reporta:
+  SENSOR_1_STATUS: ...
+  SENSOR_2_STATUS: ...
+
+Ejecucion:
+run('live_session_hub/sensorB_live_prompt_session.m')
+
+Verificacion esperada en la consola MATLAB:
+- PLOT_SENSOR_NUMERIC_ID: 1
+- SECOND_SENSOR_NUMERIC_ID: 2
+- LIVE_PROGRESS ... sensor_1=... sensor_2=...
+- SENSOR_1_STATUS: pass|suspect|fail
+- SENSOR_2_STATUS: pass|suspect|fail
+
+Nota:
+- No meti todo MATLAB en un solo archivo porque el flujo depende de varios .m separados.
+- Este .txt te dice exactamente cuales son y donde estan para copiarlos sin perderte.

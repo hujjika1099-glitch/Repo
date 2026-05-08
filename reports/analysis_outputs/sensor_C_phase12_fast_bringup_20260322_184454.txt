@@ -1,0 +1,15 @@
+script: matlab/analysis/run_adxl335_fast_bringup.m
+module_id: sensor_C
+port: COM5
+baud: 115200
+duration_s: 30.000
+quickcheck_pose_label: quickcheck_static
+run_capture: true
+quickcheck_run_file: sensor_C_quickcheck_static_20260322_184404.csv
+final_state: hardware_review_needed
+next_action: review_wiring_and_retake_single_quickcheck
+st_diagnostic_recommended: true
+quickcheck_summary_txt: reports\analysis_outputs\sensor_C_phase12_quickcheck_20260322_184454.txt
+quickcheck_axis_csv: reports\analysis_outputs\sensor_C_phase12_quickcheck_20260322_184454_axes.csv
+registry_relpath: hardware\module_registry_fast_bringup.csv
+quickcheck_reasons: saturation_above_ready_limit|saturation_above_provisional_limit

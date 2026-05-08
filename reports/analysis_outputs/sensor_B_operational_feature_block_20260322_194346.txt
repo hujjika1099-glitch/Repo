@@ -1,0 +1,13 @@
+script: matlab/analysis/run_sensorB_operational_feature_block.m
+sensor_id: sensor_B
+input_processed_csv_relpath: data/processed/sensor_B_operational_ingest_20260322_193323.csv
+fs_hz: 100.000000
+window_s: 1.000
+hop_s: 0.250
+num_windows: 356
+num_motion_windows: 14
+motion_threshold: 10.574673
+features_csv_relpath: data/processed/sensor_B_operational_features_20260322_194346.csv
+segments_csv_relpath: data/processed/sensor_B_operational_motion_segments_20260322_194346.csv
+feature_mat_relpath: data/processed/sensor_B_operational_feature_block_20260322_194346.mat
+next_module_input_relpath: data/processed/sensor_B_operational_features_20260322_194346.csv

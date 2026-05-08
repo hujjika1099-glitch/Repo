@@ -1,0 +1,24 @@
+script: matlab/live/run_sensorB_live_session.m
+sensor_id: sensor_B
+requested_port: (auto)
+port: COM4
+port_resolution_mode: relay_signature
+port_resolution_detail: relay ESP-NOW identificado por stream serial
+baud: 115200
+duration_s: 60.000
+session_name: live
+file_prefix: sensor_B_live
+accel_mode: nominal_quick_g
+samples: 6093
+stream_duration_s: 60.930000
+freq_hz: 99.983588
+seq_jumps: 1
+invalid_lines_ignored: 0
+header_seen: true
+bias_mv: 1777.005000,1526.820000,142.000000
+sens_mv_per_g: 300.000000,300.000000,300.000000
+raw_csv_relpath: data/raw/sensor_B_live/sensor_B_live_live_20260331_100952_raw.csv
+processed_csv_relpath: data/processed/sensor_B_live_live_20260331_100952_processed.csv
+mat_relpath: data/processed/sensor_B_live_live_20260331_100952_session.mat
+summary_txt_relpath: reports/analysis_outputs/sensor_B_live_live_20260331_100952_summary.txt
+next_block_input_relpath: data/processed/sensor_B_live_live_20260331_100952_processed.csv

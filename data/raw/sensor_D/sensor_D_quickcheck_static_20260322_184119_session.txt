@@ -1,0 +1,27 @@
+capture_script: matlab/calibration/capture_single_sensor_baseline.m
+sensor_id: sensor_D
+pose_label: quickcheck_static
+port: COM5
+baud: 115200
+requested_duration_s: 8.000
+real_duration_wall_s: 8.007
+real_duration_stream_s: 7.979
+samples_captured: 799
+estimated_frequency_hz: 100.010
+seq_jumps: 0
+invalid_lines_ignored: 0
+header_seen: true
+capture_start_local: 2026-03-22 18:41:19 -0500
+capture_end_local: 2026-03-22 18:41:33 -0500
+csv_path: C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\data\raw\sensor_D\sensor_D_quickcheck_static_20260322_184119.csv
+metadata_line_count: 8
+metadata_lines_begin
+# adxl335_single_node_baseline
+# board=esp32dev
+# pins:x=GPIO32,y=GPIO33,z=GPIO34,st=GPIO23
+# adc_domain:x=ADC1_CH4,y=ADC1_CH5,z=ADC1_CH6
+# wifi_note:adc2_not_used_for_sensor_outputs
+# st_logic:LOW=ST_OFF,HIGH=ST_ON
+# sample_hz=100
+# status st=OFF seq=0
+metadata_lines_end

@@ -237,3 +237,4 @@ Si `sensor_B` falla sanidad en dos corridas cortas consecutivas:
 | `docs/project_master_guide_adxl335_esp32.pdf` | Guia tecnica maestra del proyecto |
 | `reports/change_log.md` | Registro cronologico de todos los cambios |
 | `reports/gui_live_runtime_migration_20260412.md` | Reporte de migracion MATLAB→GUI |
+| `reports/repository_sync_status_20260508.md` | Auditoria local/remoto, remoto correcto y cierre de sincronizacion Git |

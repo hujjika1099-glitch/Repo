@@ -1,0 +1,8 @@
+script: matlab/analysis/run_sensorC_selftest_identity_check.m
+sensor_id: sensor_C
+final_decision: selftest_data_missing
+identity_status: identity_not_closed
+reason: No se encontraron corridas ST_OFF/ST_ON.
+delta_mv_floor: 8.0000
+zscore_min: 8.0000
+yz_ratio_min: 1.1000

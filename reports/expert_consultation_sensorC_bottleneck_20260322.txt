@@ -1,0 +1,283 @@
+INFORME TECNICO PARA CONSULTA EXPERTA
+Proyecto: Validacion/Calibracion ADXL335 con ESP32 (sensor_C)
+Fecha: 2026-03-22
+Commit de referencia: 455c2fd
+Autor tecnico: flujo automatizado Codex + operador humano
+
+====================================================================
+1) RESUMEN EJECUTIVO (EN UNA PAGINA)
+====================================================================
+
+Estamos atascados en un cuello de botella de identificacion/caracterizacion:
+
+- El pipeline digital SI funciona (firmware, captura serial, MATLAB, trazabilidad, versionado).
+- El pipeline fisico/metrologico NO cierra de forma robusta para mapeo simple.
+- Se intentaron fases progresivas (diagnostico de ejes, busqueda exhaustiva de mapeo/signo,
+  modelo acoplado lineal, modelo acoplado regularizado).
+- Resultado actual:
+  - mapping simple: no soportado
+  - modelo acoplado lineal: util pero debil
+  - modelo acoplado regularizado: no soportado
+- Estado operacional de sensor_C en registro:
+  - status = calibrated_review_needed
+  - decision = suspect
+
+Necesitamos criterio experto para decidir si el problema es:
+
+1) metrologico/fixture/orientacion (dominante),
+2) modelo matematico inadecuado (lineal insuficiente),
+3) comportamiento real del modulo/sensor fuera de expectativa de "caso sencillo",
+4) combinacion de los anteriores.
+
+====================================================================
+2) OBJETIVO ORIGINAL Y CONTEXTO
+====================================================================
+
+Objetivo tecnico del repo:
+- Validar y calibrar sensores ADXL335 por sensor individual (no por nodo),
+  usando SIEMPRE una misma ESP32 de referencia para comparabilidad.
+
+Convencion fisica declarada por el operador:
+- axis+ = eje positivo del modulo apuntando contra gravedad
+- axis- = eje positivo del modulo apuntando a favor de gravedad
+- poses: pos_x, neg_x, pos_y, neg_y, pos_z, neg_z
+
+Reglas de integridad del proyecto:
+- data/raw no se sobrescribe.
+- Todo analisis debe quedar en reports/.
+- No maquillar por software inconsistencia fisica.
+
+====================================================================
+3) CADENA DIGITAL VALIDADA (LO QUE SI FUNCIONA)
+====================================================================
+
+1. Firmware baseline estable (ESP32 + ADXL335 analogico):
+   - stream CSV: seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z
+   - metadata con prefijo #
+2. Upload/monitor serial operativos en COM5.
+3. Captura MATLAB funcional y trazable.
+4. Analisis MATLAB reproducible.
+5. Integridad temporal en datasets de diagnostico:
+   - frecuencia ~100 Hz
+   - seq_jumps = 0 en corridas clave de validacion
+
+Conclusiones:
+- El bloqueo actual no parece originarse en parser, serial, timestamp o perdida de muestras.
+
+====================================================================
+4) LINEA DE TIEMPO TECNICA DEL CUELLO DE BOTELLA
+====================================================================
+
+Fase 9 (multipose estatico):
+- x_pair = coherente
+- y_pair = coherente
+- z_pair = inconsistente (dominancia en X en vez de Z)
+- decision: multipose_inconsistent
+
+Fase 9.1 (retest Z):
+- mejora parcial, pero z_pair aun inconsistente.
+
+Fase 9.2 (retest definitivo Z con fixture angular explicito):
+- se cumplen criterios de z_pair en ese momento.
+- decision: z_pair_fixed, ready_for_final_calibration=yes
+
+Fase 10 (calibracion simple por eje):
+- decision: calibrated_but_review_needed
+- error de norma elevado en poses puntuales.
+
+Fase 10.1 (modelo affine 3x3):
+- no mejora globalmente.
+- decision: calibrated_but_review_needed
+
+Fase 10.2 (recaptura focalizada neg_y/pos_z + recalibracion simple):
+- degradacion severa en error global.
+- decision: calibrated_but_review_needed
+
+Fase 10.3 (diagnostico convencion corto):
+- mapping_inconclusive
+
+Fase 10.4 (diagnostico reforzado, 18 corridas):
+- en TODAS las poses domina canal X con signo positivo.
+- x_pair/y_pair/z_pair ambiguos o permutados.
+- mapping_inconclusive
+
+Fase 10.5 (busqueda exhaustiva 48 hipotesis permutacion+signo):
+- mapping_ambiguous (empates, score_gap=0)
+
+Fase 10.6 (desambiguacion fisica software-only mas estricta):
+- mapping_not_supported
+- mejor hipotesis simple NO supera baseline nulo p95
+- pair_axis_match_count del mejor simple = 1/3
+
+Fase 10.7 (modelo acoplado lineal):
+- mejora fuerte en error de norma vs baseline simple de referencia de esa fase
+- pero persiste debilidad en x_pair
+- decision: coupled_model_weak
+
+Fase 10.8 (modelo acoplado regularizado ridge + CV interna):
+- lambda seleccionado = 1
+- no mejora frente al acoplado actual
+- no supera baseline simple de referencia
+- decision: coupled_model_not_supported
+
+====================================================================
+5) DATOS USADOS EN EL BLOQUEO ACTUAL
+====================================================================
+
+Dataset fijo usado en fases software-only recientes:
+- reports/analysis_outputs/sensor_C_axis_mapping_search_dataset_20260322_121904.csv
+
+Manifest acoplado:
+- reports/analysis_outputs/sensor_C_coupled_model_dataset_20260322_131829.csv
+
+Manifest regularizado:
+- reports/analysis_outputs/sensor_C_coupled_robust_dataset_20260322_135412.csv
+
+Cobertura:
+- 18 corridas (3 por pose) del mismo bloque temporal reforzado de 2026-03-22.
+
+====================================================================
+6) HALLAZGOS NUMERICOS CRITICOS (CUELLO DE BOTELLA)
+====================================================================
+
+A) Diagnostico de ejes reforzado (fase 10.4):
+- Todas las poses muestran dominancia de canal X positivo.
+- Esto contradice la expectativa fisica simple de dominancia por eje de pose.
+
+B) Busqueda simple (48 hipotesis) y desambiguacion:
+- Mejor hipotesis simple no tiene soporte robusto.
+- pair_axis_match_count bajo (1/3 en desambiguacion final simple).
+- No hay separacion clara entre familias para aceptar mapeo simple estable.
+
+C) Modelo acoplado lineal (fase 10.7):
+- Mejora respecto al simple en esa comparacion interna.
+- Pero x_pair sigue mal:
+  - pair_axis_match=0
+  - pair_sign_opposition=0
+  - pair_dominance_ratio ~0.4209
+
+D) Modelo acoplado regularizado (fase 10.8):
+- lambda ganador por score: 1
+- Global vs acoplado actual:
+  - mean_abs_gnorm_err empeora (+0.00879)
+  - max_abs_gnorm_err empeora (+0.00646)
+  - pair_axis_match_count sin mejora (2/3)
+  - pair_sign_opposition_count sin mejora (2/3)
+  - avg_pair_dominance_ratio empeora
+- CV interna (leave-one-run-per-pose-out):
+  - cv_pair_axis_match_count = 1.3333 (no robusto)
+  - cv_avg_pair_dominance_ratio = 1.0937 (insuficiente para cerrar)
+- decision final:
+  - coupled_model_not_supported
+
+====================================================================
+7) INTERPRETACION DEL PROBLEMA (HIPOTESIS ABIERTAS)
+====================================================================
+
+Hipotesis H1 - Problema metrologico/fixture dominante:
+- Micro-rotaciones reales no controladas.
+- Planos de apoyo no verdaderamente ortogonales.
+- Tension mecanica por cableado/jumpers alterando orientacion.
+- Etiqueta de pose correcta nominalmente, pero eje efectivo no aislado.
+
+Hipotesis H2 - Modelo lineal insuficiente:
+- La dinamica estatica real observada no cabe en permutacion+signo ni en affine lineal robusto.
+- Puede haber no linealidad por canal, sesgo dependiente de orientacion, o acoplamiento no lineal.
+
+Hipotesis H3 - Mismatch entre ejes fisicos del chip y referencia del modulo:
+- Serigrafia/placa/ensamble no coincide con convencion asumida.
+- Ejes del encapsulado vs ejes de breakout no verificados con prueba independiente.
+
+Hipotesis H4 - Sensor/modulo con comportamiento anomalo:
+- cross-axis sensitivity anormalmente alta o comportamiento fuera de tolerancia.
+- variaciones por alimentacion/referencia ADC/ruido analogico no totalmente caracterizadas.
+
+Posible realidad: combinacion H1 + H2 + H3.
+
+====================================================================
+8) QUE NECESITAMOS DEL EXPERTO (PREGUNTAS CONCRETAS)
+====================================================================
+
+1) Convencion fisica/ejes:
+   - Como validar de forma definitiva correspondencia eje-fisico del ADXL335 en este modulo
+     sin depender de interpretacion visual ambigua?
+
+2) Protocolo metrologico:
+   - Cual fixture minimo recomienda para garantizar orientaciones verdaderamente ortogonales
+     y repetibles en pruebas de gravedad estatica?
+
+3) Modelo:
+   - Considera suficiente un modelo affine 3x3 para este caso?
+   - Recomienda pasar a modelo no lineal (terminos cuadraticos/interaction) como siguiente paso
+     antes de descartar sensor/modulo?
+
+4) Criterios de aceptacion:
+   - Que umbrales fisicos realistas propone para:
+     - pair_dominance_ratio
+     - cross-axis residual
+     - error de norma |g|
+     en este tipo de banco (ESP32 ADC + ADXL335 analogico)?
+
+5) Diagnostico de anomalia:
+   - Con evidencia actual, ve mas probable:
+     a) error de montaje/protocolo,
+     b) sesgo sistematico del front-end analogico/ADC,
+     c) comportamiento anomalo del modulo?
+
+====================================================================
+9) RECOMENDACION TECNICA PRELIMINAR (ANTES DE SIGUIENTE FASE)
+====================================================================
+
+No seguir iterando ciegamente el mismo ciclo de calibracion lineal.
+
+Ruta sugerida para destrabar (a validar por experto):
+
+Paso 1 (metrologia):
+- Definir fixture fisico con referencia angular verificable (topes mecanicos reales).
+- Verificacion independiente de ejes fisicos del modulo.
+
+Paso 2 (analitica):
+- Mantener dataset actual como baseline historico.
+- Ejecutar evaluacion no lineal controlada (software-only) sobre el mismo dataset,
+  solo para medir si existe mejora estructural real.
+
+Paso 3 (decision):
+- Si no hay mejora fisica/modelo defendible:
+  - declarar limitacion del banco/sensor para este objetivo.
+
+====================================================================
+10) UBICACIONES CLAVE PARA REVISION EXPERTA
+====================================================================
+
+Reportes principales:
+- reports/sensor_C_axis_convention_diagnosis_phase104.md
+- reports/sensor_C_axis_mapping_disambiguation.md
+- reports/sensor_C_coupled_linear_model_assessment.md
+- reports/sensor_C_coupled_regularized_model_assessment.md
+
+Artefactos de mapeo/desambiguacion:
+- reports/analysis_outputs/sensor_C_axis_mapping_disambiguation_20260322_130308_hypotheses.csv
+- reports/analysis_outputs/sensor_C_axis_mapping_disambiguation_20260322_130308_families.csv
+- reports/analysis_outputs/sensor_C_axis_mapping_disambiguation_20260322_130308_best_pairs.csv
+
+Artefactos acoplado/regularizado:
+- data/processed/sensor_C_coupled_linear_model_20260322_131829.mat
+- data/processed/sensor_C_coupled_regularized_model_20260322_135643.mat
+- reports/analysis_outputs/sensor_C_coupled_regularized_selection_20260322_135643.csv
+- reports/analysis_outputs/sensor_C_coupled_regularized_validation_20260322_135643_pairs.csv
+- reports/analysis_outputs/sensor_C_coupled_regularized_validation_20260322_135643_comparison_vs_current_coupled.csv
+
+Registro y estado:
+- hardware/sensor_registry.csv
+- reports/change_log.md
+
+====================================================================
+11) ESTADO FINAL AL CIERRE DE ESTE INFORME
+====================================================================
+
+- No hay cambios en remoto.
+- No hay push.
+- Rama actual: main (sin cambio de rama).
+- Estado sensor_C: suspect (calibrated_review_needed).
+- Cuello de botella activo: identificacion/caracterizacion robusta no resuelta.
+

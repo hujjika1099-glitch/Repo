@@ -1,0 +1,12 @@
+script: matlab/calibration/capture_sensorC_selftest_pair.m
+sensor_id: sensor_C
+port: COM5
+baud: 115200
+duration_s: 8.000
+st_activation_mode: manual_assisted
+dry_run: true
+final_decision: dry_run_no_existing_pair
+st_off_run_file: 
+st_on_run_file: 
+manifest_csv: reports\analysis_outputs\sensor_C_selftest_capture_protocol_20260322_145935.csv
+summary_txt: reports\analysis_outputs\sensor_C_selftest_capture_protocol_20260322_145935.txt

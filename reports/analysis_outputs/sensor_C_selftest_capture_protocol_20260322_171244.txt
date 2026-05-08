@@ -1,0 +1,20 @@
+script: matlab/calibration/capture_sensorC_selftest_pair.m
+sensor_id: sensor_C
+port: COM5
+baud: 115200
+duration_s: 8.000
+st_activation_mode: firmware_controlled
+st_control_gpio: 23
+dry_run: false
+final_decision: selftest_pair_captured
+st_off_run_file: sensor_C_st_off_20260322_171250.csv
+st_on_run_file: sensor_C_st_on_20260322_171303.csv
+st_off_command_ok: true
+st_on_command_ok: true
+st_restore_off_ok: true
+st_off_ack: # cmd=ST_OFF ack=ok st=OFF
+st_on_ack: # cmd=ST_ON ack=ok st=ON
+st_restore_ack: # cmd=ST_OFF ack=ok st=OFF
+manifest_csv: reports\analysis_outputs\sensor_C_selftest_capture_protocol_20260322_171244.csv
+summary_txt: reports\analysis_outputs\sensor_C_selftest_capture_protocol_20260322_171244.txt
+pinout_map: VCC->3V3,GND->GND,X->GPIO32,Y->GPIO33,Z->GPIO34,ST->GPIO23

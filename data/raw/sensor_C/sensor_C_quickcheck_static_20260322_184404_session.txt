@@ -1,0 +1,19 @@
+capture_script: matlab/calibration/capture_single_sensor_baseline.m
+sensor_id: sensor_C
+pose_label: quickcheck_static
+port: COM5
+baud: 115200
+requested_duration_s: 30.000
+real_duration_wall_s: 30.002
+real_duration_stream_s: 30.040
+samples_captured: 3005
+estimated_frequency_hz: 100.000
+seq_jumps: 0
+invalid_lines_ignored: 0
+header_seen: false
+capture_start_local: 2026-03-22 18:44:05 -0500
+capture_end_local: 2026-03-22 18:44:48 -0500
+csv_path: C:\Users\JOSE DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\data\raw\sensor_C\sensor_C_quickcheck_static_20260322_184404.csv
+metadata_line_count: 0
+metadata_lines_begin
+metadata_lines_end

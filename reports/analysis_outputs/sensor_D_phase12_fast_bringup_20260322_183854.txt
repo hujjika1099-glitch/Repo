@@ -1,0 +1,15 @@
+script: matlab/analysis/run_adxl335_fast_bringup.m
+module_id: sensor_D
+port: COM5
+baud: 115200
+duration_s: 8.000
+quickcheck_pose_label: quickcheck_static
+run_capture: true
+quickcheck_run_file: sensor_D_quickcheck_static_20260322_183838.csv
+final_state: rejected_module
+next_action: replace_or_rewire_module_then_repeat_quickcheck_only
+st_diagnostic_recommended: true
+quickcheck_summary_txt: reports\analysis_outputs\sensor_D_phase12_quickcheck_20260322_183853.txt
+quickcheck_axis_csv: reports\analysis_outputs\sensor_D_phase12_quickcheck_20260322_183853_axes.csv
+registry_relpath: hardware\module_registry_fast_bringup.csv
+quickcheck_reasons: saturation_above_ready_limit|saturation_above_provisional_limit|hard_saturation_detected

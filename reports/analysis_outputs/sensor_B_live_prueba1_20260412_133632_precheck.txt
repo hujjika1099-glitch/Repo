@@ -1,0 +1,13 @@
+script: gui/adxl_live_gui.py
+phase: dual_integrity_precheck
+requested_port: (auto)
+port: COM4
+port_resolution_mode: probe_match
+port_resolution_detail: stream serial ADXL335 identificado por sonda
+baud: 115200
+precheck_duration_s: 10.000
+samples: 1982
+invalid_lines_ignored: 0
+header_seen: false
+precheck_status: fail
+precheck_reason: missing_header

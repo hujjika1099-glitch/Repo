@@ -1,0 +1,14 @@
+script: matlab/live/run_sensorB_live_session.m
+phase: dual_integrity_precheck
+requested_port: (auto)
+port: COM3
+port_resolution_mode: single_available
+port_resolution_detail: solo existe un puerto serial disponible
+baud: 115200
+precheck_duration_s: 1.000
+samples: 0
+invalid_lines_ignored: 0
+header_seen: false
+precheck_status: fail
+precheck_reason: missing_header
+precheck_txt_relpath: reports/analysis_outputs/sensor_B_live_live_20260331_112909_precheck.txt
