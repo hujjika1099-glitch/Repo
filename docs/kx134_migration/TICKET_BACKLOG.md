@@ -4,30 +4,31 @@
 
 - TICKET 001: COMPLETADO - Crear rama de migracion KX134 y baseline documental.
 - TICKET 002: COMPLETADO - Auditoria tecnica del repositorio actual antes de migracion KX134/SEN-17589.
+- TICKET 003: COMPLETADO - Contrato de datos KX134 v3.
 
 ## Tickets futuros recomendados
 
-- TICKET 003: Contrato de datos KX134 v3.
-- TICKET 004: Firmware KX134 de un nodo sensor.
-- TICKET 005: Firmware dual dos ESP32 + receptor.
-- TICKET 006: Sincronizacion y precheck.
-- TICKET 007: Calibracion individual.
-- TICKET 008: GUI - duracion manual y frecuencia de muestreo seleccionable.
-- TICKET 009: Exportacion CSV/JSON KX134.
-- TICKET 010: GUI - redisenio adaptable/profesional.
-- TICKET 011: Empaquetado profesional Windows.
-- TICKET 012: Validacion de prototipo.
-- TICKET 013: Criterios para baquelada/PCB.
+- TICKET 004: Confirmacion de arquitectura fisica y seleccion de interfaz KX134.
+- TICKET 005: Firmware KX134 de un nodo sensor.
+- TICKET 006: Firmware dual dos ESP32 + receptor.
+- TICKET 007: Sincronizacion y precheck.
+- TICKET 008: Calibracion individual.
+- TICKET 009: GUI - duracion manual y frecuencia de muestreo seleccionable.
+- TICKET 010: Exportacion CSV/JSON KX134.
+- TICKET 011: GUI - redisenio adaptable/profesional.
+- TICKET 012: Empaquetado profesional Windows.
+- TICKET 013: Validacion de prototipo.
+- TICKET 014: Criterios para baquelada/PCB.
 
 ## Dependencias de trabajo
 
-- TICKET 003 debe cerrar el contrato antes de modificar firmware o GUI.
-- TICKET 004 y TICKET 005 dependen de confirmar la topologia fisica de ESP32.
-- TICKET 006 depende de que existan timestamps y campos de identidad suficientes.
-- TICKET 007 debe definir archivos de calibracion individuales antes de pruebas de prototipo.
-- TICKET 011 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
+- TICKET 004 debe cerrar la topologia fisica antes de modificar firmware.
+- TICKET 005 y TICKET 006 dependen de confirmar si habra dos o tres ESP32 totales.
+- TICKET 007 depende de que existan timestamps y campos de identidad suficientes.
+- TICKET 008 debe definir archivos de calibracion individuales antes de pruebas de prototipo.
+- TICKET 012 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
 
 ## Regla de alcance
 
 Este backlog enumera trabajo futuro. Ninguno de los tickets futuros queda implementado
-por la auditoria documental del TICKET 002.
+por la definicion documental del contrato en TICKET 003.

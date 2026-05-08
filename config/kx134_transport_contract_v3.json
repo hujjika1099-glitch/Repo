@@ -1,0 +1,545 @@
+{
+  "contract_metadata": {
+    "contract_name": "KX134 dual sensor transport contract v3",
+    "protocol_version": "kx134.v3",
+    "status": "draft",
+    "created_for": "ADXL335 to SEN-17589/KX134 migration",
+    "sensor_model": "KX134",
+    "breakout_board": "SparkFun SEN-17589",
+    "previous_system": "ADXL335 analog",
+    "migration_target": "dual digital accelerometer capture",
+    "notes": "Documentation-only contract. It defines the future KX134 data shape and does not implement firmware, GUI, CSV export, packaging, or calibration."
+  },
+  "architecture": {
+    "assumed_sensor_count": 2,
+    "required_sensor_ids": [
+      1,
+      2
+    ],
+    "assumed_sensor_nodes": 2,
+    "receiver_required": true,
+    "pending_physical_decision": "Confirm whether the final prototype uses three ESP32 boards total, meaning two sensor nodes plus one receiver, or two ESP32 boards total with an alternative topology still to be defined.",
+    "supported_topologies": [
+      "two_sensor_nodes_plus_receiver",
+      "alternative_two_esp32_topology_pending"
+    ]
+  },
+  "sample_rate": {
+    "allowed_hz": [
+      100,
+      200,
+      500,
+      1000
+    ],
+    "default_hz": 100,
+    "configured_by_gui_future": true,
+    "current_implementation_status": "not_implemented_in_this_ticket"
+  },
+  "capture_duration": {
+    "unit": "seconds",
+    "type": "positive_integer",
+    "default_policy": "manual_user_entry_required_in_future_gui",
+    "examples_valid": [
+      10,
+      1567
+    ],
+    "invalid_values": [
+      "empty",
+      "text",
+      0,
+      "negative"
+    ]
+  },
+  "range_g": {
+    "allowed_values": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "default_value": null,
+    "decision_status": "pending",
+    "notes": "The initial KX134 range must be confirmed before firmware implementation."
+  },
+  "calibration": {
+    "calibration_required": true,
+    "calibration_per_sensor": true,
+    "calibration_shared_between_sensors_allowed": false,
+    "calibration_id_required": true,
+    "calibration_file_reference_required": true,
+    "expected_future_files": [
+      "config/calibrations/kx134_sensor_1.json",
+      "config/calibrations/kx134_sensor_2.json"
+    ],
+    "raw_data_must_remain_unmodified": true
+  },
+  "field_definitions": [
+    {
+      "name": "protocol_version",
+      "type": "string",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "none",
+      "description": "Protocol identifier emitted with each KX134 stream or row.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "session_id",
+      "type": "string",
+      "required": true,
+      "source": "pc_gui",
+      "unit": "none",
+      "description": "Unique capture session identifier assigned by the PC/GUI.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "sensor_id",
+      "type": "integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "none",
+      "description": "Logical sensor identifier. Valid values are 1 and 2 only.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "physical_label",
+      "type": "string",
+      "required": true,
+      "source": "pc_gui",
+      "unit": "none",
+      "description": "Visible physical label attached to the sensor assembly.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "node_id",
+      "type": "string",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "none",
+      "description": "Stable logical identifier of the ESP32 node associated with the sensor.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "node_mac",
+      "type": "string",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "MAC address",
+      "description": "ESP32 MAC address associated with the KX134 sensor node.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "seq",
+      "type": "unsigned_integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "count",
+      "description": "Monotonic sample sequence counter per sensor node.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "sensor_t_us",
+      "type": "unsigned_integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "microseconds",
+      "description": "Sensor node timestamp captured near sample acquisition.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "receiver_t_us",
+      "type": "unsigned_integer",
+      "required": true,
+      "source": "receiver",
+      "unit": "microseconds",
+      "description": "Receiver timestamp captured when the packet arrives at the receiver.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "pc_wall_s",
+      "type": "number",
+      "required": true,
+      "source": "pc_gui",
+      "unit": "seconds",
+      "description": "PC wall-clock relative time captured when the GUI parses or writes the sample.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "sync_group_id",
+      "type": "string",
+      "required": true,
+      "source": "receiver",
+      "unit": "none",
+      "description": "Receiver or GUI assigned identifier used to group samples considered part of the same synchronization window.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "pair_seq",
+      "type": "integer",
+      "required": true,
+      "source": "receiver",
+      "unit": "count",
+      "description": "Receiver or GUI assigned paired-sample sequence for dual-sensor alignment.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "x_raw",
+      "type": "signed_integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "digital_counts",
+      "description": "Raw KX134 X-axis digital output. It must not be filtered or replaced.",
+      "raw_or_derived": "raw",
+      "csv_required": true
+    },
+    {
+      "name": "y_raw",
+      "type": "signed_integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "digital_counts",
+      "description": "Raw KX134 Y-axis digital output. It must not be filtered or replaced.",
+      "raw_or_derived": "raw",
+      "csv_required": true
+    },
+    {
+      "name": "z_raw",
+      "type": "signed_integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "digital_counts",
+      "description": "Raw KX134 Z-axis digital output. It must not be filtered or replaced.",
+      "raw_or_derived": "raw",
+      "csv_required": true
+    },
+    {
+      "name": "x_g",
+      "type": "number",
+      "required": true,
+      "source": "derived",
+      "unit": "g",
+      "description": "Basic X-axis acceleration conversion in g.",
+      "raw_or_derived": "derived_basic_unit_conversion",
+      "csv_required": true
+    },
+    {
+      "name": "y_g",
+      "type": "number",
+      "required": true,
+      "source": "derived",
+      "unit": "g",
+      "description": "Basic Y-axis acceleration conversion in g.",
+      "raw_or_derived": "derived_basic_unit_conversion",
+      "csv_required": true
+    },
+    {
+      "name": "z_g",
+      "type": "number",
+      "required": true,
+      "source": "derived",
+      "unit": "g",
+      "description": "Basic Z-axis acceleration conversion in g.",
+      "raw_or_derived": "derived_basic_unit_conversion",
+      "csv_required": true
+    },
+    {
+      "name": "sample_rate_hz",
+      "type": "integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "Hz",
+      "description": "Requested or configured sample rate reported for this sample.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "odr_hz",
+      "type": "integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "Hz",
+      "description": "KX134 output data rate configured in the sensor.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "range_g",
+      "type": "integer",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "g",
+      "description": "KX134 measurement range used for raw-to-g conversion.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "calibration_id",
+      "type": "string",
+      "required": true,
+      "source": "derived",
+      "unit": "none",
+      "description": "Identifier of the per-sensor calibration record used for conversion.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "calibration_applied",
+      "type": "boolean",
+      "required": true,
+      "source": "derived",
+      "unit": "none",
+      "description": "True when valid calibration coefficients were applied to x_g, y_g, and z_g.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "packet_status",
+      "type": "string",
+      "required": true,
+      "source": "receiver",
+      "unit": "none",
+      "description": "Validation status assigned to the packet or CSV row.",
+      "raw_or_derived": "diagnostic",
+      "csv_required": true
+    },
+    {
+      "name": "packet_error_code",
+      "type": "string",
+      "required": true,
+      "source": "receiver",
+      "unit": "none",
+      "description": "Diagnostic code preserved when packet_status is not OK.",
+      "raw_or_derived": "diagnostic",
+      "csv_required": true
+    },
+    {
+      "name": "firmware_version",
+      "type": "string",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "none",
+      "description": "Firmware version emitted by the sensor node.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    },
+    {
+      "name": "contract_version",
+      "type": "string",
+      "required": true,
+      "source": "sensor_node",
+      "unit": "none",
+      "description": "Contract version asserted by the sender for this row.",
+      "raw_or_derived": "metadata",
+      "csv_required": true
+    }
+  ],
+  "csv_contract": {
+    "kx134_samples_csv_header": [
+      "protocol_version",
+      "session_id",
+      "sensor_id",
+      "physical_label",
+      "node_id",
+      "node_mac",
+      "seq",
+      "sensor_t_us",
+      "receiver_t_us",
+      "pc_wall_s",
+      "sync_group_id",
+      "pair_seq",
+      "x_raw",
+      "y_raw",
+      "z_raw",
+      "x_g",
+      "y_g",
+      "z_g",
+      "sample_rate_hz",
+      "odr_hz",
+      "range_g",
+      "calibration_id",
+      "calibration_applied",
+      "packet_status",
+      "packet_error_code",
+      "firmware_version",
+      "contract_version"
+    ],
+    "kx134_session_metadata_json_required": true,
+    "delimiter": ",",
+    "decimal_separator": ".",
+    "encoding": "utf-8"
+  },
+  "session_metadata_contract": {
+    "fields": [
+      "session_id",
+      "created_at",
+      "operator",
+      "capture_duration_s",
+      "requested_sample_rate_hz",
+      "effective_sample_rate_hz_sensor_1",
+      "effective_sample_rate_hz_sensor_2",
+      "range_g_sensor_1",
+      "range_g_sensor_2",
+      "sensor_1_node_mac",
+      "sensor_2_node_mac",
+      "sensor_1_physical_label",
+      "sensor_2_physical_label",
+      "calibration_id_sensor_1",
+      "calibration_id_sensor_2",
+      "firmware_version_sensor_1",
+      "firmware_version_sensor_2",
+      "receiver_firmware_version",
+      "gui_version",
+      "notes"
+    ]
+  },
+  "validation_rules": [
+    "sensor_id is required.",
+    "sensor_id must be either 1 or 2.",
+    "node_mac is required.",
+    "seq is required.",
+    "sensor_t_us is required.",
+    "receiver_t_us is required for streams received through a receiver.",
+    "x_raw, y_raw, and z_raw are required.",
+    "x_g, y_g, and z_g are required in final export.",
+    "sample_rate_hz must be one of 100, 200, 500, or 1000.",
+    "range_g must be one of 8, 16, 32, or 64.",
+    "calibration_id is required.",
+    "A line without sensor_id must be marked invalid.",
+    "sensor_id must not be inferred.",
+    "node_mac must not be inferred.",
+    "KX134 streams with ADXL335 columns must not be accepted as valid KX134 data.",
+    "Raw data must not be discarded or replaced.",
+    "If packet_error_code exists, it must be preserved in export.",
+    "pc_wall_s must not be used as the only synchronization source."
+  ],
+  "packet_status_values": [
+    "OK",
+    "MISSING_SENSOR_ID",
+    "MISSING_NODE_MAC",
+    "BAD_FIELD_COUNT",
+    "BAD_NUMERIC_VALUE",
+    "UNSUPPORTED_SAMPLE_RATE",
+    "UNSUPPORTED_RANGE_G",
+    "SEQ_GAP_DETECTED",
+    "DUPLICATE_SEQ",
+    "SENSOR_INIT_ERROR",
+    "CALIBRATION_MISSING",
+    "SYNC_UNPAIRED",
+    "UNKNOWN_ERROR"
+  ],
+  "forbidden_or_deprecated_fields": [
+    {
+      "field": "mv_x",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 is digital and must not export millivolts."
+    },
+    {
+      "field": "mv_y",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 is digital and must not export millivolts."
+    },
+    {
+      "field": "mv_z",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 is digital and must not export millivolts."
+    },
+    {
+      "field": "gx_est",
+      "status": "forbidden_for_kx134",
+      "reason": "Use x_g for KX134 basic g conversion."
+    },
+    {
+      "field": "gy_est",
+      "status": "forbidden_for_kx134",
+      "reason": "Use y_g for KX134 basic g conversion."
+    },
+    {
+      "field": "gz_est",
+      "status": "forbidden_for_kx134",
+      "reason": "Use z_g for KX134 basic g conversion."
+    },
+    {
+      "field": "g_norm_est",
+      "status": "forbidden_for_kx134",
+      "reason": "Deep or derived analysis metrics are outside this capture contract."
+    },
+    {
+      "field": "voltage_x",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use voltage columns."
+    },
+    {
+      "field": "voltage_y",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use voltage columns."
+    },
+    {
+      "field": "voltage_z",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use voltage columns."
+    },
+    {
+      "field": "millivolts_x",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use millivolt columns."
+    },
+    {
+      "field": "millivolts_y",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use millivolt columns."
+    },
+    {
+      "field": "millivolts_z",
+      "status": "forbidden_for_kx134",
+      "reason": "KX134 export must not use millivolt columns."
+    }
+  ],
+  "basic_g_conversion": {
+    "formula_status": "specified_for_future_implementation",
+    "raw_type": "signed_int16_expected",
+    "formula_uncalibrated": "axis_g_uncalibrated = axis_raw * range_g / 32768.0",
+    "formula_calibrated": "axis_g = (axis_g_uncalibrated - offset_axis_g) * scale_axis",
+    "filtering_allowed": false,
+    "deep_analysis_allowed": false,
+    "notes": [
+      "The formula must be confirmed against the KX134 library used in firmware.",
+      "The conversion does not replace raw data.",
+      "If valid calibration is missing, calibration_id must indicate an uncalibrated state and packet_status must reflect it when applicable."
+    ]
+  },
+  "synchronization": {
+    "sensor_t_us_source": "sensor_node_micros",
+    "receiver_t_us_source": "receiver_micros_on_packet_arrival",
+    "pc_wall_s_source": "pc_gui_wall_clock_on_parse_or_write",
+    "pc_wall_s_not_primary_sync": true,
+    "pair_seq_description": "pair_seq is a future receiver or GUI sequence used to associate samples from sensor_id 1 and sensor_id 2 within a synchronization window.",
+    "sync_group_id_description": "sync_group_id identifies the capture or synchronization group used to compare or pair samples across both sensors.",
+    "minimum_future_sync_fields": [
+      "sensor_id",
+      "node_mac",
+      "seq",
+      "sensor_t_us",
+      "receiver_t_us"
+    ]
+  },
+  "implementation_status": {
+    "firmware_updated": false,
+    "gui_updated": false,
+    "packaging_updated": false,
+    "csv_export_updated": false,
+    "calibration_implemented": false,
+    "contract_defined": true
+  }
+}
