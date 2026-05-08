@@ -16,12 +16,42 @@
       1,
       2
     ],
+    "total_esp32_required": 3,
+    "selected_topology": "two_sensor_nodes_plus_receiver",
+    "topology_decision_status": "confirmed",
     "assumed_sensor_nodes": 2,
     "receiver_required": true,
-    "pending_physical_decision": "Confirm whether the final prototype uses three ESP32 boards total, meaning two sensor nodes plus one receiver, or two ESP32 boards total with an alternative topology still to be defined.",
+    "receiver_to_pc_transport": "USB Serial",
+    "sensor_nodes_to_receiver_transport": "ESP-NOW",
+    "sensor_node_1_sensor_id": 1,
+    "sensor_node_2_sensor_id": 2,
+    "receiver_has_sensor": false,
     "supported_topologies": [
-      "two_sensor_nodes_plus_receiver",
-      "alternative_two_esp32_topology_pending"
+      {
+        "name": "two_sensor_nodes_plus_receiver",
+        "status": "selected_for_current_phase",
+        "description": "Two ESP32 sensor nodes, each connected to one KX134, send packets by ESP-NOW to one ESP32 receiver that outputs USB Serial to the PC application."
+      }
+    ],
+    "rejected_or_deferred_topologies": [
+      {
+        "name": "alternative_two_esp32_topology_pending",
+        "status": "not_selected_for_current_phase",
+        "reason": "The user confirmed the current KX134 migration phase will use three ESP32 boards total."
+      },
+      {
+        "name": "single_esp32_reads_two_kx134",
+        "status": "not_selected_for_current_phase",
+        "reason": "The current architecture assigns one KX134 sensor to each ESP32 sensor node."
+      }
+    ],
+    "pending_decisions": [
+      "physical MAC address for sensor node 1",
+      "physical MAC address for sensor node 2",
+      "physical MAC address for receiver node",
+      "initial range_g value",
+      "KX134 firmware library",
+      "final pair_seq and sync_group_id strategy"
     ]
   },
   "sample_rate": {

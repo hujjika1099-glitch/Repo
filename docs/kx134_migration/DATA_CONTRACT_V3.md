@@ -37,6 +37,8 @@ Para KX134 no se deben usar voltajes ni milivoltios. El flujo KX134 debe entrega
 
 `sensor_id` no debe inferirse. Una linea sin `sensor_id` debe marcarse invalida. Cada sensor tendra calibracion individual, asociada a `sensor_id`, `node_mac` y `calibration_id`.
 
+La arquitectura fisica cerrada se documenta en `docs/kx134_migration/ARCHITECTURE_V1.md`: tres ESP32 totales, dos nodos sensores y un receptor Serial USB.
+
 ## 5. Campos del contrato
 
 | Campo | Tipo | Fuente | Unidad | Obligatorio | Crudo/Derivado/Metadata | Descripcion |
@@ -114,6 +116,8 @@ Archivos futuros esperados:
 
 `pair_seq` y `sync_group_id` se usaran en tickets futuros para agrupar muestras de ambos sensores. `seq` debe ser trazable por sensor.
 
+La ruta de comunicacion cerrada para este contrato es: ESP32 sensora 1 y ESP32 sensora 2 envian por ESP-NOW a una ESP32 receptora; la receptora envia el stream a la aplicacion por Serial USB. La arquitectura de solo dos ESP32 no esta seleccionada para esta fase.
+
 ## 10. Frecuencia de muestreo
 
 Frecuencias permitidas: 100, 200, 500 y 1000 Hz. El valor default es 100 Hz.
@@ -166,11 +170,13 @@ La duracion de sesion futura debe ser manual. Debe aceptar enteros positivos en 
 
 ## 15. Decisiones pendientes
 
-- Confirmar tres ESP32 totales o dos ESP32 totales.
-- Confirmar I2C/Qwiic o SPI.
+- Confirmar MAC fisica de ESP32 sensora 1.
+- Confirmar MAC fisica de ESP32 sensora 2.
+- Confirmar MAC fisica de ESP32 receptora.
 - Confirmar rango g inicial.
 - Confirmar libreria KX134 a usar.
 - Confirmar si GUI configurara firmware en tiempo real o solo guardara configuracion esperada inicialmente.
 - Confirmar etiquetas fisicas de sensores.
-- Confirmar MAC de cada ESP32.
 - Confirmar estrategia exacta de `pair_seq` y `sync_group_id`.
+
+Decision cerrada: se usaran tres ESP32 totales, con I2C/Qwiic como interfaz objetivo inicial para cada SEN-17589/KX134. SPI queda como alternativa no seleccionada salvo decision futura explicita.

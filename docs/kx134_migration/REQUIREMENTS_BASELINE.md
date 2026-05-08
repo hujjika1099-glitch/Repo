@@ -3,6 +3,11 @@
 ## Sensores y identidad
 
 - El sistema debe trabajar con dos sensores SparkFun SEN-17589 / KX134.
+- El sistema debe usar tres ESP32 totales:
+  - ESP32 sensora 1.
+  - ESP32 sensora 2.
+  - ESP32 receptora.
+- Cada ESP32 sensora debe tener un solo SEN-17589/KX134 asociado.
 - `sensor_id=1` y `sensor_id=2` son obligatorios.
 - No se debe inferir `sensor_id` por defecto si falta en el stream.
 - Cada sensor fisico debe tener asociacion estable:
@@ -73,11 +78,14 @@
 
 ## Topologia base
 
-- Arquitectura inicial asumida:
+- Arquitectura cerrada:
   - Dos ESP32 sensoras independientes.
-  - Una ESP32 receptora USB/ESP-NOW segun arquitectura existente.
+  - Una ESP32 receptora.
+  - Dos sensores SEN-17589/KX134.
   - Un KX134 por ESP32 sensora.
-- Decision pendiente:
-  - Confirmar si fisicamente habra tres ESP32 totales o solo dos ESP32.
-  - Si solo hay dos ESP32 totales, no implementar firmware hasta cerrar la
-    arquitectura.
+- La comunicacion de nodos sensores a receptor sera ESP-NOW.
+- La ESP32 receptora enviara datos a la aplicacion por Serial USB.
+- Esta arquitectura conserva el flujo conceptual actual del repositorio:
+  nodos sensores -> ESP-NOW -> receptor -> Serial USB -> aplicacion.
+- No se usara arquitectura de solo dos ESP32 ni una sola ESP32 leyendo dos
+  sensores en esta fase, salvo decision futura explicita.

@@ -1,0 +1,75 @@
+{
+  "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
+  "status": "template_pending_physical_mac_capture",
+  "total_esp32_required": 3,
+  "transport": {
+    "sensor_nodes_to_receiver": "ESP-NOW",
+    "receiver_to_pc_gui": "USB Serial"
+  },
+  "sensor_interface": {
+    "selected_for_initial_firmware": "I2C/Qwiic",
+    "alternative_not_selected": "SPI",
+    "notes": "Each KX134 sensor is connected to its own ESP32 sensor node."
+  },
+  "nodes": [
+    {
+      "role": "sensor_node",
+      "node_id": "sensor_node_1",
+      "sensor_id": 1,
+      "physical_label": "KX134_SENSOR_1",
+      "esp32_mac": "PENDING_CAPTURE",
+      "sensor_model": "KX134",
+      "breakout_board": "SparkFun SEN-17589",
+      "calibration_file": "config/calibrations/kx134_sensor_1.json",
+      "sample_rate_allowed_hz": [
+        100,
+        200,
+        500,
+        1000
+      ],
+      "default_sample_rate_hz": 100,
+      "range_g": "PENDING_DECISION"
+    },
+    {
+      "role": "sensor_node",
+      "node_id": "sensor_node_2",
+      "sensor_id": 2,
+      "physical_label": "KX134_SENSOR_2",
+      "esp32_mac": "PENDING_CAPTURE",
+      "sensor_model": "KX134",
+      "breakout_board": "SparkFun SEN-17589",
+      "calibration_file": "config/calibrations/kx134_sensor_2.json",
+      "sample_rate_allowed_hz": [
+        100,
+        200,
+        500,
+        1000
+      ],
+      "default_sample_rate_hz": 100,
+      "range_g": "PENDING_DECISION"
+    },
+    {
+      "role": "receiver_node",
+      "node_id": "receiver_esp32",
+      "sensor_id": null,
+      "physical_label": "ESP32_RECEIVER",
+      "esp32_mac": "PENDING_CAPTURE",
+      "sensor_model": null,
+      "breakout_board": null,
+      "calibration_file": null,
+      "receives_from_sensor_ids": [
+        1,
+        2
+      ],
+      "serial_output_to_pc": true
+    }
+  ],
+  "rules": {
+    "sensor_id_required": true,
+    "node_mac_required": true,
+    "do_not_infer_sensor_id": true,
+    "do_not_share_calibration_between_sensors": true,
+    "receiver_must_not_assign_default_sensor_id": true,
+    "pc_wall_s_not_primary_sync": true
+  }
+}

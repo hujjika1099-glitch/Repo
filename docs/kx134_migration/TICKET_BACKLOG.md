@@ -5,12 +5,12 @@
 - TICKET 001: COMPLETADO - Crear rama de migracion KX134 y baseline documental.
 - TICKET 002: COMPLETADO - Auditoria tecnica del repositorio actual antes de migracion KX134/SEN-17589.
 - TICKET 003: COMPLETADO - Contrato de datos KX134 v3.
+- TICKET 004: COMPLETADO - Cerrar arquitectura fisica KX134 con tres ESP32.
 
 ## Tickets futuros recomendados
 
-- TICKET 004: Confirmacion de arquitectura fisica y seleccion de interfaz KX134.
-- TICKET 005: Firmware KX134 de un nodo sensor.
-- TICKET 006: Firmware dual dos ESP32 + receptor.
+- TICKET 005: Firmware KX134 minimo para una ESP32 sensora por I2C/Qwiic.
+- TICKET 006: Firmware dual dos ESP32 sensoras + receptor.
 - TICKET 007: Sincronizacion y precheck.
 - TICKET 008: Calibracion individual.
 - TICKET 009: GUI - duracion manual y frecuencia de muestreo seleccionable.
@@ -22,8 +22,8 @@
 
 ## Dependencias de trabajo
 
-- TICKET 004 debe cerrar la topologia fisica antes de modificar firmware.
-- TICKET 005 y TICKET 006 dependen de confirmar si habra dos o tres ESP32 totales.
+- TICKET 005 debe partir de la arquitectura cerrada de tres ESP32 y usar I2C/Qwiic como objetivo inicial.
+- TICKET 006 debe conservar dos ESP32 sensoras y una ESP32 receptora.
 - TICKET 007 depende de que existan timestamps y campos de identidad suficientes.
 - TICKET 008 debe definir archivos de calibracion individuales antes de pruebas de prototipo.
 - TICKET 012 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
@@ -31,4 +31,4 @@
 ## Regla de alcance
 
 Este backlog enumera trabajo futuro. Ninguno de los tickets futuros queda implementado
-por la definicion documental del contrato en TICKET 003.
+por el cierre documental de arquitectura en TICKET 004.
