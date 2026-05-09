@@ -1,0 +1,201 @@
+{
+    "session_id":  "kx134_sensor1_cal_20260508_234831",
+    "calibration_id":  "kx134_sensor_1_20260508_234831",
+    "sensor_1_calibration_valid":  true,
+    "port":  "COM5",
+    "baud":  921600,
+    "capture_backend":  "resume_existing_captures",
+    "calibration_file":  "config/calibrations/kx134_sensor_1.json",
+    "node_map_file":  "config/kx134_node_map.json",
+    "summary_file":  "reports/kx134_calibration/sensor_1/kx134_sensor1_cal_20260508_234831/calibration_summary.md",
+    "capture_directory":  "reports/kx134_calibration/sensor_1/kx134_sensor1_cal_20260508_234831/captures",
+    "coefficients":  {
+                         "offset_x_g":  0.001829774,
+                         "offset_y_g":  0.014980432,
+                         "offset_z_g":  0.023315356,
+                         "scale_x":  1.000818311,
+                         "scale_y":  1.011697845,
+                         "scale_z":  0.998249154,
+                         "offset_x_raw":  7.494723,
+                         "offset_y_raw":  61.35984,
+                         "offset_z_raw":  95.49964,
+                         "sensitivity_x_counts_per_g":  4092.650923,
+                         "sensitivity_y_counts_per_g":  4048.63963,
+                         "sensitivity_z_counts_per_g":  4103.184044,
+                         "expected_counts_per_g":  4096,
+                         "sensitivity_x_deviation_pct":  -0.081765,
+                         "sensitivity_y_deviation_pct":  -1.156259,
+                         "sensitivity_z_deviation_pct":  0.175392
+                     },
+    "position_summaries":  {
+                               "X_POS":  {
+                                             "samples_count":  1895,
+                                             "effective_hz":  100.000005,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  1.001012132,
+                                             "mean_y_g":  -0.036785497,
+                                             "mean_z_g":  0.008633058,
+                                             "std_x_g":  0.009341068,
+                                             "std_y_g":  0.009215989,
+                                             "std_z_g":  0.008997764,
+                                             "mean_x_raw":  4100.145646,
+                                             "mean_y_raw":  -150.673351,
+                                             "mean_z_raw":  35.36095,
+                                             "g_norm_mean":  1.00180745,
+                                             "g_norm_std":  0.009374741,
+                                             "dominant_axis":  "x",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "X_NEG":  {
+                                             "samples_count":  1895,
+                                             "effective_hz":  99.999995,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -0.997352585,
+                                             "mean_y_g":  0.066387164,
+                                             "mean_z_g":  -0.019648363,
+                                             "std_x_g":  0.009363478,
+                                             "std_y_g":  0.010207608,
+                                             "std_z_g":  0.009448904,
+                                             "mean_x_raw":  -4085.156201,
+                                             "mean_y_raw":  271.9219,
+                                             "mean_z_raw":  -80.479683,
+                                             "g_norm_mean":  0.999848404,
+                                             "g_norm_std":  0.009471641,
+                                             "dominant_axis":  "x",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Y_POS":  {
+                                             "samples_count":  1886,
+                                             "effective_hz":  100,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  0.088546398,
+                                             "mean_y_g":  1.003417845,
+                                             "mean_z_g":  0.088319744,
+                                             "std_x_g":  0.011632257,
+                                             "std_y_g":  0.010937229,
+                                             "std_z_g":  0.010031691,
+                                             "mean_x_raw":  362.686108,
+                                             "mean_y_raw":  4109.99947,
+                                             "mean_z_raw":  361.757688,
+                                             "g_norm_mean":  1.011304385,
+                                             "g_norm_std":  0.01034842,
+                                             "dominant_axis":  "y",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Y_NEG":  {
+                                             "samples_count":  1905,
+                                             "effective_hz":  99.999995,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -0.082578094,
+                                             "mean_y_g":  -0.973456981,
+                                             "mean_z_g":  0.064621528,
+                                             "std_x_g":  0.010767655,
+                                             "std_y_g":  0.010886539,
+                                             "std_z_g":  0.011417261,
+                                             "mean_x_raw":  -338.239895,
+                                             "mean_y_raw":  -3987.27979,
+                                             "mean_z_raw":  264.689764,
+                                             "g_norm_mean":  0.979214446,
+                                             "g_norm_std":  0.010831817,
+                                             "dominant_axis":  "y",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Z_POS":  {
+                                             "samples_count":  1900,
+                                             "effective_hz":  99.999995,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  0.017405945,
+                                             "mean_y_g":  0.005294268,
+                                             "mean_z_g":  1.025069273,
+                                             "std_x_g":  0.009494045,
+                                             "std_y_g":  0.010306603,
+                                             "std_z_g":  0.008731748,
+                                             "mean_x_raw":  71.294737,
+                                             "mean_y_raw":  21.685263,
+                                             "mean_z_raw":  4198.683684,
+                                             "g_norm_mean":  1.025326653,
+                                             "g_norm_std":  0.008704521,
+                                             "dominant_axis":  "z",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Z_NEG":  {
+                                             "samples_count":  1898,
+                                             "effective_hz":  100,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -0.014950338,
+                                             "mean_y_g":  -0.022195309,
+                                             "mean_z_g":  -0.978438561,
+                                             "std_x_g":  0.011080148,
+                                             "std_y_g":  0.011198211,
+                                             "std_z_g":  0.010499774,
+                                             "mean_x_raw":  -61.236565,
+                                             "mean_y_raw":  -90.912013,
+                                             "mean_z_raw":  -4007.684405,
+                                             "g_norm_mean":  0.97893222,
+                                             "g_norm_std":  0.010399646,
+                                             "dominant_axis":  "z",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         }
+                           },
+    "validation":  {
+                       "all_positions_captured":  true,
+                       "all_positions_passed":  true,
+                       "accepted_with_warnings":  [
+
+                                                  ],
+                       "seq_gaps_total":  0,
+                       "timestamp_errors_total":  0,
+                       "forbidden_fields_detected":  false,
+                       "sensor_id_validated":  true,
+                       "node_mac_validated":  true,
+                       "ready_for_future_application":  true
+                   }
+}
