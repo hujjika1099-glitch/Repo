@@ -120,9 +120,11 @@ La ruta de comunicacion cerrada para este contrato es: ESP32 sensora 1 y ESP32 s
 
 ## 10. Frecuencia de muestreo
 
-Frecuencias permitidas: 100, 200, 500 y 1000 Hz. El valor default es 100 Hz.
+Frecuencias permitidas: 100, 200, 400 y 800 Hz. El valor default es 100 Hz.
 
 La GUI futura debe permitir seleccionar una de esas opciones. El firmware futuro debera aceptar o reportar la frecuencia efectiva. `sample_rate_hz` debe exportarse.
+
+La opcion 800 Hz queda permitida por contrato, pero su configuracion final debe validarse en firmware y puede requerir modo High-Performance segun la libreria KX134 usada.
 
 ## 11. Duracion de captura
 
@@ -134,7 +136,7 @@ La duracion de sesion futura debe ser manual. Debe aceptar enteros positivos en 
 - `node_mac` obligatorio.
 - `seq` obligatorio.
 - Timestamps obligatorios.
-- `sample_rate_hz` debe pertenecer a 100, 200, 500 o 1000.
+- `sample_rate_hz` debe pertenecer a 100, 200, 400 o 800.
 - `range_g` debe pertenecer a 8, 16, 32 o 64.
 - No inferir `sensor_id`.
 - No inferir `node_mac`.

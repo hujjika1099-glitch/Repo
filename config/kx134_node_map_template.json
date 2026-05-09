@@ -24,8 +24,8 @@
       "sample_rate_allowed_hz": [
         100,
         200,
-        500,
-        1000
+        400,
+        800
       ],
       "default_sample_rate_hz": 100,
       "range_g": "PENDING_DECISION"
@@ -42,8 +42,8 @@
       "sample_rate_allowed_hz": [
         100,
         200,
-        500,
-        1000
+        400,
+        800
       ],
       "default_sample_rate_hz": 100,
       "range_g": "PENDING_DECISION"

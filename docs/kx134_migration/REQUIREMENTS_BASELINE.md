@@ -65,9 +65,11 @@
 - Frecuencias permitidas:
   - `100 Hz`
   - `200 Hz`
-  - `500 Hz`
-  - `1000 Hz`
+  - `400 Hz`
+  - `800 Hz`
 - La frecuencia default debe ser `100 Hz`.
+- La opcion `800 Hz` debe validarse en firmware/libreria KX134 y puede
+  requerir modo High-Performance.
 
 ## GUI y empaquetado futuros
 

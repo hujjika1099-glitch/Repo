@@ -36,7 +36,7 @@ Definir el contrato formal de datos para dos sensores SEN-17589/KX134 antes de m
 - El contrato define campos crudos, derivados, metadata y diagnostico.
 - El contrato prohibe campos ADXL335 incompatibles.
 - El contrato define encabezado CSV KX134.
-- El contrato incluye sample rates permitidos: 100, 200, 500, 1000 Hz.
+- El contrato incluye sample rates permitidos vigentes: 100, 200, 400, 800 Hz.
 - El contrato define 100 Hz como default.
 - El contrato contempla duracion manual futura.
 - El contrato contempla calibracion individual.

@@ -58,12 +58,13 @@
     "allowed_hz": [
       100,
       200,
-      500,
-      1000
+      400,
+      800
     ],
     "default_hz": 100,
     "configured_by_gui_future": true,
-    "current_implementation_status": "not_implemented_in_this_ticket"
+    "current_implementation_status": "not_implemented_in_this_ticket",
+    "notes": "800 Hz may require High-Performance mode depending on the firmware/library configuration."
   },
   "capture_duration": {
     "unit": "seconds",
@@ -443,7 +444,7 @@
     "receiver_t_us is required for streams received through a receiver.",
     "x_raw, y_raw, and z_raw are required.",
     "x_g, y_g, and z_g are required in final export.",
-    "sample_rate_hz must be one of 100, 200, 500, or 1000.",
+    "sample_rate_hz must be one of 100, 200, 400, or 800.",
     "range_g must be one of 8, 16, 32, or 64.",
     "calibration_id is required.",
     "A line without sensor_id must be marked invalid.",

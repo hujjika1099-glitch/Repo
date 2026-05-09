@@ -96,12 +96,14 @@ El sistema futuro debe soportar:
 
 - 100 Hz.
 - 200 Hz.
-- 500 Hz.
-- 1000 Hz.
+- 400 Hz.
+- 800 Hz.
 
 La frecuencia default documental seguira siendo 100 Hz.
 
 La frecuencia efectiva debe reportarse en datos futuros.
+
+La opcion 800 Hz debe validarse en firmware/libreria KX134 y puede requerir modo High-Performance.
 
 ## 7. Rango g
 

@@ -44,7 +44,7 @@ definir mecanismo de configuracion de frecuencia y cerrar el formato de sincroni
 | Archivo | Hallazgo | Evidencia archivo:linea | Impacto en migracion KX134 | Accion futura |
 |---|---|---|---|---|
 | `firmware/single_node_calibration/src/main.cpp` | Firmware single-node documenta cableado ADXL335 a GPIO ADC. | `firmware/single_node_calibration/src/main.cpp:5-9` | KX134 no usa salidas analogicas X/Y/Z. | Reemplazar por driver KX134 I2C/Qwiic o SPI. |
-| `firmware/single_node_calibration/src/main.cpp` | Frecuencia fija de 100 Hz. | `firmware/single_node_calibration/src/main.cpp:16-18` | La fase KX134 requiere 100, 200, 500 y 1000 Hz. | Definir configuracion de frecuencia y validacion real. |
+| `firmware/single_node_calibration/src/main.cpp` | Frecuencia fija de 100 Hz. | `firmware/single_node_calibration/src/main.cpp:16-18` | La fase KX134 requiere opciones ODR vigentes de 100, 200, 400 y 800 Hz; 500 y 1000 Hz fueron retiradas en TICKET 005. | Definir configuracion de frecuencia y validacion real. |
 | `firmware/single_node_calibration/src/main.cpp` | Usa `analogReadResolution` y atenuacion ADC. | `firmware/single_node_calibration/src/main.cpp:32-43` | Dependencia directa de ADC ESP32. | Eliminar ruta ADC para KX134. |
 | `firmware/single_node_calibration/src/main.cpp` | Encabezado serial actual sin `sensor_id`. | `firmware/single_node_calibration/src/main.cpp:107-115` | Riesgo de inferir sensor por defecto. | Exigir `sensor_id` en todo stream KX134. |
 | `firmware/single_node_calibration/src/main.cpp` | Lee `raw_*` con `analogRead` y `mv_*` con `analogReadMilliVolts`. | `firmware/single_node_calibration/src/main.cpp:144-150` | `mv_*` es incompatible con KX134. | Serializar `x_raw/y_raw/z_raw` digitales y `x_g/y_g/z_g`. |
@@ -103,7 +103,7 @@ historica debe eliminarse para KX134 porque el ticket baseline prohibe inferir
 | `gui/adxl_live_core.py` | Estimacion de g usa bias y sensibilidad mV/g. | `gui/adxl_live_core.py:226-261`, `520-543` | Alta: propio de ADXL335 analogico. | Usar conversion KX134 segun rango y sensibilidad digital. |
 | `gui/adxl_live_core.py` | Precheck dual requiere sensores 1 y 2. | `gui/adxl_live_core.py:1137-1168` | Medio: buena base, pero los criterios son ADC/mV. | Rehacer sanidad para KX134 digital. |
 | `gui/adxl_live_gui.py` | Duracion visible usa combobox con opciones 10-90, aunque se parsea float editable. | `gui/adxl_live_gui.py:487-495`, `748-760` | Medio: debe admitir positivos arbitrarios como `1567`. | Validar positividad y UX de duracion manual. |
-| `gui/adxl_live_gui.py` | No hay selector de frecuencia de muestreo. | busqueda GUI `duration/sample/rate` | Medio/alto: requisito futuro 100/200/500/1000 Hz. | Agregar control y contrato con firmware. |
+| `gui/adxl_live_gui.py` | No hay selector de frecuencia de muestreo. | busqueda GUI `duration/sample/rate` | Medio/alto: requisito futuro 100/200/400/800 Hz; 500 y 1000 Hz fueron retiradas en TICKET 005. | Agregar control y contrato con firmware. |
 | `gui/adxl_live_gui.py` | Graficas de ejes se etiquetan `mV`. | `gui/adxl_live_gui.py:348-363`, `840-850` | Alto: KX134 no debe mostrar/exportar mV. | Cambiar a raw digital/g basico. |
 | `gui/adxl_live_gui.py` | Geometria fija y minsize alto. | `gui/adxl_live_gui.py:321-389` | Medio: posible recorte en otros PC/DPI. | Redisenar layout adaptable y DPI-aware. |
 | `gui/adxl_live_gui.py` | Sidebar con ancho fijo y `grid_propagate(False)`. | `gui/adxl_live_gui.py:458-465` | Medio: posible corte visual. | Hacer layout responsivo con scroll o breakpoints. |
@@ -183,7 +183,7 @@ visuales en resoluciones/DPI variados. No se modifico empaquetado en este ticket
 | 3 | Persistencia de `mv_x/mv_y/mv_z`. | Alta | Exportacion incompatible con KX134. | Eliminar campos de firmware, GUI y CSV KX134. |
 | 4 | Falta `receiver_t_us` y `node_mac` por fila. | Alta | Sincronizacion y trazabilidad insuficientes. | Agregar timestamps y MAC al contrato v3. |
 | 5 | Calibracion no individual por KX134. | Alta | Conversion a g no trazable por sensor. | Crear calibraciones por `sensor_id` y MAC. |
-| 6 | Frecuencia fija o solo estimada. | Media/alta | No cumple 200/500/1000 Hz seleccionables. | Definir comando/configuracion firmware-GUI. |
+| 6 | Frecuencia fija o solo estimada. | Media/alta | No cumple 200/400/800 Hz seleccionables; 500 y 1000 Hz fueron retiradas en TICKET 005. | Definir comando/configuracion firmware-GUI. |
 | 7 | Arquitectura ESP32 no cerrada. | Alta | Firmware equivocado si solo hay dos ESP32 totales. | Confirmar topologia antes de TICKET 004/005. |
 | 8 | GUI con geometria rigida. | Media | Cortes visuales en PCs con DPI/resolucion distintos. | Redisenar layout y empaquetado DPI-aware. |
 | 9 | Nombres ADXL335 en exe, UI y docs. | Media | Confusion operativa en la fase KX134. | Renombrar en ticket de GUI/empaquetado. |
