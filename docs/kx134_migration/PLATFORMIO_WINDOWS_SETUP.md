@@ -11,7 +11,13 @@ Usar wrappers del repositorio.
 Compilar:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_1
+```
+
+Compilar Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_2
 ```
 
 Listar dispositivos:
@@ -23,7 +29,13 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Subir firmware:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_1 -Port COM5
+```
+
+Subir firmware Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_2 -Port COMx
 ```
 
 Monitor serial:
@@ -35,7 +47,7 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Subir y monitor:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Env kx134_sensor_2 -Port COMx
 ```
 
 ## Agregar PlatformIO al PATH de usuario

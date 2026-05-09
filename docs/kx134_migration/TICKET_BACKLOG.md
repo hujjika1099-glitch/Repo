@@ -11,11 +11,11 @@
 - TICKET 007: COMPLETADO - Cableado KX134 I2C y helpers PlatformIO Windows.
 - TICKET 008: COMPLETADO - Prueba fisica de KX134 Sensor 1, upload y captura Serial.
 - TICKET 009: COMPLETADO - Calibracion interactiva de seis posiciones para KX134 Sensor 1.
+- TICKET 010: COMPLETADO - Preparar firmware y prueba fisica para KX134 Sensor 2.
 
 ## Tickets futuros recomendados
 
-- TICKET 010: Preparar firmware y prueba fisica para KX134 Sensor 2.
-- TICKET 011: Calibracion interactiva de seis posiciones para KX134 Sensor 2.
+- TICKET 011: Generalizar herramienta y calibrar KX134 Sensor 2.
 - TICKET 012: Firmware dual ESP-NOW dos ESP32 sensoras.
 - TICKET 013: Receptor KX134 ESP-NOW a Serial USB.
 - TICKET 014: Sincronizacion y precheck.
@@ -28,7 +28,6 @@
 
 ## Dependencias de trabajo
 
-- TICKET 010 debe replicar configuracion para `sensor_id=2` sin cambiar el contrato.
 - TICKET 011 debe generar `config/calibrations/kx134_sensor_2.json` antes de pruebas duales.
 - TICKET 012 y TICKET 013 deben conservar dos ESP32 sensoras y una ESP32 receptora.
 - TICKET 014 depende de que existan timestamps y campos de identidad suficientes.

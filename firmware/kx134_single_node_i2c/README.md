@@ -64,12 +64,28 @@ Default de prueba:
 - `sample_rate=100 Hz`.
 - `range_g=8 g`.
 
+## Entornos PlatformIO
+
+El mismo firmware se compila para Sensor 1 o Sensor 2 mediante build flags:
+
+- `kx134_sensor_1`: `KX134_SENSOR_ID=1`, `KX134_SENSOR_1`, `sensor_node_1`, `UNCALIBRATED_SENSOR_1`.
+- `kx134_sensor_2`: `KX134_SENSOR_ID=2`, `KX134_SENSOR_2`, `sensor_node_2`, `UNCALIBRATED_SENSOR_2`.
+- `esp32dev`: alias compatible de Sensor 1.
+
+No cargar el entorno de Sensor 1 en la ESP32 destinada a Sensor 2.
+
 ## Compilacion
 
-Comando esperado:
+Sensor 1:
 
 ```powershell
-pio run -d firmware/kx134_single_node_i2c
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_1
+```
+
+Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_2
 ```
 
 ## Monitor serial
@@ -87,7 +103,13 @@ Estos wrappers no requieren que `pio` este en el PATH.
 Build:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_1
+```
+
+Build Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_2
 ```
 
 Listar dispositivos:
@@ -99,7 +121,13 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Upload:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_1 -Port COM5
+```
+
+Upload Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_2 -Port COM5
 ```
 
 Monitor:
@@ -111,7 +139,7 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Upload y monitor:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Env kx134_sensor_2 -Port COM5
 ```
 
 Reemplazar `COM5` por el puerto real de la ESP32.

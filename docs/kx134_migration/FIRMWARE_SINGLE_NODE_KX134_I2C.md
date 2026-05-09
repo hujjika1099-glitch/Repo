@@ -15,6 +15,14 @@ Arquitectura final:
 - ESP32 receptora por ESP-NOW.
 - Aplicacion por Serial USB.
 
+El mismo proyecto PlatformIO soporta Sensor 1 y Sensor 2 mediante build flags:
+
+- `kx134_sensor_1`: compila con `KX134_SENSOR_ID=1`.
+- `kx134_sensor_2`: compila con `KX134_SENSOR_ID=2`.
+- `esp32dev`: alias historico compatible de Sensor 1.
+
+No se requiere cambiar `src/main.cpp` para alternar entre Sensor 1 y Sensor 2.
+
 ## Datos generados
 
 El firmware genera:
@@ -103,3 +111,23 @@ El usuario debe reportar:
 - Si el sensor inicializa en 0x1F o 0x1E.
 - Si la lectura parece estable.
 - Si hubo errores `SENSOR_INIT_ERROR` o `SENSOR_READ_ERROR`.
+
+## Comandos Sensor 2
+
+Compilar:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_2
+```
+
+Subir:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_2 -Port COMx
+```
+
+Validar monitor:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action monitor -Port COMx
+```

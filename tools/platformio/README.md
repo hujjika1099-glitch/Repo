@@ -16,7 +16,13 @@ Permitir usar PlatformIO en Windows aunque `pio` no este en el PATH.
 Compilar:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_1
+```
+
+Compilar Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build -Env kx134_sensor_2
 ```
 
 Listar dispositivos:
@@ -28,7 +34,13 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Subir firmware:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_1 -Port COM5
+```
+
+Subir firmware Sensor 2:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Env kx134_sensor_2 -Port COM5
 ```
 
 Monitor serial:
@@ -40,9 +52,15 @@ powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 
 Subir y abrir monitor:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Port COM5
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Env kx134_sensor_2 -Port COM5
 ```
 
 ## Nota
 
 Reemplazar `COM5` por el puerto real de la ESP32.
+
+Entornos validos:
+
+- `kx134_sensor_1`
+- `kx134_sensor_2`
+- `esp32dev` como alias compatible de Sensor 1.

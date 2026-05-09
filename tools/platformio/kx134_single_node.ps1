@@ -5,6 +5,8 @@ param(
 
     [string] $Port = "",
     [int] $Baud = 921600,
+    [ValidateSet("kx134_sensor_1", "kx134_sensor_2", "esp32dev")]
+    [string] $Env = "kx134_sensor_1",
     [string] $ProjectDir = "firmware\kx134_single_node_i2c"
 )
 
@@ -36,12 +38,12 @@ function Require-Port {
 
 switch ($Action) {
     "build" {
-        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath)
+        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-e", $Env)
         exit $code
     }
     "upload" {
         Require-Port
-        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-t", "upload", "--upload-port", $Port)
+        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-e", $Env, "-t", "upload", "--upload-port", $Port)
         exit $code
     }
     "monitor" {
@@ -51,7 +53,7 @@ switch ($Action) {
     }
     "upload-monitor" {
         Require-Port
-        $uploadCode = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-t", "upload", "--upload-port", $Port)
+        $uploadCode = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-e", $Env, "-t", "upload", "--upload-port", $Port)
         if ($uploadCode -ne 0) {
             exit $uploadCode
         }
@@ -63,7 +65,7 @@ switch ($Action) {
         exit $code
     }
     "clean" {
-        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-t", "clean")
+        $code = Invoke-Pio -Arguments @("run", "-d", $projectPath, "-e", $Env, "-t", "clean")
         exit $code
     }
 }
