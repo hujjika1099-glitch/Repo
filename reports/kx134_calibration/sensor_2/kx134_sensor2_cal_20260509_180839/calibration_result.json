@@ -1,0 +1,217 @@
+{
+    "session_id":  "kx134_sensor2_cal_20260509_180839",
+    "calibration_id":  "kx134_sensor_2_20260509_180839",
+    "sensor_calibration_valid":  true,
+    "sensor_id":  2,
+    "calibration_valid_name":  "SENSOR_2_CALIBRATION_VALID",
+    "port":  "COM5",
+    "baud":  921600,
+    "capture_backend":  "PlatformIO",
+    "calibration_file":  "config/calibrations/kx134_sensor_2.json",
+    "node_map_file":  "config/kx134_node_map.json",
+    "summary_file":  "reports/kx134_calibration/sensor_2/kx134_sensor2_cal_20260509_180839/calibration_summary.md",
+    "capture_directory":  "reports/kx134_calibration/sensor_2/kx134_sensor2_cal_20260509_180839/captures",
+    "coefficients":  {
+                         "offset_x_g":  -0.006147645,
+                         "offset_y_g":  0.042897817,
+                         "offset_z_g":  0.013735654,
+                         "scale_x":  0.993155216,
+                         "scale_y":  1.004679685,
+                         "scale_z":  0.997042002,
+                         "offset_x_raw":  -25.180763,
+                         "offset_y_raw":  175.709423,
+                         "offset_z_raw":  56.261212,
+                         "sensitivity_x_counts_per_g":  4124.22948,
+                         "sensitivity_y_counts_per_g":  4076.921274,
+                         "sensitivity_z_counts_per_g":  4108.151911,
+                         "expected_counts_per_g":  4096,
+                         "sensitivity_x_deviation_pct":  0.689196,
+                         "sensitivity_y_deviation_pct":  -0.465789,
+                         "sensitivity_z_deviation_pct":  0.296678
+                     },
+    "position_summaries":  {
+                               "X_POS":  {
+                                             "samples_count":  1909,
+                                             "effective_hz":  100,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  1.000744312,
+                                             "mean_y_g":  -0.009956191,
+                                             "mean_z_g":  0.032320941,
+                                             "std_x_g":  0.011161805,
+                                             "std_y_g":  0.01274739,
+                                             "std_z_g":  0.012148403,
+                                             "mean_x_raw":  4099.048717,
+                                             "mean_y_raw":  -40.780513,
+                                             "mean_z_raw":  132.38659,
+                                             "g_norm_mean":  1.001467846,
+                                             "g_norm_std":  0.011384479,
+                                             "dominant_axis":  "x",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "X_NEG":  {
+                                             "samples_count":  1894,
+                                             "effective_hz":  100.000005,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -1.013039603,
+                                             "mean_y_g":  0.086084178,
+                                             "mean_z_g":  -0.018127376,
+                                             "std_x_g":  0.010883022,
+                                             "std_y_g":  0.011236486,
+                                             "std_z_g":  0.009684067,
+                                             "mean_x_raw":  -4149.410243,
+                                             "mean_y_raw":  352.600845,
+                                             "mean_z_raw":  -74.249736,
+                                             "g_norm_mean":  1.016959831,
+                                             "g_norm_std":  0.010926605,
+                                             "dominant_axis":  "x",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Y_POS":  {
+                                             "samples_count":  1909,
+                                             "effective_hz":  100,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  0.018562866,
+                                             "mean_y_g":  1.038239929,
+                                             "mean_z_g":  0.020861421,
+                                             "std_x_g":  0.011669053,
+                                             "std_y_g":  0.011155877,
+                                             "std_z_g":  0.009778569,
+                                             "mean_x_raw":  76.033525,
+                                             "mean_y_raw":  4252.630697,
+                                             "mean_z_raw":  85.448402,
+                                             "g_norm_mean":  1.038726788,
+                                             "g_norm_std":  0.011167262,
+                                             "dominant_axis":  "y",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Y_NEG":  {
+                                             "samples_count":  1907,
+                                             "effective_hz":  99.999995,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -0.009911308,
+                                             "mean_y_g":  -0.952444296,
+                                             "mean_z_g":  0.03808609,
+                                             "std_x_g":  0.011286546,
+                                             "std_y_g":  0.011548569,
+                                             "std_z_g":  0.009739559,
+                                             "mean_x_raw":  -40.596749,
+                                             "mean_y_raw":  -3901.211851,
+                                             "mean_z_raw":  156.000524,
+                                             "g_norm_mean":  0.95337368199999994,
+                                             "g_norm_std":  0.011534383,
+                                             "dominant_axis":  "y",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Z_POS":  {
+                                             "samples_count":  1905,
+                                             "effective_hz":  100.000005,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  -0.03804648,
+                                             "mean_y_g":  0.078889323,
+                                             "mean_z_g":  1.016702427,
+                                             "std_x_g":  0.01077444,
+                                             "std_y_g":  0.012930371,
+                                             "std_z_g":  0.010110583,
+                                             "mean_x_raw":  -155.83832,
+                                             "mean_y_raw":  323.130709,
+                                             "mean_z_raw":  4164.413123,
+                                             "g_norm_mean":  1.020608514,
+                                             "g_norm_std":  0.009924913,
+                                             "dominant_axis":  "z",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         },
+                               "Z_NEG":  {
+                                             "samples_count":  1903,
+                                             "effective_hz":  99.999995,
+                                             "seq_gaps":  0,
+                                             "timestamp_errors":  0,
+                                             "mean_x_g":  0.037958933,
+                                             "mean_y_g":  0.071542818,
+                                             "mean_z_g":  -0.98923112,
+                                             "std_x_g":  0.012104111,
+                                             "std_y_g":  0.013406763,
+                                             "std_z_g":  0.01125274,
+                                             "mean_x_raw":  155.479769,
+                                             "mean_y_raw":  293.039411,
+                                             "mean_z_raw":  -4051.890699,
+                                             "g_norm_mean":  0.99270312,
+                                             "g_norm_std":  0.011431794,
+                                             "dominant_axis":  "z",
+                                             "validation_status":  "pass",
+                                             "accepted_with_warning":  false,
+                                             "header_detected":  false,
+                                             "header_fallback_used":  true,
+                                             "failures":  [
+
+                                                          ],
+                                             "warnings":  [
+
+                                                          ]
+                                         }
+                           },
+    "validation":  {
+                       "all_positions_captured":  true,
+                       "all_positions_passed":  true,
+                       "accepted_with_warnings":  [
+
+                                                  ],
+                       "seq_gaps_total":  0,
+                       "timestamp_errors_total":  0,
+                       "forbidden_fields_detected":  false,
+                       "header_detected_all_positions":  false,
+                       "header_fallback_used":  true,
+                       "sensor_id_validated":  true,
+                       "node_mac_validated":  true,
+                       "ready_for_future_application":  true
+                   }
+}

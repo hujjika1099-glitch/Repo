@@ -4,13 +4,15 @@ param(
     [int] $SensorId = 1,
     [string] $ExpectedMac = "D4:E9:F4:E9:8E:1C",
     [int] $SampleRateHz = 100,
+    [int] $OdrHz = 100,
     [int] $RangeG = 8,
     [int] $CaptureSeconds = 20,
     [int] $SettleSeconds = 3,
     [int] $MinSamples = 1500,
-    [string] $OutputRoot = "reports/kx134_calibration/sensor_1",
-    [string] $PhysicalLabel = "KX134_SENSOR_1",
-    [string] $NodeId = "sensor_node_1",
+    [string] $OutputRoot = "",
+    [string] $PhysicalLabel = "",
+    [string] $NodeId = "",
+    [bool] $ForceAcceptWarnings = $false,
     [ValidateSet("Auto", "SerialPort", "PlatformIO")]
     [string] $CaptureBackend = "Auto",
     [string] $ResumeSession = ""
@@ -28,6 +30,30 @@ $ForbiddenFields = @(
     "millivolts_x", "millivolts_y", "millivolts_z"
 )
 $InvariantCulture = [System.Globalization.CultureInfo]::InvariantCulture
+
+if ($SensorId -ne 1 -and $SensorId -ne 2) {
+    throw "SensorId debe ser 1 o 2. Valor recibido: $SensorId"
+}
+
+if ([string]::IsNullOrWhiteSpace($PhysicalLabel)) {
+    $PhysicalLabel = "KX134_SENSOR_$SensorId"
+}
+if ([string]::IsNullOrWhiteSpace($NodeId)) {
+    $NodeId = "sensor_node_$SensorId"
+}
+if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
+    $OutputRoot = "reports/kx134_calibration/sensor_$SensorId"
+}
+if ([string]::IsNullOrWhiteSpace($ExpectedMac) -and $SensorId -eq 1) {
+    $ExpectedMac = "D4:E9:F4:E9:8E:1C"
+}
+if ([string]::IsNullOrWhiteSpace($ExpectedMac) -and $SensorId -eq 2) {
+    throw "ExpectedMac es obligatorio para SensorId=2."
+}
+
+$CalibrationFile = "config/calibrations/kx134_sensor_$SensorId.json"
+$CalibrationDecisionName = "SENSOR_${SensorId}_CALIBRATION_VALID"
+$TicketTitle = if ($SensorId -eq 2) { "TICKET 011 - KX134 Sensor 2 six-position calibration" } else { "KX134 Sensor 1 six-position calibration" }
 
 function Write-Section {
     param([string] $Text)
@@ -397,7 +423,7 @@ function Analyze-Position {
         if ($record.node_id -ne $NodeId) { $nodeInvalid++ }
         if ([string]::IsNullOrWhiteSpace($record.node_mac) -or ($record.node_mac.ToUpperInvariant() -ne $ExpectedMac.ToUpperInvariant())) { $macInvalid++ }
         if ([int]$record.sample_rate_hz -ne $SampleRateHz) { $sampleRateInvalid++ }
-        if ([int]$record.odr_hz -ne $SampleRateHz) { $odrInvalid++ }
+        if ([int]$record.odr_hz -ne $OdrHz) { $odrInvalid++ }
         if ([int]$record.range_g -ne $RangeG) { $rangeInvalid++ }
         if ($record.protocol_version -ne "kx134.v3") { $protocolInvalid++ }
         if ($record.contract_version -ne "kx134.v3") { $contractInvalid++ }
@@ -543,6 +569,8 @@ function Analyze-Position {
         failures = @($failures.ToArray())
         warnings = @($warnings.ToArray())
         header_seen = $HeaderSeen
+        header_detected = $HeaderSeen
+        header_fallback_used = (-not $HeaderSeen)
         firmware_versions = @($firmwareVersions.GetEnumerator())
         node_macs = @($macValues.GetEnumerator())
         sensor_init_errors = $sensorInitErrors
@@ -654,12 +682,14 @@ function New-CalibrationFiles {
             dominant_axis = $summary.dominant_axis
             validation_status = $summary.validation_status
             accepted_with_warning = $summary.accepted_with_warning
+            header_detected = $summary.header_detected
+            header_fallback_used = $summary.header_fallback_used
             failures = $summary.failures
             warnings = $summary.warnings
         }
     }
 
-    $captureDirRel = "reports/kx134_calibration/sensor_1/$SessionId/captures"
+    $captureDirRel = "reports/kx134_calibration/sensor_$SensorId/$SessionId/captures"
     $calibration = [ordered]@{
         calibration_id = $CalibrationId
         status = "valid"
@@ -670,7 +700,7 @@ function New-CalibrationFiles {
         sensor_model = "KX134"
         breakout_board = "SparkFun SEN-17589"
         sample_rate_hz = $SampleRateHz
-        odr_hz = $SampleRateHz
+        odr_hz = $OdrHz
         range_g = $RangeG
         calibration_method = "six_position_static"
         calibration_date = (Get-Date).ToString("o")
@@ -704,90 +734,90 @@ function New-CalibrationFiles {
             seq_gaps_total = [int]$seqGapsTotal
             timestamp_errors_total = [int]$timestampErrorsTotal
             forbidden_fields_detected = (Test-ForbiddenHeaderFields)
+            header_detected_all_positions = (-not (@($PositionSummaries | Where-Object { -not $_.header_detected }).Count -gt 0))
+            header_fallback_used = (@($PositionSummaries | Where-Object { $_.header_fallback_used }).Count -gt 0)
             sensor_id_validated = $true
             node_mac_validated = $true
             ready_for_future_application = $true
         }
         notes = @(
-            "Calibration is valid for sensor_id=1, range_g=8, sample_rate_hz=100.",
+            "Calibration is valid for sensor_id=$SensorId, range_g=$RangeG, sample_rate_hz=$SampleRateHz.",
             "If range_g changes, repeat calibration.",
             "Raw data remains preserved in reports/kx134_calibration."
         )
     }
 
-    $calibrationPath = "config/calibrations/kx134_sensor_1.json"
+    $calibrationPath = $CalibrationFile
     New-Item -ItemType Directory -Force -Path (Split-Path $calibrationPath) | Out-Null
+    if (Test-Path $calibrationPath) {
+        $backupPath = "{0}.backup_{1}" -f $calibrationPath, (Get-Date -Format "yyyyMMdd_HHmmss")
+        Copy-Item -LiteralPath $calibrationPath -Destination $backupPath -Force
+        Write-Host "Calibracion existente respaldada en: $backupPath"
+    }
     Write-Utf8NoBom -Path $calibrationPath -Text ($calibration | ConvertTo-Json -Depth 12)
 
-    $nodeMap = [ordered]@{
-        topology_version = "kx134.dual_sensor_nodes_plus_receiver.v1"
-        status = "sensor_1_calibrated_sensor_2_pending_receiver_pending"
-        total_esp32_required = 3
-        transport = [ordered]@{
-            sensor_nodes_to_receiver = "ESP-NOW"
-            receiver_to_pc_gui = "USB Serial"
-        }
-        nodes = @(
-            [ordered]@{
-                role = "sensor_node"
-                node_id = "sensor_node_1"
-                sensor_id = 1
-                physical_label = "KX134_SENSOR_1"
-                esp32_mac = $firstMac
-                sensor_model = "KX134"
-                breakout_board = "SparkFun SEN-17589"
-                calibration_file = "config/calibrations/kx134_sensor_1.json"
-                sample_rate_hz = $SampleRateHz
-                odr_hz = $SampleRateHz
-                range_g = $RangeG
-                status = "calibrated"
-            },
-            [ordered]@{
-                role = "sensor_node"
-                node_id = "sensor_node_2"
-                sensor_id = 2
-                physical_label = "KX134_SENSOR_2"
-                esp32_mac = "PENDING_CAPTURE"
-                sensor_model = "KX134"
-                breakout_board = "SparkFun SEN-17589"
-                calibration_file = "config/calibrations/kx134_sensor_2.json"
-                status = "pending"
-            },
-            [ordered]@{
-                role = "receiver_node"
-                node_id = "receiver_esp32"
-                sensor_id = $null
-                physical_label = "ESP32_RECEIVER"
-                esp32_mac = "PENDING_CAPTURE"
-                sensor_model = $null
-                breakout_board = $null
-                calibration_file = $null
-                receives_from_sensor_ids = @(1, 2)
-                serial_output_to_pc = $true
-                status = "pending"
+    $nodeMapPath = "config/kx134_node_map.json"
+    if (Test-Path $nodeMapPath) {
+        $nodeMap = Get-Content -LiteralPath $nodeMapPath -Raw | ConvertFrom-Json
+    } else {
+        $nodeMap = [pscustomobject]@{
+            topology_version = "kx134.dual_sensor_nodes_plus_receiver.v1"
+            status = "pending"
+            total_esp32_required = 3
+            transport = [pscustomobject]@{
+                sensor_nodes_to_receiver = "ESP-NOW"
+                receiver_to_pc_gui = "USB Serial"
             }
-        )
-        rules = [ordered]@{
-            sensor_id_required = $true
-            node_mac_required = $true
-            do_not_infer_sensor_id = $true
-            do_not_share_calibration_between_sensors = $true
-            receiver_must_not_assign_default_sensor_id = $true
-            pc_wall_s_not_primary_sync = $true
+            nodes = @(
+                [pscustomobject]@{ role = "sensor_node"; node_id = "sensor_node_1"; sensor_id = 1; physical_label = "KX134_SENSOR_1"; esp32_mac = "PENDING_CAPTURE"; sensor_model = "KX134"; breakout_board = "SparkFun SEN-17589"; calibration_file = "config/calibrations/kx134_sensor_1.json"; status = "pending" },
+                [pscustomobject]@{ role = "sensor_node"; node_id = "sensor_node_2"; sensor_id = 2; physical_label = "KX134_SENSOR_2"; esp32_mac = "PENDING_CAPTURE"; sensor_model = "KX134"; breakout_board = "SparkFun SEN-17589"; calibration_file = "config/calibrations/kx134_sensor_2.json"; status = "pending" },
+                [pscustomobject]@{ role = "receiver_node"; node_id = "receiver_esp32"; sensor_id = $null; physical_label = "ESP32_RECEIVER"; esp32_mac = "PENDING_CAPTURE"; sensor_model = $null; breakout_board = $null; calibration_file = $null; receives_from_sensor_ids = @(1, 2); serial_output_to_pc = $true; status = "pending" }
+            )
+            rules = [pscustomobject]@{
+                sensor_id_required = $true
+                node_mac_required = $true
+                do_not_infer_sensor_id = $true
+                do_not_share_calibration_between_sensors = $true
+                receiver_must_not_assign_default_sensor_id = $true
+                pc_wall_s_not_primary_sync = $true
+            }
         }
     }
-    Write-Utf8NoBom -Path "config/kx134_node_map.json" -Text ($nodeMap | ConvertTo-Json -Depth 12)
+
+    foreach ($node in $nodeMap.nodes) {
+        if ($node.node_id -eq $NodeId) {
+            $node.sensor_id = $SensorId
+            $node.physical_label = $PhysicalLabel
+            $node.esp32_mac = $firstMac
+            $node.calibration_file = $calibrationPath
+            $node.status = "calibrated"
+            if ($node.PSObject.Properties.Name -contains "sample_rate_hz") { $node.sample_rate_hz = $SampleRateHz } else { $node | Add-Member -NotePropertyName sample_rate_hz -NotePropertyValue $SampleRateHz }
+            if ($node.PSObject.Properties.Name -contains "odr_hz") { $node.odr_hz = $OdrHz } else { $node | Add-Member -NotePropertyName odr_hz -NotePropertyValue $OdrHz }
+            if ($node.PSObject.Properties.Name -contains "range_g") { $node.range_g = $RangeG } else { $node | Add-Member -NotePropertyName range_g -NotePropertyValue $RangeG }
+        }
+    }
+
+    $sensorNodes = @($nodeMap.nodes | Where-Object { $_.role -eq "sensor_node" })
+    $calibratedSensorNodes = @($sensorNodes | Where-Object { $_.status -eq "calibrated" })
+    if ($calibratedSensorNodes.Count -eq 2) {
+        $nodeMap.status = "sensor_1_calibrated_sensor_2_calibrated_receiver_pending"
+    } elseif ($SensorId -eq 2) {
+        $nodeMap.status = "sensor_1_calibrated_sensor_2_calibrated_receiver_pending"
+    }
+    Write-Utf8NoBom -Path $nodeMapPath -Text ($nodeMap | ConvertTo-Json -Depth 12)
 
     $result = [ordered]@{
         session_id = $SessionId
         calibration_id = $CalibrationId
-        sensor_1_calibration_valid = $true
+        sensor_calibration_valid = $true
+        sensor_id = $SensorId
+        calibration_valid_name = $CalibrationDecisionName
         port = $Port
         baud = $Baud
         capture_backend = $script:ActiveBackend
         calibration_file = $calibrationPath
-        node_map_file = "config/kx134_node_map.json"
-        summary_file = "reports/kx134_calibration/sensor_1/$SessionId/calibration_summary.md"
+        node_map_file = $nodeMapPath
+        summary_file = "reports/kx134_calibration/sensor_$SensorId/$SessionId/calibration_summary.md"
         capture_directory = $captureDirRel
         coefficients = $calibration.coefficients
         position_summaries = $positionObjects
@@ -798,7 +828,7 @@ function New-CalibrationFiles {
 
     $summaryPath = Join-Path $SessionDir "calibration_summary.md"
     $lines = New-Object System.Collections.Generic.List[string]
-    $lines.Add("# TICKET 009 - KX134 Sensor 1 six-position calibration")
+    $lines.Add("# $TicketTitle")
     $lines.Add("")
     $lines.Add("- session_id: $SessionId")
     $lines.Add("- calibration_id: $CalibrationId")
@@ -810,9 +840,11 @@ function New-CalibrationFiles {
     $lines.Add("- node_id: $NodeId")
     $lines.Add("- node_mac: $firstMac")
     $lines.Add("- sample_rate_hz: $SampleRateHz")
-    $lines.Add("- odr_hz: $SampleRateHz")
+    $lines.Add("- odr_hz: $OdrHz")
     $lines.Add("- range_g: $RangeG")
-    $lines.Add("- SENSOR_1_CALIBRATION_VALID: YES")
+    $lines.Add("- ${CalibrationDecisionName}: YES")
+    $lines.Add("- header_detected_all_positions: $($calibration.validation.header_detected_all_positions)")
+    $lines.Add("- header_fallback_used: $($calibration.validation.header_fallback_used)")
     $lines.Add("")
     $lines.Add("## Position summaries")
     foreach ($summary in $PositionSummaries) {
@@ -830,6 +862,8 @@ function New-CalibrationFiles {
         $lines.Add("- dominant_axis: $($summary.dominant_axis)")
         $lines.Add("- validation_status: $($summary.validation_status)")
         $lines.Add("- accepted_with_warning: $($summary.accepted_with_warning)")
+        $lines.Add("- header_detected: $($summary.header_detected)")
+        $lines.Add("- header_fallback_used: $($summary.header_fallback_used)")
         if ($summary.failures.Count -gt 0) {
             $lines.Add("- failures: $($summary.failures -join ', ')")
         }
@@ -844,10 +878,10 @@ function New-CalibrationFiles {
     }
     $lines.Add("")
     $lines.Add("## Generated files")
-    $lines.Add("- config/calibrations/kx134_sensor_1.json")
+    $lines.Add("- $calibrationPath")
     $lines.Add("- config/kx134_node_map.json")
-    $lines.Add("- reports/kx134_calibration/sensor_1/$SessionId/calibration_result.json")
-    $lines.Add("- reports/kx134_calibration/sensor_1/$SessionId/captures/*.csv")
+    $lines.Add("- reports/kx134_calibration/sensor_$SensorId/$SessionId/calibration_result.json")
+    $lines.Add("- reports/kx134_calibration/sensor_$SensorId/$SessionId/captures/*.csv")
     $lines.Add("")
     $lines.Add("## Restrictions")
     $lines.Add("- Firmware was not modified by this calibration script.")
@@ -867,12 +901,12 @@ function New-CalibrationFiles {
 }
 
 $positions = @(
-    [pscustomobject]@{ Name = "X_POS"; Axis = "x"; Sign = 1; Instruction = "Coloque el Sensor 1 con el eje +X apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
-    [pscustomobject]@{ Name = "X_NEG"; Axis = "x"; Sign = -1; Instruction = "Coloque el Sensor 1 con el eje -X apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
-    [pscustomobject]@{ Name = "Y_POS"; Axis = "y"; Sign = 1; Instruction = "Coloque el Sensor 1 con el eje +Y apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
-    [pscustomobject]@{ Name = "Y_NEG"; Axis = "y"; Sign = -1; Instruction = "Coloque el Sensor 1 con el eje -Y apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
-    [pscustomobject]@{ Name = "Z_POS"; Axis = "z"; Sign = 1; Instruction = "Coloque el Sensor 1 con el eje +Z apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
-    [pscustomobject]@{ Name = "Z_NEG"; Axis = "z"; Sign = -1; Instruction = "Coloque el Sensor 1 con el eje -Z apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." }
+    [pscustomobject]@{ Name = "X_POS"; Axis = "x"; Sign = 1; Instruction = "Coloque el Sensor $SensorId con el eje +X apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
+    [pscustomobject]@{ Name = "X_NEG"; Axis = "x"; Sign = -1; Instruction = "Coloque el Sensor $SensorId con el eje -X apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
+    [pscustomobject]@{ Name = "Y_POS"; Axis = "y"; Sign = 1; Instruction = "Coloque el Sensor $SensorId con el eje +Y apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
+    [pscustomobject]@{ Name = "Y_NEG"; Axis = "y"; Sign = -1; Instruction = "Coloque el Sensor $SensorId con el eje -Y apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
+    [pscustomobject]@{ Name = "Z_POS"; Axis = "z"; Sign = 1; Instruction = "Coloque el Sensor $SensorId con el eje +Z apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." },
+    [pscustomobject]@{ Name = "Z_NEG"; Axis = "z"; Sign = -1; Instruction = "Coloque el Sensor $SensorId con el eje -Z apuntando hacia arriba, vertical hacia el techo. Mantenga el modulo quieto y presione Enter cuando este listo." }
 )
 
 if (-not [string]::IsNullOrWhiteSpace($ResumeSession)) {
@@ -903,21 +937,21 @@ if (-not [string]::IsNullOrWhiteSpace($ResumeSession)) {
         $positionSummaries.Add($summary)
     }
 
-    $timestamp = $sessionId -replace '^kx134_sensor1_cal_', ''
+    $timestamp = $sessionId -replace "^kx134_sensor${SensorId}_cal_", ''
     if ([string]::IsNullOrWhiteSpace($timestamp)) {
         $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
     }
-    $calibrationId = "kx134_sensor_1_$timestamp"
+    $calibrationId = "kx134_sensor_${SensorId}_$timestamp"
     $files = New-CalibrationFiles -SessionId $sessionId -SessionDir $sessionDir -CaptureDir $captureDir -PositionSummaries @($positionSummaries.ToArray()) -CalibrationId $calibrationId
     Write-Host "Archivo calibracion: $($files.CalibrationPath)"
     Write-Host "Node map: $($files.NodeMapPath)"
     Write-Host "Resultado: $($files.ResultPath)"
     Write-Host "Resumen: $($files.SummaryPath)"
-    Write-Host "SENSOR_1_CALIBRATION_VALID = YES"
+    Write-Host "$CalibrationDecisionName = YES"
     exit 0
 }
 
-Write-Section "KX134 SENSOR 1 CALIBRACION INTERACTIVA"
+Write-Section "KX134 SENSOR $SensorId CALIBRACION INTERACTIVA"
 Write-Host "No presione BOOT. No se subira firmware."
 Write-Host "Use EN/RST solo si necesita reiniciar el stream antes de empezar."
 Write-Host "Puerto: $Port"
@@ -929,7 +963,7 @@ Write-Host "SettleSeconds: $SettleSeconds"
 Write-Host "MinSamples: $MinSamples"
 Write-Host "Cableado esperado: 3V3->3V3, GND->GND, SDA->GPIO21, SCL->GPIO22."
 Write-Host ""
-Read-Host "Confirme que la ESP32 Sensor 1 esta conectada por USB y el cableado sigue correcto. Presione Enter para continuar"
+Read-Host "Confirme que la ESP32 Sensor $SensorId esta conectada por USB y el cableado sigue correcto. Presione Enter para continuar"
 
 Confirm-CaptureBackend
 Write-Host "Backend activo: $script:ActiveBackend"
@@ -938,8 +972,8 @@ $script:HeaderGlobalSeen = $false
 Confirm-ActiveCsvStream
 
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-$sessionId = "kx134_sensor1_cal_$timestamp"
-$calibrationId = "kx134_sensor_1_$timestamp"
+$sessionId = "kx134_sensor${SensorId}_cal_$timestamp"
+$calibrationId = "kx134_sensor_${SensorId}_$timestamp"
 $sessionDir = Join-Path $OutputRoot $sessionId
 $captureDir = Join-Path $sessionDir "captures"
 New-Item -ItemType Directory -Force -Path $captureDir | Out-Null
@@ -965,7 +999,7 @@ foreach ($position in $positions) {
         if ($parsed.HeaderSeen) {
             $script:HeaderGlobalSeen = $true
         }
-        $headerCheck = Test-Header -HeaderSeen ($parsed.HeaderSeen -or $script:HeaderGlobalSeen)
+        $headerCheck = Test-Header -HeaderSeen $parsed.HeaderSeen
         Write-Host $headerCheck.Message
 
         $records = @($parsed.Records)
@@ -973,13 +1007,18 @@ foreach ($position in $positions) {
         Save-CsvCapture -Path $capturePath -Records $records
         Write-Host "CSV guardado: $capturePath"
 
-        $summary = Analyze-Position -Records $records -PositionName $position.Name -ExpectedAxis $position.Axis -ExpectedSign $position.Sign -HeaderSeen ($parsed.HeaderSeen -or $script:HeaderGlobalSeen)
+        $summary = Analyze-Position -Records $records -PositionName $position.Name -ExpectedAxis $position.Axis -ExpectedSign $position.Sign -HeaderSeen $parsed.HeaderSeen
         Show-PositionSummary -Summary $summary
 
         if ($summary.validation_status -eq "pass") {
             $positionSummaries.Add($summary)
             $done = $true
             Write-Host "Decision: PASS. Avanzando a la siguiente posicion."
+        } elseif ($summary.validation_status -eq "warning" -and $ForceAcceptWarnings) {
+            $summary.accepted_with_warning = $true
+            $positionSummaries.Add($summary)
+            $done = $true
+            Write-Host "Decision: WARNING aceptado automaticamente por ForceAcceptWarnings."
         } else {
             Write-Host ""
             Write-Host "Decision: $($summary.validation_status.ToUpperInvariant())."
@@ -998,7 +1037,9 @@ foreach ($position in $positions) {
             } elseif ($choice -eq "Q") {
                 $cancelResult = [ordered]@{
                     session_id = $sessionId
-                    sensor_1_calibration_valid = $false
+                    sensor_calibration_valid = $false
+                    sensor_id = $SensorId
+                    calibration_valid_name = $CalibrationDecisionName
                     cancelled_at_position = $position.Name
                     port = $Port
                     baud = $Baud
@@ -1023,4 +1064,4 @@ Write-Host "Node map: $($files.NodeMapPath)"
 Write-Host "Resultado: $($files.ResultPath)"
 Write-Host "Resumen: $($files.SummaryPath)"
 Write-Host ""
-Write-Host "SENSOR_1_CALIBRATION_VALID = YES"
+Write-Host "$CalibrationDecisionName = YES"
