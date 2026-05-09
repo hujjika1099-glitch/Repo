@@ -37,6 +37,15 @@ Conexion inicial sugerida:
 - Interfaz: I2C/Qwiic.
 - Direccion I2C: el firmware intenta 0x1F y luego 0x1E.
 
+## Cableado rapido
+
+| SEN-17589/KX134 | ESP32 |
+|---|---|
+| 3V3 | 3V3 |
+| GND | GND |
+| SDA | GPIO21 |
+| SCL | GPIO22 |
+
 ## Configuracion
 
 Macros:
@@ -70,6 +79,42 @@ Comando esperado:
 ```powershell
 pio device monitor -d firmware/kx134_single_node_i2c -b 921600
 ```
+
+## Uso con wrappers PlatformIO
+
+Estos wrappers no requieren que `pio` este en el PATH.
+
+Build:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action build
+```
+
+Listar dispositivos:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action list-devices
+```
+
+Upload:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload -Port COM5
+```
+
+Monitor:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action monitor -Port COM5
+```
+
+Upload y monitor:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\platformio\kx134_single_node.ps1 -Action upload-monitor -Port COM5
+```
+
+Reemplazar `COM5` por el puerto real de la ESP32.
 
 ## Salida CSV
 
