@@ -59,6 +59,7 @@ uint8_t detected_address = 0;
 uint32_t sequence_id = 0;
 uint32_t next_sample_us = 0;
 char node_mac[18] = "00:00:00:00:00:00";
+bool sensor_ready = false;
 
 const char* physicalLabel() {
   return (KX134_SENSOR_ID == 1) ? "KX134_SENSOR_1" : "KX134_SENSOR_2";
@@ -160,14 +161,32 @@ bool beginAtAddress(uint8_t address) {
 }
 
 bool configureSensor() {
-  kxAccel.softwareReset();
+  if (!kxAccel.softwareReset()) {
+    Serial.println("# warning=KX134_SOFTWARE_RESET_FAILED");
+    return false;
+  }
   delay(30);
-  kxAccel.enableAccel(false);
+  if (!kxAccel.enableAccel(false)) {
+    Serial.println("# warning=KX134_DISABLE_ACCEL_FAILED");
+    return false;
+  }
   delay(5);
-  kxAccel.setRange(rangeCode());
-  kxAccel.setOutputDataRate(odrCode());
-  kxAccel.enableDataEngine(true);
-  kxAccel.enableAccel(true);
+  if (!kxAccel.setRange(rangeCode())) {
+    Serial.println("# warning=KX134_SET_RANGE_FAILED");
+    return false;
+  }
+  if (!kxAccel.setOutputDataRate(odrCode())) {
+    Serial.println("# warning=KX134_SET_ODR_FAILED");
+    return false;
+  }
+  if (!kxAccel.enableDataEngine(true)) {
+    Serial.println("# warning=KX134_ENABLE_DATA_ENGINE_FAILED");
+    return false;
+  }
+  if (!kxAccel.enableAccel(true)) {
+    Serial.println("# warning=KX134_ENABLE_ACCEL_FAILED");
+    return false;
+  }
   delay(20);
   return true;
 }
@@ -181,6 +200,18 @@ bool initializeSensor() {
     return false;
   }
   return configureSensor();
+}
+
+bool probeI2cAddress(uint8_t address) {
+  Wire.beginTransmission(address);
+  return Wire.endTransmission() == 0;
+}
+
+void printI2cProbe() {
+  Serial.print("# i2c_probe_0x1F=");
+  Serial.println(probeI2cAddress(kPrimaryAddress) ? "present" : "missing");
+  Serial.print("# i2c_probe_0x1E=");
+  Serial.println(probeI2cAddress(kSecondaryAddress) ? "present" : "missing");
 }
 
 void printSampleRow(
@@ -250,11 +281,21 @@ void printReadError(uint32_t sensor_t_us) {
   printSampleRow(sensor_t_us, 0, 0, 0, "UNKNOWN_ERROR", "SENSOR_READ_ERROR");
 }
 
+void printSensorInitError() {
+  Serial.println("# packet_status=SENSOR_INIT_ERROR");
+  Serial.println("# packet_error_code=SENSOR_INIT_ERROR");
+  Serial.println("# fatal=KX134_NOT_READY_AT_0x1F_OR_0x1E");
+  printI2cProbe();
+  Serial.flush();
+}
+
 }  // namespace
 
 void setup() {
   Serial.begin(KX134_SERIAL_BAUD);
   delay(300);
+  Serial.println("# boot_marker=after_serial_begin");
+  Serial.flush();
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect(false, false);
@@ -264,24 +305,34 @@ void setup() {
   Wire.setClock(KX134_I2C_FREQ_HZ);
 
   printStartupMetadata();
+  printI2cProbe();
 
-  if (!initializeSensor()) {
-    Serial.println("# packet_status=SENSOR_INIT_ERROR");
-    Serial.println("# packet_error_code=SENSOR_INIT_ERROR");
-    Serial.println("# fatal=KX134_NOT_DETECTED_AT_0x1F_OR_0x1E");
+  sensor_ready = initializeSensor();
+  if (!sensor_ready) {
+    printSensorInitError();
     printCsvHeader();
-    while (true) {
-      delay(1000);
-    }
+  } else {
+    Serial.print("# detected_i2c_address=0x");
+    Serial.println(detected_address, HEX);
+    printCsvHeader();
+    next_sample_us = micros();
   }
-
-  Serial.print("# detected_i2c_address=0x");
-  Serial.println(detected_address, HEX);
-  printCsvHeader();
-  next_sample_us = micros();
 }
 
 void loop() {
+  if (!sensor_ready) {
+    printSensorInitError();
+    delay(1000);
+    sensor_ready = initializeSensor();
+    if (sensor_ready) {
+      Serial.print("# detected_i2c_address=0x");
+      Serial.println(detected_address, HEX);
+      printCsvHeader();
+      next_sample_us = micros();
+    }
+    return;
+  }
+
   const uint32_t now_us = micros();
   if (static_cast<int32_t>(now_us - next_sample_us) < 0) {
     return;
