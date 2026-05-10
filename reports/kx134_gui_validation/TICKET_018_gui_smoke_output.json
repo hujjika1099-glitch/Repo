@@ -1,0 +1,40 @@
+{
+  "pass": true,
+  "failures": [],
+  "kx134_gui": {
+    "title": "Sistema de Captura Dual KX134",
+    "min_width": 980,
+    "min_height": 640,
+    "tabs": [
+      "Conexion",
+      "Captura",
+      "Sensores",
+      "Diagnostico",
+      "Exportacion"
+    ],
+    "has_start_button": true,
+    "has_file_panel": true,
+    "duration_10_valid": true,
+    "duration_1567_valid": true,
+    "sample_rates_valid": [
+      100,
+      200,
+      400,
+      800
+    ],
+    "baud_default": "921600"
+  },
+  "app_launcher": {
+    "title": "Sistema de Captura de Acelerometria",
+    "min_width": 720,
+    "min_height": 460,
+    "has_open_kx134": true,
+    "has_open_adxl": true
+  },
+  "visual_checks": {
+    "default_window_size": "1180x760",
+    "min_window_size": "980x640",
+    "uses_tabs": true,
+    "requires_hardware": false
+  }
+}

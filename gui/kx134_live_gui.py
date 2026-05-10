@@ -9,28 +9,35 @@ import tkinter as tk
 from tkinter import ttk
 
 try:
-    from .kx134_live_core import Kx134CaptureConfig, Kx134CaptureWorker, Kx134SessionResult
+    from . import ui_theme
+    from .kx134_live_core import (
+        Kx134CaptureConfig,
+        Kx134CaptureWorker,
+        Kx134SessionResult,
+        validate_capture_duration,
+        validate_expected_sample_rate,
+    )
     from .kx134_stream_contract import (
         KX134_ALLOWED_SAMPLE_RATES,
         KX134_DEFAULT_BAUD,
         KX134_DEFAULT_SAMPLE_RATE_HZ,
     )
+    from .ui_components import FileArtifactPanel, KeyValuePanel, ScrollableFrame, StatusCard, safe_set_grid_weights, section
 except ImportError:  # pragma: no cover - direct script execution support
-    from kx134_live_core import Kx134CaptureConfig, Kx134CaptureWorker, Kx134SessionResult
+    import ui_theme
+    from kx134_live_core import (
+        Kx134CaptureConfig,
+        Kx134CaptureWorker,
+        Kx134SessionResult,
+        validate_capture_duration,
+        validate_expected_sample_rate,
+    )
     from kx134_stream_contract import (
         KX134_ALLOWED_SAMPLE_RATES,
         KX134_DEFAULT_BAUD,
         KX134_DEFAULT_SAMPLE_RATE_HZ,
     )
-
-
-APP_BG = "#0b1416"
-PANEL_BG = "#102126"
-TEXT_MAIN = "#edf7f4"
-TEXT_MUTED = "#9dbab4"
-ACCENT = "#e8b35f"
-SUCCESS = "#79d49b"
-DANGER = "#ff7a78"
+    from ui_components import FileArtifactPanel, KeyValuePanel, ScrollableFrame, StatusCard, safe_set_grid_weights, section
 
 
 def _resolve_repo_root() -> Path:
@@ -47,13 +54,25 @@ def list_ports() -> list[str]:
     return [port.device for port in serial_list_ports.comports()]
 
 
+def validate_baudrate(value: object) -> int:
+    try:
+        baud = int(str(value).strip())
+    except (TypeError, ValueError) as exc:
+        raise ValueError("El baudrate debe ser un entero positivo.") from exc
+    if baud <= 0:
+        raise ValueError("El baudrate debe ser positivo.")
+    return baud
+
+
 class Kx134CaptureApp(tk.Tk):
     def __init__(self, args: argparse.Namespace) -> None:
+        ui_theme.set_windows_dpi_awareness_best_effort()
         super().__init__()
-        self.title("KX134 Dual Capture")
-        self.geometry("980x700")
-        self.minsize(860, 620)
-        self.configure(bg=APP_BG)
+        self.title(ui_theme.APP_TITLE)
+        self.geometry(ui_theme.DEFAULT_WINDOW_SIZE)
+        self.minsize(*ui_theme.MIN_WINDOW_SIZE)
+        ui_theme.apply_base_theme(self)
+        ui_theme.configure_ttk_styles(self)
 
         self.repo_root = Path(args.repo_root).resolve()
         self.events: queue.Queue[tuple[str, dict[str, object]]] = queue.Queue()
@@ -64,123 +83,188 @@ class Kx134CaptureApp(tk.Tk):
         self.duration_var = tk.StringVar(value=str(args.duration_s))
         self.sample_rate_var = tk.StringVar(value=str(args.expected_sample_rate))
         self.session_name_var = tk.StringVar(value=args.session_name)
-        self.status_var = tk.StringVar(value="En espera")
-        self.sensor1_var = tk.StringVar(value="Sensor 1: no presente")
-        self.sensor2_var = tk.StringVar(value="Sensor 2: no presente")
-        self.invalid_var = tk.StringVar(value="Invalid lines: 0")
-        self.duplicates_var = tk.StringVar(value="Duplicate keys: 0")
-        self.receiver_var = tk.StringVar(value="receiver_t_us: pendiente")
-        self.files_var = tk.StringVar(value="Archivos generados: pendiente")
+        self.output_root_var = tk.StringVar(value=str(self.repo_root))
 
-        self._build_style()
+        self.status_var = tk.StringVar(value="En espera")
+        self.connection_var = tk.StringVar(value="Puerto pendiente")
+        self.capture_decision_var = tk.StringVar(value="Sin captura")
+        self.invalid_var = tk.StringVar(value="0")
+        self.duplicates_var = tk.StringVar(value="0")
+        self.receiver_var = tk.StringVar(value="Pendiente")
+        self.pc_wall_var = tk.StringVar(value="Pendiente")
+        self.packet_status_var = tk.StringVar(value="Pendiente")
+        self.packet_error_var = tk.StringVar(value="Pendiente")
+        self.sensor1_samples_var = tk.StringVar(value="0")
+        self.sensor2_samples_var = tk.StringVar(value="0")
+        self.sensor1_gaps_var = tk.StringVar(value="0")
+        self.sensor2_gaps_var = tk.StringVar(value="0")
+        self.sensor1_status_var = tk.StringVar(value="No presente")
+        self.sensor2_status_var = tk.StringVar(value="No presente")
+        self.sensor1_id_var = tk.StringVar(value="1")
+        self.sensor2_id_var = tk.StringVar(value="2")
+        self.sensor1_mac_var = tk.StringVar(value="D4:E9:F4:E9:8E:1C")
+        self.sensor2_mac_var = tk.StringVar(value="D4:E9:F4:C3:37:14")
+
         self._build_layout()
         self.refresh_ports()
         self.after(120, self._drain_events)
-
-    def _build_style(self) -> None:
-        style = ttk.Style(self)
-        style.theme_use("clam")
-        style.configure(".", background=APP_BG, foreground=TEXT_MAIN)
-        style.configure("Panel.TFrame", background=PANEL_BG)
-        style.configure("Title.TLabel", background=APP_BG, foreground=TEXT_MAIN, font=("Segoe UI Semibold", 22))
-        style.configure("Body.TLabel", background=PANEL_BG, foreground=TEXT_MAIN, font=("Segoe UI", 10))
-        style.configure("Muted.TLabel", background=PANEL_BG, foreground=TEXT_MUTED, font=("Segoe UI", 9))
-        style.configure("Primary.TButton", background=ACCENT, foreground="#101819", padding=(12, 8))
-        style.configure("Field.TEntry", fieldbackground="#172d33", foreground=TEXT_MAIN)
-        style.configure("Field.TCombobox", fieldbackground="#172d33", foreground=TEXT_MAIN)
+        if getattr(args, "close_after_ms", 0):
+            self.after(int(args.close_after_ms), self.destroy)
 
     def _build_layout(self) -> None:
-        wrapper = ttk.Frame(self, style="Panel.TFrame", padding=18)
-        wrapper.pack(fill="both", expand=True, padx=18, pady=18)
-        wrapper.columnconfigure(0, weight=1)
-        wrapper.columnconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
 
-        ttk.Label(self, text="KX134 Dual Capture", style="Title.TLabel").place(x=24, y=12)
+        header = ttk.Frame(self, style="App.TFrame", padding=(ui_theme.PADDING, ui_theme.PADDING, ui_theme.PADDING, 8))
+        header.grid(row=0, column=0, sticky="ew")
+        header.columnconfigure(0, weight=1)
+        ttk.Label(header, text=ui_theme.APP_TITLE, style="Header.TLabel").grid(row=0, column=0, sticky="w")
+        ttk.Label(header, text=ui_theme.VERSION_LABEL, style="Subheader.TLabel").grid(row=1, column=0, sticky="w")
+        self.status_label = ttk.Label(header, textvariable=self.status_var, style="StatusWarn.TLabel")
+        self.status_label.grid(row=0, column=1, rowspan=2, sticky="e")
 
-        fields = ttk.Frame(wrapper, style="Panel.TFrame")
-        fields.grid(row=0, column=0, sticky="nsew", padx=(0, 16), pady=(40, 0))
-        fields.columnconfigure(0, weight=1)
+        self.notebook = ttk.Notebook(self)
+        self.notebook.grid(row=1, column=0, sticky="nsew", padx=ui_theme.PADDING, pady=(0, ui_theme.PADDING))
+        self._build_connection_tab()
+        self._build_capture_tab()
+        self._build_sensors_tab()
+        self._build_diagnostics_tab()
+        self._build_export_tab()
 
-        self.port_combo = self._field_combo(fields, "Puerto serial", self.port_var, [], row=0)
-        self._field_entry(fields, "Baudrate", self.baud_var, row=1)
-        self._field_entry(fields, "Duracion de captura (s)", self.duration_var, row=2)
-        self._field_combo(
-            fields,
-            "Frecuencia esperada",
-            self.sample_rate_var,
-            [str(rate) for rate in KX134_ALLOWED_SAMPLE_RATES],
-            row=3,
-        )
-        self._field_entry(fields, "Nombre de sesion", self.session_name_var, row=4)
+    def _tab(self, title: str) -> ttk.Frame:
+        outer = ttk.Frame(self.notebook, style="Surface.TFrame")
+        outer.columnconfigure(0, weight=1)
+        outer.rowconfigure(0, weight=1)
+        scroller = ScrollableFrame(outer)
+        scroller.grid(row=0, column=0, sticky="nsew")
+        self.notebook.add(outer, text=title)
+        return scroller.content
 
-        buttons = ttk.Frame(fields, style="Panel.TFrame")
-        buttons.grid(row=10, column=0, sticky="ew", pady=(18, 0))
-        buttons.columnconfigure((0, 1), weight=1)
-        self.start_button = ttk.Button(
-            buttons,
-            text="Iniciar captura KX134",
-            style="Primary.TButton",
-            command=self.start_capture,
-        )
-        self.start_button.grid(row=0, column=0, sticky="ew", padx=(0, 8))
-        ttk.Button(buttons, text="Actualizar puertos", command=self.refresh_ports).grid(
-            row=0,
-            column=1,
-            sticky="ew",
-        )
-
-        status = ttk.Frame(wrapper, style="Panel.TFrame")
-        status.grid(row=0, column=1, sticky="nsew", pady=(40, 0))
-        status.columnconfigure(0, weight=1)
-        for row, variable in enumerate(
+    def _build_connection_tab(self) -> None:
+        tab = self._tab("Conexion")
+        safe_set_grid_weights(tab, columns=(0,))
+        conn = section(tab, "Puerto y enlace serial")
+        conn.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
+        conn.columnconfigure(1, weight=1)
+        ttk.Label(conn, text="Puerto serial", style="Muted.TLabel").grid(row=0, column=0, sticky="w", pady=6)
+        self.port_combo = ttk.Combobox(conn, textvariable=self.port_var)
+        self.port_combo.grid(row=0, column=1, sticky="ew", padx=(12, 8), pady=6)
+        ttk.Button(conn, text="Actualizar puertos", command=self.refresh_ports).grid(row=0, column=2, sticky="ew", pady=6)
+        ttk.Label(conn, text="Baudrate", style="Muted.TLabel").grid(row=1, column=0, sticky="w", pady=6)
+        ttk.Entry(conn, textvariable=self.baud_var).grid(row=1, column=1, sticky="ew", padx=(12, 8), pady=6)
+        KeyValuePanel(
+            conn,
             [
-                self.status_var,
-                self.sensor1_var,
-                self.sensor2_var,
-                self.invalid_var,
-                self.duplicates_var,
-                self.receiver_var,
-                self.files_var,
-            ]
-        ):
-            ttk.Label(status, textvariable=variable, style="Body.TLabel", wraplength=420).grid(
-                row=row,
-                column=0,
-                sticky="ew",
-                pady=(0 if row == 0 else 12, 0),
-            )
+                ("Estado", self.connection_var),
+                ("Carpeta de salida", self.output_root_var),
+            ],
+        ).grid(row=2, column=0, columnspan=3, sticky="ew", pady=(12, 0))
 
-        self.log_box = tk.Text(
-            wrapper,
-            height=12,
-            background="#071013",
-            foreground=TEXT_MAIN,
-            insertbackground=TEXT_MAIN,
-            relief="flat",
-            wrap="word",
-            padx=10,
-            pady=10,
-        )
-        self.log_box.grid(row=1, column=0, columnspan=2, sticky="nsew", pady=(18, 0))
-        wrapper.rowconfigure(1, weight=1)
+    def _build_capture_tab(self) -> None:
+        tab = self._tab("Captura")
+        safe_set_grid_weights(tab, columns=(0,))
+        capture = section(tab, "Configuracion de captura")
+        capture.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
+        capture.columnconfigure(1, weight=1)
+        ttk.Label(capture, text="Duracion (s)", style="Muted.TLabel").grid(row=0, column=0, sticky="w", pady=6)
+        ttk.Entry(capture, textvariable=self.duration_var).grid(row=0, column=1, sticky="ew", padx=(12, 0), pady=6)
+        ttk.Label(capture, text="Frecuencia esperada", style="Muted.TLabel").grid(row=1, column=0, sticky="w", pady=6)
+        ttk.Combobox(
+            capture,
+            textvariable=self.sample_rate_var,
+            values=[str(rate) for rate in KX134_ALLOWED_SAMPLE_RATES],
+            state="readonly",
+        ).grid(row=1, column=1, sticky="ew", padx=(12, 0), pady=6)
+        ttk.Label(capture, text="Nombre de sesion", style="Muted.TLabel").grid(row=2, column=0, sticky="w", pady=6)
+        ttk.Entry(capture, textvariable=self.session_name_var).grid(row=2, column=1, sticky="ew", padx=(12, 0), pady=6)
+        button_row = ttk.Frame(capture, style="Surface.TFrame")
+        button_row.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(14, 0))
+        button_row.columnconfigure(0, weight=1)
+        button_row.columnconfigure(1, weight=1)
+        self.start_button = ttk.Button(button_row, text="Iniciar captura KX134", style="Primary.TButton", command=self.start_capture)
+        self.start_button.grid(row=0, column=0, sticky="ew", padx=(0, 8))
+        self.stop_button = ttk.Button(button_row, text="Detener captura", state="disabled")
+        self.stop_button.grid(row=0, column=1, sticky="ew")
 
-    def _field_entry(self, parent: tk.Misc, label: str, variable: tk.StringVar, *, row: int) -> None:
-        ttk.Label(parent, text=label, style="Muted.TLabel").grid(row=row * 2, column=0, sticky="w", pady=(8, 3))
-        ttk.Entry(parent, textvariable=variable, style="Field.TEntry").grid(row=row * 2 + 1, column=0, sticky="ew")
+        status = section(tab, "Estado de captura")
+        status.grid(row=1, column=0, sticky="ew", padx=10, pady=10)
+        KeyValuePanel(
+            status,
+            [
+                ("Estado", self.status_var),
+                ("Decision", self.capture_decision_var),
+            ],
+        ).grid(row=0, column=0, sticky="ew")
 
-    def _field_combo(
-        self,
-        parent: tk.Misc,
-        label: str,
-        variable: tk.StringVar,
-        values: list[str],
-        *,
-        row: int,
-    ) -> ttk.Combobox:
-        ttk.Label(parent, text=label, style="Muted.TLabel").grid(row=row * 2, column=0, sticky="w", pady=(8, 3))
-        combo = ttk.Combobox(parent, textvariable=variable, values=values, style="Field.TCombobox")
-        combo.grid(row=row * 2 + 1, column=0, sticky="ew")
-        return combo
+    def _build_sensors_tab(self) -> None:
+        tab = self._tab("Sensores")
+        safe_set_grid_weights(tab, columns=(0, 1))
+        s1 = section(tab, "Sensor 1")
+        s2 = section(tab, "Sensor 2")
+        s1.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+        s2.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+        KeyValuePanel(
+            s1,
+            [
+                ("sensor_id", self.sensor1_id_var),
+                ("MAC", self.sensor1_mac_var),
+                ("Muestras", self.sensor1_samples_var),
+                ("Seq gaps", self.sensor1_gaps_var),
+                ("Estado", self.sensor1_status_var),
+            ],
+        ).grid(row=0, column=0, sticky="ew")
+        KeyValuePanel(
+            s2,
+            [
+                ("sensor_id", self.sensor2_id_var),
+                ("MAC", self.sensor2_mac_var),
+                ("Muestras", self.sensor2_samples_var),
+                ("Seq gaps", self.sensor2_gaps_var),
+                ("Estado", self.sensor2_status_var),
+            ],
+        ).grid(row=0, column=0, sticky="ew")
+
+    def _build_diagnostics_tab(self) -> None:
+        tab = self._tab("Diagnostico")
+        safe_set_grid_weights(tab, columns=(0, 1), rows=(1,))
+        cards = ttk.Frame(tab, style="Surface.TFrame")
+        cards.grid(row=0, column=0, columnspan=2, sticky="ew", padx=10, pady=10)
+        safe_set_grid_weights(cards, columns=(0, 1, 2, 3))
+        self.invalid_card = StatusCard(cards, title="Invalid lines", value="0")
+        self.duplicate_card = StatusCard(cards, title="Duplicate keys", value="0")
+        self.receiver_card = StatusCard(cards, title="receiver_t_us", value="Pendiente")
+        self.pc_wall_card = StatusCard(cards, title="pc_wall_s", value="Pendiente")
+        for index, card in enumerate((self.invalid_card, self.duplicate_card, self.receiver_card, self.pc_wall_card)):
+            card.grid(row=0, column=index, sticky="ew", padx=6)
+
+        detail = section(tab, "Detalle")
+        detail.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+        detail.columnconfigure(0, weight=1)
+        KeyValuePanel(
+            detail,
+            [
+                ("packet_status", self.packet_status_var),
+                ("packet_error_code", self.packet_error_var),
+                ("receiver_t_us", self.receiver_var),
+                ("pc_wall_s", self.pc_wall_var),
+            ],
+        ).grid(row=0, column=0, sticky="ew")
+
+        messages = section(tab, "Mensajes recientes")
+        messages.grid(row=1, column=1, sticky="nsew", padx=10, pady=10)
+        messages.rowconfigure(0, weight=1)
+        messages.columnconfigure(0, weight=1)
+        self.log_box = tk.Text(messages, height=12, wrap="word", relief="solid", borderwidth=1)
+        self.log_box.grid(row=0, column=0, sticky="nsew")
+
+    def _build_export_tab(self) -> None:
+        tab = self._tab("Exportacion")
+        safe_set_grid_weights(tab, columns=(0,))
+        artifacts = section(tab, "Archivos generados")
+        artifacts.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
+        artifacts.columnconfigure(0, weight=1)
+        self.file_panel = FileArtifactPanel(artifacts)
+        self.file_panel.grid(row=0, column=0, sticky="ew")
 
     def refresh_ports(self) -> None:
         ports = list_ports()
@@ -189,6 +273,7 @@ class Kx134CaptureApp(tk.Tk):
             self.port_var.set("COM4")
         elif ports and not self.port_var.get().strip():
             self.port_var.set(ports[0])
+        self.connection_var.set(", ".join(ports) if ports else "Sin puertos visibles")
         self.log("Puertos actualizados: " + (", ".join(ports) if ports else "sin puertos visibles"))
 
     def log(self, message: str) -> None:
@@ -196,18 +281,15 @@ class Kx134CaptureApp(tk.Tk):
         self.log_box.see("end")
 
     def _build_config(self) -> Kx134CaptureConfig:
-        duration_s = float(self.duration_var.get().strip())
-        if duration_s <= 0:
-            raise ValueError("La duracion debe ser positiva.")
-        sample_rate = int(self.sample_rate_var.get().strip())
-        if sample_rate not in KX134_ALLOWED_SAMPLE_RATES:
-            raise ValueError("La frecuencia esperada debe ser 100, 200, 400 u 800 Hz.")
+        duration_s = validate_capture_duration(self.duration_var.get().strip())
+        sample_rate = validate_expected_sample_rate(self.sample_rate_var.get().strip())
+        baud = validate_baudrate(self.baud_var.get().strip())
         port = self.port_var.get().strip()
         if not port:
             raise ValueError("Seleccione un puerto serial.")
         return Kx134CaptureConfig(
             port=port,
-            baud=int(self.baud_var.get().strip() or KX134_DEFAULT_BAUD),
+            baud=baud,
             duration_s=duration_s,
             expected_sample_rate_hz=sample_rate,
             output_root=self.repo_root,
@@ -222,9 +304,12 @@ class Kx134CaptureApp(tk.Tk):
             config = self._build_config()
         except ValueError as exc:
             self.status_var.set(f"Error de configuracion: {exc}")
+            self.status_label.configure(style="StatusError.TLabel")
             self.log(str(exc))
             return
         self.status_var.set("Captura KX134 en curso")
+        self.capture_decision_var.set("En progreso")
+        self.status_label.configure(style="StatusWarn.TLabel")
         self.start_button.state(["disabled"])
         self.worker = Kx134CaptureWorker(config, self._push_event)
         self.worker.start()
@@ -247,34 +332,57 @@ class Kx134CaptureApp(tk.Tk):
         self.start_button.state(["!disabled"])
         if event_type == "session_error":
             self.status_var.set("Error KX134")
+            self.capture_decision_var.set("FAIL")
+            self.status_label.configure(style="StatusError.TLabel")
             self.log(str(payload.get("message", "Error desconocido")))
             return
+
         result = payload.get("result")
-        if isinstance(result, Kx134SessionResult):
-            summary = result.summary
-            samples = summary["samples_by_sensor"]
-            duplicates = summary["duplicate_keys_by_sensor"]
-            receiver_errors = int(summary["receiver_timestamp_errors"])
-            self.status_var.set("Captura KX134 completada")
-            self.sensor1_var.set(f"Sensor 1: {samples.get('1', 0)} muestras")
-            self.sensor2_var.set(f"Sensor 2: {samples.get('2', 0)} muestras")
-            self.invalid_var.set(f"Invalid lines: {result.invalid_lines}")
-            self.duplicates_var.set(
-                f"Duplicate keys: {int(duplicates.get('1', 0)) + int(duplicates.get('2', 0))}"
-            )
-            self.receiver_var.set(
-                "receiver_t_us: valido" if receiver_errors == 0 else f"receiver_t_us errores: {receiver_errors}"
-            )
-            self.files_var.set(
-                "Archivos generados: "
-                + str(result.artifacts.raw_csv_abs)
-                + " | "
-                + str(result.artifacts.session_json_abs)
-            )
-            self.log("Sesion KX134 guardada correctamente.")
+        if not isinstance(result, Kx134SessionResult):
+            return
+
+        summary = result.summary
+        samples = summary["samples_by_sensor"]
+        gaps = summary["seq_gaps_by_sensor"]
+        duplicates = summary["duplicate_keys_by_sensor"]
+        receiver_errors = int(summary["receiver_timestamp_errors"])
+        duplicate_total = int(duplicates.get("1", 0)) + int(duplicates.get("2", 0))
+        session_valid = (
+            result.invalid_lines == 0
+            and duplicate_total == 0
+            and receiver_errors == 0
+            and int(samples.get("1", 0)) > 0
+            and int(samples.get("2", 0)) > 0
+        )
+
+        self.status_var.set("Captura KX134 completada")
+        self.capture_decision_var.set("PASS" if session_valid else "REVISAR")
+        self.status_label.configure(style="StatusOk.TLabel" if session_valid else "StatusWarn.TLabel")
+        self.sensor1_samples_var.set(str(samples.get("1", 0)))
+        self.sensor2_samples_var.set(str(samples.get("2", 0)))
+        self.sensor1_gaps_var.set(str(gaps.get("1", 0)))
+        self.sensor2_gaps_var.set(str(gaps.get("2", 0)))
+        self.sensor1_status_var.set("Presente" if int(samples.get("1", 0)) > 0 else "No presente")
+        self.sensor2_status_var.set("Presente" if int(samples.get("2", 0)) > 0 else "No presente")
+        self.invalid_var.set(str(result.invalid_lines))
+        self.duplicates_var.set(str(duplicate_total))
+        self.receiver_var.set("Valido" if receiver_errors == 0 else f"Errores: {receiver_errors}")
+        self.pc_wall_var.set("Positivo" if summary.get("pc_wall_s_positive") else "Revisar")
+        self.packet_status_var.set(str(summary.get("packet_status_counts", {})))
+        self.packet_error_var.set(str(summary.get("packet_error_code_counts", {})))
+        self.invalid_card.update(str(result.invalid_lines), tone="ok" if result.invalid_lines == 0 else "warn")
+        self.duplicate_card.update(str(duplicate_total), tone="ok" if duplicate_total == 0 else "warn")
+        self.receiver_card.update(self.receiver_var.get(), tone="ok" if receiver_errors == 0 else "warn")
+        self.pc_wall_card.update(self.pc_wall_var.get(), tone="ok" if summary.get("pc_wall_s_positive") else "warn")
+        self.file_panel.set_paths(
+            raw_csv=str(result.artifacts.raw_csv_abs),
+            session_json=str(result.artifacts.session_json_abs),
+            summary_md=str(result.artifacts.summary_abs),
+        )
+        self.log("Sesion KX134 guardada correctamente.")
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="GUI live para KX134 dual ESP-NOW")
     parser.add_argument("--repo-root", default=str(_resolve_repo_root()))
     parser.add_argument("--port", default="")
@@ -282,11 +390,20 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--duration-s", type=float, default=10.0)
     parser.add_argument("--expected-sample-rate", type=int, default=KX134_DEFAULT_SAMPLE_RATE_HZ)
     parser.add_argument("--session-name", default="kx134_live")
-    return parser.parse_args()
+    parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--close-after-ms", type=int, default=0)
+    return parser.parse_args(argv)
 
 
-def main() -> None:
-    app = Kx134CaptureApp(parse_args())
+def create_app(args: argparse.Namespace | None = None) -> Kx134CaptureApp:
+    return Kx134CaptureApp(args or parse_args([]))
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    if args.smoke and not args.close_after_ms:
+        args.close_after_ms = 1000
+    app = Kx134CaptureApp(args)
     app.mainloop()
 
 

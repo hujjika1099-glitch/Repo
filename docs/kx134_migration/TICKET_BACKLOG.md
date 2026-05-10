@@ -19,11 +19,11 @@
 - TICKET 015: COMPLETADO - Integrar stream Serial KX134 v3 en la GUI/core sin alterar flujo historico ADXL335.
 - TICKET 016: COMPLETADO - Validacion GUI KX134 con hardware real y exportacion de sesion.
 - TICKET 017: COMPLETADO - Endurecer exportacion KX134, metadata y validadores de sesion.
+- TICKET 018: COMPLETADO - Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar.
 
 ## Tickets futuros recomendados
 
-- TICKET 018: Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar todavia.
-- TICKET 019: Empaquetado profesional Windows.
+- TICKET 019: Empaquetado Windows profesional KX134/ADXL con DPI awareness, nombre de producto y validacion en PC.
 - TICKET 020: Validacion de prototipo.
 - TICKET 021: Criterios para baquelada/PCB.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
@@ -35,6 +35,7 @@
 - TICKET 015 agrego parser/core/GUI KX134 separado y replay con log real.
 - TICKET 016 valido captura/exportacion GUI KX134 con hardware real; detecto necesidad de warmup serial al abrir COM4 y `pc_wall_s` de alta resolucion.
 - TICKET 017 endurecio metadata, summary y validador de bundle KX134; los bundles previos pueden quedar como metadata legacy.
+- TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
 - TICKET 019 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
 
 ## Regla de alcance
