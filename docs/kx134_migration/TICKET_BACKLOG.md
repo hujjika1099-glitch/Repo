@@ -25,12 +25,12 @@
 
 ## Tickets en curso o pendientes
 
-- TICKET 021: COMPLETADO - QA externo visual/manual del ejecutable Windows. Smoke launcher/KX134/ADXL paso en `MOMOTTO_PC`; el usuario confirmo validacion visual manual satisfactoria en `1920x1080` con scaling `100%`, sin cortes visuales relevantes. Nota: hardware capture on external PC was not executed; hardware capture already validated on development PC.
+- Ninguno activo.
 
 ## Tickets futuros recomendados
 
-- TICKET 022: Validacion de prototipo con sesion controlada y criterios para entrega/baquelada.
-- TICKET 023: Criterios para baquelada/PCB.
+- TICKET 023: Consolidar entrega tecnica del prototipo y documentacion final para cliente.
+- FUTURO: Especificacion de PCB/baquelada final cuando se cierren decisiones fisicas.
 - FUTURO: Icono corporativo y firma digital si se requiere.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
@@ -45,6 +45,7 @@
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
 - TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; TICKET 021B cierra la validacion visual/manual externa con decision `READY_FOR_CLIENT_PROTOTYPE_QA=YES`. La captura hardware externa no se ejecuto y queda documentada como advertencia no bloqueante porque la captura hardware ya fue validada en el PC de desarrollo.
+- TICKET 022 valida una sesion controlada de prototipo de 60 s en `COM4` con Sensor 1 `5998` filas y Sensor 2 `6000` filas. La validacion de prototipo pasa con advertencia por `2` seq gaps en Sensor 1; `READY_FOR_PROTOTYPE_DELIVERY=YES` y `READY_FOR_PCB_DESIGN=NO` por decisiones fisicas pendientes.
 
 ## Regla de alcance
 

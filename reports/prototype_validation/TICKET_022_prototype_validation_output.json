@@ -1,0 +1,49 @@
+{
+  "pass": true,
+  "failures": [],
+  "warnings": [
+    "sensor_1:seq_gaps:2"
+  ],
+  "raw_csv": "reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_raw.csv",
+  "session_json": "reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_session.json",
+  "summary_md": "reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_summary.md",
+  "rows_by_sensor": {
+    "1": 5998,
+    "2": 6000
+  },
+  "effective_hz_by_sensor": {
+    "1": 99.96665611101903,
+    "2": 100.00000666777841
+  },
+  "seq_gaps_by_sensor": {
+    "1": 2,
+    "2": 0
+  },
+  "timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "receiver_timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "duplicate_keys_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "invalid_lines": 0,
+  "pc_wall_s_positive": true,
+  "receiver_t_us_valid": true,
+  "packet_status_counts": {
+    "OK": 11998
+  },
+  "packet_error_code_counts": {
+    "OK": 11998
+  },
+  "forbidden_fields_detected": false,
+  "metadata_schema_pass": true,
+  "artifact_paths_present": true,
+  "live_plot_confirmed": true,
+  "ready_for_prototype_delivery": true,
+  "ready_for_pcb_design_recommendation": true
+}

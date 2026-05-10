@@ -1,0 +1,367 @@
+{
+  "session_id": "kx134_dual_live_ticket022_prototype_controlled_20260510_162412",
+  "source_stream_session_id": "ESPNOW_DUAL_PROTOTYPE",
+  "session_name": "ticket022_prototype_controlled",
+  "session_type": "kx134_dual_live",
+  "protocol_version": "kx134.v3",
+  "contract_version": "kx134.v3",
+  "created_at_iso": "2026-05-10T21:24:12Z",
+  "started_at_iso": "2026-05-10T21:23:12Z",
+  "ended_at_iso": "2026-05-10T21:24:12Z",
+  "capture_duration_requested_s": 60.0,
+  "capture_duration_actual_s": 60.00012799999968,
+  "timestamp_basis": "pc_wall_s uses PC perf_counter seconds since GUI capture start; receiver_t_us is receiver micros; sensor_t_us clocks are per ESP32 node.",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "allowed_sample_rates_hz": [
+    100,
+    200,
+    400,
+    800
+  ],
+  "expected_range_g": 8,
+  "expected_odr_hz": 100,
+  "serial_warmup_s": 2.0,
+  "firmware_configuration_sent": false,
+  "firmware_configuration_note": "GUI does not configure firmware sample rate yet.",
+  "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
+  "total_esp32_required": 3,
+  "transport": {
+    "sensor_nodes_to_receiver": "ESP-NOW",
+    "receiver_to_pc_gui": "USB Serial"
+  },
+  "nodes_expected": {
+    "sensor_1": {
+      "sensor_id": 1,
+      "physical_label": "KX134_SENSOR_1",
+      "node_id": "sensor_node_1",
+      "node_mac": "D4:E9:F4:E9:8E:1C",
+      "calibration_id": "kx134_sensor_1_20260508_234831",
+      "calibration_file": "config/calibrations/kx134_sensor_1_20260508_234831.json",
+      "status": "validated_for_gui_export"
+    },
+    "sensor_2": {
+      "sensor_id": 2,
+      "physical_label": "KX134_SENSOR_2",
+      "node_id": "sensor_node_2",
+      "node_mac": "D4:E9:F4:C3:37:14",
+      "calibration_id": "kx134_sensor_2_20260509_180839",
+      "calibration_file": "config/calibrations/kx134_sensor_2_20260509_180839.json",
+      "status": "validated_for_gui_export"
+    },
+    "receiver": {
+      "node_id": "receiver_esp32",
+      "node_mac": "00:4B:12:96:9A:80",
+      "receiver_firmware": "kx134_dual_espnow",
+      "receiver_firmware_version": "kx134_dual_espnow.0.1.0",
+      "espnow_channel": 1,
+      "status": "validated_for_gui_export"
+    }
+  },
+  "metadata_lines": [
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878197,sensor_t_us=1602581733,receiver_t_us=39035389",
+    "#STAT,role=receiver,rx_total=7897,rx_s1=3926,rx_s2=3971,invalid=0,duplicate_drops=129,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878453,sensor_t_us=1605141734,receiver_t_us=41599994",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878494,sensor_t_us=1605551738,receiver_t_us=42012146",
+    "#STAT,role=receiver,rx_total=8299,rx_s1=4127,rx_s2=4172,invalid=0,duplicate_drops=131,queue_drops=0",
+    "#STAT,role=receiver,rx_total=8698,rx_s1=4327,rx_s2=4371,invalid=0,duplicate_drops=131,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878702,sensor_t_us=1607631737,receiver_t_us=44084730",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878750,sensor_t_us=1608111738,receiver_t_us=44564742",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878827,sensor_t_us=1608881733,receiver_t_us=45334935",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1879210,sensor_t_us=1612709741,receiver_t_us=45493820",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878883,sensor_t_us=1609441734,receiver_t_us=45902670",
+    "#STAT,role=receiver,rx_total=9099,rx_s1=4527,rx_s2=4572,invalid=0,duplicate_drops=136,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878904,sensor_t_us=1609651738,receiver_t_us=46107428",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878924,sensor_t_us=1609851738,receiver_t_us=46304928",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1878945,sensor_t_us=1610061733,receiver_t_us=46517079",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879006,sensor_t_us=1610671738,receiver_t_us=47131427",
+    "#STAT,role=receiver,rx_total=9499,rx_s1=4727,rx_s2=4772,invalid=0,duplicate_drops=140,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879214,sensor_t_us=1612751737,receiver_t_us=49204896",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879242,sensor_t_us=1613031738,receiver_t_us=49486249",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879262,sensor_t_us=1613231738,receiver_t_us=49689545",
+    "#STAT,role=receiver,rx_total=9899,rx_s1=4927,rx_s2=4972,invalid=0,duplicate_drops=143,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879354,sensor_t_us=1614151738,receiver_t_us=50613109",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879366,sensor_t_us=1614271738,receiver_t_us=50730911",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879375,sensor_t_us=1614361733,receiver_t_us=50817892",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879395,sensor_t_us=1614561734,receiver_t_us=51020774",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879436,sensor_t_us=1614971738,receiver_t_us=51429224",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879467,sensor_t_us=1615281734,receiver_t_us=51739841",
+    "#STAT,role=receiver,rx_total=10299,rx_s1=5127,rx_s2=5172,invalid=0,duplicate_drops=149,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879498,sensor_t_us=1615591738,receiver_t_us=52045815",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879518,sensor_t_us=1615791737,receiver_t_us=52244981",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879547,sensor_t_us=1616081734,receiver_t_us=52557765",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879590,sensor_t_us=1616511738,receiver_t_us=52967379",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879610,sensor_t_us=1616711738,receiver_t_us=53172162",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879631,sensor_t_us=1616921733,receiver_t_us=53376972",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879652,sensor_t_us=1617131739,receiver_t_us=53589344",
+    "#STAT,role=receiver,rx_total=10699,rx_s1=5327,rx_s2=5372,invalid=0,duplicate_drops=156,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879713,sensor_t_us=1617741734,receiver_t_us=54197121",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879733,sensor_t_us=1617941734,receiver_t_us=54399965",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879744,sensor_t_us=1618051738,receiver_t_us=54506198",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879754,sensor_t_us=1618151737,receiver_t_us=54606738",
+    "#STAT,role=receiver,rx_total=11099,rx_s1=5527,rx_s2=5572,invalid=0,duplicate_drops=160,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879928,sensor_t_us=1619891738,receiver_t_us=56345518",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1880298,sensor_t_us=1623589741,receiver_t_us=56348176",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1879969,sensor_t_us=1620301734,receiver_t_us=56757455",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880041,sensor_t_us=1621021734,receiver_t_us=57475754",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880071,sensor_t_us=1621321733,receiver_t_us=57777387",
+    "#STAT,role=receiver,rx_total=11499,rx_s1=5727,rx_s2=5772,invalid=0,duplicate_drops=165,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880163,sensor_t_us=1622241734,receiver_t_us=58700698",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880184,sensor_t_us=1622451738,receiver_t_us=58907409",
+    "#STAT,role=receiver,rx_total=11899,rx_s1=5927,rx_s2=5972,invalid=0,duplicate_drops=167,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880351,sensor_t_us=1624121733,receiver_t_us=60575223",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880378,sensor_t_us=1624391738,receiver_t_us=60851220",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880460,sensor_t_us=1625211737,receiver_t_us=61670324",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1880830,sensor_t_us=1628909741,receiver_t_us=61672918",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880481,sensor_t_us=1625421734,receiver_t_us=61876067",
+    "#STAT,role=receiver,rx_total=12299,rx_s1=6127,rx_s2=6172,invalid=0,duplicate_drops=172,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880552,sensor_t_us=1626133328,receiver_t_us=62593837",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880614,sensor_t_us=1626751739,receiver_t_us=63207433",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880634,sensor_t_us=1626951738,receiver_t_us=63411103",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880655,sensor_t_us=1627161734,receiver_t_us=63617825",
+    "#STAT,role=receiver,rx_total=12699,rx_s1=6327,rx_s2=6372,invalid=0,duplicate_drops=176,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880716,sensor_t_us=1627771738,receiver_t_us=64230326",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880757,sensor_t_us=1628181733,receiver_t_us=64635864",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880768,sensor_t_us=1628291738,receiver_t_us=64747581",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880849,sensor_t_us=1629101734,receiver_t_us=65557424",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880890,sensor_t_us=1629511738,receiver_t_us=65965554",
+    "#STAT,role=receiver,rx_total=13099,rx_s1=6527,rx_s2=6572,invalid=0,duplicate_drops=181,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880931,sensor_t_us=1629921734,receiver_t_us=66380844",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880947,sensor_t_us=1630081734,receiver_t_us=66535896",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880972,sensor_t_us=1630331738,receiver_t_us=66790486",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880988,sensor_t_us=1630491737,receiver_t_us=66961018",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1880988,sensor_t_us=1630491737,receiver_t_us=66965564",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881018,sensor_t_us=1630791737,receiver_t_us=67245330",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881021,sensor_t_us=1630821734,receiver_t_us=67325290",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881021,sensor_t_us=1630821734,receiver_t_us=67336513",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881030,sensor_t_us=1630911752,receiver_t_us=67512595",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881032,sensor_t_us=1630931764,receiver_t_us=67528715",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881032,sensor_t_us=1630931764,receiver_t_us=67538833",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881032,sensor_t_us=1630931764,receiver_t_us=67552268",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881032,sensor_t_us=1630931764,receiver_t_us=67557718",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881032,sensor_t_us=1630931764,receiver_t_us=67562238",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67571572",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67577016",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67581738",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1881407,sensor_t_us=1634679744,receiver_t_us=67587794",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67591092",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67597683",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67613503",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67622646",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881033,sensor_t_us=1630941739,receiver_t_us=67635771",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881040,sensor_t_us=1631011738,receiver_t_us=67677395",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1881432,sensor_t_us=1634929740,receiver_t_us=67714522",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881085,sensor_t_us=1631461733,receiver_t_us=67919310",
+    "#STAT,role=receiver,rx_total=13497,rx_s1=6725,rx_s2=6772,invalid=0,duplicate_drops=207,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881105,sensor_t_us=1631661734,receiver_t_us=68115640",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881146,sensor_t_us=1632071738,receiver_t_us=68531277",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881187,sensor_t_us=1632481734,receiver_t_us=68940832",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881228,sensor_t_us=1632891738,receiver_t_us=69350538",
+    "#STAT,role=receiver,rx_total=13897,rx_s1=6925,rx_s2=6972,invalid=0,duplicate_drops=211,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881361,sensor_t_us=1634221733,receiver_t_us=70681546",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881382,sensor_t_us=1634431738,receiver_t_us=70888371",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881423,sensor_t_us=1634841734,receiver_t_us=71298001",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881443,sensor_t_us=1635041734,receiver_t_us=71502856",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881477,sensor_t_us=1635381734,receiver_t_us=71835459",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881484,sensor_t_us=1635451739,receiver_t_us=71910436",
+    "#STAT,role=receiver,rx_total=14297,rx_s1=7125,rx_s2=7172,invalid=0,duplicate_drops=217,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881556,sensor_t_us=1636171737,receiver_t_us=72627945",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881576,sensor_t_us=1636371738,receiver_t_us=72831911",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881638,sensor_t_us=1636991738,receiver_t_us=73448239",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881658,sensor_t_us=1637191738,receiver_t_us=73651111",
+    "#STAT,role=receiver,rx_total=14697,rx_s1=7325,rx_s2=7372,invalid=0,duplicate_drops=221,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881699,sensor_t_us=1637601733,receiver_t_us=74063317",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881781,sensor_t_us=1638421734,receiver_t_us=74884546",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881832,sensor_t_us=1638931738,receiver_t_us=75391884",
+    "#STAT,role=receiver,rx_total=15097,rx_s1=7525,rx_s2=7572,invalid=0,duplicate_drops=224,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1881914,sensor_t_us=1639751738,receiver_t_us=76211928",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882088,sensor_t_us=1641491738,receiver_t_us=77953825",
+    "#STAT,role=receiver,rx_total=15497,rx_s1=7725,rx_s2=7772,invalid=0,duplicate_drops=226,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882129,sensor_t_us=1641901733,receiver_t_us=78361673",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882150,sensor_t_us=1642111737,receiver_t_us=78567208",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882170,sensor_t_us=1642311738,receiver_t_us=78772282",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882175,sensor_t_us=1642361734,receiver_t_us=78828598",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=1882546,sensor_t_us=1646069741,receiver_t_us=78831190",
+    "#STAT,role=receiver,rx_total=15897,rx_s1=7925,rx_s2=7972,invalid=0,duplicate_drops=231,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882303,sensor_t_us=1643641734,receiver_t_us=80096291",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882324,sensor_t_us=1643851737,receiver_t_us=80307971",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882344,sensor_t_us=1644051737,receiver_t_us=80506334",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882419,sensor_t_us=1644801733,receiver_t_us=81256767",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882467,sensor_t_us=1645281734,receiver_t_us=81740696",
+    "#STAT,role=receiver,rx_total=16297,rx_s1=8125,rx_s2=8172,invalid=0,duplicate_drops=236,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882538,sensor_t_us=1645991738,receiver_t_us=82445856",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882539,sensor_t_us=1646001733,receiver_t_us=82459452",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882559,sensor_t_us=1646201734,receiver_t_us=82664228",
+    "#STAT,role=receiver,rx_total=16697,rx_s1=8325,rx_s2=8372,invalid=0,duplicate_drops=239,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882746,sensor_t_us=1648071738,receiver_t_us=84525981",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882747,sensor_t_us=1648081734,receiver_t_us=84548165",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882749,sensor_t_us=1648101734,receiver_t_us=84560143",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882758,sensor_t_us=1648191739,receiver_t_us=84645955",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882769,sensor_t_us=1648301733,receiver_t_us=84766873",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882815,sensor_t_us=1648761733,receiver_t_us=85222272",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882822,sensor_t_us=1648831738,receiver_t_us=85285955",
+    "#STAT,role=receiver,rx_total=17097,rx_s1=8525,rx_s2=8572,invalid=0,duplicate_drops=246,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1882938,sensor_t_us=1649991738,receiver_t_us=86451085",
+    "#STAT,role=receiver,rx_total=17497,rx_s1=8725,rx_s2=8772,invalid=0,duplicate_drops=247,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883146,sensor_t_us=1652071737,receiver_t_us=88527089",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883153,sensor_t_us=1652141755,receiver_t_us=88601892",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883194,sensor_t_us=1652551738,receiver_t_us=89011168",
+    "#STAT,role=receiver,rx_total=17897,rx_s1=8925,rx_s2=8972,invalid=0,duplicate_drops=250,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883307,sensor_t_us=1653681734,receiver_t_us=90139380",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883364,sensor_t_us=1654251738,receiver_t_us=90706869",
+    "#STAT,role=receiver,rx_total=18297,rx_s1=9125,rx_s2=9172,invalid=0,duplicate_drops=252,queue_drops=0",
+    "#STAT,role=receiver,rx_total=18696,rx_s1=9325,rx_s2=9371,invalid=0,duplicate_drops=252,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883727,sensor_t_us=1657881733,receiver_t_us=94338840",
+    "#STAT,role=receiver,rx_total=19097,rx_s1=9525,rx_s2=9572,invalid=0,duplicate_drops=253,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1883921,sensor_t_us=1659821734,receiver_t_us=96281478",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1884013,sensor_t_us=1660741733,receiver_t_us=97203137",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1884095,sensor_t_us=1661561734,receiver_t_us=98024940",
+    "#STAT,role=receiver,rx_total=19499,rx_s1=9726,rx_s2=9773,invalid=0,duplicate_drops=256,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=1884269,sensor_t_us=1663301734,receiver_t_us=99763204",
+    "#STAT,role=receiver,rx_total=19899,rx_s1=9926,rx_s2=9973,invalid=0,duplicate_drops=257,queue_drops=0"
+  ],
+  "metadata_line_count": 160,
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "warnings": [],
+  "summary": {
+    "total_samples": 11998,
+    "samples_by_sensor": {
+      "1": 5998,
+      "2": 6000
+    },
+    "seq_gaps_by_sensor": {
+      "1": 2,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 99.96665611101903,
+      "2": 100.00000666777841
+    },
+    "packet_status_counts": {
+      "OK": 11998
+    },
+    "packet_error_code_counts": {
+      "OK": 11998
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.001420962344635,
+      "2": 1.0036673314126139
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.7156888058423159,
+      "2": 0.37641145968075945
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.1732213813283492,
+      "2": 1.4268452714818098
+    },
+    "valid_samples_total": 11998,
+    "invalid_lines": 0,
+    "metadata_lines": 160,
+    "receiver_t_us_valid": true,
+    "pc_wall_s_positive": true
+  },
+  "capture_summary": {
+    "total_samples": 11998,
+    "samples_by_sensor": {
+      "1": 5998,
+      "2": 6000
+    },
+    "seq_gaps_by_sensor": {
+      "1": 2,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 99.96665611101903,
+      "2": 100.00000666777841
+    },
+    "packet_status_counts": {
+      "OK": 11998
+    },
+    "packet_error_code_counts": {
+      "OK": 11998
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.001420962344635,
+      "2": 1.0036673314126139
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.7156888058423159,
+      "2": 0.37641145968075945
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.1732213813283492,
+      "2": 1.4268452714818098
+    },
+    "valid_samples_total": 11998,
+    "invalid_lines": 0,
+    "metadata_lines": 160,
+    "receiver_t_us_valid": true,
+    "pc_wall_s_positive": true
+  },
+  "decision": {
+    "session_valid": false,
+    "decision": "FAIL",
+    "failures": [
+      "sensor_1_seq_gaps"
+    ],
+    "warnings": []
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_summary.md",
+    "summary_md": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\prototype_validation\\TICKET_022_controlled_session_20260510_162258\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket022_prototype_controlled_20260510_162412_summary.md",
+    "relative_to_session_root": {
+      "raw_csv": "data/raw/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_raw.csv",
+      "session_json": "data/processed/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_session.json",
+      "summary_md": "reports/analysis_outputs/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_summary.md"
+    },
+    "artifacts_relative_to_session_root": true,
+    "artifact_paths_exist": {
+      "raw_csv": true,
+      "session_json": true,
+      "summary_md": true
+    }
+  },
+  "artifacts_relative_to_session_root": {
+    "raw_csv": "data/raw/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_raw.csv",
+    "session_json": "data/processed/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_session.json",
+    "summary_md": "reports/analysis_outputs/kx134_dual_live/kx134_dual_live_ticket022_prototype_controlled_20260510_162412_summary.md"
+  },
+  "artifact_paths_exist": {
+    "raw_csv": true,
+    "session_json": true,
+    "summary_md": true
+  }
+}
