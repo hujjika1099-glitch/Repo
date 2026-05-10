@@ -69,5 +69,7 @@
     "pc_wall_s_not_primary_sync": true
   },
   "last_gui_live_plots_report": "reports/kx134_gui_validation/TICKET_019_GUI_LIVE_PLOTS_SUMMARY.md",
-  "last_windows_packaging_report": "reports/kx134_gui_validation/TICKET_020_WINDOWS_PACKAGING_SUMMARY.md"
+  "last_windows_packaging_report": "reports/kx134_gui_validation/TICKET_020_WINDOWS_PACKAGING_SUMMARY.md",
+  "last_external_pc_qa_report": "reports/kx134_gui_validation/TICKET_021_EXTERNAL_PC_QA_SUMMARY.md",
+  "last_external_pc_qa_decision": "PENDING"
 }
