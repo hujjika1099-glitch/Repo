@@ -4,68 +4,75 @@
 
 2026-05-10
 
-## Estado
+## Contexto
 
-`READY_FOR_CLIENT_PROTOTYPE_QA=PENDING`
+- Rama objetivo: `feature/kx134-dual-capture`.
+- Commit base remoto verificado: `2a12912d18921cbb1d7b1d5cd93aea9d865eadda`.
+- Entorno local de Codex: carpeta descomprimida del paquete, no repositorio Git local.
+- `git` no disponible en PATH en este PC.
+- PackageRoot probado: `C:\Users\jogoa\Downloads\Sistema_Captura_Acelerometria_dist\Sistema_Captura_Acelerometria`.
+- Exe probado: `C:\Users\jogoa\Downloads\Sistema_Captura_Acelerometria_dist\Sistema_Captura_Acelerometria\Sistema_Captura_Acelerometria.exe`.
 
-CODEX se ejecuto en el PC de desarrollo, no en un PC externo. Por esa razon este ticket deja checklist, scripts y una corrida de referencia local, pero no marca la QA externa como validada.
+## PC externo / entorno distinto
 
-## Paquete base
+- Hostname: `MOMOTTO_PC`.
+- Windows version: `Microsoft Windows 11 Home Single Language`, version `10.0.26200`, build `26200`, `64 bits`.
+- Resolucion primaria detectada: `1920x1080`.
+- Scaling detectado: `100%` (`LogPixels=96`).
 
-- Producto: `Sistema de Captura de Acelerometria`.
-- ZIP local: `dist\Sistema_Captura_Acelerometria_dist.zip`.
-- Exe local: `dist\Sistema_Captura_Acelerometria\Sistema_Captura_Acelerometria.exe`.
-- Commit base: `2a12912`.
+## Smoke del ejecutable
 
-## Preparacion generada
+| Prueba | Comando | Resultado |
+|---|---|---|
+| Launcher smoke | `Sistema_Captura_Acelerometria.exe --smoke --close-after-ms 1000` | PASS, exit code 0 |
+| KX134 smoke | `Sistema_Captura_Acelerometria.exe --mode kx134 --smoke --close-after-ms 1000` | PASS, exit code 0 |
+| ADXL smoke | `Sistema_Captura_Acelerometria.exe --mode adxl --smoke --close-after-ms 1000` | PASS, exit code 0 |
 
-- Checklist: `docs/kx134_migration/EXTERNAL_PC_QA_CHECKLIST.md`.
-- Script PowerShell: `tools/kx134/external_pc_qa.ps1`.
-- Validador Python: `tools/kx134/external_pc_qa_check.py`.
-- Ticket doc: `docs/kx134_migration/tickets/TICKET_021_EXTERNAL_PC_QA.md`.
+## Validacion visual
 
-## Corrida de referencia en PC de desarrollo
+- Launcher visible: pendiente de confirmacion manual.
+- KX134 visible: pendiente de confirmacion manual.
+- ADXL visible: pendiente de confirmacion manual.
+- Controles cortados: pendiente de confirmacion manual.
+- Pestana Graficas visible: pendiente de confirmacion manual.
+- Layout usable en resolucion probada: pendiente de confirmacion manual.
 
-- Hostname: `JOSECILLO`.
-- Windows version: `Microsoft Windows NT 10.0.26200.0`.
-- Resolucion: `1920x1080`.
-- Scaling: `100%`.
-- PackageRoot usado: `dist\Sistema_Captura_Acelerometria`.
-- Launcher smoke: `pass`.
-- KX134 smoke: `pass`.
-- ADXL smoke: `pass`.
-- Visual manual externo: `not_recorded`.
-- Hardware externo: `not_run`.
-- Exportacion externa: `not_run`.
+## Validacion hardware
 
-Output: `reports/kx134_gui_validation/TICKET_021_external_pc_qa_output.json`.
+- Se ejecuto con hardware: no.
+- Puerto COM: no aplica.
+- Baudrate: no aplica.
+- Duracion: no aplica.
+- Sensor 1 rows: no aplica.
+- Sensor 2 rows: no aplica.
+- Effective Hz Sensor 1: no aplica.
+- Effective Hz Sensor 2: no aplica.
+- Seq gaps: no aplica.
+- Invalid lines: no aplica.
+- Duplicate keys: no aplica.
+- Graficas live: pendiente.
+- Exportacion: pendiente.
+- Validacion bundle: pendiente.
 
-## QA externa pendiente
+## Problemas detectados
 
-Para cerrar el ticket como validado se debe ejecutar en otro PC:
+- No se detectaron fallos en smoke automatizado.
+- Falta validacion visual/manual completa.
+- Falta captura hardware externa y validacion de exportacion si el hardware esta disponible.
+- Falta probar scaling 125% y 150%.
+- Icono corporativo pendiente desde TICKET 020.
+- Firma digital pendiente desde TICKET 020.
 
-1. Copiar `dist\Sistema_Captura_Acelerometria_dist.zip`.
-2. Descomprimir en ruta simple.
-3. Ejecutar `tools\kx134\external_pc_qa.ps1` contra el PackageRoot descomprimido.
-4. Confirmar visualmente launcher, KX134 y ADXL.
-5. Si hay hardware, ejecutar captura KX134 y validar exportacion.
-
-## Node map
-
-No se actualiza a `external_pc_qa_validated_pending_prototype_validation` porque no hay evidencia de PC externo todavia.
-
-Status actual esperado:
-
-`windows_packaging_prepared_pending_external_pc_qa`
-
-## Restricciones
+## Restricciones verificadas
 
 - Firmware no modificado.
 - Calibraciones no modificadas.
 - Data historica no modificada.
-- `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` no se commitean.
 - ADXL335 preservado.
+- `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` no se commitean.
 
 ## Decision
 
-`READY_FOR_CLIENT_PROTOTYPE_QA=PENDING`
+`READY_FOR_CLIENT_PROTOTYPE_QA = PENDING`
+
+Justificacion: el ejecutable del paquete abre correctamente en smoke para launcher, KX134 y ADXL335 en un entorno distinto al PC de desarrollo reportado, pero aun faltan validacion visual/manual completa y captura hardware/exportacion externa.
