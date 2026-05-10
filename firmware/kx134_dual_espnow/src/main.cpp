@@ -413,8 +413,21 @@ uint32_t rx_total = 0;
 uint32_t rx_s1 = 0;
 uint32_t rx_s2 = 0;
 uint32_t invalid_packets = 0;
+uint32_t duplicate_packets = 0;
 uint32_t pair_seq = 0;
 uint32_t last_status_ms = 0;
+
+struct PacketFingerprint {
+  uint8_t sensor_id;
+  uint8_t node_mac[6];
+  uint32_t seq;
+  uint32_t sensor_t_us;
+};
+
+constexpr size_t kDuplicateWindow = 32;
+PacketFingerprint recent_packets[kDuplicateWindow] = {};
+size_t recent_packet_index = 0;
+size_t recent_packet_count = 0;
 
 bool queuePush(const QueuedPacket& queued) {
   const size_t next_head = (queue_head + 1) % kQueueCapacity;
@@ -473,6 +486,49 @@ void printInvalidPacket(const char* error_code, const uint8_t* src_addr, uint8_t
   Serial.print(src_text);
   Serial.print(",sensor_id=");
   Serial.println(sensor_id);
+}
+
+bool samePacketFingerprint(const PacketFingerprint& fingerprint, const Kx134EspnowPacket& packet) {
+  return fingerprint.sensor_id == packet.sensor_id &&
+         fingerprint.seq == packet.seq &&
+         fingerprint.sensor_t_us == packet.sensor_t_us &&
+         memcmp(fingerprint.node_mac, packet.node_mac, sizeof(fingerprint.node_mac)) == 0;
+}
+
+bool isDuplicatePacket(const Kx134EspnowPacket& packet) {
+  for (size_t i = 0; i < recent_packet_count; ++i) {
+    if (samePacketFingerprint(recent_packets[i], packet)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+void rememberPacket(const Kx134EspnowPacket& packet) {
+  PacketFingerprint& fingerprint = recent_packets[recent_packet_index];
+  fingerprint.sensor_id = packet.sensor_id;
+  memcpy(fingerprint.node_mac, packet.node_mac, sizeof(fingerprint.node_mac));
+  fingerprint.seq = packet.seq;
+  fingerprint.sensor_t_us = packet.sensor_t_us;
+  recent_packet_index = (recent_packet_index + 1) % kDuplicateWindow;
+  if (recent_packet_count < kDuplicateWindow) {
+    ++recent_packet_count;
+  }
+}
+
+void printDuplicatePacket(const Kx134EspnowPacket& packet, uint32_t receiver_t_us) {
+  char node_mac_text[18] = {};
+  formatMac(packet.node_mac, node_mac_text, sizeof(node_mac_text));
+  Serial.print("#DUPLICATE,sensor_id=");
+  Serial.print(packet.sensor_id);
+  Serial.print(",node_mac=");
+  Serial.print(node_mac_text);
+  Serial.print(",seq=");
+  Serial.print(packet.seq);
+  Serial.print(",sensor_t_us=");
+  Serial.print(packet.sensor_t_us);
+  Serial.print(",receiver_t_us=");
+  Serial.println(receiver_t_us);
 }
 
 bool validatePacketIdentity(const Kx134EspnowPacket& packet, const uint8_t* src_addr, const char** error_code) {
@@ -592,6 +648,8 @@ void printReceiverStatus() {
   Serial.print(rx_s2);
   Serial.print(",invalid=");
   Serial.print(invalid_packets);
+  Serial.print(",duplicate_drops=");
+  Serial.print(duplicate_packets);
   Serial.print(",queue_drops=");
   Serial.println(queue_drops);
 }
@@ -614,6 +672,13 @@ void processQueuedPacket(const QueuedPacket& queued) {
     printInvalidPacket(error_code, queued.src_addr, packet.sensor_id);
     return;
   }
+
+  if (isDuplicatePacket(packet)) {
+    ++duplicate_packets;
+    printDuplicatePacket(packet, queued.receiver_t_us);
+    return;
+  }
+  rememberPacket(packet);
 
   ++rx_total;
   if (packet.sensor_id == 1) {

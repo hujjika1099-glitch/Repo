@@ -10,6 +10,11 @@ Firmware PlatformIO independiente para el primer prototipo KX134 con dos nodos s
 
 Los nodos sensores aplican sus coeficientes de calibracion embebidos en `include/kx134_calibration_constants.h`, preservan `x_raw/y_raw/z_raw` y transmiten paquetes binarios por ESP-NOW. El receptor valida MAC, `sensor_id`, checksum y contrato antes de emitir una fila CSV KX134 v3.
 
+Desde TICKET 014 el receptor filtra duplicados recientes antes de imprimir CSV. La huella
+usada es `sensor_id + node_mac + seq + sensor_t_us`; si llega de nuevo la misma muestra,
+el receptor emite una linea diagnostica `#DUPLICATE` y aumenta `duplicate_drops` en
+`#STAT`, pero no duplica la fila de datos.
+
 ## Build
 
 ```powershell

@@ -1,0 +1,323 @@
+{
+  "analysis_timestamp": "2026-05-10T11:41:31.934287",
+  "event_mode": "event",
+  "dedup_mode": "report_only",
+  "expected_rate_hz": 100.0,
+  "metadata": {
+    "log_path": "reports\\kx134_test_runs\\TICKET_014_event_receiver_monitor_20260510_113815.txt",
+    "header_detected": false,
+    "header_fallback_used": true,
+    "invalid_field_count": 1,
+    "pre_header_rows_discarded": 0,
+    "columns": [
+      "protocol_version",
+      "session_id",
+      "sensor_id",
+      "physical_label",
+      "node_id",
+      "node_mac",
+      "seq",
+      "sensor_t_us",
+      "receiver_t_us",
+      "pc_wall_s",
+      "sync_group_id",
+      "pair_seq",
+      "x_raw",
+      "y_raw",
+      "z_raw",
+      "x_g",
+      "y_g",
+      "z_g",
+      "sample_rate_hz",
+      "odr_hz",
+      "range_g",
+      "calibration_id",
+      "calibration_applied",
+      "packet_status",
+      "packet_error_code",
+      "firmware_version",
+      "contract_version"
+    ],
+    "contract_columns_match": true,
+    "forbidden_fields_detected_in_header": [],
+    "diagnostic_lines_sample": [
+      "#STAT,role=receiver,rx_total=381,rx_s1=191,rx_s2=190,invalid=0,duplicate_drops=2,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169312,sensor_t_us=1693598926,receiver_t_us=3152636",
+      "#STAT,role=receiver,rx_total=781,rx_s1=391,rx_s2=390,invalid=0,duplicate_drops=3,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169403,sensor_t_us=1694508921,receiver_t_us=4062302",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169176,sensor_t_us=1692240921,receiver_t_us=5204818",
+      "#STAT,role=receiver,rx_total=1181,rx_s1=591,rx_s2=590,invalid=0,duplicate_drops=5,queue_drops=0",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169350,sensor_t_us=1693980921,receiver_t_us=6944393",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169412,sensor_t_us=1694600921,receiver_t_us=7570795",
+      "#STAT,role=receiver,rx_total=1581,rx_s1=791,rx_s2=790,invalid=0,duplicate_drops=7,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169841,sensor_t_us=1698888921,receiver_t_us=8489693",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169500,sensor_t_us=1695480927,receiver_t_us=8496746",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169500,sensor_t_us=1695480927,receiver_t_us=8501250",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169502,sensor_t_us=1695500930,receiver_t_us=8517826",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169503,sensor_t_us=1695510937,receiver_t_us=8526350",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169889,sensor_t_us=1699368921,receiver_t_us=8925053",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169617,sensor_t_us=1696650918,receiver_t_us=9621994",
+      "#STAT,role=receiver,rx_total=1980,rx_s1=990,rx_s2=990,invalid=0,duplicate_drops=14,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170008,sensor_t_us=1700558924,receiver_t_us=10116376",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169714,sensor_t_us=1697620921,receiver_t_us=10585269",
+      "#STAT,role=receiver,rx_total=2380,rx_s1=1190,rx_s2=1190,invalid=0,duplicate_drops=16,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170295,sensor_t_us=1703428921,receiver_t_us=12983093",
+      "#STAT,role=receiver,rx_total=2780,rx_s1=1390,rx_s2=1390,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3180,rx_s1=1590,rx_s2=1590,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3579,rx_s1=1789,rx_s2=1790,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170898,sensor_t_us=1709458924,receiver_t_us=19012968",
+      "#STAT,role=receiver,rx_total=3980,rx_s1=1990,rx_s2=1990,invalid=0,duplicate_drops=18,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171169,sensor_t_us=1712168921,receiver_t_us=21724960",
+      "#STAT,role=receiver,rx_total=4380,rx_s1=2190,rx_s2=2190,invalid=0,duplicate_drops=19,queue_drops=0",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=170902,sensor_t_us=1709500922,receiver_t_us=22471839",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171328,sensor_t_us=1713758924,receiver_t_us=23313154",
+      "#STAT,role=receiver,rx_total=4780,rx_s1=2390,rx_s2=2390,invalid=0,duplicate_drops=21,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171589,sensor_t_us=1716368921,receiver_t_us=25924745",
+      "#STAT,role=receiver,rx_total=5180,rx_s1=2590,rx_s2=2590,invalid=0,duplicate_drops=22,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171670,sensor_t_us=1717178926,receiver_t_us=26733714",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171688,sensor_t_us=1717358926,receiver_t_us=26913876",
+      "#STAT,role=receiver,rx_total=5580,rx_s1=2790,rx_s2=2790,invalid=0,duplicate_drops=24,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171804,sensor_t_us=1718518924,receiver_t_us=28075020",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171922,sensor_t_us=1719698924,receiver_t_us=29253465",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171937,sensor_t_us=1719848921,receiver_t_us=29405277",
+      "#STAT,role=receiver,rx_total=5980,rx_s1=2990,rx_s2=2990,invalid=0,duplicate_drops=27,queue_drops=0"
+    ],
+    "diagnostic_lines_tail": [
+      "#STAT,role=receiver,rx_total=381,rx_s1=191,rx_s2=190,invalid=0,duplicate_drops=2,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169312,sensor_t_us=1693598926,receiver_t_us=3152636",
+      "#STAT,role=receiver,rx_total=781,rx_s1=391,rx_s2=390,invalid=0,duplicate_drops=3,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169403,sensor_t_us=1694508921,receiver_t_us=4062302",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169176,sensor_t_us=1692240921,receiver_t_us=5204818",
+      "#STAT,role=receiver,rx_total=1181,rx_s1=591,rx_s2=590,invalid=0,duplicate_drops=5,queue_drops=0",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169350,sensor_t_us=1693980921,receiver_t_us=6944393",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169412,sensor_t_us=1694600921,receiver_t_us=7570795",
+      "#STAT,role=receiver,rx_total=1581,rx_s1=791,rx_s2=790,invalid=0,duplicate_drops=7,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169841,sensor_t_us=1698888921,receiver_t_us=8489693",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169500,sensor_t_us=1695480927,receiver_t_us=8496746",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169500,sensor_t_us=1695480927,receiver_t_us=8501250",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169502,sensor_t_us=1695500930,receiver_t_us=8517826",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169503,sensor_t_us=1695510937,receiver_t_us=8526350",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=169889,sensor_t_us=1699368921,receiver_t_us=8925053",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169617,sensor_t_us=1696650918,receiver_t_us=9621994",
+      "#STAT,role=receiver,rx_total=1980,rx_s1=990,rx_s2=990,invalid=0,duplicate_drops=14,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170008,sensor_t_us=1700558924,receiver_t_us=10116376",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=169714,sensor_t_us=1697620921,receiver_t_us=10585269",
+      "#STAT,role=receiver,rx_total=2380,rx_s1=1190,rx_s2=1190,invalid=0,duplicate_drops=16,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170295,sensor_t_us=1703428921,receiver_t_us=12983093",
+      "#STAT,role=receiver,rx_total=2780,rx_s1=1390,rx_s2=1390,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3180,rx_s1=1590,rx_s2=1590,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3579,rx_s1=1789,rx_s2=1790,invalid=0,duplicate_drops=17,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=170898,sensor_t_us=1709458924,receiver_t_us=19012968",
+      "#STAT,role=receiver,rx_total=3980,rx_s1=1990,rx_s2=1990,invalid=0,duplicate_drops=18,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171169,sensor_t_us=1712168921,receiver_t_us=21724960",
+      "#STAT,role=receiver,rx_total=4380,rx_s1=2190,rx_s2=2190,invalid=0,duplicate_drops=19,queue_drops=0",
+      "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=170902,sensor_t_us=1709500922,receiver_t_us=22471839",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171328,sensor_t_us=1713758924,receiver_t_us=23313154",
+      "#STAT,role=receiver,rx_total=4780,rx_s1=2390,rx_s2=2390,invalid=0,duplicate_drops=21,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171589,sensor_t_us=1716368921,receiver_t_us=25924745",
+      "#STAT,role=receiver,rx_total=5180,rx_s1=2590,rx_s2=2590,invalid=0,duplicate_drops=22,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171670,sensor_t_us=1717178926,receiver_t_us=26733714",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171688,sensor_t_us=1717358926,receiver_t_us=26913876",
+      "#STAT,role=receiver,rx_total=5580,rx_s1=2790,rx_s2=2790,invalid=0,duplicate_drops=24,queue_drops=0",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171804,sensor_t_us=1718518924,receiver_t_us=28075020",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171922,sensor_t_us=1719698924,receiver_t_us=29253465",
+      "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=171937,sensor_t_us=1719848921,receiver_t_us=29405277",
+      "#STAT,role=receiver,rx_total=5980,rx_s1=2990,rx_s2=2990,invalid=0,duplicate_drops=27,queue_drops=0"
+    ],
+    "diagnostic_line_count": 40
+  },
+  "rows_total": 5993,
+  "metric_rows_total": 5993,
+  "bad_sensor_ids": [],
+  "duplicate_diagnostics": {
+    "classification": "DUPLICATES_NOT_OBSERVED",
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_rows_by_sensor": {},
+    "duplicate_sensor_seq_keys": 0,
+    "duplicate_seq_count_by_sensor": {},
+    "duplicate_sensor_seq_sensor_t_keys": 0,
+    "duplicate_sensor_seq_receiver_t_keys": 0,
+    "duplicate_groups_same_receiver_t_us": 0,
+    "duplicate_groups_different_receiver_t_us": 0,
+    "duplicate_groups_same_pair_seq": 0,
+    "duplicate_groups_different_pair_seq": 0,
+    "examples": []
+  },
+  "sensor_summaries": {
+    "1": {
+      "sensor_id": 1,
+      "rows": 2996,
+      "metric_rows": 2996,
+      "seq_initial": 168825,
+      "seq_final": 171821,
+      "seq_gaps": 1,
+      "duplicate_seq_count_in_metric_rows": 0,
+      "timestamp_errors": 0,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 99.96661548954503,
+      "receiver_hz": 99.95735375404777,
+      "g_norm_mean": 1.0015584469478611,
+      "g_norm_min": 0.9161308363710938,
+      "g_norm_max": 1.1758854229158555,
+      "g_norm_std": 0.010890556194951108,
+      "node_mac_counts": {
+        "D4:E9:F4:E9:8E:1C": 2996
+      },
+      "packet_status_counts": {
+        "OK": 2996
+      },
+      "packet_error_code_counts": {
+        "OK": 2996
+      },
+      "checks": {
+        "min_rows_1000": true,
+        "mac_valid": true,
+        "effective_hz_ok": true,
+        "seq_gaps_zero": false,
+        "sensor_t_us_increasing": true,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true
+      }
+    },
+    "2": {
+      "sensor_id": 2,
+      "rows": 2997,
+      "metric_rows": 2997,
+      "seq_initial": 169167,
+      "seq_final": 172163,
+      "seq_gaps": 0,
+      "duplicate_seq_count_in_metric_rows": 0,
+      "timestamp_errors": 0,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 99.99993324437033,
+      "receiver_hz": 99.98018750423189,
+      "g_norm_mean": 1.0014737009755779,
+      "g_norm_min": 0.8078521735305291,
+      "g_norm_max": 1.0601801192712492,
+      "g_norm_std": 0.011458628563449723,
+      "node_mac_counts": {
+        "D4:E9:F4:C3:37:14": 2997
+      },
+      "packet_status_counts": {
+        "OK": 2997
+      },
+      "packet_error_code_counts": {
+        "OK": 2997
+      },
+      "checks": {
+        "min_rows_1000": true,
+        "mac_valid": true,
+        "effective_hz_ok": true,
+        "seq_gaps_zero": true,
+        "sensor_t_us_increasing": true,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true
+      }
+    }
+  },
+  "pairing_summary": {
+    "pair_window_ms": 20.0,
+    "pair_count": 2964,
+    "unpaired_sensor_1": 32,
+    "unpaired_sensor_2": 33,
+    "delta_receiver_us": {
+      "count": 2964,
+      "mean": 1254.3522267206479,
+      "median": -2055.0,
+      "min": -12928.0,
+      "max": 17247.0,
+      "p95": 7968.0,
+      "std": 4836.377043020129
+    },
+    "delta_receiver_ms_abs_p95": 7.97085,
+    "delta_sensor_t_us": {
+      "count": 2964,
+      "mean": 3411629.616734143,
+      "median": 3408008.0,
+      "min": 3388008.0,
+      "max": 3458003.0,
+      "p95": 3418005.0,
+      "std": 5116.137351129014
+    },
+    "sensor_t_note": "sensor_t_us comes from independent ESP32 clocks and is not a direct sync reference."
+  },
+  "event_summary": {
+    "mode": "event",
+    "sensors": {
+      "1": {
+        "event_count": 4,
+        "first_event_time_receiver_us": 6589783,
+        "event_times_receiver_us": [
+          6589783,
+          16210242,
+          23490532,
+          25320631
+        ],
+        "baseline_g_norm_median": 1.0008953105928888,
+        "baseline_g_norm_mean": 1.0029845693471295,
+        "baseline_g_norm_std": 0.014803426698838919,
+        "baseline_g_norm_mad": 0.004591469092315725,
+        "threshold_delta_g": 0.06,
+        "event_arm_after_s": 4.0,
+        "status": "OK"
+      },
+      "2": {
+        "event_count": 4,
+        "first_event_time_receiver_us": 6577706,
+        "event_times_receiver_us": [
+          6577706,
+          22408141,
+          23648193,
+          28728328
+        ],
+        "baseline_g_norm_median": 1.001818575342346,
+        "baseline_g_norm_mean": 1.002344478643586,
+        "baseline_g_norm_std": 0.008581824845730482,
+        "baseline_g_norm_mad": 0.004231336863824597,
+        "threshold_delta_g": 0.06,
+        "event_arm_after_s": 4.0,
+        "status": "OK"
+      }
+    },
+    "delta_event_receiver_us": -12077,
+    "delta_event_ms": -12.077,
+    "status": "OK"
+  },
+  "receiver_stat_last_seen": {
+    "invalid": 0,
+    "duplicate_drops": 27,
+    "queue_drops": 0
+  },
+  "checks": {
+    "static_checks": {
+      "both_sensors_1000_rows": true,
+      "sensor_1_effective_hz_ok": true,
+      "sensor_2_effective_hz_ok": true,
+      "sensor_1_seq_gaps_zero": false,
+      "sensor_2_seq_gaps_zero": true,
+      "receiver_t_us_valid": true,
+      "packet_status_ok": true,
+      "packet_error_code_ok": true,
+      "no_forbidden_fields": true,
+      "only_expected_sensor_ids": true,
+      "receiver_invalid_zero_if_seen": true,
+      "receiver_queue_drops_zero_if_seen": true
+    },
+    "event_checks": {
+      "event_detected_sensor_1": true,
+      "event_detected_sensor_2": true,
+      "delta_event_receiver_us_lte_30000": true
+    },
+    "event_integrity_note": "event mode does not hard-fail seq_gaps_zero; gaps are reported and static precheck remains the continuity gate.",
+    "duplicate_nonblocking": true,
+    "mode_pass": true
+  },
+  "decision": {
+    "READY_FOR_GUI_KX134_STREAM_INTEGRATION": "YES",
+    "reason": "criteria_passed"
+  }
+}

@@ -1,6 +1,7 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "dual_espnow_bringup_validated_pending_sync_precheck",
+  "status": "dual_sync_precheck_validated_pending_gui_integration",
+  "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "total_esp32_required": 3,
   "transport": {
     "sensor_nodes_to_receiver": "ESP-NOW",
@@ -19,7 +20,7 @@
       "sample_rate_hz": 100,
       "odr_hz": 100,
       "range_g": 8,
-      "status": "calibrated_dual_espnow_validated"
+      "status": "calibrated_dual_sync_precheck_validated"
     },
     {
       "role": "sensor_node",
@@ -30,7 +31,7 @@
       "sensor_model": "KX134",
       "breakout_board": "SparkFun SEN-17589",
       "calibration_file": "config/calibrations/kx134_sensor_2.json",
-      "status": "calibrated_dual_espnow_validated",
+      "status": "calibrated_dual_sync_precheck_validated",
       "sample_rate_hz": 100,
       "odr_hz": 100,
       "range_g": 8
@@ -49,7 +50,7 @@
         2
       ],
       "serial_output_to_pc": true,
-      "status": "kx134_espnow_receiver_validated",
+      "status": "kx134_receiver_sync_precheck_validated",
       "future_transport": "ESP-NOW receiver to USB Serial",
       "receiver_firmware": "kx134_dual_espnow",
       "receiver_firmware_version": "kx134_dual_espnow.0.1.0",

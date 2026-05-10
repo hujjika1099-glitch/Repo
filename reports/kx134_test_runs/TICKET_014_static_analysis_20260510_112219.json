@@ -1,0 +1,370 @@
+{
+  "analysis_timestamp": "2026-05-10T11:23:01.348839",
+  "event_mode": "static",
+  "dedup_mode": "report_only",
+  "expected_rate_hz": 100.0,
+  "metadata": {
+    "log_path": "reports\\kx134_test_runs\\TICKET_014_static_receiver_monitor_20260510_112219.txt",
+    "header_detected": false,
+    "header_fallback_used": true,
+    "invalid_field_count": 1,
+    "pre_header_rows_discarded": 0,
+    "columns": [
+      "protocol_version",
+      "session_id",
+      "sensor_id",
+      "physical_label",
+      "node_id",
+      "node_mac",
+      "seq",
+      "sensor_t_us",
+      "receiver_t_us",
+      "pc_wall_s",
+      "sync_group_id",
+      "pair_seq",
+      "x_raw",
+      "y_raw",
+      "z_raw",
+      "x_g",
+      "y_g",
+      "z_g",
+      "sample_rate_hz",
+      "odr_hz",
+      "range_g",
+      "calibration_id",
+      "calibration_applied",
+      "packet_status",
+      "packet_error_code",
+      "firmware_version",
+      "contract_version"
+    ],
+    "contract_columns_match": true,
+    "forbidden_fields_detected_in_header": [],
+    "diagnostic_lines_sample": [
+      "#STAT,role=receiver,rx_total=385,rx_s1=193,rx_s2=192,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=786,rx_s1=393,rx_s2=393,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1186,rx_s1=593,rx_s2=593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1586,rx_s1=793,rx_s2=793,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1986,rx_s1=993,rx_s2=993,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2386,rx_s1=1193,rx_s2=1193,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2787,rx_s1=1393,rx_s2=1394,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3193,rx_s1=1596,rx_s2=1597,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3593,rx_s1=1796,rx_s2=1797,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3994,rx_s1=1996,rx_s2=1998,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=4394,rx_s1=2196,rx_s2=2198,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=4796,rx_s1=2398,rx_s2=2398,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5196,rx_s1=2598,rx_s2=2598,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5597,rx_s1=2799,rx_s2=2798,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5999,rx_s1=3001,rx_s2=2998,invalid=0,queue_drops=0"
+    ],
+    "diagnostic_lines_tail": [
+      "#STAT,role=receiver,rx_total=385,rx_s1=193,rx_s2=192,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=786,rx_s1=393,rx_s2=393,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1186,rx_s1=593,rx_s2=593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1586,rx_s1=793,rx_s2=793,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1986,rx_s1=993,rx_s2=993,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2386,rx_s1=1193,rx_s2=1193,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2787,rx_s1=1393,rx_s2=1394,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3193,rx_s1=1596,rx_s2=1597,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3593,rx_s1=1796,rx_s2=1797,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3994,rx_s1=1996,rx_s2=1998,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=4394,rx_s1=2196,rx_s2=2198,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=4796,rx_s1=2398,rx_s2=2398,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5196,rx_s1=2598,rx_s2=2598,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5597,rx_s1=2799,rx_s2=2798,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=5999,rx_s1=3001,rx_s2=2998,invalid=0,queue_drops=0"
+    ],
+    "diagnostic_line_count": 15
+  },
+  "rows_total": 6013,
+  "metric_rows_total": 6013,
+  "bad_sensor_ids": [],
+  "duplicate_diagnostics": {
+    "classification": "DUPLICATES_RECEIVER_STREAM_LIKELY",
+    "exact_duplicate_rows": 0,
+    "exact_duplicate_rows_by_sensor": {},
+    "duplicate_sensor_seq_keys": 14,
+    "duplicate_seq_count_by_sensor": {
+      "2": 6,
+      "1": 8
+    },
+    "duplicate_sensor_seq_sensor_t_keys": 14,
+    "duplicate_sensor_seq_receiver_t_keys": 0,
+    "duplicate_groups_same_receiver_t_us": 0,
+    "duplicate_groups_different_receiver_t_us": 14,
+    "duplicate_groups_same_pair_seq": 0,
+    "duplicate_groups_different_pair_seq": 14,
+    "examples": [
+      {
+        "sensor_id": "2",
+        "seq": "73657",
+        "count": 2,
+        "receiver_t_us_values": [
+          "1778014",
+          "1782683"
+        ],
+        "pair_seq_values": [
+          "334",
+          "336"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "2",
+        "seq": "73750",
+        "count": 2,
+        "receiver_t_us_values": [
+          "2708176",
+          "2712779"
+        ],
+        "pair_seq_values": [
+          "521",
+          "523"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "1",
+        "seq": "74645",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15053327",
+          "15060597"
+        ],
+        "pair_seq_values": [
+          "2991",
+          "2993"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "2",
+        "seq": "74989",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15103364",
+          "15109277"
+        ],
+        "pair_seq_values": [
+          "3001",
+          "3003"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "1",
+        "seq": "74676",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15361369",
+          "15367014"
+        ],
+        "pair_seq_values": [
+          "3055",
+          "3057"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "2",
+        "seq": "75020",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15406725",
+          "15413872"
+        ],
+        "pair_seq_values": [
+          "3065",
+          "3067"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "2",
+        "seq": "75026",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15467590",
+          "15476981"
+        ],
+        "pair_seq_values": [
+          "3078",
+          "3080"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "1",
+        "seq": "74697",
+        "count": 2,
+        "receiver_t_us_values": [
+          "15570719",
+          "15576925"
+        ],
+        "pair_seq_values": [
+          "3100",
+          "3102"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "2",
+        "seq": "75204",
+        "count": 2,
+        "receiver_t_us_values": [
+          "17244304",
+          "17253401"
+        ],
+        "pair_seq_values": [
+          "3436",
+          "3438"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      },
+      {
+        "sensor_id": "1",
+        "seq": "75147",
+        "count": 2,
+        "receiver_t_us_values": [
+          "20070921",
+          "20077352"
+        ],
+        "pair_seq_values": [
+          "4002",
+          "4004"
+        ],
+        "line_values_identical_except_receiver_or_pair": true
+      }
+    ]
+  },
+  "sensor_summaries": {
+    "1": {
+      "sensor_id": 1,
+      "rows": 3007,
+      "metric_rows": 3007,
+      "seq_initial": 73309,
+      "seq_final": 76307,
+      "seq_gaps": 0,
+      "duplicate_seq_count_in_metric_rows": 8,
+      "timestamp_errors": 8,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 100.26684456304203,
+      "receiver_hz": 100.26139004912709,
+      "g_norm_mean": 1.0036121253235017,
+      "g_norm_min": 0.9268218739952139,
+      "g_norm_max": 1.0663249968156987,
+      "g_norm_std": 0.010212406950651806,
+      "node_mac_counts": {
+        "D4:E9:F4:E9:8E:1C": 3007
+      },
+      "packet_status_counts": {
+        "OK": 3007
+      },
+      "packet_error_code_counts": {
+        "OK": 3007
+      },
+      "checks": {
+        "min_rows_1000": true,
+        "mac_valid": true,
+        "effective_hz_ok": true,
+        "seq_gaps_zero": true,
+        "sensor_t_us_increasing": false,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true
+      }
+    },
+    "2": {
+      "sensor_id": 2,
+      "rows": 3006,
+      "metric_rows": 3006,
+      "seq_initial": 73648,
+      "seq_final": 76647,
+      "seq_gaps": 0,
+      "duplicate_seq_count_in_metric_rows": 6,
+      "timestamp_errors": 6,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 100.20008339447872,
+      "receiver_hz": 100.3081345724587,
+      "g_norm_mean": 1.002632076325169,
+      "g_norm_min": 0.9366005153420534,
+      "g_norm_max": 1.0878203496961252,
+      "g_norm_std": 0.009853490390575169,
+      "node_mac_counts": {
+        "D4:E9:F4:C3:37:14": 3006
+      },
+      "packet_status_counts": {
+        "OK": 3006
+      },
+      "packet_error_code_counts": {
+        "OK": 3006
+      },
+      "checks": {
+        "min_rows_1000": true,
+        "mac_valid": true,
+        "effective_hz_ok": true,
+        "seq_gaps_zero": true,
+        "sensor_t_us_increasing": false,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true
+      }
+    }
+  },
+  "pairing_summary": {
+    "pair_window_ms": 20.0,
+    "pair_count": 2891,
+    "unpaired_sensor_1": 116,
+    "unpaired_sensor_2": 115,
+    "delta_receiver_us": {
+      "count": 2891,
+      "mean": 3624.605326876513,
+      "median": 3514.0,
+      "min": -16214.0,
+      "max": 19755.0,
+      "p95": 6303.0,
+      "std": 2372.007698814852
+    },
+    "delta_receiver_ms_abs_p95": 6.425,
+    "delta_sensor_t_us": {
+      "count": 2891,
+      "mean": 3397228.0311310966,
+      "median": 3398003.0,
+      "min": 3308000.0,
+      "max": 3418005.0,
+      "p95": 3398005.0,
+      "std": 4781.389432724244
+    },
+    "sensor_t_note": "sensor_t_us comes from independent ESP32 clocks and is not a direct sync reference."
+  },
+  "event_summary": null,
+  "receiver_stat_last_seen": {
+    "invalid": 0,
+    "queue_drops": 0
+  },
+  "checks": {
+    "static_checks": {
+      "both_sensors_1000_rows": true,
+      "sensor_1_effective_hz_ok": true,
+      "sensor_2_effective_hz_ok": true,
+      "sensor_1_seq_gaps_zero": true,
+      "sensor_2_seq_gaps_zero": true,
+      "receiver_t_us_valid": true,
+      "packet_status_ok": true,
+      "packet_error_code_ok": true,
+      "no_forbidden_fields": true,
+      "only_expected_sensor_ids": true,
+      "receiver_invalid_zero_if_seen": true,
+      "receiver_queue_drops_zero_if_seen": true
+    },
+    "event_checks": {},
+    "duplicate_nonblocking": false,
+    "mode_pass": true
+  },
+  "decision": {
+    "READY_FOR_GUI_KX134_STREAM_INTEGRATION": "NO",
+    "reason": "criteria_failed_or_duplicates_blocking"
+  }
+}
