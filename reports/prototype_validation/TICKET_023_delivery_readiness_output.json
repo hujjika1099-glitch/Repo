@@ -1,0 +1,172 @@
+{
+  "prototype_delivery_package_ready": true,
+  "pcb_design_authorized": false,
+  "system_status": "prototype_delivery_ready_pcb_blocked_by_physical_decisions",
+  "hardware": {
+    "topology": "kx134.dual_sensor_nodes_plus_receiver.v1",
+    "total_esp32_required": 3,
+    "nodes": [
+      {
+        "role": "sensor_node",
+        "node_id": "sensor_node_1",
+        "sensor_id": 1,
+        "physical_label": "KX134_SENSOR_1",
+        "esp32_mac": "D4:E9:F4:E9:8E:1C",
+        "sensor_model": "KX134",
+        "breakout_board": "SparkFun SEN-17589",
+        "calibration_file": "config/calibrations/kx134_sensor_1.json",
+        "sample_rate_hz": 100,
+        "odr_hz": 100,
+        "range_g": 8,
+        "status": "validated_for_gui_export"
+      },
+      {
+        "role": "sensor_node",
+        "node_id": "sensor_node_2",
+        "sensor_id": 2,
+        "physical_label": "KX134_SENSOR_2",
+        "esp32_mac": "D4:E9:F4:C3:37:14",
+        "sensor_model": "KX134",
+        "breakout_board": "SparkFun SEN-17589",
+        "calibration_file": "config/calibrations/kx134_sensor_2.json",
+        "status": "validated_for_gui_export",
+        "sample_rate_hz": 100,
+        "odr_hz": 100,
+        "range_g": 8
+      },
+      {
+        "role": "receiver_node",
+        "node_id": "receiver_esp32",
+        "sensor_id": null,
+        "physical_label": "ESP32_RECEIVER",
+        "esp32_mac": "00:4B:12:96:9A:80",
+        "sensor_model": null,
+        "breakout_board": null,
+        "calibration_file": null,
+        "receives_from_sensor_ids": [
+          1,
+          2
+        ],
+        "serial_output_to_pc": true,
+        "status": "validated_for_gui_export",
+        "future_transport": "ESP-NOW receiver to USB Serial",
+        "receiver_firmware": "kx134_dual_espnow",
+        "receiver_firmware_version": "kx134_dual_espnow.0.1.0",
+        "espnow_channel": 1
+      }
+    ]
+  },
+  "firmware": {
+    "receiver_firmware": "kx134_dual_espnow",
+    "receiver_firmware_version": "kx134_dual_espnow.0.1.0",
+    "sample_rate_hz": 100,
+    "odr_hz": 100,
+    "range_g": 8,
+    "espnow_channel": 1
+  },
+  "gui": {
+    "kx134_gui_validated": true,
+    "live_plots_validated": true,
+    "adxl335_preserved": true,
+    "export_hardened": true
+  },
+  "packaging": {
+    "product": "Sistema de Captura de Acelerometria",
+    "exe": "Sistema_Captura_Acelerometria.exe",
+    "onedir": true,
+    "external_visual_qa_passed": true,
+    "external_hardware_capture_run": false
+  },
+  "validation": {
+    "prototype_session_pass": true,
+    "rows_by_sensor": {
+      "1": 5998,
+      "2": 6000
+    },
+    "effective_hz_by_sensor": {
+      "1": 99.96665611101903,
+      "2": 100.00000666777841
+    },
+    "seq_gaps_by_sensor": {
+      "1": 2,
+      "2": 0
+    },
+    "invalid_lines": 0,
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "live_plot_confirmed": true
+  },
+  "evidence": {
+    "sensor_1_calibration": {
+      "path": "config/calibrations/kx134_sensor_1.json",
+      "exists": true
+    },
+    "sensor_2_calibration": {
+      "path": "config/calibrations/kx134_sensor_2.json",
+      "exists": true
+    },
+    "dual_espnow": {
+      "path": "reports/kx134_test_runs/TICKET_013_DUAL_ESPNOW_TEST_SUMMARY.md",
+      "exists": true
+    },
+    "sync_precheck": {
+      "path": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
+      "exists": true
+    },
+    "gui_hardware": {
+      "path": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
+      "exists": true
+    },
+    "export_hardening": {
+      "path": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
+      "exists": true
+    },
+    "visual_redesign": {
+      "path": "reports/kx134_gui_validation/TICKET_018_GUI_VISUAL_REDESIGN_SUMMARY.md",
+      "exists": true
+    },
+    "live_plots": {
+      "path": "reports/kx134_gui_validation/TICKET_019_GUI_LIVE_PLOTS_SUMMARY.md",
+      "exists": true
+    },
+    "windows_packaging": {
+      "path": "reports/kx134_gui_validation/TICKET_020_WINDOWS_PACKAGING_SUMMARY.md",
+      "exists": true
+    },
+    "external_visual_qa": {
+      "path": "reports/kx134_gui_validation/TICKET_021_EXTERNAL_PC_QA_SUMMARY.md",
+      "exists": true
+    },
+    "prototype_validation": {
+      "path": "reports/prototype_validation/TICKET_022_PROTOTYPE_VALIDATION_SUMMARY.md",
+      "exists": true
+    }
+  },
+  "warnings": [
+    "Sensor 1 had 2 seq gaps in the controlled 60 s prototype session.",
+    "External hardware capture was not executed; development PC hardware capture was previously validated.",
+    "Scaling 125% and 150% remain to be tested.",
+    "Corporate icon pending.",
+    "Digital signature pending.",
+    "Firmware sample_rate_hz command from GUI remains pending."
+  ],
+  "open_items": [
+    "Define final physical/mechanical design before PCB.",
+    "Decide whether external PC hardware capture is required for client QA.",
+    "Decide whether corporate icon and digital signature are required.",
+    "Decide whether firmware sample-rate control from GUI is required."
+  ],
+  "pcb_blockers": [
+    "final_power_source_not_defined",
+    "sensor_connectors_not_defined",
+    "final_cable_lengths_not_defined",
+    "mechanical_mounting_not_defined",
+    "axis_orientation_on_enclosure_or_pcb_not_defined",
+    "receiver_and_sensor_node_physical_locations_not_defined"
+  ],
+  "missing_evidence": [],
+  "next_recommended_ticket": "TICKET 024 - Documentacion de usuario/cliente y guia de operacion"
+}

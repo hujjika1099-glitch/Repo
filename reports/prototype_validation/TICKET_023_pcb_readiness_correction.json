@@ -1,0 +1,24 @@
+{
+  "ticket": "TICKET_023",
+  "source_artifact": "reports/prototype_validation/TICKET_022_prototype_validation_output.json",
+  "issue": "TICKET 022 historical output marked ready_for_pcb_design_recommendation=true based only on capture quality.",
+  "formal_decision": {
+    "READY_FOR_PROTOTYPE_DELIVERY": "YES",
+    "READY_FOR_PCB_DESIGN": "NO"
+  },
+  "corrected_semantics": {
+    "ready_for_pcb_design_technical_capture_recommendation": true,
+    "ready_for_pcb_design_final_recommendation": false,
+    "ready_for_pcb_design_recommendation": false
+  },
+  "reason": "Final PCB authorization requires physical and mechanical decisions in addition to capture quality.",
+  "pcb_blockers": [
+    "final_power_source_not_defined",
+    "sensor_connectors_not_defined",
+    "final_cable_lengths_not_defined",
+    "mechanical_mounting_not_defined",
+    "axis_orientation_on_enclosure_or_pcb_not_defined",
+    "receiver_and_sensor_node_physical_locations_not_defined"
+  ],
+  "historical_artifact_modified": false
+}

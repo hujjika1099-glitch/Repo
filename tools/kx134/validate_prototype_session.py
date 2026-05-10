@@ -24,6 +24,10 @@ def parse_bool(value: object) -> bool:
     return str(value).strip().lower() in {"1", "true", "yes", "y", "on"}
 
 
+def parse_blockers(value: str) -> list[str]:
+    return [item.strip() for item in str(value or "").split(",") if item.strip()]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate a controlled KX134 prototype session")
     parser.add_argument("--session-json", required=True)
@@ -36,6 +40,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--min-rows-per-sensor", type=int, default=5500)
     parser.add_argument("--require-live-plot-confirmation", default="true")
     parser.add_argument("--live-plot-confirmed", default="false")
+    parser.add_argument(
+        "--pcb-blockers",
+        default="",
+        help="Comma-separated physical/mechanical blockers. If empty, final PCB recommendation remains false.",
+    )
     return parser.parse_args()
 
 
@@ -285,6 +294,11 @@ def main() -> int:
         failures.append("live_plot_confirmation_missing")
 
     passed = not failures
+    pcb_blockers = parse_blockers(args.pcb_blockers)
+    pcb_final_recommendation = passed and not pcb_blockers
+    if passed and not pcb_blockers:
+        warnings.append("pcb_final_recommendation_requires_physical_mechanical_decisions")
+        pcb_final_recommendation = False
     result = {
         "pass": passed,
         "failures": failures,
@@ -308,7 +322,15 @@ def main() -> int:
         "artifact_paths_present": metadata_result.get("artifact_paths_present", False),
         "live_plot_confirmed": live_confirmed,
         "ready_for_prototype_delivery": passed,
-        "ready_for_pcb_design_recommendation": passed,
+        "ready_for_pcb_design_technical_capture_recommendation": passed,
+        "ready_for_pcb_design_final_recommendation": pcb_final_recommendation,
+        "ready_for_pcb_design_recommendation": pcb_final_recommendation,
+        "pcb_blockers": pcb_blockers,
+        "pcb_recommendation_note": (
+            "PCB final recommendation requires physical/mechanical decisions."
+            if not pcb_blockers
+            else "PCB final recommendation is blocked by physical/mechanical open items."
+        ),
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

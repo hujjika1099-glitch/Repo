@@ -22,6 +22,9 @@
 - TICKET 018: COMPLETADO - Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar.
 - TICKET 019: COMPLETADO - Graficas en vivo KX134 para retroalimentacion durante captura.
 - TICKET 020: COMPLETADO - Empaquetado Windows profesional KX134/ADXL con DPI awareness y validacion del ejecutable.
+- TICKET 021: COMPLETADO - QA externo visual/manual del ejecutable Windows.
+- TICKET 022: COMPLETADO - Validacion de prototipo con sesion controlada y criterios para entrega/baquelada.
+- TICKET 023: COMPLETADO - Consolidar entrega tecnica del prototipo y documentacion final para cliente.
 
 ## Tickets en curso o pendientes
 
@@ -29,9 +32,12 @@
 
 ## Tickets futuros recomendados
 
-- TICKET 023: Consolidar entrega tecnica del prototipo y documentacion final para cliente.
+- TICKET 024: Documentacion de usuario/cliente y guia de operacion.
+- TICKET 024 alternativo: Definicion fisica para PCB/baquelada: alimentacion, conectores, montaje y orientacion.
 - FUTURO: Especificacion de PCB/baquelada final cuando se cierren decisiones fisicas.
 - FUTURO: Icono corporativo y firma digital si se requiere.
+- FUTURO: Validacion hardware en PC externo si el cliente lo requiere.
+- FUTURO: Probar scaling Windows 125/150%.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
 ## Dependencias de trabajo
@@ -46,6 +52,7 @@
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
 - TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; TICKET 021B cierra la validacion visual/manual externa con decision `READY_FOR_CLIENT_PROTOTYPE_QA=YES`. La captura hardware externa no se ejecuto y queda documentada como advertencia no bloqueante porque la captura hardware ya fue validada en el PC de desarrollo.
 - TICKET 022 valida una sesion controlada de prototipo de 60 s en `COM4` con Sensor 1 `5998` filas y Sensor 2 `6000` filas. La validacion de prototipo pasa con advertencia por `2` seq gaps en Sensor 1; `READY_FOR_PROTOTYPE_DELIVERY=YES` y `READY_FOR_PCB_DESIGN=NO` por decisiones fisicas pendientes.
+- TICKET 023 consolida el paquete documental de entrega del prototipo, corrige la semantica de recomendacion PCB y deja `PROTOTYPE_DELIVERY_PACKAGE_READY=YES` con `PCB_DESIGN_AUTHORIZED=NO`.
 
 ## Regla de alcance
 
