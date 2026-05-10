@@ -13,11 +13,11 @@
 - TICKET 009: COMPLETADO - Calibracion interactiva de seis posiciones para KX134 Sensor 1.
 - TICKET 010: COMPLETADO - Preparar firmware y prueba fisica para KX134 Sensor 2.
 - TICKET 011: COMPLETADO - Generalizar herramienta y calibrar KX134 Sensor 2.
+- TICKET 012: COMPLETADO - Capturar MAC de ESP32 receptora KX134 y cerrar node_map.
 
 ## Tickets futuros recomendados
 
-- TICKET 012: Firmware dual ESP-NOW KX134: dos nodos sensores hacia receptor.
-- TICKET 013: Receptor KX134 ESP-NOW a Serial USB.
+- TICKET 013: Firmware ESP-NOW KX134 dual: dos nodos sensores hacia receptor.
 - TICKET 014: Sincronizacion y precheck.
 - TICKET 015: GUI configurable para KX134.
 - TICKET 016: Exportacion CSV/JSON KX134.
@@ -28,7 +28,7 @@
 
 ## Dependencias de trabajo
 
-- TICKET 012 y TICKET 013 deben conservar dos ESP32 sensoras y una ESP32 receptora.
+- TICKET 013 debe conservar dos ESP32 sensoras y una ESP32 receptora.
 - TICKET 014 depende de que existan timestamps y campos de identidad suficientes.
 - TICKET 018 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
 

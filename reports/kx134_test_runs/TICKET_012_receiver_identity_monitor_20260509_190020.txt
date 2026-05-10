@@ -1,0 +1,5 @@
+# receiver_identity,mac=00:4B:12:96:9A:80,millis=14000
+# receiver_identity,mac=00:4B:12:96:9A:80,millis=16000
+# receiver_identity,mac=00:4B:12:96:9A:80,millis=18000
+# receiver_identity,mac=00:4B:12:96:9A:80,millis=20000
+# receiver_identity,mac=00:4B:12:96:9A:80,millis=22000
