@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "plots_created": true,
+  "samples_injected_sensor_1": 120,
+  "samples_injected_sensor_2": 120,
+  "g_abs_visual_only": true,
+  "export_fields_unchanged": true,
+  "errors": []
+}

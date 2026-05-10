@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "gui_visual_redesign_validated_pending_windows_packaging",
+  "status": "gui_live_plots_validated_pending_windows_packaging",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -67,5 +67,6 @@
     "do_not_share_calibration_between_sensors": true,
     "receiver_must_not_assign_default_sensor_id": true,
     "pc_wall_s_not_primary_sync": true
-  }
+  },
+  "last_gui_live_plots_report": "reports/kx134_gui_validation/TICKET_019_GUI_LIVE_PLOTS_SUMMARY.md"
 }

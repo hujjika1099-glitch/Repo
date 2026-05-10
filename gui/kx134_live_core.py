@@ -725,6 +725,8 @@ def capture_kx134_serial_session(
     expected_sample_rate_hz: int = KX134_DEFAULT_SAMPLE_RATE_HZ,
     output_root: str | Path = ".",
     session_name: str = "kx134_live",
+    progress_callback: Callable[[str, dict[str, object]], None] | None = None,
+    progress_interval_s: float = 0.2,
 ) -> Kx134SessionResult:
     if not str(port or "").strip():
         raise ValueError("port is required")
@@ -744,6 +746,42 @@ def capture_kx134_serial_session(
     parse_errors: Counter[str] = Counter()
     invalid_lines = 0
     header_seen = False
+    pending_batch: list[Kx134Sample] = []
+    live_counts: Counter[str] = Counter()
+    live_duplicate_keys: Counter[str] = Counter()
+    live_seen_keys: dict[int, set[tuple[int, str, int]]] = {1: set(), 2: set()}
+
+    def emit_progress(event_type: str, payload: dict[str, object]) -> None:
+        if progress_callback:
+            progress_callback(event_type, payload)
+
+    def emit_live_batch(*, elapsed_s: float, force: bool = False) -> None:
+        nonlocal pending_batch
+        if not pending_batch and not force:
+            return
+        remaining_s = max(duration_s - elapsed_s, 0.0)
+        payload: dict[str, object] = {
+            "samples": list(pending_batch),
+            "emitted_at_s": elapsed_s,
+            "elapsed_s": elapsed_s,
+            "remaining_s": remaining_s,
+            "percent": min(max((elapsed_s / duration_s) * 100.0, 0.0), 100.0) if duration_s else 100.0,
+            "samples_by_sensor": dict(live_counts),
+            "invalid_lines": invalid_lines,
+            "duplicate_keys_by_sensor": dict(live_duplicate_keys),
+        }
+        if pending_batch:
+            emit_progress("sample_batch", payload)
+            pending_batch = []
+        emit_progress(
+            "capture_progress",
+            {
+                key: value
+                for key, value in payload.items()
+                if key != "samples"
+            },
+        )
+
     with serial.Serial(str(port), baudrate=int(baud), timeout=0.2) as ser:
         ser.reset_input_buffer()
         warmup_start = time.perf_counter()
@@ -756,19 +794,34 @@ def capture_kx134_serial_session(
 
         started_at_iso = _utc_now_iso()
         start_time = time.perf_counter()
+        last_progress_emit = start_time
         while time.perf_counter() - start_time < duration_s:
             parsed = parse_kx134_stream_line(ser.readline())
+            now = time.perf_counter()
+            elapsed = now - start_time
             if parsed.kind == "metadata":
                 metadata_lines.append(parsed.text)
             elif parsed.kind == "header":
                 header_seen = True
             elif parsed.kind == "data" and parsed.sample is not None:
-                elapsed = time.perf_counter() - start_time
-                samples.append(replace(parsed.sample, pc_wall_s=elapsed))
+                sample = replace(parsed.sample, pc_wall_s=elapsed)
+                samples.append(sample)
+                pending_batch.append(sample)
+                sensor_key = str(sample.sensor_id)
+                live_counts[sensor_key] += 1
+                duplicate_key = (sample.sensor_id, sample.node_mac, sample.seq)
+                if duplicate_key in live_seen_keys.setdefault(sample.sensor_id, set()):
+                    live_duplicate_keys[sensor_key] += 1
+                else:
+                    live_seen_keys.setdefault(sample.sensor_id, set()).add(duplicate_key)
             elif parsed.kind == "invalid":
                 invalid_lines += 1
                 parse_errors[parsed.error or "invalid"] += 1
+            if now - last_progress_emit >= progress_interval_s:
+                emit_live_batch(elapsed_s=elapsed)
+                last_progress_emit = now
         capture_duration_actual_s = time.perf_counter() - start_time
+        emit_live_batch(elapsed_s=capture_duration_actual_s, force=True)
         ended_at_iso = _utc_now_iso()
 
     result = export_kx134_session(
@@ -814,6 +867,7 @@ class Kx134CaptureWorker(threading.Thread):
                 expected_sample_rate_hz=self.config.expected_sample_rate_hz,
                 output_root=self.config.output_root,
                 session_name=self.config.session_name,
+                progress_callback=lambda event_type, payload: self.emit(event_type, **payload),
             )
             self.emit("session_complete", result=result)
         except Exception as exc:

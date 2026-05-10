@@ -1,0 +1,138 @@
+{
+  "pass": true,
+  "decision": "PASS",
+  "hardware_executed": true,
+  "port": "COM4",
+  "baudrate": 921600,
+  "duration_s": 20,
+  "expected_sample_rate_hz": 100,
+  "gui_graphs_visible": true,
+  "graphs_updated_during_capture": true,
+  "sensor_1_showed_signal": true,
+  "sensor_2_showed_signal": true,
+  "taps_observed": true,
+  "gui_freeze_observed": false,
+  "capture_completed": true,
+  "user_observation": "Resultado satisfactorio; la pesta\u00f1a Graficas mostro ejes por sensor, comparacion |g| y se\u00f1al de taps durante la captura.",
+  "displayed_plot_counts": {
+    "sensor_1_points": 2999,
+    "sensor_2_points": 3000
+  },
+  "first_attempt_error": "Kx134CaptureWorker.emit() takes 2 positional arguments but 3 were given",
+  "bugfix_applied": "Adapted core progress callback to call Kx134CaptureWorker.emit(event_type, **payload).",
+  "export_contract_preserved": true,
+  "bundle_validation_source": "controlled_preexisting_export_bundle_validation_after_live_plot_changes",
+  "bundle_validation": {
+    "pass": true,
+    "decision": "PASS",
+    "failures": [],
+    "warnings": [],
+    "artifacts": {
+      "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_raw.csv",
+      "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_session.json",
+      "summary_md": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md"
+    },
+    "artifact_paths_exist": {
+      "raw_csv": true,
+      "session_json": true,
+      "summary_md": true
+    },
+    "rows_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "invalid_lines": 0,
+    "pc_wall_s_positive": true,
+    "receiver_t_us_valid": true,
+    "forbidden_fields_detected": false,
+    "csv_header_exact_kx134_v3": true,
+    "metadata_schema_pass": true,
+    "relative_artifacts_pass": true,
+    "csv": {
+      "csv_header_exact_kx134_v3": true,
+      "csv_field_count": 27,
+      "forbidden_fields_detected": false,
+      "forbidden_fields": [],
+      "rows_by_sensor": {
+        "1": 1001,
+        "2": 999
+      },
+      "effective_hz_by_sensor": {
+        "1": 100.0,
+        "2": 100.00002004008418
+      },
+      "seq_gaps_by_sensor": {
+        "1": 0,
+        "2": 0
+      },
+      "timestamp_errors_by_sensor": {
+        "1": 0,
+        "2": 0
+      },
+      "receiver_timestamp_errors_by_sensor": {
+        "1": 0,
+        "2": 0
+      },
+      "duplicate_keys_by_sensor": {
+        "1": 0,
+        "2": 0
+      },
+      "pc_wall_s_positive": true,
+      "receiver_t_us_valid": true,
+      "packet_status_counts": {
+        "OK": 2000
+      },
+      "packet_error_code_counts": {
+        "OK": 2000
+      }
+    },
+    "metadata": {
+      "metadata_schema_pass": true,
+      "missing_required_fields": [],
+      "relative_artifacts_pass": true,
+      "firmware_configuration_sent": false,
+      "allowed_sample_rates_hz": [
+        100,
+        200,
+        400,
+        800
+      ]
+    },
+    "summary": {
+      "mentions_sensor_1": true,
+      "mentions_sensor_2": true,
+      "mentions_artifacts": true,
+      "mentions_decision": true
+    }
+  },
+  "local_root_capture_artifacts_ignored_by_policy": [
+    "data/processed/kx134_dual_live/",
+    "data/raw/kx134_dual_live/",
+    "reports/analysis_outputs/kx134_dual_live/"
+  ],
+  "notes": [
+    "La prueba manual mostro graficas live satisfactorias con hardware real.",
+    "Los archivos generados accidentalmente bajo data/ y reports/analysis_outputs del repo root quedan fuera del stage y del commit segun instruccion del usuario.",
+    "La preservacion de exportacion se valido contra un bundle controlado bajo reports/kx134_gui_validation para evitar commitear artefactos locales ignorados."
+  ]
+}

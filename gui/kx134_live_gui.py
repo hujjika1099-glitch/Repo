@@ -22,6 +22,7 @@ try:
         KX134_DEFAULT_BAUD,
         KX134_DEFAULT_SAMPLE_RATE_HZ,
     )
+    from .kx134_live_plots import Kx134LivePlotsPanel
     from .ui_components import FileArtifactPanel, KeyValuePanel, ScrollableFrame, StatusCard, safe_set_grid_weights, section
 except ImportError:  # pragma: no cover - direct script execution support
     import ui_theme
@@ -37,6 +38,7 @@ except ImportError:  # pragma: no cover - direct script execution support
         KX134_DEFAULT_BAUD,
         KX134_DEFAULT_SAMPLE_RATE_HZ,
     )
+    from kx134_live_plots import Kx134LivePlotsPanel
     from ui_components import FileArtifactPanel, KeyValuePanel, ScrollableFrame, StatusCard, safe_set_grid_weights, section
 
 
@@ -108,6 +110,7 @@ class Kx134CaptureApp(tk.Tk):
         self._build_layout()
         self.refresh_ports()
         self.after(120, self._drain_events)
+        self.after(220, self._refresh_live_plots)
         if getattr(args, "close_after_ms", 0):
             self.after(int(args.close_after_ms), self.destroy)
 
@@ -128,6 +131,7 @@ class Kx134CaptureApp(tk.Tk):
         self._build_connection_tab()
         self._build_capture_tab()
         self._build_sensors_tab()
+        self._build_plots_tab()
         self._build_diagnostics_tab()
         self._build_export_tab()
 
@@ -224,6 +228,16 @@ class Kx134CaptureApp(tk.Tk):
             ],
         ).grid(row=0, column=0, sticky="ew")
 
+    def _build_plots_tab(self) -> None:
+        tab = self._tab("Graficas")
+        safe_set_grid_weights(tab, columns=(0,), rows=(0,))
+        plots_section = section(tab, "Retroalimentacion en vivo")
+        plots_section.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+        plots_section.columnconfigure(0, weight=1)
+        plots_section.rowconfigure(0, weight=1)
+        self.live_plots = Kx134LivePlotsPanel(plots_section)
+        self.live_plots.grid(row=0, column=0, sticky="nsew")
+
     def _build_diagnostics_tab(self) -> None:
         tab = self._tab("Diagnostico")
         safe_set_grid_weights(tab, columns=(0, 1), rows=(1,))
@@ -310,6 +324,17 @@ class Kx134CaptureApp(tk.Tk):
         self.status_var.set("Captura KX134 en curso")
         self.capture_decision_var.set("En progreso")
         self.status_label.configure(style="StatusWarn.TLabel")
+        self.live_plots.clear()
+        self.sensor1_samples_var.set("0")
+        self.sensor2_samples_var.set("0")
+        self.sensor1_gaps_var.set("0")
+        self.sensor2_gaps_var.set("0")
+        self.sensor1_status_var.set("No presente")
+        self.sensor2_status_var.set("No presente")
+        self.invalid_card.update("0", tone="ok")
+        self.duplicate_card.update("0", tone="ok")
+        self.receiver_card.update("Pendiente", tone="warn")
+        self.pc_wall_card.update("Pendiente", tone="warn")
         self.start_button.state(["disabled"])
         self.worker = Kx134CaptureWorker(config, self._push_event)
         self.worker.start()
@@ -327,10 +352,26 @@ class Kx134CaptureApp(tk.Tk):
             self._handle_event(event_type, payload)
         self.after(120, self._drain_events)
 
+    def _refresh_live_plots(self) -> None:
+        if hasattr(self, "live_plots"):
+            self.live_plots.refresh()
+        self.after(220, self._refresh_live_plots)
+
     def _handle_event(self, event_type: str, payload: dict[str, object]) -> None:
-        self.worker = None
-        self.start_button.state(["!disabled"])
+        if event_type == "sample_batch":
+            samples = payload.get("samples", [])
+            if isinstance(samples, list):
+                self.live_plots.add_samples(samples)
+            self._update_live_status(payload)
+            return
+
+        if event_type == "capture_progress":
+            self._update_live_status(payload)
+            return
+
         if event_type == "session_error":
+            self.worker = None
+            self.start_button.state(["!disabled"])
             self.status_var.set("Error KX134")
             self.capture_decision_var.set("FAIL")
             self.status_label.configure(style="StatusError.TLabel")
@@ -340,6 +381,12 @@ class Kx134CaptureApp(tk.Tk):
         result = payload.get("result")
         if not isinstance(result, Kx134SessionResult):
             return
+
+        self.worker = None
+        self.start_button.state(["!disabled"])
+        if sum(self.live_plots.buffer.counts().values()) == 0:
+            self.live_plots.add_samples(result.samples)
+        self.live_plots.refresh(force=True)
 
         summary = result.summary
         samples = summary["samples_by_sensor"]
@@ -380,6 +427,31 @@ class Kx134CaptureApp(tk.Tk):
             summary_md=str(result.artifacts.summary_abs),
         )
         self.log("Sesion KX134 guardada correctamente.")
+
+    def _update_live_status(self, payload: dict[str, object]) -> None:
+        samples = payload.get("samples_by_sensor", {})
+        duplicates = payload.get("duplicate_keys_by_sensor", {})
+        if not isinstance(samples, dict):
+            samples = {}
+        if not isinstance(duplicates, dict):
+            duplicates = {}
+        s1 = int(samples.get("1", samples.get(1, 0)) or 0)
+        s2 = int(samples.get("2", samples.get(2, 0)) or 0)
+        d1 = int(duplicates.get("1", duplicates.get(1, 0)) or 0)
+        d2 = int(duplicates.get("2", duplicates.get(2, 0)) or 0)
+        invalid = int(payload.get("invalid_lines", 0) or 0)
+        duplicate_total = d1 + d2
+        elapsed = float(payload.get("elapsed_s", 0.0) or 0.0)
+        percent = float(payload.get("percent", 0.0) or 0.0)
+        self.sensor1_samples_var.set(str(s1))
+        self.sensor2_samples_var.set(str(s2))
+        self.sensor1_status_var.set("Presente" if s1 > 0 else "No presente")
+        self.sensor2_status_var.set("Presente" if s2 > 0 else "No presente")
+        self.invalid_var.set(str(invalid))
+        self.duplicates_var.set(str(duplicate_total))
+        self.invalid_card.update(str(invalid), tone="ok" if invalid == 0 else "warn")
+        self.duplicate_card.update(str(duplicate_total), tone="ok" if duplicate_total == 0 else "warn")
+        self.status_var.set(f"Capturando KX134 {percent:.0f}% ({elapsed:.1f}s)")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

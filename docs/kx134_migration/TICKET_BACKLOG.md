@@ -20,12 +20,13 @@
 - TICKET 016: COMPLETADO - Validacion GUI KX134 con hardware real y exportacion de sesion.
 - TICKET 017: COMPLETADO - Endurecer exportacion KX134, metadata y validadores de sesion.
 - TICKET 018: COMPLETADO - Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar.
+- TICKET 019: COMPLETADO - Graficas en vivo KX134 para retroalimentacion durante captura.
 
 ## Tickets futuros recomendados
 
-- TICKET 019: Empaquetado Windows profesional KX134/ADXL con DPI awareness, nombre de producto y validacion en PC.
-- TICKET 020: Validacion de prototipo.
-- TICKET 021: Criterios para baquelada/PCB.
+- TICKET 020: Empaquetado Windows profesional KX134/ADXL con DPI awareness, nombre de producto y validacion en PC.
+- TICKET 021: Validacion de prototipo.
+- TICKET 022: Criterios para baquelada/PCB.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
 ## Dependencias de trabajo
@@ -36,7 +37,7 @@
 - TICKET 016 valido captura/exportacion GUI KX134 con hardware real; detecto necesidad de warmup serial al abrir COM4 y `pc_wall_s` de alta resolucion.
 - TICKET 017 endurecio metadata, summary y validador de bundle KX134; los bundles previos pueden quedar como metadata legacy.
 - TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
-- TICKET 019 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
+- TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 
 ## Regla de alcance
 
