@@ -1,0 +1,230 @@
+{
+  "analysis_timestamp": "2026-05-10T10:52:28.926473",
+  "log_path": "reports\\kx134_test_runs\\TICKET_013_dual_espnow_receiver_monitor_20260510_104746.txt",
+  "rows_total": 3461,
+  "metadata": {
+    "header_detected": true,
+    "header_fallback_used": false,
+    "invalid_field_count": 1,
+    "pre_header_rows_discarded": 2,
+    "diagnostic_lines_sample": [
+      "# firmware=kx134_dual_espnow",
+      "# firmware_version=kx134_dual_espnow.0.1.0",
+      "# role=receiver",
+      "# local_mac=00:4B:12:96:9A:80",
+      "# receiver_mac_expected=00:4B:12:96:9A:80",
+      "# sensor_1_mac_expected=D4:E9:F4:E9:8E:1C",
+      "# sensor_2_mac_expected=D4:E9:F4:C3:37:14",
+      "# espnow_channel=1",
+      "# serial_baud=921600",
+      "# protocol_version=kx134.v3",
+      "# sample_rate_hz=100",
+      "# odr_hz=100",
+      "# range_g=8",
+      "# receiver_status=ESPNOW_READY",
+      "#STAT,role=receiver,rx_total=383,rx_s1=193,rx_s2=190,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=791,rx_s1=400,rx_s2=391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1192,rx_s1=601,rx_s2=591,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1593,rx_s1=802,rx_s2=791,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1994,rx_s1=1003,rx_s2=991,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2394,rx_s1=1203,rx_s2=1191,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2796,rx_s1=1405,rx_s2=1391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3199,rx_s1=1606,rx_s2=1593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3600,rx_s1=1807,rx_s2=1793,invalid=0,queue_drops=0"
+    ],
+    "diagnostic_lines_tail": [
+      "# firmware=kx134_dual_espnow",
+      "# firmware_version=kx134_dual_espnow.0.1.0",
+      "# role=receiver",
+      "# local_mac=00:4B:12:96:9A:80",
+      "# receiver_mac_expected=00:4B:12:96:9A:80",
+      "# sensor_1_mac_expected=D4:E9:F4:E9:8E:1C",
+      "# sensor_2_mac_expected=D4:E9:F4:C3:37:14",
+      "# espnow_channel=1",
+      "# serial_baud=921600",
+      "# protocol_version=kx134.v3",
+      "# sample_rate_hz=100",
+      "# odr_hz=100",
+      "# range_g=8",
+      "# receiver_status=ESPNOW_READY",
+      "#STAT,role=receiver,rx_total=383,rx_s1=193,rx_s2=190,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=791,rx_s1=400,rx_s2=391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1192,rx_s1=601,rx_s2=591,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1593,rx_s1=802,rx_s2=791,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1994,rx_s1=1003,rx_s2=991,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2394,rx_s1=1203,rx_s2=1191,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2796,rx_s1=1405,rx_s2=1391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3199,rx_s1=1606,rx_s2=1593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3600,rx_s1=1807,rx_s2=1793,invalid=0,queue_drops=0"
+    ],
+    "forbidden_fields_detected_in_header": [],
+    "analysis_warmup_discard_us": 2000000,
+    "analysis_rows_before_warmup": 3936,
+    "analysis_rows_after_warmup": 3461
+  },
+  "bad_sensor_ids": [],
+  "forbidden_fields_detected": [],
+  "sensor_summaries": {
+    "1": {
+      "sensor_id": 1,
+      "rows": 1722,
+      "raw_rows_before_dedup": 1736,
+      "exact_duplicate_rows_removed": 14,
+      "seq_initial": 55164,
+      "seq_final": 56885,
+      "seq_gaps": 0,
+      "duplicate_or_reverse_seq": 0,
+      "timestamp_errors": 0,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 100.00002324230638,
+      "receiver_hz": 100.00176063529766,
+      "g_norm_mean": 1.0128282442534935,
+      "g_norm_min": 0.9417128174783436,
+      "g_norm_max": 1.0617658189454962,
+      "value_counts": {
+        "protocol_version": {
+          "kx134.v3": 1722
+        },
+        "node_mac": {
+          "D4:E9:F4:E9:8E:1C": 1722
+        },
+        "sample_rate_hz": {
+          "100": 1722
+        },
+        "odr_hz": {
+          "100": 1722
+        },
+        "range_g": {
+          "8": 1722
+        },
+        "calibration_applied": {
+          "true": 1722
+        },
+        "packet_status": {
+          "OK": 1722
+        },
+        "packet_error_code": {
+          "OK": 1722
+        },
+        "contract_version": {
+          "kx134.v3": 1722
+        }
+      },
+      "parse_errors": [],
+      "checks": {
+        "min_rows": true,
+        "mac_valid": true,
+        "sample_rate_valid": true,
+        "odr_valid": true,
+        "range_valid": true,
+        "calibration_applied": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true,
+        "contract_valid": true,
+        "sensor_t_us_increasing": true,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "seq_gaps_ok": true,
+        "effective_hz_ok": true,
+        "g_norm_mean_ok": true
+      },
+      "validation_status": "pass"
+    },
+    "2": {
+      "sensor_id": 2,
+      "rows": 1723,
+      "raw_rows_before_dedup": 1725,
+      "exact_duplicate_rows_removed": 2,
+      "seq_initial": 54445,
+      "seq_final": 56167,
+      "seq_gaps": 0,
+      "duplicate_or_reverse_seq": 0,
+      "timestamp_errors": 0,
+      "receiver_timestamp_errors": 0,
+      "effective_hz": 100.00000580720126,
+      "receiver_hz": 100.0144910659239,
+      "g_norm_mean": 1.0020871778256464,
+      "g_norm_min": 0.9252521647680702,
+      "g_norm_max": 1.0823343931807765,
+      "value_counts": {
+        "protocol_version": {
+          "kx134.v3": 1723
+        },
+        "node_mac": {
+          "D4:E9:F4:C3:37:14": 1723
+        },
+        "sample_rate_hz": {
+          "100": 1723
+        },
+        "odr_hz": {
+          "100": 1723
+        },
+        "range_g": {
+          "8": 1723
+        },
+        "calibration_applied": {
+          "true": 1723
+        },
+        "packet_status": {
+          "OK": 1723
+        },
+        "packet_error_code": {
+          "OK": 1723
+        },
+        "contract_version": {
+          "kx134.v3": 1723
+        }
+      },
+      "parse_errors": [],
+      "checks": {
+        "min_rows": true,
+        "mac_valid": true,
+        "sample_rate_valid": true,
+        "odr_valid": true,
+        "range_valid": true,
+        "calibration_applied": true,
+        "packet_status_ok": true,
+        "packet_error_code_ok": true,
+        "contract_valid": true,
+        "sensor_t_us_increasing": true,
+        "receiver_t_us_increasing": true,
+        "receiver_t_us_nonzero": true,
+        "seq_gaps_ok": true,
+        "effective_hz_ok": true,
+        "g_norm_mean_ok": true
+      },
+      "validation_status": "pass"
+    }
+  },
+  "receiver_diagnostics": {
+    "invalid_lines_seen_in_samples": [],
+    "stat_lines_seen_in_samples": [
+      "#STAT,role=receiver,rx_total=383,rx_s1=193,rx_s2=190,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=791,rx_s1=400,rx_s2=391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1192,rx_s1=601,rx_s2=591,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1593,rx_s1=802,rx_s2=791,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1994,rx_s1=1003,rx_s2=991,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2394,rx_s1=1203,rx_s2=1191,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2796,rx_s1=1405,rx_s2=1391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3199,rx_s1=1606,rx_s2=1593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3600,rx_s1=1807,rx_s2=1793,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=383,rx_s1=193,rx_s2=190,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=791,rx_s1=400,rx_s2=391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1192,rx_s1=601,rx_s2=591,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1593,rx_s1=802,rx_s2=791,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=1994,rx_s1=1003,rx_s2=991,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2394,rx_s1=1203,rx_s2=1191,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=2796,rx_s1=1405,rx_s2=1391,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3199,rx_s1=1606,rx_s2=1593,invalid=0,queue_drops=0",
+      "#STAT,role=receiver,rx_total=3600,rx_s1=1807,rx_s2=1793,invalid=0,queue_drops=0"
+    ]
+  },
+  "checks": {
+    "both_sensors_present": true,
+    "only_sensor_ids_1_and_2": true,
+    "sensor_1_pass": true,
+    "sensor_2_pass": true,
+    "forbidden_fields_absent": true
+  },
+  "READY_FOR_DUAL_SYNC_PRECHECK": "YES"
+}

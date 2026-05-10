@@ -14,11 +14,11 @@
 - TICKET 010: COMPLETADO - Preparar firmware y prueba fisica para KX134 Sensor 2.
 - TICKET 011: COMPLETADO - Generalizar herramienta y calibrar KX134 Sensor 2.
 - TICKET 012: COMPLETADO - Capturar MAC de ESP32 receptora KX134 y cerrar node_map.
+- TICKET 013: COMPLETADO - Firmware ESP-NOW KX134 dual: dos nodos sensores hacia receptor Serial.
 
 ## Tickets futuros recomendados
 
-- TICKET 013: Firmware ESP-NOW KX134 dual: dos nodos sensores hacia receptor.
-- TICKET 014: Sincronizacion y precheck.
+- TICKET 014: Precheck de sincronizacion dual KX134 y prueba de evento comun.
 - TICKET 015: GUI configurable para KX134.
 - TICKET 016: Exportacion CSV/JSON KX134.
 - TICKET 017: GUI profesional adaptable.
@@ -35,4 +35,4 @@
 ## Regla de alcance
 
 Este backlog enumera trabajo futuro. Ninguno de los tickets futuros queda implementado
-por la calibracion de Sensor 1 de TICKET 009.
+por la validacion dual de TICKET 013.
