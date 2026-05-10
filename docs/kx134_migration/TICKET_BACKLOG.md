@@ -23,11 +23,15 @@
 - TICKET 019: COMPLETADO - Graficas en vivo KX134 para retroalimentacion durante captura.
 - TICKET 020: COMPLETADO - Empaquetado Windows profesional KX134/ADXL con DPI awareness y validacion del ejecutable.
 
+## Tickets en curso o pendientes
+
+- TICKET 021: PENDIENTE - QA externo del ejecutable en otro PC. Smoke del exe paso en `MOMOTTO_PC` a `1920x1080` y scaling `100%`; falta validacion visual/manual completa, scaling 125/150% y captura/exportacion hardware externa si el hardware esta disponible.
+
 ## Tickets futuros recomendados
 
-- TICKET 021: PENDIENTE - QA externo del ejecutable en otro PC: resolucion, scaling, captura KX134 y exportacion.
-- TICKET 022: Validacion de prototipo.
+- TICKET 022: Validacion de prototipo con sesion controlada y criterios para entrega/baquelada.
 - TICKET 023: Criterios para baquelada/PCB.
+- FUTURO: Icono corporativo y firma digital si se requiere.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
 ## Dependencias de trabajo
@@ -40,7 +44,7 @@
 - TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
-- TICKET 021 queda preparado con checklist y scripts; falta ejecucion real en PC externo para cerrar la decision.
+- TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; la decision se mantiene `PENDING` hasta cerrar validacion visual/manual y hardware externo segun disponibilidad.
 
 ## Regla de alcance
 
