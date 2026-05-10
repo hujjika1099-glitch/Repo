@@ -36,13 +36,13 @@ Observaciones:
 
 ## Board role
 
-- `board_role = PENDING`
+- `board_role = kx134_sensor_node_repeated_for_sensor_1_and_sensor_2`
 
-Se pregunto si la baquela RevA es para nodo sensor KX134, receptor u otra funcion. No hay respuesta cerrada en esta corrida.
+El usuario confirmo que la baquela RevA aplica a nodos sensores KX134 y se repite para Sensor 1 y Sensor 2. El receptor no lleva baquela en esta etapa porque queda conectado directamente al PC.
 
 ## Pinout
 
-- `pinout_review.status = PENDING`
+- `pinout_review.status = PENDING_SENSOR_NODE_ROLE_CONFIRMED`
 - `pinout_review.confirmed = false`
 
 Pinout esperado si aplica a nodo sensor KX134:
@@ -71,13 +71,13 @@ No se ejecutaron pruebas con multimetro en este ticket.
 
 ## Proximos pasos
 
-1. Confirmar rol de placa: nodo sensor KX134, receptor u otra funcion.
-2. Confirmar escala 1:1 con calibre.
-3. Confirmar mirror/orientacion de capa.
-4. Ejecutar continuidad con multimetro.
-5. Confirmar pinout contra footprint Proteus.
-6. Ejecutar power-on sin sensor con limitacion de corriente si es posible.
-7. Ejecutar prueba single-node KX134 si aplica.
+1. Confirmar escala 1:1 con calibre.
+2. Confirmar mirror/orientacion de capa.
+3. Ejecutar continuidad con multimetro.
+4. Confirmar pinout contra footprint Proteus.
+5. Ejecutar power-on sin sensor con limitacion de corriente si es posible.
+6. Ejecutar prueba single-node KX134 en una baquela de Sensor 1 o Sensor 2.
+7. Repetir para la segunda baquela si se fabrica para ambos sensores.
 8. Ejecutar prueba dual solo despues de aprobar fases previas.
 
 ## Restricciones

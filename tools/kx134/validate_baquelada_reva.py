@@ -49,7 +49,8 @@ def validate(review_path: Path) -> dict[str, Any]:
     if decision.get("pcb_design_authorized") is True:
         blockers.append("pcb_design_authorized must remain false for RevA review.")
 
-    if review.get("board_role") == "PENDING":
+    board_role = review.get("board_role")
+    if board_role == "PENDING":
         warnings.append("board_role is PENDING.")
 
     scale = review.get("scale_and_mirror", {})
@@ -76,6 +77,13 @@ def validate(review_path: Path) -> dict[str, Any]:
         "warnings": warnings,
         "blockers": blockers,
         "missing_docs": missing_docs,
+        "board_role": board_role,
+        "pinout_review_status": pinout.get("status"),
+        "scale_1_to_1_confirmed": bool(scale.get("scale_1_to_1_confirmed")),
+        "mirror_orientation_confirmed": bool(scale.get("mirror_orientation_confirmed")),
+        "continuity_test_status": continuity.get("status"),
+        "ready_to_power": bool(readiness.get("ready_to_power")),
+        "ready_for_kx134_single_node_test": bool(readiness.get("ready_for_kx134_single_node_test")),
         "baquelada_revA_registered": bool(decision.get("baquelada_revA_registered")),
         "baquelada_revA_accepted_for_prototype_use": bool(
             decision.get("baquelada_revA_accepted_for_prototype_use")

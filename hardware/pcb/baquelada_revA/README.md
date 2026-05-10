@@ -36,7 +36,7 @@ Estas dimensiones deben confirmarse contra impresion real 1:1 con calibre antes 
 - No hay netlist formal registrada en el repo.
 - No hay DRC formal registrado en el repo.
 - No hay nombres de net visibles en el SVG revisado.
-- No hay marcas de orientacion de Sensor 1/Sensor 2/Receptor visibles en el artefacto exportado.
+- No hay marcas de orientacion de Sensor 1/Sensor 2 visibles en el artefacto exportado.
 - No energizar hasta completar continuidad y shorts con multimetro.
 
 ## Artefactos pendientes
@@ -44,4 +44,5 @@ Estas dimensiones deben confirmarse contra impresion real 1:1 con calibre antes 
 - Proyecto Proteus: `PENDING`.
 - Librerias/footprints Proteus: `PENDING`.
 - Netlist/DRC: `PENDING`.
-- Rol exacto de placa: `PENDING`.
+- Rol exacto de placa: baquela para nodo sensor KX134, repetida para Sensor 1 y Sensor 2.
+- Receptor: sin baquela en esta RevA; queda conectado directamente al PC.

@@ -255,13 +255,18 @@
     "User should answer the physical decision form before PCB can be authorized.",
     "Baquelada RevA was created externally in Proteus and registered as under_review.",
     "RevA does not replace pending physical decisions from TICKET 025.",
-    "Final PCB remains unauthorized until continuity, pinout, scale/mirror and electrical tests pass."
+    "Final PCB remains unauthorized until continuity, pinout, scale/mirror and electrical tests pass.",
+    "User confirmed RevA is for KX134 sensor nodes and is repeated for Sensor 1 and Sensor 2.",
+    "User confirmed the receiver does not require a baquelada because it remains connected directly to the PC."
   ],
   "baquelada_revA": {
     "registered": true,
     "status": "under_review",
     "review_file": "config/kx134_baquelada_revA_review.json",
     "does_not_close_physical_decisions": true,
-    "does_not_authorize_final_pcb": true
+    "does_not_authorize_final_pcb": true,
+    "board_role": "kx134_sensor_node_repeated_for_sensor_1_and_sensor_2",
+    "receiver_board_required": false,
+    "receiver_note": "Receiver does not use baquelada RevA; it remains connected directly to the PC."
   }
 }

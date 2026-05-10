@@ -1,12 +1,13 @@
 # Pinout check - Baquelada RevA
 
-## Pregunta abierta
+## Rol registrado
 
-Esta baquela RevA es para nodo sensor KX134, para receptor, o para otra funcion?
+El usuario confirmo que esta baquela RevA es para nodo sensor KX134 y que se repite para Sensor 1 y Sensor 2.
 
-Respuesta registrada en esta corrida:
+Respuesta registrada:
 
-- `board_role = PENDING`
+- `board_role = kx134_sensor_node_repeated_for_sensor_1_and_sensor_2`
+- Receptor: no usa baquela; queda conectado directamente al PC.
 
 ## Si la baquela es para nodo sensor KX134
 
@@ -29,18 +30,13 @@ Notas:
 - Confirmar que SDA no esta intercambiado con SCL.
 - Confirmar que 3V3 y GND no estan invertidos.
 
-## Si la baquela es para receptor
+## Receptor
 
-Validar:
-
-- No debe tener KX134.
-- Debe exponer USB/Serial.
-- No requiere SDA/SCL para KX134.
-- Debe mantener acceso a programacion/reset.
+No aplica para esta RevA. El receptor no requiere baquela en esta etapa porque queda conectado directamente al PC.
 
 ## Decision actual
 
-- `pinout_review.status = PENDING`
+- `pinout_review.status = PENDING_SENSOR_NODE_ROLE_CONFIRMED`
 - `pinout_review.confirmed = false`
 
-No energizar como nodo sensor ni receptor hasta confirmar rol y pinout.
+No energizar como nodo sensor hasta confirmar pinout con continuidad, escala y orientacion mirror/layer.

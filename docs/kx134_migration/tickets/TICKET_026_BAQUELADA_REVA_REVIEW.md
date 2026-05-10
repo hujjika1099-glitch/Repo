@@ -19,6 +19,12 @@ Registrar los artefactos de baquelada/PCB RevA creados en Proteus, revisar visua
 
 Proyecto Proteus y librerias/footprints: `PENDING`.
 
+Rol confirmado por el usuario:
+
+- baquela para nodo sensor KX134;
+- misma RevA repetida para Sensor 1 y Sensor 2;
+- receptor sin baquela, conectado directamente al PC.
+
 ## Revision visual
 
 Resultado: `PASS_WITH_WARNINGS`.

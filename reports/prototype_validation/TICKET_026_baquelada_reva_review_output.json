@@ -2,7 +2,6 @@
   "validation_pass": true,
   "warnings": [
     "Proteus project files were not provided.",
-    "board_role is PENDING.",
     "Scale 1:1 is not confirmed.",
     "Mirror/layer orientation is not confirmed.",
     "Continuity test is PENDING.",
@@ -10,6 +9,13 @@
   ],
   "blockers": [],
   "missing_docs": [],
+  "board_role": "kx134_sensor_node_repeated_for_sensor_1_and_sensor_2",
+  "pinout_review_status": "PENDING_SENSOR_NODE_ROLE_CONFIRMED",
+  "scale_1_to_1_confirmed": false,
+  "mirror_orientation_confirmed": false,
+  "continuity_test_status": "PENDING",
+  "ready_to_power": false,
+  "ready_for_kx134_single_node_test": false,
   "baquelada_revA_registered": true,
   "baquelada_revA_accepted_for_prototype_use": false,
   "pcb_design_authorized": false
