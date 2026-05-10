@@ -21,12 +21,13 @@
 - TICKET 017: COMPLETADO - Endurecer exportacion KX134, metadata y validadores de sesion.
 - TICKET 018: COMPLETADO - Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar.
 - TICKET 019: COMPLETADO - Graficas en vivo KX134 para retroalimentacion durante captura.
+- TICKET 020: COMPLETADO - Empaquetado Windows profesional KX134/ADXL con DPI awareness y validacion del ejecutable.
 
 ## Tickets futuros recomendados
 
-- TICKET 020: Empaquetado Windows profesional KX134/ADXL con DPI awareness, nombre de producto y validacion en PC.
-- TICKET 021: Validacion de prototipo.
-- TICKET 022: Criterios para baquelada/PCB.
+- TICKET 021: QA externo del ejecutable en otro PC: resolucion, scaling, captura KX134 y exportacion.
+- TICKET 022: Validacion de prototipo.
+- TICKET 023: Criterios para baquelada/PCB.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
 ## Dependencias de trabajo
@@ -38,6 +39,7 @@
 - TICKET 017 endurecio metadata, summary y validador de bundle KX134; los bundles previos pueden quedar como metadata legacy.
 - TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
+- TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
 
 ## Regla de alcance
 

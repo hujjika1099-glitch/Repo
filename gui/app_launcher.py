@@ -13,8 +13,31 @@ except ImportError:  # pragma: no cover
     import ui_theme
 
 
+APP_PRODUCT_TITLE = "Sistema de Captura de Acelerometria"
+VALID_MODES = ("launcher", "kx134", "adxl")
+
+
+def is_frozen() -> bool:
+    return bool(getattr(sys, "frozen", False))
+
+
 def _module_command(module_name: str) -> list[str]:
     return [sys.executable, "-m", module_name]
+
+
+def child_command_for_mode(mode: str, *, frozen: bool | None = None) -> list[str]:
+    if mode not in ("kx134", "adxl"):
+        raise ValueError(f"unsupported child mode: {mode}")
+    frozen = is_frozen() if frozen is None else frozen
+    if frozen:
+        return [sys.executable, "--mode", mode]
+    return [sys.executable, "-m", "gui.app_launcher", "--mode", mode]
+
+
+def launch_child_mode(mode: str, *, cwd: Path | None = None) -> subprocess.Popen:
+    command = child_command_for_mode(mode)
+    launch_cwd = cwd or (Path(sys.executable).resolve().parent if is_frozen() else Path(__file__).resolve().parents[1])
+    return subprocess.Popen(command, cwd=launch_cwd)
 
 
 class AppLauncher(tk.Tk):
@@ -22,7 +45,7 @@ class AppLauncher(tk.Tk):
         ui_theme.set_windows_dpi_awareness_best_effort()
         super().__init__()
         self.args = args or argparse.Namespace(close_after_ms=0)
-        self.title("Sistema de Captura de Acelerometria")
+        self.title(APP_PRODUCT_TITLE)
         self.geometry("820x520")
         self.minsize(720, 460)
         ui_theme.apply_base_theme(self)
@@ -38,7 +61,7 @@ class AppLauncher(tk.Tk):
         header = ttk.Frame(self, style="App.TFrame", padding=24)
         header.grid(row=0, column=0, sticky="ew")
         header.columnconfigure(0, weight=1)
-        ttk.Label(header, text="Sistema de Captura de Acelerometria", style="Header.TLabel").grid(row=0, column=0, sticky="w")
+        ttk.Label(header, text=APP_PRODUCT_TITLE, style="Header.TLabel").grid(row=0, column=0, sticky="w")
         ttk.Label(
             header,
             text="KX134 validado para captura dual y ADXL335 disponible como flujo historico.",
@@ -92,22 +115,14 @@ class AppLauncher(tk.Tk):
         ).grid(row=1, column=0, sticky="ew", pady=(24, 0))
 
     def open_kx134(self) -> None:
-        self._launch("gui.kx134_live_gui", "KX134 Dual Capture")
+        self._launch_mode("kx134", "KX134 Dual Capture")
 
     def open_adxl(self) -> None:
-        script_path = Path(__file__).with_name("adxl_live_gui.py")
-        self._launch_script(script_path, "ADXL335 historico")
+        self._launch_mode("adxl", "ADXL335 historico")
 
-    def _launch(self, module_name: str, label: str) -> None:
+    def _launch_mode(self, mode: str, label: str) -> None:
         try:
-            subprocess.Popen(_module_command(module_name), cwd=Path(__file__).resolve().parents[1])
-            self.status_var.set(f"{label} abierto.")
-        except Exception as exc:
-            self.status_var.set(f"No se pudo abrir {label}: {exc}")
-
-    def _launch_script(self, script_path: Path, label: str) -> None:
-        try:
-            subprocess.Popen([sys.executable, str(script_path)], cwd=script_path.parents[1])
+            launch_child_mode(mode)
             self.status_var.set(f"{label} abierto.")
         except Exception as exc:
             self.status_var.set(f"No se pudo abrir {label}: {exc}")
@@ -115,6 +130,7 @@ class AppLauncher(tk.Tk):
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Launcher principal de la aplicacion de acelerometria")
+    parser.add_argument("--mode", choices=VALID_MODES, default="launcher")
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--close-after-ms", type=int, default=0)
     return parser.parse_args(argv)
@@ -128,6 +144,32 @@ def main(argv: list[str] | None = None) -> None:
     args = parse_args(argv)
     if args.smoke and not args.close_after_ms:
         args.close_after_ms = 1000
+    if args.mode == "kx134":
+        try:
+            from . import kx134_live_gui
+        except ImportError:  # pragma: no cover - direct script/frozen fallback
+            import kx134_live_gui
+
+        child_args = []
+        if args.smoke:
+            child_args.append("--smoke")
+        if args.close_after_ms:
+            child_args.extend(["--close-after-ms", str(args.close_after_ms)])
+        kx134_live_gui.main(child_args)
+        return
+    if args.mode == "adxl":
+        try:
+            from . import adxl_live_gui
+        except ImportError:  # pragma: no cover - direct script/frozen fallback
+            import adxl_live_gui
+
+        child_args = []
+        if args.smoke:
+            child_args.append("--smoke")
+        if args.close_after_ms:
+            child_args.extend(["--close-after-ms", str(args.close_after_ms)])
+        adxl_live_gui.main(child_args)
+        return
     app = AppLauncher(args)
     app.mainloop()
 

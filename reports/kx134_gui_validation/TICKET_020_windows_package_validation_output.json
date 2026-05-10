@@ -1,0 +1,25 @@
+{
+  "validation_pass": true,
+  "failures": [],
+  "warnings": [],
+  "package_exists": true,
+  "exe_exists": true,
+  "zip_exists": true,
+  "exe_name_ok": true,
+  "configs_present": true,
+  "config_paths": {
+    "kx134_sensor_1.json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\_internal\\config\\calibrations\\kx134_sensor_1.json",
+    "kx134_sensor_2.json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\_internal\\config\\calibrations\\kx134_sensor_2.json",
+    "kx134_node_map.json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\_internal\\config\\kx134_node_map.json",
+    "kx134_transport_contract_v3.json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\_internal\\config\\kx134_transport_contract_v3.json"
+  },
+  "historical_data_packaged": false,
+  "development_reports_packaged": false,
+  "zip_contains_exe": true,
+  "dist_dir": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria",
+  "exe": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+  "zip": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria_dist.zip",
+  "file_count": 983,
+  "exe_size_bytes": 2123221,
+  "zip_size_bytes": 10830817
+}

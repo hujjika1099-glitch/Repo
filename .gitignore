@@ -2,6 +2,9 @@
 .venv/
 venv/
 .pio/
+*.bin
+*.elf
+*.map
 
 # Cache y temporales de Python
 __pycache__/
@@ -26,6 +29,11 @@ slprj/
 dist/
 build_work/
 *.spec.bak
+
+# Runtime capture outputs generated from repo root
+data/raw/kx134_dual_live/
+data/processed/kx134_dual_live/
+reports/analysis_outputs/kx134_dual_live/
 
 # Logs y basura de editor/SO
 *.log

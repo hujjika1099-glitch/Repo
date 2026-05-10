@@ -11,15 +11,26 @@ from typing import Iterable
 import tkinter as tk
 from tkinter import ttk
 
-from adxl_live_core import (
-    LiveCaptureWorker,
-    LiveSessionConfig,
-    PortResolution,
-    Sample,
-    SessionResult,
-    list_serial_inventory,
-    make_relpath,
-)
+try:
+    from .adxl_live_core import (
+        LiveCaptureWorker,
+        LiveSessionConfig,
+        PortResolution,
+        Sample,
+        SessionResult,
+        list_serial_inventory,
+        make_relpath,
+    )
+except ImportError:  # pragma: no cover - direct script execution support
+    from adxl_live_core import (
+        LiveCaptureWorker,
+        LiveSessionConfig,
+        PortResolution,
+        Sample,
+        SessionResult,
+        list_serial_inventory,
+        make_relpath,
+    )
 
 
 APP_BG = "#071219"
@@ -427,6 +438,8 @@ class App(tk.Tk):
         self.after(80, self._drain_events)
         self.after(220, self._refresh_plots)
         self.after(280, lambda: self.log("Interfaz lista. Puedes iniciar cuando quieras."))
+        if getattr(args, "close_after_ms", 0):
+            self.after(int(args.close_after_ms), self._on_close)
         if args.autostart:
             self.after(650, self.start_session)
 
@@ -1015,7 +1028,7 @@ def _resolve_repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     repo_root = _resolve_repo_root()
     parser = argparse.ArgumentParser(description="GUI live para ADXL335 + ESP32")
     parser.add_argument("--repo-root", default=str(repo_root))
@@ -1029,11 +1042,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--precheck-duration-s", type=float, default=10.0)
     parser.add_argument("--plot-window-s", type=float, default=30.0)
     parser.add_argument("--autostart", action="store_true")
-    return parser.parse_args()
+    parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--close-after-ms", type=int, default=0)
+    return parser.parse_args(argv)
 
 
-def main() -> None:
-    args = parse_args()
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    if args.smoke and not args.close_after_ms:
+        args.close_after_ms = 1000
     app = App(args)
     app.mainloop()
 
