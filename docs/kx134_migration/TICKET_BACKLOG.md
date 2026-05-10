@@ -26,6 +26,7 @@
 - TICKET 022: COMPLETADO - Validacion de prototipo con sesion controlada y criterios para entrega/baquelada.
 - TICKET 023: COMPLETADO - Consolidar entrega tecnica del prototipo y documentacion final para cliente.
 - TICKET 024: COMPLETADO - Documentacion de usuario/cliente y guia de operacion.
+- TICKET 025: COMPLETADO DOCUMENTALMENTE - Definicion fisica para PCB/baquelada; PCB sigue bloqueada por decisiones fisicas pendientes.
 
 ## Tickets en curso o pendientes
 
@@ -33,7 +34,7 @@
 
 ## Tickets futuros recomendados
 
-- TICKET 025: Definicion fisica para PCB/baquelada: alimentacion, conectores, montaje y orientacion.
+- TICKET 026: Cierre de decisiones fisicas pendientes para PCB o reunion/levantamiento fisico con cliente.
 - FUTURO: Especificacion de PCB/baquelada final cuando se cierren decisiones fisicas.
 - FUTURO: Icono corporativo y firma digital si se requiere.
 - FUTURO: Validacion hardware en PC externo si el cliente lo requiere.
@@ -54,6 +55,7 @@
 - TICKET 022 valida una sesion controlada de prototipo de 60 s en `COM4` con Sensor 1 `5998` filas y Sensor 2 `6000` filas. La validacion de prototipo pasa con advertencia por `2` seq gaps en Sensor 1; `READY_FOR_PROTOTYPE_DELIVERY=YES` y `READY_FOR_PCB_DESIGN=NO` por decisiones fisicas pendientes.
 - TICKET 023 consolida el paquete documental de entrega del prototipo, corrige la semantica de recomendacion PCB y deja `PROTOTYPE_DELIVERY_PACKAGE_READY=YES` con `PCB_DESIGN_AUTHORIZED=NO`.
 - TICKET 024 agrega documentacion cliente para instalacion Windows, conexion hardware, operacion KX134, graficas live, exportacion CSV/JSON/summary, troubleshooting, manifiesto, checklists y limitaciones. La decision queda `CLIENT_USER_DOCS_READY=YES`, manteniendo `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 025 crea formulario, especificacion fisica preliminar, matriz de decisiones, checklist de riesgos, pre-design review, JSON documental y validador para decisiones fisicas PCB. Como no hay respuestas cerradas para alimentacion, conectores, cableado, montaje, orientacion, ubicacion y ambiente, queda `PCB_PHYSICAL_DECISIONS_COMPLETE=NO` y `PCB_DESIGN_AUTHORIZED=NO`.
 
 ## Regla de alcance
 

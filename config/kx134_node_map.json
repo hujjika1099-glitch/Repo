@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "client_documentation_ready_prototype_ready_pcb_blocked",
+  "status": "prototype_ready_pcb_blocked_pending_physical_decisions",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -79,15 +79,25 @@
   "ready_for_pcb_design": false,
   "pcb_design_blockers": [
     "final_power_source_not_defined",
+    "target_voltage_current_not_defined",
+    "power_protection_not_defined",
     "sensor_connectors_not_defined",
+    "qwiic_or_direct_pcb_not_defined",
     "final_cable_lengths_not_defined",
+    "strain_relief_not_defined",
     "mechanical_mounting_not_defined",
-    "axis_orientation_on_enclosure_or_pcb_not_defined",
-    "receiver_and_sensor_node_physical_locations_not_defined"
+    "enclosure_not_defined",
+    "axis_orientation_not_defined",
+    "receiver_and_sensor_locations_not_defined",
+    "service_access_not_defined",
+    "client_dimensions_constraints_not_defined",
+    "environmental_requirements_not_defined"
   ],
   "prototype_delivery_package_ready": true,
   "pcb_design_authorized": false,
   "last_prototype_delivery_report": "reports/prototype_validation/TICKET_023_PROTOTYPE_DELIVERY_SUMMARY.md",
   "client_user_docs_ready": true,
-  "last_client_documentation_report": "reports/prototype_validation/TICKET_024_CLIENT_DOCUMENTATION_SUMMARY.md"
+  "last_client_documentation_report": "reports/prototype_validation/TICKET_024_CLIENT_DOCUMENTATION_SUMMARY.md",
+  "pcb_physical_decisions_complete": false,
+  "last_pcb_physical_definition_report": "reports/prototype_validation/TICKET_025_PCB_PHYSICAL_DEFINITION_SUMMARY.md"
 }

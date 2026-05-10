@@ -1,0 +1,116 @@
+{
+  "decision_version": "kx134.physical_design.v1",
+  "status": "draft_pending_user_decisions",
+  "created_at": "2026-05-10T17:03:08.3716294-05:00",
+  "prototype_status": "prototype_delivery_ready",
+  "pcb_design_authorized": false,
+  "pcb_physical_decisions_complete": false,
+  "validated_configuration": {
+    "sample_rate_hz": 100,
+    "odr_hz": 100,
+    "range_g": 8,
+    "baudrate": 921600,
+    "espnow_channel": 1,
+    "total_esp32": 3
+  },
+  "hardware_identity": {
+    "sensor_1_mac": "D4:E9:F4:E9:8E:1C",
+    "sensor_2_mac": "D4:E9:F4:C3:37:14",
+    "receiver_mac": "00:4B:12:96:9A:80"
+  },
+  "decisions": {
+    "power": {
+      "final_source": {"value": "PENDING", "status": "pending"},
+      "target_voltage": {"value": "PENDING", "status": "pending"},
+      "estimated_current": {"value": "PENDING", "status": "pending"},
+      "protection": {"value": "PENDING", "status": "pending"},
+      "power_connector": {"value": "PENDING", "status": "pending"},
+      "sensor_nodes_powering": {"value": "PENDING", "status": "pending"},
+      "receiver_powered_by_pc_usb": {"value": "PENDING", "status": "pending"}
+    },
+    "connectors": {
+      "kx134_to_esp32": {"value": "PENDING", "status": "pending"},
+      "qwiic_or_direct_pcb": {"value": "PENDING", "status": "pending"},
+      "detachable_required": {"value": "PENDING", "status": "pending"},
+      "preferred_family": {"value": "PENDING", "status": "pending"},
+      "polarization_or_keying": {"value": "PENDING", "status": "pending"}
+    },
+    "cabling": {
+      "sensor_1_length": {"value": "PENDING", "status": "pending"},
+      "sensor_2_length": {"value": "PENDING", "status": "pending"},
+      "receiver_pc_length": {"value": "PENDING", "status": "pending"},
+      "cable_type": {"value": "PENDING", "status": "pending"},
+      "shielding_required": {"value": "PENDING", "status": "pending"},
+      "strain_relief_required": {"value": "PENDING", "status": "pending"}
+    },
+    "mechanical_mounting": {
+      "sensor_1_mount_location": {"value": "PENDING", "status": "pending"},
+      "sensor_2_mount_location": {"value": "PENDING", "status": "pending"},
+      "mounting_method": {"value": "PENDING", "status": "pending"},
+      "esp32_with_sensor_or_separate": {"value": "PENDING", "status": "pending"},
+      "enclosure_required": {"value": "PENDING", "status": "pending"},
+      "reset_boot_usb_access": {"value": "PENDING", "status": "pending"}
+    },
+    "axis_orientation": {
+      "sensor_1_xyz_orientation": {"value": "PENDING", "status": "pending"},
+      "sensor_2_xyz_orientation": {"value": "PENDING", "status": "pending"},
+      "visible_axis_marks": {"value": "PENDING", "status": "pending"},
+      "client_coordinate_alignment": {"value": "PENDING", "status": "pending"}
+    },
+    "receiver_location": {
+      "receiver_location": {"value": "PENDING", "status": "pending"},
+      "always_connected_to_pc": {"value": "PENDING", "status": "pending"},
+      "receiver_enclosure": {"value": "PENDING", "status": "pending"},
+      "external_led_required": {"value": "PENDING", "status": "pending"}
+    },
+    "environment": {
+      "temperature": {"value": "PENDING", "status": "pending"},
+      "humidity": {"value": "PENDING", "status": "pending"},
+      "dust": {"value": "PENDING", "status": "pending"},
+      "vibration": {"value": "PENDING", "status": "pending"},
+      "impacts": {"value": "PENDING", "status": "pending"}
+    },
+    "serviceability": {
+      "esp32_reprogramming_access": {"value": "PENDING", "status": "pending"},
+      "sensor_replacement_method": {"value": "PENDING", "status": "pending"},
+      "recalibration_method": {"value": "Use existing calibration workflow after physical changes.", "status": "pending"},
+      "physical_labels": {"value": "Sensor 1, Sensor 2 and Receptor labels required.", "status": "pending"}
+    },
+    "client_constraints": {
+      "maximum_dimensions": {"value": "PENDING", "status": "pending"},
+      "weight": {"value": "PENDING", "status": "pending"},
+      "aesthetic_finish": {"value": "PENDING", "status": "pending"},
+      "enclosure_material": {"value": "PENDING", "status": "pending"},
+      "portable_system": {"value": "PENDING", "status": "pending"},
+      "visible_cabling": {"value": "PENDING", "status": "pending"}
+    }
+  },
+  "critical_blockers": [
+    "final_power_source_not_defined",
+    "target_voltage_current_not_defined",
+    "power_protection_not_defined",
+    "sensor_connectors_not_defined",
+    "qwiic_or_direct_pcb_not_defined",
+    "final_cable_lengths_not_defined",
+    "strain_relief_not_defined",
+    "mechanical_mounting_not_defined",
+    "enclosure_not_defined",
+    "axis_orientation_not_defined",
+    "receiver_and_sensor_locations_not_defined",
+    "service_access_not_defined",
+    "client_dimensions_constraints_not_defined",
+    "environmental_requirements_not_defined"
+  ],
+  "non_blocking_warnings": [
+    "Prototype delivery remains ready.",
+    "PCB design is intentionally blocked until physical decisions are closed.",
+    "Validated capture configuration remains 100 Hz, ODR 100 Hz, range 8 g.",
+    "sample_rate_hz command from GUI to firmware remains pending."
+  ],
+  "pcb_authorization_rule": "PCB is authorized only if all critical physical decisions are closed.",
+  "notes": [
+    "No schematic, PCB layout, Gerber or BOM was created in this ticket.",
+    "No functional firmware, GUI, calibration or packaging files were modified.",
+    "User should answer the physical decision form before PCB can be authorized."
+  ]
+}
