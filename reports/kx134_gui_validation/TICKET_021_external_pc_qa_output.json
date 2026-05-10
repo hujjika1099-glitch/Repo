@@ -1,39 +1,97 @@
 {
-    "generated_at":  "2026-05-10T15:42:50.8223944-05:00",
-    "hostname":  "JOSECILLO",
-    "username":  "JOSE DAVID",
-    "windows_version":  "Microsoft Windows NT 10.0.26200.0",
-    "resolution":  "1920x1080",
-    "scaling_percent":  100,
-    "package_root":  "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria",
-    "exe":  "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
-    "exe_exists":  true,
-    "launcher_smoke_exit_code":  0,
-    "kx134_smoke_exit_code":  0,
-    "adxl_smoke_exit_code":  0,
-    "launcher_smoke_pass":  true,
-    "kx134_smoke_pass":  true,
-    "adxl_smoke_pass":  true,
-    "visual_manual_result":  "not_recorded",
-    "visual_layout_pass":  false,
-    "hardware_capture_run":  false,
-    "hardware_capture_pass":  false,
-    "export_validation_pass":  false,
-    "hardware_artifacts":  {
-                               "session_json_exists":  false,
-                               "summary_exists":  false,
-                               "session_json":  "",
-                               "summary":  "",
-                               "csv":  "",
-                               "csv_exists":  false
-                           },
-    "failures":  [
-
-                 ],
-    "warnings":  [
-
-                 ],
-    "pass":  true,
-    "ready_for_client_prototype_qa":  "PENDING",
-    "decision":  "SMOKE_PASS_MANUAL_VISUAL_AND_HARDWARE_PENDING"
+  "pass": false,
+  "package_smoke_pass": true,
+  "decision": "PENDING",
+  "created_at": "2026-05-10T15:48:21.7990737-05:00",
+  "package_root": "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria",
+  "exe": "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+  "exe_exists": true,
+  "hostname": "MOMOTTO_PC",
+  "windows_version": {
+    "caption": "Microsoft Windows 11 Home Single Language",
+    "build_number": "26200",
+    "architecture": "64 bits",
+    "version": "10.0.26200"
+  },
+  "resolution": {
+    "height": 1080,
+    "width": 1920
+  },
+  "scaling": {
+    "log_pixels": 96,
+    "scale_percent": 100
+  },
+  "launcher_smoke": {
+    "ended_at": "2026-05-10T15:48:17.7514507-05:00",
+    "exit_code": 0,
+    "pass": true,
+    "error": null,
+    "command": [
+      "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+      "--smoke",
+      "--close-after-ms",
+      "1000"
+    ],
+    "started_at": "2026-05-10T15:48:15.7197644-05:00"
+  },
+  "kx134_smoke": {
+    "ended_at": "2026-05-10T15:48:19.7617801-05:00",
+    "exit_code": 0,
+    "pass": true,
+    "error": null,
+    "command": [
+      "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+      "--mode",
+      "kx134",
+      "--smoke",
+      "--close-after-ms",
+      "1000"
+    ],
+    "started_at": "2026-05-10T15:48:17.7544486-05:00"
+  },
+  "adxl_smoke": {
+    "ended_at": "2026-05-10T15:48:21.7710084-05:00",
+    "exit_code": 0,
+    "pass": true,
+    "error": null,
+    "command": [
+      "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+      "--mode",
+      "adxl",
+      "--smoke",
+      "--close-after-ms",
+      "1000"
+    ],
+    "started_at": "2026-05-10T15:48:19.7617801-05:00"
+  },
+  "launcher_smoke_pass": true,
+  "kx134_smoke_pass": true,
+  "adxl_smoke_pass": true,
+  "visual_layout_pass": null,
+  "visual_manual_result": "pending",
+  "hardware_capture_run": false,
+  "hardware_capture_pass": null,
+  "export_validation_pass": null,
+  "hardware_artifacts": {
+    "session_json": null,
+    "summary_md": null,
+    "raw_csv": null
+  },
+  "hardware_artifact_paths_exist": {
+    "session_json": false,
+    "summary_md": false,
+    "raw_csv": false
+  },
+  "hardware_validation": {
+    "output": null,
+    "error": null,
+    "attempted": false,
+    "pass": null
+  },
+  "failures": [],
+  "warnings": [
+    "visual_manual_pending",
+    "hardware_capture_not_run_or_not_validated"
+  ],
+  "ready_for_client_prototype_qa": "PENDING"
 }
