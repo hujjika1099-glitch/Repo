@@ -25,7 +25,7 @@
 
 ## Tickets futuros recomendados
 
-- TICKET 021: QA externo del ejecutable en otro PC: resolucion, scaling, captura KX134 y exportacion.
+- TICKET 021: PENDIENTE - QA externo del ejecutable en otro PC: resolucion, scaling, captura KX134 y exportacion.
 - TICKET 022: Validacion de prototipo.
 - TICKET 023: Criterios para baquelada/PCB.
 - FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
@@ -40,6 +40,7 @@
 - TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
+- TICKET 021 queda preparado con checklist y scripts; falta ejecucion real en PC externo para cerrar la decision.
 
 ## Regla de alcance
 

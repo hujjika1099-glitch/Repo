@@ -1,0 +1,39 @@
+{
+    "generated_at":  "2026-05-10T15:42:50.8223944-05:00",
+    "hostname":  "JOSECILLO",
+    "username":  "JOSE DAVID",
+    "windows_version":  "Microsoft Windows NT 10.0.26200.0",
+    "resolution":  "1920x1080",
+    "scaling_percent":  100,
+    "package_root":  "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria",
+    "exe":  "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
+    "exe_exists":  true,
+    "launcher_smoke_exit_code":  0,
+    "kx134_smoke_exit_code":  0,
+    "adxl_smoke_exit_code":  0,
+    "launcher_smoke_pass":  true,
+    "kx134_smoke_pass":  true,
+    "adxl_smoke_pass":  true,
+    "visual_manual_result":  "not_recorded",
+    "visual_layout_pass":  false,
+    "hardware_capture_run":  false,
+    "hardware_capture_pass":  false,
+    "export_validation_pass":  false,
+    "hardware_artifacts":  {
+                               "session_json_exists":  false,
+                               "summary_exists":  false,
+                               "session_json":  "",
+                               "summary":  "",
+                               "csv":  "",
+                               "csv_exists":  false
+                           },
+    "failures":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "pass":  true,
+    "ready_for_client_prototype_qa":  "PENDING",
+    "decision":  "SMOKE_PASS_MANUAL_VISUAL_AND_HARDWARE_PENDING"
+}
