@@ -30,12 +30,14 @@
 
 ## Validacion visual
 
-- Launcher visible: pendiente de confirmacion manual.
-- KX134 visible: pendiente de confirmacion manual.
-- ADXL visible: pendiente de confirmacion manual.
-- Controles cortados: pendiente de confirmacion manual.
-- Pestana Graficas visible: pendiente de confirmacion manual.
-- Layout usable en resolucion probada: pendiente de confirmacion manual.
+- Ejecutada manualmente por el usuario en el PC externo.
+- Resultado: PASS.
+- Launcher visible: PASS.
+- KX134 visible: PASS.
+- ADXL visible: PASS.
+- Controles cortados: no se observaron cortes visuales relevantes.
+- Pestana Graficas KX134: visible/funcional segun validacion manual.
+- Layout usable en resolucion probada: PASS; el usuario reporto que todo se ve correcto.
 
 ## Validacion hardware
 
@@ -50,18 +52,20 @@
 - Seq gaps: no aplica.
 - Invalid lines: no aplica.
 - Duplicate keys: no aplica.
-- Graficas live: pendiente.
-- Exportacion: pendiente.
-- Validacion bundle: pendiente.
+- Graficas live con hardware externo: no ejecutado.
+- Exportacion hardware externa: no ejecutada.
+- Validacion bundle hardware externa: no ejecutada.
+- Nota: No se ejecuto captura hardware en el PC externo. La captura hardware real ya fue validada en el PC de desarrollo en TICKET 016 y las graficas live en TICKET 019.
 
 ## Problemas detectados
 
 - No se detectaron fallos en smoke automatizado.
-- Falta validacion visual/manual completa.
-- Falta captura hardware externa y validacion de exportacion si el hardware esta disponible.
+- La validacion visual/manual externa fue cerrada como PASS por reporte del usuario.
+- La captura hardware externa no se ejecuto; queda documentada como advertencia no bloqueante para este cierre visual, porque la captura/exportacion real ya fue validada previamente en el PC de desarrollo.
 - Falta probar scaling 125% y 150%.
 - Icono corporativo pendiente desde TICKET 020.
 - Firma digital pendiente desde TICKET 020.
+- Envio de `sample_rate_hz` al firmware desde GUI sigue pendiente.
 
 ## Restricciones verificadas
 
@@ -73,6 +77,6 @@
 
 ## Decision
 
-`READY_FOR_CLIENT_PROTOTYPE_QA = PENDING`
+`READY_FOR_CLIENT_PROTOTYPE_QA = YES`
 
-Justificacion: el ejecutable del paquete abre correctamente en smoke para launcher, KX134 y ADXL335 en un entorno distinto al PC de desarrollo reportado, pero aun faltan validacion visual/manual completa y captura hardware/exportacion externa.
+Justificacion: el ejecutable del paquete pasa smoke externo para launcher, KX134 y ADXL335 en `MOMOTTO_PC`; ademas, el usuario confirmo validacion visual/manual externa satisfactoria sin cortes relevantes en `1920x1080` con scaling `100%`. La captura hardware externa no se ejecuto y queda como advertencia, no como bloqueo, porque la captura/exportacion real ya fue validada en el PC de desarrollo en TICKET 016 y las graficas live en TICKET 019.

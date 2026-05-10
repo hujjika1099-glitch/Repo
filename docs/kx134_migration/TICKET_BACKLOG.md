@@ -25,7 +25,7 @@
 
 ## Tickets en curso o pendientes
 
-- TICKET 021: PENDIENTE - QA externo del ejecutable en otro PC. Smoke del exe paso en `MOMOTTO_PC` a `1920x1080` y scaling `100%`; falta validacion visual/manual completa, scaling 125/150% y captura/exportacion hardware externa si el hardware esta disponible.
+- TICKET 021: COMPLETADO - QA externo visual/manual del ejecutable Windows. Smoke launcher/KX134/ADXL paso en `MOMOTTO_PC`; el usuario confirmo validacion visual manual satisfactoria en `1920x1080` con scaling `100%`, sin cortes visuales relevantes. Nota: hardware capture on external PC was not executed; hardware capture already validated on development PC.
 
 ## Tickets futuros recomendados
 
@@ -44,7 +44,7 @@
 - TICKET 018 agrego launcher, tema compartido, componentes responsive y smoke visual sin hardware.
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
-- TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; la decision se mantiene `PENDING` hasta cerrar validacion visual/manual y hardware externo segun disponibilidad.
+- TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; TICKET 021B cierra la validacion visual/manual externa con decision `READY_FOR_CLIENT_PROTOTYPE_QA=YES`. La captura hardware externa no se ejecuto y queda documentada como advertencia no bloqueante porque la captura hardware ya fue validada en el PC de desarrollo.
 
 ## Regla de alcance
 

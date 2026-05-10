@@ -1,7 +1,7 @@
 {
-  "pass": false,
+  "pass": true,
   "package_smoke_pass": true,
-  "decision": "PENDING",
+  "decision": "YES",
   "created_at": "2026-05-10T15:48:21.7990737-05:00",
   "package_root": "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria",
   "exe": "C:\\Users\\jogoa\\Downloads\\Sistema_Captura_Acelerometria_dist\\Sistema_Captura_Acelerometria\\Sistema_Captura_Acelerometria.exe",
@@ -67,8 +67,8 @@
   "launcher_smoke_pass": true,
   "kx134_smoke_pass": true,
   "adxl_smoke_pass": true,
-  "visual_layout_pass": null,
-  "visual_manual_result": "pending",
+  "visual_layout_pass": true,
+  "visual_manual_result": "pass",
   "hardware_capture_run": false,
   "hardware_capture_pass": null,
   "export_validation_pass": null,
@@ -90,8 +90,19 @@
   },
   "failures": [],
   "warnings": [
-    "visual_manual_pending",
-    "hardware_capture_not_run_or_not_validated"
+    "External hardware capture was not executed.",
+    "Scaling 125% and 150% remain to be tested.",
+    "Corporate icon pending.",
+    "Digital signature pending.",
+    "Firmware sample_rate_hz command from GUI remains pending."
   ],
-  "ready_for_client_prototype_qa": "PENDING"
+  "ready_for_client_prototype_qa": true,
+  "external_pc_smoke_pass": true,
+  "manual_visual_validation_run": true,
+  "manual_visual_validation_pass": true,
+  "hardware_capture_note": "External hardware capture was not executed. Hardware capture/export was validated previously on the development PC.",
+  "windows_version_reported": "Windows 11 Home Single Language 10.0.26200 build 26200 64-bit",
+  "resolution_reported": "1920x1080",
+  "scaling_reported": "100%",
+  "manual_visual_validation_note": "User reported that launcher, KX134 GUI and ADXL335 GUI opened correctly on the external PC with no relevant visual clipping."
 }

@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "windows_packaging_prepared_pending_external_pc_qa",
+  "status": "external_pc_visual_qa_validated_pending_prototype_validation",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -71,5 +71,7 @@
   "last_gui_live_plots_report": "reports/kx134_gui_validation/TICKET_019_GUI_LIVE_PLOTS_SUMMARY.md",
   "last_windows_packaging_report": "reports/kx134_gui_validation/TICKET_020_WINDOWS_PACKAGING_SUMMARY.md",
   "last_external_pc_qa_report": "reports/kx134_gui_validation/TICKET_021_EXTERNAL_PC_QA_SUMMARY.md",
-  "last_external_pc_qa_decision": "PENDING"
+  "last_external_pc_qa_decision": "YES",
+  "external_pc_hardware_capture_run": false,
+  "external_pc_hardware_capture_note": "External hardware capture was not executed; development PC hardware capture was previously validated."
 }
