@@ -1,0 +1,74 @@
+{
+  "session_name": "ticket016_hw_gui",
+  "protocol_version": "kx134.v3",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "metadata_lines": [
+    "#STAT,role=receiver,rx_total=81183,rx_s1=40591,rx_s2=40592,invalid=0,duplicate_drops=322,queue_drops=0",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=577167,sensor_t_us=1477181624,receiver_t_us=407771305",
+    "#STAT,role=receiver,rx_total=81583,rx_s1=40791,rx_s2=40792,invalid=0,duplicate_drops=323,queue_drops=0",
+    "#STAT,role=receiver,rx_total=81983,rx_s1=40991,rx_s2=40992,invalid=0,duplicate_drops=323,queue_drops=0",
+    "#STAT,role=receiver,rx_total=82383,rx_s1=41191,rx_s2=41192,invalid=0,duplicate_drops=323,queue_drops=0",
+    "#STAT,role=receiver,rx_total=82783,rx_s1=41391,rx_s2=41392,invalid=0,duplicate_drops=323,queue_drops=0",
+    "#STAT,role=receiver,rx_total=83183,rx_s1=41591,rx_s2=41592,invalid=0,duplicate_drops=323,queue_drops=0",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=577996,sensor_t_us=1485471628,receiver_t_us=416064665",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=578037,sensor_t_us=1485881625,receiver_t_us=416472931",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=578170,sensor_t_us=1487211628,receiver_t_us=417801553"
+  ],
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "warnings": [],
+  "summary": {
+    "total_samples": 2000,
+    "samples_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0010979842978152,
+      "2": 1.0036764668897316
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.9452582448415883,
+      "2": 0.9278880331408527
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.0586479608599828,
+      "2": 1.0823772501461772
+    }
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_summary.md"
+  }
+}

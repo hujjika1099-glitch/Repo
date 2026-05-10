@@ -1,0 +1,83 @@
+{
+  "session_name": "ticket016_hw_gui",
+  "protocol_version": "kx134.v3",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "metadata_lines": [
+    "#STAT,role=receiver,rx_total=56381,rx_s1=28190,rx_s2=28191,invalid=0,duplicate_drops=173,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564265,sensor_t_us=1348163621,receiver_t_us=282226860",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564334,sensor_t_us=1348853625,receiver_t_us=282916640",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564385,sensor_t_us=1349363620,receiver_t_us=283426610",
+    "#STAT,role=receiver,rx_total=56781,rx_s1=28390,rx_s2=28391,invalid=0,duplicate_drops=176,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564446,sensor_t_us=1349973627,receiver_t_us=284036638",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564546,sensor_t_us=1350973625,receiver_t_us=285038993",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564587,sensor_t_us=1351383620,receiver_t_us=285448937",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=564628,sensor_t_us=1351793626,receiver_t_us=285857675",
+    "#STAT,role=receiver,rx_total=57181,rx_s1=28590,rx_s2=28591,invalid=0,duplicate_drops=180,queue_drops=0",
+    "#STAT,role=receiver,rx_total=57581,rx_s1=28790,rx_s2=28791,invalid=0,duplicate_drops=180,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=565011,sensor_t_us=1355623620,receiver_t_us=289686808",
+    "#STAT,role=receiver,rx_total=57981,rx_s1=28990,rx_s2=28991,invalid=0,duplicate_drops=181,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=565051,sensor_t_us=1356023620,receiver_t_us=290086793",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=565070,sensor_t_us=1356213626,receiver_t_us=290279405",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=565099,sensor_t_us=1356503620,receiver_t_us=290569202",
+    "#STAT,role=receiver,rx_total=58381,rx_s1=29190,rx_s2=29191,invalid=0,duplicate_drops=184,queue_drops=0",
+    "#DUPLICATE,sensor_id=1,node_mac=D4:E9:F4:E9:8E:1C,seq=565314,sensor_t_us=1358653625,receiver_t_us=292719281",
+    "#DUPLICATE,sensor_id=2,node_mac=D4:E9:F4:C3:37:14,seq=565705,sensor_t_us=1362561625,receiver_t_us=293150980"
+  ],
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "warnings": [],
+  "summary": {
+    "total_samples": 2001,
+    "samples_by_sensor": {
+      "1": 1001,
+      "2": 1000
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.000010000001,
+      "2": 99.99996996997899
+    },
+    "packet_status_counts": {
+      "OK": 2001
+    },
+    "packet_error_code_counts": {
+      "OK": 2001
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0008847969442134,
+      "2": 1.0018174475323673
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.940078528759167,
+      "2": 0.9077166026651711
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.069646299010098,
+      "2": 1.056889579635451
+    }
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124321\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124423_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124321\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124423_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124321\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124423_summary.md"
+  }
+}

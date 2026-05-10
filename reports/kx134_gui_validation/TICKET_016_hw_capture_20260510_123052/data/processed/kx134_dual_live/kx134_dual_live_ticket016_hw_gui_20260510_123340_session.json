@@ -1,0 +1,59 @@
+{
+  "session_name": "ticket016_hw_gui",
+  "protocol_version": "kx134.v3",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "metadata_lines": [],
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "warnings": [],
+  "summary": {
+    "total_samples": 0,
+    "samples_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 0.0,
+      "2": 0.0
+    },
+    "packet_status_counts": {},
+    "packet_error_code_counts": {},
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": NaN,
+      "2": NaN
+    },
+    "g_norm_min_by_sensor": {
+      "1": NaN,
+      "2": NaN
+    },
+    "g_norm_max_by_sensor": {
+      "1": NaN,
+      "2": NaN
+    }
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123052\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123340_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123052\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123340_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123052\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123340_summary.md"
+  }
+}

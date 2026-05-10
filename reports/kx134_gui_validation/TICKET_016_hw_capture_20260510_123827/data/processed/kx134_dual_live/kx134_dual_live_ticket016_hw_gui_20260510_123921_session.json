@@ -1,0 +1,85 @@
+{
+  "session_name": "ticket016_hw_gui",
+  "protocol_version": "kx134.v3",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "metadata_lines": [
+    "# boot_marker=after_serial_begin",
+    "# firmware=kx134_dual_espnow",
+    "# firmware_version=kx134_dual_espnow.0.1.0",
+    "# role=receiver",
+    "# local_mac=00:4B:12:96:9A:80",
+    "# receiver_mac_expected=00:4B:12:96:9A:80",
+    "# sensor_1_mac_expected=D4:E9:F4:E9:8E:1C",
+    "# sensor_2_mac_expected=D4:E9:F4:C3:37:14",
+    "# espnow_channel=1",
+    "# serial_baud=921600",
+    "# protocol_version=kx134.v3",
+    "# sample_rate_hz=100",
+    "# odr_hz=100",
+    "# range_g=8",
+    "# receiver_status=ESPNOW_READY",
+    "#STAT,role=receiver,rx_total=380,rx_s1=190,rx_s2=190,invalid=0,duplicate_drops=0,queue_drops=0",
+    "#STAT,role=receiver,rx_total=780,rx_s1=390,rx_s2=390,invalid=0,duplicate_drops=0,queue_drops=0",
+    "#STAT,role=receiver,rx_total=1180,rx_s1=590,rx_s2=590,invalid=0,duplicate_drops=0,queue_drops=0",
+    "#STAT,role=receiver,rx_total=1580,rx_s1=790,rx_s2=790,invalid=0,duplicate_drops=0,queue_drops=0"
+  ],
+  "invalid_lines": 1,
+  "parse_errors": {
+    "bad_field_count": 1
+  },
+  "warnings": [],
+  "summary": {
+    "total_samples": 1913,
+    "samples_by_sensor": {
+      "1": 957,
+      "2": 956
+    },
+    "seq_gaps_by_sensor": {
+      "1": 18,
+      "2": 28
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 98.15191040989305,
+      "2": 97.1516954039008
+    },
+    "packet_status_counts": {
+      "OK": 1913
+    },
+    "packet_error_code_counts": {
+      "OK": 1913
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0009502940507826,
+      "2": 1.0011622250950567
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.9352516371757924,
+      "2": 0.9383382248810926
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.066536231333001,
+      "2": 1.0628693117735595
+    }
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123827\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123921_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123827\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123921_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_123827\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_123921_summary.md"
+  }
+}

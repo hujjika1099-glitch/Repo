@@ -1,0 +1,66 @@
+{
+  "pass": true,
+  "failures": [],
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_summary.md",
+    "exist": {
+      "raw_csv": true,
+      "session_json": true,
+      "summary": true
+    }
+  },
+  "csv": {
+    "csv_header_exact_kx134_v3": true,
+    "forbidden_fields_detected": false,
+    "forbidden_fields": [],
+    "rows_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "pc_wall_s_positive": true,
+    "receiver_t_us_valid": true,
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    }
+  },
+  "metadata": {
+    "has_summary": true,
+    "expected_sample_rate_hz": 100,
+    "invalid_lines": 0,
+    "artifacts": {
+      "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_raw.csv",
+      "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_session.json",
+      "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_summary.md"
+    },
+    "artifact_paths_exist": {
+      "raw_csv": true,
+      "session_json": true,
+      "summary": true
+    }
+  }
+}

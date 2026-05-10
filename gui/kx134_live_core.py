@@ -102,6 +102,7 @@ class Kx134CaptureConfig:
     port: str
     baud: int = KX134_DEFAULT_BAUD
     duration_s: float = 10.0
+    warmup_s: float = 2.0
     expected_sample_rate_hz: int = KX134_DEFAULT_SAMPLE_RATE_HZ
     output_root: Path = Path(".")
     session_name: str = "kx134_live"
@@ -223,7 +224,7 @@ def kx134_sample_to_raw_row(sample: Kx134Sample) -> dict[str, object]:
         "seq": sample.seq,
         "sensor_t_us": sample.sensor_t_us,
         "receiver_t_us": sample.receiver_t_us,
-        "pc_wall_s": round(sample.pc_wall_s, 6),
+        "pc_wall_s": round(sample.pc_wall_s, 9),
         "sync_group_id": sample.sync_group_id,
         "pair_seq": sample.pair_seq,
         "x_raw": sample.x_raw,
@@ -459,6 +460,7 @@ def capture_kx134_serial_session(
     port: str,
     baud: int = KX134_DEFAULT_BAUD,
     duration_s: float = 10.0,
+    warmup_s: float = 2.0,
     expected_sample_rate_hz: int = KX134_DEFAULT_SAMPLE_RATE_HZ,
     output_root: str | Path = ".",
     session_name: str = "kx134_live",
@@ -466,6 +468,9 @@ def capture_kx134_serial_session(
     if not str(port or "").strip():
         raise ValueError("port is required")
     duration_s = validate_capture_duration(duration_s)
+    warmup_s = float(warmup_s)
+    if warmup_s < 0:
+        raise ValueError("warmup_s must be zero or positive")
     expected_sample_rate_hz = validate_expected_sample_rate(expected_sample_rate_hz)
 
     try:
@@ -478,18 +483,25 @@ def capture_kx134_serial_session(
     parse_errors: Counter[str] = Counter()
     invalid_lines = 0
     header_seen = False
-    start_time = time.monotonic()
-
     with serial.Serial(str(port), baudrate=int(baud), timeout=0.2) as ser:
         ser.reset_input_buffer()
-        while time.monotonic() - start_time < duration_s:
+        warmup_start = time.perf_counter()
+        while time.perf_counter() - warmup_start < warmup_s:
+            parsed = parse_kx134_stream_line(ser.readline())
+            if parsed.kind == "metadata":
+                metadata_lines.append(parsed.text)
+            elif parsed.kind == "header":
+                header_seen = True
+
+        start_time = time.perf_counter()
+        while time.perf_counter() - start_time < duration_s:
             parsed = parse_kx134_stream_line(ser.readline())
             if parsed.kind == "metadata":
                 metadata_lines.append(parsed.text)
             elif parsed.kind == "header":
                 header_seen = True
             elif parsed.kind == "data" and parsed.sample is not None:
-                elapsed = time.monotonic() - start_time
+                elapsed = time.perf_counter() - start_time
                 samples.append(replace(parsed.sample, pc_wall_s=elapsed))
             elif parsed.kind == "invalid":
                 invalid_lines += 1
@@ -529,6 +541,7 @@ class Kx134CaptureWorker(threading.Thread):
                 port=self.config.port,
                 baud=self.config.baud,
                 duration_s=self.config.duration_s,
+                warmup_s=self.config.warmup_s,
                 expected_sample_rate_hz=self.config.expected_sample_rate_hz,
                 output_root=self.config.output_root,
                 session_name=self.config.session_name,

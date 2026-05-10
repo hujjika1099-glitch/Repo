@@ -1,0 +1,5 @@
+usage: kx134_live_gui.py [-h] [--repo-root REPO_ROOT] [--port PORT]
+                         [--baud BAUD] [--duration-s DURATION_S]
+                         [--expected-sample-rate EXPECTED_SAMPLE_RATE]
+                         [--session-name SESSION_NAME]
+kx134_live_gui.py: error: unrecognized arguments: DAVID\Desktop\-\Aplicaciones\UQ_2021_2025\AYUDA\Maestria\Repo\reports\kx134_gui_validation\TICKET_016_hw_capture_20260510_123052
