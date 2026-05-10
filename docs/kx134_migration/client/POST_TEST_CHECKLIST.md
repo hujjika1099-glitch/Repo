@@ -1,0 +1,22 @@
+# Checklist posterior a prueba KX134
+
+- [ ] CSV generado.
+- [ ] JSON generado.
+- [ ] Summary generado.
+- [ ] Sensor 1 presente.
+- [ ] Sensor 2 presente.
+- [ ] `invalid_lines` revisadas.
+- [ ] `duplicate_keys` revisadas.
+- [ ] `packet_status` revisado.
+- [ ] `packet_error_code` revisado.
+- [ ] Graficas live revisadas.
+- [ ] Archivos guardados.
+- [ ] Copia de respaldo realizada si aplica.
+- [ ] Observaciones anotadas.
+- [ ] Puerto COM anotado.
+- [ ] Duracion anotada.
+- [ ] Frecuencia esperada anotada: `100 Hz`.
+- [ ] Rango anotado: `8 g`.
+- [ ] Baudrate anotado: `921600`.
+- [ ] Si se cambio `range_g`, se marco recalibrar.
+- [ ] Si se detecto un problema de Sensor 1, Sensor 2 o Receptor, se guardo evidencia para soporte.

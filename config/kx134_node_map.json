@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "prototype_delivery_ready_pcb_blocked_by_physical_decisions",
+  "status": "client_documentation_ready_prototype_ready_pcb_blocked",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -87,5 +87,7 @@
   ],
   "prototype_delivery_package_ready": true,
   "pcb_design_authorized": false,
-  "last_prototype_delivery_report": "reports/prototype_validation/TICKET_023_PROTOTYPE_DELIVERY_SUMMARY.md"
+  "last_prototype_delivery_report": "reports/prototype_validation/TICKET_023_PROTOTYPE_DELIVERY_SUMMARY.md",
+  "client_user_docs_ready": true,
+  "last_client_documentation_report": "reports/prototype_validation/TICKET_024_CLIENT_DOCUMENTATION_SUMMARY.md"
 }
