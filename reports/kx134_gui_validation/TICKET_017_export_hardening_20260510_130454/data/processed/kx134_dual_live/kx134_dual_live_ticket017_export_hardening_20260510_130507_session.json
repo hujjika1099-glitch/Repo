@@ -1,0 +1,206 @@
+{
+  "session_id": "kx134_dual_live_ticket017_export_hardening_20260510_130507",
+  "source_stream_session_id": "ESPNOW_DUAL_PROTOTYPE",
+  "session_name": "ticket017_export_hardening",
+  "session_type": "kx134_dual_live",
+  "protocol_version": "kx134.v3",
+  "contract_version": "kx134.v3",
+  "created_at_iso": "2026-05-10T18:05:07Z",
+  "started_at_iso": "2026-05-10T12:46:17Z",
+  "ended_at_iso": "2026-05-10T12:46:27Z",
+  "capture_duration_requested_s": 10.0,
+  "capture_duration_actual_s": 10.0,
+  "timestamp_basis": "pc_wall_s uses PC perf_counter seconds since GUI capture start; receiver_t_us is receiver micros; sensor_t_us clocks are per ESP32 node.",
+  "port": "COM4",
+  "baud": 921600,
+  "expected_sample_rate_hz": 100,
+  "allowed_sample_rates_hz": [
+    100,
+    200,
+    400,
+    800
+  ],
+  "expected_range_g": 8,
+  "expected_odr_hz": 100,
+  "serial_warmup_s": 2.0,
+  "firmware_configuration_sent": false,
+  "firmware_configuration_note": "GUI does not configure firmware sample rate yet.",
+  "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
+  "total_esp32_required": 3,
+  "transport": {
+    "sensor_nodes_to_receiver": "ESP-NOW",
+    "receiver_to_pc_gui": "USB Serial"
+  },
+  "nodes_expected": {
+    "sensor_1": {
+      "sensor_id": 1,
+      "physical_label": "KX134_SENSOR_1",
+      "node_id": "sensor_node_1",
+      "node_mac": "D4:E9:F4:E9:8E:1C",
+      "calibration_id": "kx134_sensor_1_20260508_234831",
+      "calibration_file": "config/calibrations/kx134_sensor_1_20260508_234831.json",
+      "status": "validated_for_gui_export"
+    },
+    "sensor_2": {
+      "sensor_id": 2,
+      "physical_label": "KX134_SENSOR_2",
+      "node_id": "sensor_node_2",
+      "node_mac": "D4:E9:F4:C3:37:14",
+      "calibration_id": "kx134_sensor_2_20260509_180839",
+      "calibration_file": "config/calibrations/kx134_sensor_2_20260509_180839.json",
+      "status": "validated_for_gui_export"
+    },
+    "receiver": {
+      "node_id": "receiver_esp32",
+      "node_mac": "00:4B:12:96:9A:80",
+      "receiver_firmware": "kx134_dual_espnow",
+      "receiver_firmware_version": "kx134_dual_espnow.0.1.0",
+      "espnow_channel": 1,
+      "status": "validated_for_gui_export"
+    }
+  },
+  "metadata_lines": [
+    "#SOURCE,TICKET_016_GUI_HARDWARE_CAPTURE"
+  ],
+  "metadata_line_count": 1,
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "warnings": [],
+  "summary": {
+    "total_samples": 2000,
+    "samples_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0010979842978152,
+      "2": 1.0036764668897316
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.9452582448415883,
+      "2": 0.9278880331408527
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.0586479608599828,
+      "2": 1.0823772501461772
+    },
+    "valid_samples_total": 2000,
+    "invalid_lines": 0,
+    "metadata_lines": 1,
+    "receiver_t_us_valid": true,
+    "pc_wall_s_positive": true
+  },
+  "capture_summary": {
+    "total_samples": 2000,
+    "samples_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0010979842978152,
+      "2": 1.0036764668897316
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.9452582448415883,
+      "2": 0.9278880331408527
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.0586479608599828,
+      "2": 1.0823772501461772
+    },
+    "valid_samples_total": 2000,
+    "invalid_lines": 0,
+    "metadata_lines": 1,
+    "receiver_t_us_valid": true,
+    "pc_wall_s_positive": true
+  },
+  "decision": {
+    "session_valid": true,
+    "decision": "PASS",
+    "failures": [],
+    "warnings": []
+  },
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md",
+    "summary_md": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md",
+    "relative_to_session_root": {
+      "raw_csv": "data/raw/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_raw.csv",
+      "session_json": "data/processed/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_session.json",
+      "summary_md": "reports/analysis_outputs/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md"
+    },
+    "artifacts_relative_to_session_root": true,
+    "artifact_paths_exist": {
+      "raw_csv": true,
+      "session_json": true,
+      "summary_md": true
+    }
+  },
+  "artifacts_relative_to_session_root": {
+    "raw_csv": "data/raw/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_raw.csv",
+    "session_json": "data/processed/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_session.json",
+    "summary_md": "reports/analysis_outputs/kx134_dual_live/kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md"
+  },
+  "artifact_paths_exist": {
+    "raw_csv": true,
+    "session_json": true,
+    "summary_md": true
+  }
+}

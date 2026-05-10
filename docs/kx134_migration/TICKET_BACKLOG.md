@@ -18,14 +18,15 @@
 - TICKET 014: COMPLETADO - Precheck de sincronizacion dual KX134 y diagnostico de duplicados.
 - TICKET 015: COMPLETADO - Integrar stream Serial KX134 v3 en la GUI/core sin alterar flujo historico ADXL335.
 - TICKET 016: COMPLETADO - Validacion GUI KX134 con hardware real y exportacion de sesion.
+- TICKET 017: COMPLETADO - Endurecer exportacion KX134, metadata y validadores de sesion.
 
 ## Tickets futuros recomendados
 
-- TICKET 017: Endurecer exportacion KX134, validacion de metadata y preparar integracion visual/profesional.
-- TICKET 018: GUI profesional adaptable.
+- TICKET 018: Rediseno visual profesional y responsive de GUI KX134/ADXL sin empaquetar todavia.
 - TICKET 019: Empaquetado profesional Windows.
 - TICKET 020: Validacion de prototipo.
 - TICKET 021: Criterios para baquelada/PCB.
+- FUTURO: Envio de configuracion `sample_rate_hz` al firmware si se decide implementarlo.
 
 ## Dependencias de trabajo
 
@@ -33,6 +34,7 @@
 - TICKET 014 valido timestamps, campos de identidad y filtro acotado de duplicados en receptor.
 - TICKET 015 agrego parser/core/GUI KX134 separado y replay con log real.
 - TICKET 016 valido captura/exportacion GUI KX134 con hardware real; detecto necesidad de warmup serial al abrir COM4 y `pc_wall_s` de alta resolucion.
+- TICKET 017 endurecio metadata, summary y validador de bundle KX134; los bundles previos pueden quedar como metadata legacy.
 - TICKET 019 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
 
 ## Regla de alcance

@@ -1,0 +1,103 @@
+{
+  "pass": true,
+  "decision": "PASS",
+  "failures": [],
+  "warnings": [],
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_session.json",
+    "summary_md": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_017_export_hardening_20260510_130454\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket017_export_hardening_20260510_130507_summary.md"
+  },
+  "artifact_paths_exist": {
+    "raw_csv": true,
+    "session_json": true,
+    "summary_md": true
+  },
+  "rows_by_sensor": {
+    "1": 1001,
+    "2": 999
+  },
+  "effective_hz_by_sensor": {
+    "1": 100.0,
+    "2": 100.00002004008418
+  },
+  "seq_gaps_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "receiver_timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "duplicate_keys_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "invalid_lines": 0,
+  "pc_wall_s_positive": true,
+  "receiver_t_us_valid": true,
+  "forbidden_fields_detected": false,
+  "csv_header_exact_kx134_v3": true,
+  "metadata_schema_pass": true,
+  "relative_artifacts_pass": true,
+  "csv": {
+    "csv_header_exact_kx134_v3": true,
+    "csv_field_count": 27,
+    "forbidden_fields_detected": false,
+    "forbidden_fields": [],
+    "rows_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "pc_wall_s_positive": true,
+    "receiver_t_us_valid": true,
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    }
+  },
+  "metadata": {
+    "metadata_schema_pass": true,
+    "missing_required_fields": [],
+    "relative_artifacts_pass": true,
+    "firmware_configuration_sent": false,
+    "allowed_sample_rates_hz": [
+      100,
+      200,
+      400,
+      800
+    ]
+  },
+  "summary": {
+    "mentions_sensor_1": true,
+    "mentions_sensor_2": true,
+    "mentions_artifacts": true,
+    "mentions_decision": true
+  }
+}

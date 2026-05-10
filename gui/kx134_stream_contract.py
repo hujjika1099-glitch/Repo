@@ -2,6 +2,13 @@ from __future__ import annotations
 
 
 KX134_PROTOCOL_VERSION = "kx134.v3"
+KX134_SESSION_TYPE = "kx134_dual_live"
+KX134_TOPOLOGY_VERSION = "kx134.dual_sensor_nodes_plus_receiver.v1"
+KX134_TOTAL_ESP32_REQUIRED = 3
+KX134_EXPECTED_RANGE_G = 8
+KX134_DEFAULT_SERIAL_WARMUP_S = 2.0
+KX134_FIRMWARE_CONFIGURATION_SENT = False
+KX134_FIRMWARE_CONFIGURATION_NOTE = "GUI does not configure firmware sample rate yet."
 
 KX134_EXPECTED_HEADER = [
     "protocol_version",
@@ -41,9 +48,12 @@ KX134_FORBIDDEN_FIELDS = [
     "gy_est",
     "gz_est",
     "g_norm_est",
+    "g_norm",
+    "voltage",
     "voltage_x",
     "voltage_y",
     "voltage_z",
+    "millivolts",
     "millivolts_x",
     "millivolts_y",
     "millivolts_z",

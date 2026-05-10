@@ -1,0 +1,134 @@
+{
+  "pass": false,
+  "decision": "FAIL",
+  "failures": [
+    "metadata_missing_required_fields:session_id,session_type,contract_version,created_at_iso,started_at_iso,ended_at_iso,capture_duration_requested_s,capture_duration_actual_s,allowed_sample_rates_hz,expected_range_g,expected_odr_hz,serial_warmup_s,firmware_configuration_sent,topology_version,total_esp32_required,transport,nodes_expected,artifacts_relative_to_session_root,decision",
+    "metadata_bad_contract_version",
+    "metadata_firmware_configuration_sent_not_false",
+    "metadata_bad_allowed_sample_rates",
+    "metadata_missing_node_identity:sensor_1",
+    "metadata_missing_node_identity:sensor_2",
+    "metadata_missing_node_identity:receiver",
+    "metadata_summary_missing:invalid_lines",
+    "metadata_missing_relative_artifacts",
+    "summary_missing:mentions_sensor_1",
+    "summary_missing:mentions_sensor_2",
+    "summary_missing:mentions_artifacts",
+    "summary_missing:mentions_decision"
+  ],
+  "warnings": [
+    "metadata_artifact_paths_exist_missing"
+  ],
+  "artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\raw\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\data\\processed\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_session.json",
+    "summary_md": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_gui_validation\\TICKET_016_hw_capture_20260510_124537\\reports\\analysis_outputs\\kx134_dual_live\\kx134_dual_live_ticket016_hw_gui_20260510_124627_summary.md"
+  },
+  "artifact_paths_exist": {
+    "raw_csv": true,
+    "session_json": true,
+    "summary_md": true
+  },
+  "rows_by_sensor": {
+    "1": 1001,
+    "2": 999
+  },
+  "effective_hz_by_sensor": {
+    "1": 100.0,
+    "2": 100.00002004008418
+  },
+  "seq_gaps_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "receiver_timestamp_errors_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "duplicate_keys_by_sensor": {
+    "1": 0,
+    "2": 0
+  },
+  "invalid_lines": 0,
+  "pc_wall_s_positive": true,
+  "receiver_t_us_valid": true,
+  "forbidden_fields_detected": false,
+  "csv_header_exact_kx134_v3": true,
+  "metadata_schema_pass": false,
+  "relative_artifacts_pass": false,
+  "csv": {
+    "csv_header_exact_kx134_v3": true,
+    "csv_field_count": 27,
+    "forbidden_fields_detected": false,
+    "forbidden_fields": [],
+    "rows_by_sensor": {
+      "1": 1001,
+      "2": 999
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.00002004008418
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "pc_wall_s_positive": true,
+    "receiver_t_us_valid": true,
+    "packet_status_counts": {
+      "OK": 2000
+    },
+    "packet_error_code_counts": {
+      "OK": 2000
+    }
+  },
+  "metadata": {
+    "metadata_schema_pass": false,
+    "missing_required_fields": [
+      "session_id",
+      "session_type",
+      "contract_version",
+      "created_at_iso",
+      "started_at_iso",
+      "ended_at_iso",
+      "capture_duration_requested_s",
+      "capture_duration_actual_s",
+      "allowed_sample_rates_hz",
+      "expected_range_g",
+      "expected_odr_hz",
+      "serial_warmup_s",
+      "firmware_configuration_sent",
+      "topology_version",
+      "total_esp32_required",
+      "transport",
+      "nodes_expected",
+      "artifacts_relative_to_session_root",
+      "decision"
+    ],
+    "relative_artifacts_pass": false,
+    "firmware_configuration_sent": null,
+    "allowed_sample_rates_hz": []
+  },
+  "summary": {
+    "mentions_sensor_1": false,
+    "mentions_sensor_2": false,
+    "mentions_artifacts": false,
+    "mentions_decision": false
+  }
+}
