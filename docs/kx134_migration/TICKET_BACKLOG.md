@@ -16,11 +16,11 @@
 - TICKET 012: COMPLETADO - Capturar MAC de ESP32 receptora KX134 y cerrar node_map.
 - TICKET 013: COMPLETADO - Firmware ESP-NOW KX134 dual: dos nodos sensores hacia receptor Serial.
 - TICKET 014: COMPLETADO - Precheck de sincronizacion dual KX134 y diagnostico de duplicados.
+- TICKET 015: COMPLETADO - Integrar stream Serial KX134 v3 en la GUI/core sin alterar flujo historico ADXL335.
 
 ## Tickets futuros recomendados
 
-- TICKET 015: Integrar stream Serial KX134 v3 en la GUI sin alterar exportacion historica ADXL335.
-- TICKET 016: Exportacion CSV/JSON KX134.
+- TICKET 016: Validacion GUI KX134 con hardware real y exportacion de sesion.
 - TICKET 017: GUI profesional adaptable.
 - TICKET 018: Empaquetado profesional Windows.
 - TICKET 019: Validacion de prototipo.
@@ -30,6 +30,7 @@
 
 - TICKET 013 debe conservar dos ESP32 sensoras y una ESP32 receptora.
 - TICKET 014 valido timestamps, campos de identidad y filtro acotado de duplicados en receptor.
+- TICKET 015 agrego parser/core/GUI KX134 separado y replay con log real; la validacion con hardware real desde GUI queda en TICKET 016.
 - TICKET 018 debe esperar a que la GUI y los nombres finales KX134 esten estabilizados.
 
 ## Regla de alcance

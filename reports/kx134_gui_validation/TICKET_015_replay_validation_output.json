@@ -1,0 +1,73 @@
+{
+  "ticket": "TICKET_015",
+  "log": "C:\\Users\\JOSE DAVID\\Desktop\\-\\Aplicaciones\\UQ_2021_2025\\AYUDA\\Maestria\\Repo\\reports\\kx134_test_runs\\TICKET_014_static_receiver_monitor_20260510_112712.txt",
+  "duration_label": "",
+  "header_seen": false,
+  "invalid_lines": 0,
+  "parse_errors": {},
+  "summary": {
+    "total_samples": 5998,
+    "samples_by_sensor": {
+      "1": 2999,
+      "2": 2999
+    },
+    "seq_gaps_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "receiver_timestamp_errors": 0,
+    "receiver_timestamp_errors_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "effective_hz_by_sensor": {
+      "1": 100.0,
+      "2": 100.0
+    },
+    "packet_status_counts": {
+      "OK": 5998
+    },
+    "packet_error_code_counts": {
+      "OK": 5998
+    },
+    "duplicate_keys_by_sensor": {
+      "1": 0,
+      "2": 0
+    },
+    "forbidden_fields_detected": false,
+    "g_norm_mean_by_sensor": {
+      "1": 1.0033738421244642,
+      "2": 1.002188236885601
+    },
+    "g_norm_min_by_sensor": {
+      "1": 0.9283557932780944,
+      "2": 0.9302948709328672
+    },
+    "g_norm_max_by_sensor": {
+      "1": 1.0853333381104626,
+      "2": 1.0739871298176715
+    }
+  },
+  "csv_exported": true,
+  "metadata_json_exists": true,
+  "summary_exists": true,
+  "export_artifacts": {
+    "raw_csv": "C:\\Users\\JOSE DAVID\\AppData\\Local\\Temp\\kx134_ticket015_replay_2i0l6xzc\\data\\raw\\kx134_dual_live\\ticket015_replay_ticket015_static_replay_20260510_120411_raw.csv",
+    "session_json": "C:\\Users\\JOSE DAVID\\AppData\\Local\\Temp\\kx134_ticket015_replay_2i0l6xzc\\data\\processed\\kx134_dual_live\\ticket015_replay_ticket015_static_replay_20260510_120411_session.json",
+    "summary": "C:\\Users\\JOSE DAVID\\AppData\\Local\\Temp\\kx134_ticket015_replay_2i0l6xzc\\reports\\analysis_outputs\\kx134_dual_live\\ticket015_replay_ticket015_static_replay_20260510_120411_summary.md"
+  },
+  "acceptance": {
+    "both_sensors_present": true,
+    "sensor_1_rows_gt_1000": true,
+    "sensor_2_rows_gt_1000": true,
+    "no_forbidden_fields": true,
+    "csv_exported": true,
+    "metadata_json_exists": true,
+    "summary_exists": true
+  },
+  "ready_for_gui_hardware_validation": true
+}
