@@ -1,0 +1,16 @@
+{
+  "validation_pass": true,
+  "warnings": [
+    "Proteus project files were not provided.",
+    "board_role is PENDING.",
+    "Scale 1:1 is not confirmed.",
+    "Mirror/layer orientation is not confirmed.",
+    "Continuity test is PENDING.",
+    "Pinout is not confirmed."
+  ],
+  "blockers": [],
+  "missing_docs": [],
+  "baquelada_revA_registered": true,
+  "baquelada_revA_accepted_for_prototype_use": false,
+  "pcb_design_authorized": false
+}

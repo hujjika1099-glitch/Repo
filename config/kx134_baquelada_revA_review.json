@@ -1,0 +1,67 @@
+{
+  "review_version": "kx134.baquelada_revA.v1",
+  "status": "under_review",
+  "board_revision": "RevA",
+  "source_tool": "Proteus",
+  "artifacts": {
+    "pdf": "hardware/pcb/baquelada_revA/artifacts/Maestria.PDF",
+    "svg": "hardware/pcb/baquelada_revA/artifacts/Maestria.SVG",
+    "proteus_project": "PENDING"
+  },
+  "declared_dimensions": {
+    "width_mm": 90.49,
+    "height_mm": 44.99,
+    "view_box": "0 0 9049 4499",
+    "source": "SVG"
+  },
+  "board_role": "PENDING",
+  "visual_review": {
+    "status": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "Scale 1:1 has not been physically confirmed.",
+      "Mirror/layer orientation has not been confirmed.",
+      "No visible 3V3/GND/SDA/SCL labels were found in the exported SVG.",
+      "No netlist or DRC report was provided.",
+      "Pinout is not validated.",
+      "Continuity test has not been executed."
+    ]
+  },
+  "pinout_review": {
+    "status": "PENDING",
+    "expected_signals": [
+      "3V3",
+      "GND",
+      "SDA_GPIO21",
+      "SCL_GPIO22"
+    ],
+    "confirmed": false
+  },
+  "continuity_test": {
+    "status": "PENDING",
+    "short_3v3_gnd": "PENDING",
+    "sda_continuity": "PENDING",
+    "scl_continuity": "PENDING",
+    "gnd_continuity": "PENDING",
+    "vcc_continuity": "PENDING"
+  },
+  "scale_and_mirror": {
+    "scale_1_to_1_confirmed": false,
+    "mirror_orientation_confirmed": false
+  },
+  "test_readiness": {
+    "ready_to_power": false,
+    "ready_for_kx134_single_node_test": false,
+    "ready_for_dual_system_test": false
+  },
+  "decision": {
+    "baquelada_revA_registered": true,
+    "baquelada_revA_accepted_for_prototype_use": false,
+    "pcb_design_authorized": false
+  },
+  "notes": [
+    "The RevA board is treated as a physical prototype under review, not as an authorized final PCB.",
+    "No Gerbers or final BOM were generated in this ticket.",
+    "Proteus project files were not provided in this run.",
+    "Board role remains PENDING until the user confirms whether it is for a KX134 sensor node, receiver, or another function."
+  ]
+}
