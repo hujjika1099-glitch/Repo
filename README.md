@@ -1,240 +1,229 @@
-# Proyecto de Maestria: ADXL335 + ESP32
+# Sistema de Captura de Acelerometria KX134
 
-## 1. Estado actual del proyecto
+Repositorio del prototipo KX134 dual para captura de acelerometria en tiempo real.
+El flujo principal actual usa dos sensores SEN-17589/KX134, dos ESP32 sensoras,
+una ESP32 receptora, transporte ESP-NOW, salida Serial USB y una aplicacion
+Windows empaquetada.
 
-Operacion real en curso. El sistema captura aceleracion con dos sensores ADXL335
-conectados a ESP32s en topologia ESP-NOW inalambrica. La aplicacion de escritorio
-(GUI Python) recibe el stream USB, hace precheck de integridad y guarda los datos.
+ADXL335 se conserva como flujo historico/legacy para compatibilidad y consulta,
+pero ya no es la ruta principal de operacion.
 
-**Estado de modulos:**
+## Estado del proyecto
 
-| Sensor   | Estado       | Rol                                    |
-|----------|--------------|----------------------------------------|
-| sensor_B | **Primario** | Uso diario. sensor_id = 1 en stream.   |
-| sensor_A | Backup       | Fallback. sensor_id = 2 en stream.     |
-| sensor_C | Referencia   | Historico/provisional.                 |
-| sensor_D | Descartado   | Fuera de uso.                          |
+El prototipo KX134 dual esta funcionalmente validado y listo para entrega
+tecnica. La documentacion de usuario esta preparada, el ejecutable Windows fue
+generado y probado visualmente, y la sesion controlada de prototipo fue
+aprobada. La PCB/baquelada final no esta autorizada: la baquelada RevA existe
+como artefacto bajo revision y no debe energizarse sin pruebas electricas.
 
----
+| Area | Estado |
+|------|--------|
+| Sensores KX134 | Validado |
+| Calibracion Sensor 1/2 | Validada |
+| ESP-NOW dual | Validado |
+| GUI KX134 | Validada |
+| Graficas live | Validadas |
+| Exportacion KX134 | Validada |
+| Ejecutable Windows | Preparado |
+| QA externo visual | Aprobado |
+| Prototipo | Listo para entrega funcional |
+| PCB final | No autorizada |
 
-## 2. Que hace este repositorio
+## Arquitectura
 
-1. Captura en vivo via GUI Python con graficas en tiempo real.
-2. Precheck dual de integridad antes de aceptar una sesion.
-3. Genera automaticamente `_raw.csv`, `_processed.csv`, `_session.json`,
-   `_summary.txt` y `_precheck.txt` por sesion.
-4. Distribuye la aplicacion como `.exe` standalone (sin instalar Python).
-5. Mantiene firmware ESP32 para el nodo sensor y el receptor USB.
+```mermaid
+flowchart LR
+    S1["Sensor 1 SEN-17589/KX134"] --> E1["ESP32 sensora 1"]
+    S2["Sensor 2 SEN-17589/KX134"] --> E2["ESP32 sensora 2"]
+    E1 -- "ESP-NOW" --> R["ESP32 receptora"]
+    E2 -- "ESP-NOW" --> R
+    R -- "USB Serial 921600" --> GUI["Sistema_Captura_Acelerometria.exe"]
+    GUI --> CSV["CSV KX134 v3"]
+    GUI --> JSON["Session JSON"]
+    GUI --> SUM["Summary MD"]
+    GUI --> PLOTS["Graficas en vivo"]
+```
 
-**Guia de Claude:** ver [`AGENTS.md`](AGENTS.md) para estado completo, convenciones y reglas.
+La PC ejecuta `Sistema_Captura_Acelerometria.exe`. Desde el launcher se puede
+abrir el flujo KX134 dual actual o el flujo ADXL335 historico.
 
----
+## Hardware Validado
 
-## 3. Estructura de carpetas
+| Nodo | Hardware | MAC | Estado |
+|------|----------|-----|--------|
+| Sensor 1 | ESP32 + SEN-17589/KX134 | `D4:E9:F4:E9:8E:1C` | Validado para GUI/export |
+| Sensor 2 | ESP32 + SEN-17589/KX134 | `D4:E9:F4:C3:37:14` | Validado para GUI/export |
+| Receptor | ESP32 receptora ESP-NOW a Serial USB | `00:4B:12:96:9A:80` | Validado para GUI/export |
+
+Configuracion validada:
+
+- `sample_rate_hz`: 100.
+- `odr_hz`: 100.
+- `range_g`: 8.
+- `baudrate`: 921600.
+- Canal ESP-NOW: 1.
+
+## Aplicacion Windows
+
+El producto empaquetado se distribuye como carpeta onedir de PyInstaller:
+
+- Ejecutable: `Sistema_Captura_Acelerometria.exe`.
+- Launcher principal: `gui/app_launcher.py`.
+- Flujo actual: KX134 Dual Capture.
+- Flujo preservado: ADXL335 historico.
+
+El ejecutable y el ZIP de distribucion son artefactos de build locales y no se
+commitean al repositorio.
+
+## Captura y Exportacion
+
+La exportacion KX134 usa contrato CSV v3 y genera:
+
+- CSV raw KX134 v3.
+- Session JSON.
+- Summary MD.
+
+Reglas actuales del CSV KX134:
+
+- No contiene campos `mv_*`.
+- No contiene voltajes ni milivoltios.
+- No contiene columnas ADXL335 estimadas.
+- No contiene `g_norm` como columna CSV.
+- `|g|` puede aparecer solo como visualizacion o resumen, no como columna de
+  datos crudos.
+
+## Graficas En Vivo
+
+La GUI KX134 muestra retroalimentacion durante captura:
+
+- `x_g`, `y_g`, `z_g` por sensor.
+- Comparacion visual de `|g|`.
+- Comparacion del eje seleccionado.
+- Eventos/taps visibles para inspeccion operativa.
+
+La visualizacion no modifica datos crudos ni exportacion.
+
+## Estructura Del Repositorio
 
 ```text
 Repo/
-├── gui/                          # Aplicacion de captura live (Python/Tkinter)
-│   ├── adxl_live_gui.py          #   Punto de entrada y UI
-│   └── adxl_live_core.py         #   Logica de captura, serial, guardado
 ├── firmware/
-│   ├── single_node_calibration/  #   Firmware operativo actual (PlatformIO)
-│   └── dual_node_espnow/         #   Arquitectura ESP-NOW Fase 14B/14C
-├── data/
-│   ├── raw/sensor_B_live/        #   CSVs crudos (NO modificar)
-│   └── processed/                #   CSVs procesados + JSONs de sesion
+│   ├── kx134_dual_espnow/          # Firmware actual KX134 dual + receptor
+│   ├── kx134_single_node_i2c/      # Firmware de bring-up/calibracion KX134
+│   ├── kx134_receiver_identity/    # Identidad MAC de receptor KX134
+│   └── dual_node_espnow/           # Legacy ADXL335/ESP-NOW
+├── gui/
+│   ├── app_launcher.py             # Launcher actual
+│   ├── kx134_live_gui.py           # GUI KX134 actual
+│   └── adxl_live_gui.py            # GUI ADXL335 historica
+├── config/
+│   ├── kx134_node_map.json
+│   ├── kx134_transport_contract_v3.json
+│   └── calibrations/
+├── docs/
+│   ├── kx134_migration/
+│   └── assets/
+├── hardware/
+│   └── pcb/baquelada_revA/
+├── packaging/windows/
 ├── reports/
-│   ├── analysis_outputs/         #   _summary.txt y _precheck.txt por sesion
-│   └── change_log.md             #   Registro tecnico de cambios
-├── live_session_hub/             # Launchers de sesion
-├── scripts/                      # Helpers PowerShell
-├── config/                       # Plantillas de configuracion JSON
-├── matlab/                       # Analisis historico (no es ruta operativa)
-├── docs/                         # Guia maestra LaTeX + PDF
-├── hardware/                     # Pinout y registro de sensores
-├── handoff/                      # Exports de handoff por rol (Fase 14C.1)
-│
-├── adxl_captura.spec             # Spec PyInstaller para compilar el .exe
-├── build_exe.ps1                 # Compila .exe y genera ZIP de distribucion
-├── build_manual_pdf.py           # Genera el manual de usuario PDF
-├── ADXL335_Captura_Manual.pdf    # Manual de usuario (generado)
-├── requirements-gui.txt          # Dependencias Python (pyserial==3.5)
-├── AGENTS.md                     # Guia operativa para Claude
-└── README.md                     # Este archivo
+├── sistema_captura_acelerometria.spec
+├── build_windows_app.ps1
+├── adxl_captura.spec              # Legacy ADXL335
+└── build_exe.ps1                  # Legacy ADXL335
 ```
 
-Carpetas en `.gitignore` (generadas, no commitear):
+## Uso Rapido
 
-```text
-.venv/        # Entorno virtual Python
-dist/         # .exe compilado y ZIP de distribucion
-build_work/   # Artefactos intermedios de PyInstaller
-```
+1. Conectar la ESP32 receptora al PC por USB.
+2. Alimentar Sensor 1 y Sensor 2.
+3. Ejecutar `Sistema_Captura_Acelerometria.exe`.
+4. Abrir KX134 Dual Capture.
+5. Seleccionar el puerto COM del receptor.
+6. Confirmar baudrate `921600`.
+7. Definir la duracion.
+8. Usar frecuencia esperada `100 Hz` para la configuracion validada.
+9. Iniciar captura.
+10. Revisar CSV, JSON y summary exportados.
 
----
+## Desarrollo
 
-## 4. Requisitos
-
-- Windows 10/11 de 64 bits + PowerShell.
-- Python 3.10+ con `tkinter` (para desarrollo; no necesario para el `.exe`).
-- ESP32 con firmware de `firmware/single_node_calibration/`.
-- ADXL335 cableado:
-
-  | Pin ADXL335 | Pin ESP32 |
-  |-------------|-----------|
-  | VCC         | 3V3       |
-  | GND         | GND       |
-  | X-OUT       | GPIO32    |
-  | Y-OUT       | GPIO33    |
-  | Z-OUT       | GPIO34    |
-  | ST          | GPIO23 (solo diagnostico) |
-
----
-
-## 5. Uso rapido — ejecutable standalone
-
-La forma mas facil de usar el sistema sin instalar nada:
-
-1. Descargar `dist/ADXL335_Captura_dist.zip` y extraer en cualquier carpeta.
-2. Conectar la ESP32 por USB.
-3. Ejecutar `ADXL335_Captura.exe`.
-4. La app detecta el puerto automaticamente, hace el precheck y captura.
-
-Los datos se guardan junto al `.exe`:
-
-```text
-data\raw\sensor_B_live\    ← CSVs crudos
-data\processed\            ← CSVs procesados + JSONs
-reports\analysis_outputs\  ← Resumenes y reportes de precheck
-```
-
-Ver `ADXL335_Captura_Manual.pdf` para la descripcion completa de la interfaz
-y el significado de cada campo en los archivos exportados.
-
----
-
-## 6. Uso en desarrollo — GUI desde el repo
-
-Instalar dependencias (una sola vez):
+Pruebas Python:
 
 ```powershell
-.\scripts\install_gui_requirements.ps1
+python -m unittest discover -s tests -p "test_kx134*.py"
+python -m unittest discover -s tests -p "test_app_launcher*.py"
 ```
 
-Lanzar la GUI:
+Compilar GUI y herramientas principales:
 
 ```powershell
-.\live_session_hub\sensorB_live_gui_session.ps1
+python -m py_compile gui\kx134_live_gui.py gui\app_launcher.py gui\adxl_live_gui.py
 ```
 
-O con parametros:
+Build Windows actual:
 
 ```powershell
-.venv\Scripts\python.exe gui\adxl_live_gui.py `
-    --duration-s 30 `
-    --session-name ensayo1 `
-    --port COM4
+powershell -ExecutionPolicy Bypass -File .\build_windows_app.ps1 -RunSmoke
 ```
 
----
-
-## 7. Compilar el ejecutable
+Validadores utiles:
 
 ```powershell
-.\build_exe.ps1
+python tools\kx134\validate_kx134_export_bundle.py --help
+python tools\kx134\validate_prototype_session.py --help
+python tools\kx134\validate_repository_readiness.py --help
 ```
 
-Instala PyInstaller si falta, compila `dist\ADXL335_Captura.exe` y genera
-`dist\ADXL335_Captura_dist.zip` listo para distribuir.
-
----
-
-## 8. Generar el manual PDF
+PlatformIO KX134:
 
 ```powershell
-.venv\Scripts\pip install fpdf2
-.venv\Scripts\python.exe build_manual_pdf.py
+$env:PLATFORMIO_EXE="$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
+& $env:PLATFORMIO_EXE run -d .\firmware\kx134_dual_espnow
 ```
 
-Genera `ADXL335_Captura_Manual.pdf` en la raiz del repo.
+No cargar firmware ni cambiar parametros de captura sin un ticket explicito.
 
----
+## Documentacion Principal
 
-## 9. Firmware ESP32
+| Documento | Uso |
+|-----------|-----|
+| [docs/README.md](docs/README.md) | Indice general del repositorio |
+| [docs/kx134_migration/INDEX.md](docs/kx134_migration/INDEX.md) | Indice tecnico KX134 |
+| [Guia rapida cliente](docs/kx134_migration/client/QUICK_START_GUIDE.md) | Operacion inicial del prototipo |
+| [Manual usuario](docs/kx134_migration/client/USER_MANUAL_KX134_PROTOTYPE.md) | Uso completo del prototipo |
+| [Paquete de entrega](docs/kx134_migration/PROTOTYPE_DELIVERY_PACKAGE.md) | Estado de entrega tecnica |
+| [Matriz de evidencias](docs/kx134_migration/VALIDATION_EVIDENCE_MATRIX.md) | Evidencia por ticket |
+| [Criterios PCB](docs/kx134_migration/PCB_BAQUELADA_CRITERIA.md) | Condiciones antes de PCB |
+| [Revision baquelada RevA](hardware/pcb/baquelada_revA/BAQUELADA_REVA_REVIEW.md) | Estado RevA Proteus |
+| [Empaquetado Windows](docs/kx134_migration/WINDOWS_PACKAGING_KX134.md) | Build del ejecutable |
+| [Troubleshooting cliente](docs/kx134_migration/client/TROUBLESHOOTING_GUIDE.md) | Diagnostico operativo |
 
-Build:
+## Estado PCB/Baquelada
 
-```powershell
-$env:PLATFORMIO_EXE = "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe"
-& $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration
-```
+- Baquelada RevA registrada desde Proteus.
+- Estado RevA: `under_review`.
+- Aceptada para uso de prototipo: NO.
+- PCB final autorizada: NO.
+- Decision textual: PCB final no autorizada.
+- No energizar RevA sin pruebas de continuidad, escala, mirror, shorts y
+  power-on controlado.
 
-Upload (puede requerir mantener BOOT presionado):
+## Pendientes Conocidos
 
-```powershell
-& $env:PLATFORMIO_EXE run -d .\firmware\single_node_calibration -t upload
-```
+- Icono corporativo.
+- Firma digital del ejecutable.
+- Validacion visual en scaling Windows 125/150.
+- Configuracion remota `sample_rate_hz` desde GUI hacia firmware.
+- Pruebas electricas de baquelada RevA.
+- Cierre de decisiones fisicas para PCB: alimentacion, conectores, longitudes,
+  montaje, orientacion y ubicaciones finales.
 
----
+## Reglas De Repositorio
 
-## 10. Flujo de datos y archivos exportados
-
-```text
-ESP32 (firmware)
-    │  serial USB 115200 baud
-    ▼
-GUI Python (adxl_live_gui.py)
-    │  precheck dual 10 s → rechaza si falla
-    │  captura 10-90 s
-    ▼
-Archivos por sesion:
-    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_raw.csv
-    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_processed.csv
-    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_session.json
-    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_summary.txt
-    {prefijo}_{sesion}_{AAAAMMDD}_{HHMMSS}_precheck.txt
-```
-
-Campos del CSV procesado:
-
-```text
-sensor_id, seq, t_us, wall_s, raw_x, raw_y, raw_z,
-mv_x, mv_y, mv_z, gx_est, gy_est, gz_est, g_norm_est
-```
-
-Ver `ADXL335_Captura_Manual.pdf` para descripcion completa de cada campo.
-
----
-
-## 11. Reglas de calidad rapidas
-
-Una captura es util si cumple:
-
-- `SEQ_JUMPS = 0` (o muy pocos saltos de secuencia)
-- `95 <= FREQ_HZ <= 105` Hz por sensor
-- `SAT_PCT_ANY_AXIS <= 1.0 %`
-
-Si no cumple: revisar cableado, cerrar monitores seriales externos y repetir.
-
----
-
-## 12. Fallback operativo
-
-Si `sensor_B` falla sanidad en dos corridas cortas consecutivas:
-
-1. Cambiar temporalmente a `sensor_A` (mismo flujo de captura).
-2. Registrar el incidente en `reports/analysis_outputs/`.
-3. Investigar la causa antes de volver a `sensor_B`.
-
----
-
-## 13. Documentacion adicional
-
-| Documento | Descripcion |
-|-----------|-------------|
-| `AGENTS.md` | Guia completa para Claude: estado, convenciones, formatos |
-| `ADXL335_Captura_Manual.pdf` | Manual de usuario del .exe |
-| `docs/project_master_guide_adxl335_esp32.pdf` | Guia tecnica maestra del proyecto |
-| `reports/change_log.md` | Registro cronologico de todos los cambios |
-| `reports/gui_live_runtime_migration_20260412.md` | Reporte de migracion MATLAB→GUI |
-| `reports/repository_sync_status_20260508.md` | Auditoria local/remoto, remoto correcto y cierre de sincronizacion Git |
+- No commitear `dist/`, `build_work/`, `.venv/`, `.exe` ni `.zip`.
+- No commitear data runtime generada por capturas.
+- No modificar calibraciones sin ticket.
+- No cambiar `range_g` sin recalibrar.
+- No declarar PCB autorizada sin evidencia fisica y mecanica cerrada.
+- Registrar cambios relevantes en `reports/change_log.md`.

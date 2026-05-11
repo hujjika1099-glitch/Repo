@@ -1,0 +1,1061 @@
+{
+  "pass": true,
+  "failures": [],
+  "warnings": [
+    "GUI screenshots are pending; textual docs and diagrams remain complete.",
+    "Stale/legacy reference scan found entries; allowed entries must remain explicitly legacy or forbidden-field context."
+  ],
+  "stale_reference_findings": [
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 52,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "| `firmware/dual_node_espnow/include/transport_packet.h` | Contrato ESP-NOW fija header ADXL con `mv_x/mv_y/mv_z`. | `firmware/dual_node_espnow/include/transport_packet.h:9-13` | Contrato de paquete incompatible con regl"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 52,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "| `firmware/dual_node_espnow/include/transport_packet.h` | Contrato ESP-NOW fija header ADXL con `mv_x/mv_y/mv_z`. | `firmware/dual_node_espnow/include/transport_packet.h:9-13` | Contrato de paquete incompatible con regl"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 52,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "| `firmware/dual_node_espnow/include/transport_packet.h` | Contrato ESP-NOW fija header ADXL con `mv_x/mv_y/mv_z`. | `firmware/dual_node_espnow/include/transport_packet.h:9-13` | Contrato de paquete incompatible con regl"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 55,
+      "pattern": "sensor_B",
+      "allowed_context": false,
+      "text": "| `firmware/dual_node_espnow/include/transport_config.h` | Identidad manual: `kSensorId = 1`, `sensor_B`; segundo transmisor debe editarse a 2. | `firmware/dual_node_espnow/include/transport_config.h:13-19` | Riesgo alto"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 69,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- Single-node serial: `seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 69,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- Single-node serial: `seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 69,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- Single-node serial: `seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 70,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- Dual ESP-NOW header: `sensor_id,seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 70,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- Dual ESP-NOW header: `sensor_id,seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 70,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- Dual ESP-NOW header: `sensor_id,seq,t_us,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 72,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- CSV raw de GUI: `sensor_id,seq,t_us,wall_s,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 72,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- CSV raw de GUI: `sensor_id,seq,t_us,wall_s,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 72,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- CSV raw de GUI: `sensor_id,seq,t_us,wall_s,raw_x,raw_y,raw_z,mv_x,mv_y,mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 73,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- CSV processed de GUI: raw + `gx_est,gy_est,gz_est,g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 73,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- CSV processed de GUI: raw + `gx_est,gy_est,gz_est,g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 73,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- CSV processed de GUI: raw + `gx_est,gy_est,gz_est,g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 73,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- CSV processed de GUI: raw + `gx_est,gy_est,gz_est,g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 82,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "| `mv_x`, `mv_y`, `mv_z` | Incompatible, requiere eliminacion | `gui/adxl_live_core.py:64-76`, `1279-1298` | KX134 no debe exportar voltajes ni milivoltios. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 82,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "| `mv_x`, `mv_y`, `mv_z` | Incompatible, requiere eliminacion | `gui/adxl_live_core.py:64-76`, `1279-1298` | KX134 no debe exportar voltajes ni milivoltios. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 82,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "| `mv_x`, `mv_y`, `mv_z` | Incompatible, requiere eliminacion | `gui/adxl_live_core.py:64-76`, `1279-1298` | KX134 no debe exportar voltajes ni milivoltios. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 83,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "| `gx_est`, `gy_est`, `gz_est` | Requiere renombrado/revision | `gui/adxl_live_core.py:78-87`, `1309-1315` | Futuro: `x_g/y_g/z_g`, conversion basica desde KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 83,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "| `gx_est`, `gy_est`, `gz_est` | Requiere renombrado/revision | `gui/adxl_live_core.py:78-87`, `1309-1315` | Futuro: `x_g/y_g/z_g`, conversion basica desde KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 83,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "| `gx_est`, `gy_est`, `gz_est` | Requiere renombrado/revision | `gui/adxl_live_core.py:78-87`, `1309-1315` | Futuro: `x_g/y_g/z_g`, conversion basica desde KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 84,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "| `g_norm_est` | Requiere revision | `gui/adxl_live_core.py:78-87` | Puede servir a precheck, pero no es requisito de exportacion KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 102,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "| `gui/adxl_live_core.py` | Modelo `Sample` depende de `mv_x/y/z` y `gx_est`. | `gui/adxl_live_core.py:47-88` | Alta: contrato incompatible. | Definir modelo KX134 con raw digital y g basico. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 102,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "| `gui/adxl_live_core.py` | Modelo `Sample` depende de `mv_x/y/z` y `gx_est`. | `gui/adxl_live_core.py:47-88` | Alta: contrato incompatible. | Definir modelo KX134 con raw digital y g basico. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 116,
+      "pattern": "sensor_B",
+      "allowed_context": false,
+      "text": "- Raw: `data/raw/sensor_B_live/*_raw.csv`."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 123,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "`wall_s`, `raw_x/y/z` y `mv_x/y/z` (`gui/adxl_live_core.py:64-76`). El processed agrega"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 124,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "`gx_est/gy_est/gz_est/g_norm_est` (`gui/adxl_live_core.py:78-87`). El session JSON guarda"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 124,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "`gx_est/gy_est/gz_est/g_norm_est` (`gui/adxl_live_core.py:78-87`). El session JSON guarda"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 124,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "`gx_est/gy_est/gz_est/g_norm_est` (`gui/adxl_live_core.py:78-87`). El session JSON guarda"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 124,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "`gx_est/gy_est/gz_est/g_norm_est` (`gui/adxl_live_core.py:78-87`). El session JSON guarda"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 163,
+      "pattern": "ADXL335_Captura.exe",
+      "allowed_context": false,
+      "text": "`ADXL335_Captura.exe` (`adxl_captura.spec:1-7`)."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 168,
+      "pattern": "ADXL335_Captura.exe",
+      "allowed_context": false,
+      "text": "- `build_exe.ps1` genera `dist/ADXL335_Captura.exe` y"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 169,
+      "pattern": "ADXL335_Captura_dist.zip",
+      "allowed_context": false,
+      "text": "`dist/ADXL335_Captura_dist.zip` (`build_exe.ps1:1-31`, `68-85`)."
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 183,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "| 3 | Persistencia de `mv_x/mv_y/mv_z`. | Alta | Exportacion incompatible con KX134. | Eliminar campos de firmware, GUI y CSV KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 183,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "| 3 | Persistencia de `mv_x/mv_y/mv_z`. | Alta | Exportacion incompatible con KX134. | Eliminar campos de firmware, GUI y CSV KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 183,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "| 3 | Persistencia de `mv_x/mv_y/mv_z`. | Alta | Exportacion incompatible con KX134. | Eliminar campos de firmware, GUI y CSV KX134. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/audits/TICKET_002_REPO_AUDIT.md",
+      "line": 251,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "| `rg -n \"raw_x|raw_y|raw_z|mv_x|mv_y|mv_z|gx_est|gy_est|gz_est|g_norm|sensor_id|seq|t_us\" firmware gui config scripts docs reports` | Contrato actual raw/mV/g_est localizado en firmware y GUI. |"
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 51,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "- No deben aparecer campos ADXL335/mV: `mv_x`, `mv_y`, `mv_z`, `gx_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 51,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "- No deben aparecer campos ADXL335/mV: `mv_x`, `mv_y`, `mv_z`, `gx_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 51,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "- No deben aparecer campos ADXL335/mV: `mv_x`, `mv_y`, `mv_z`, `gx_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 51,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "- No deben aparecer campos ADXL335/mV: `mv_x`, `mv_y`, `mv_z`, `gx_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 52,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "`gy_est`, `gz_est`, `g_norm_est` ni variantes de voltage/millivolts."
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 52,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "`gy_est`, `gz_est`, `g_norm_est` ni variantes de voltage/millivolts."
+    },
+    {
+      "file": "docs/kx134_migration/CALIBRATION_PROCEDURE_SENSOR1.md",
+      "line": 52,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "`gy_est`, `gz_est`, `g_norm_est` ni variantes de voltage/millivolts."
+    },
+    {
+      "file": "docs/kx134_migration/client/LIMITATIONS_AND_WARNINGS.md",
+      "line": 39,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "- No deben aparecer `mv_*`, voltajes, `gx_est/gy_est/gz_est` ni `g_norm` como columnas KX134."
+    },
+    {
+      "file": "docs/kx134_migration/client/LIMITATIONS_AND_WARNINGS.md",
+      "line": 39,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "- No deben aparecer `mv_*`, voltajes, `gx_est/gy_est/gz_est` ni `g_norm` como columnas KX134."
+    },
+    {
+      "file": "docs/kx134_migration/client/LIMITATIONS_AND_WARNINGS.md",
+      "line": 39,
+      "pattern": "gz_est",
+      "allowed_context": true,
+      "text": "- No deben aparecer `mv_*`, voltajes, `gx_est/gy_est/gz_est` ni `g_norm` como columnas KX134."
+    },
+    {
+      "file": "docs/kx134_migration/client/OUTPUT_FILES_REFERENCE.md",
+      "line": 54,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`."
+    },
+    {
+      "file": "docs/kx134_migration/client/OUTPUT_FILES_REFERENCE.md",
+      "line": 54,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`."
+    },
+    {
+      "file": "docs/kx134_migration/client/OUTPUT_FILES_REFERENCE.md",
+      "line": 54,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`."
+    },
+    {
+      "file": "docs/kx134_migration/client/OUTPUT_FILES_REFERENCE.md",
+      "line": 56,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 32,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "Para KX134 no se deben usar voltajes ni milivoltios. El flujo KX134 debe entregar cuentas crudas digitales por eje y una conversion basica a g. Los campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` deben retirarse del fl"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 32,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "Para KX134 no se deben usar voltajes ni milivoltios. El flujo KX134 debe entregar cuentas crudas digitales por eje y una conversion basica a g. Los campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` deben retirarse del fl"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 32,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "Para KX134 no se deben usar voltajes ni milivoltios. El flujo KX134 debe entregar cuentas crudas digitales por eje y una conversion basica a g. Los campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` deben retirarse del fl"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 32,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "Para KX134 no se deben usar voltajes ni milivoltios. El flujo KX134 debe entregar cuentas crudas digitales por eje y una conversion basica a g. Los campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` deben retirarse del fl"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "gz_est",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 82,
+      "pattern": "g_norm_est",
+      "allowed_context": true,
+      "text": "Este encabezado no debe mezclarse con encabezados ADXL335. No se permite `mv_x/mv_y/mv_z`. No se permite `gx_est/gy_est/gz_est/g_norm_est`. La GUI futura debe rechazar o marcar invalidos los streams que no cumplan el con"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 150,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- `mv_x`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 151,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- `mv_y`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 152,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 153,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- `gx_est`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 154,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- `gy_est`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 155,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- `gz_est`"
+    },
+    {
+      "file": "docs/kx134_migration/DATA_CONTRACT_V3.md",
+      "line": 156,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- `g_norm_est`"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 108,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "- ausencia de campos ADXL335 prohibidos: `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 108,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "- ausencia de campos ADXL335 prohibidos: `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 108,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "- ausencia de campos ADXL335 prohibidos: `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 108,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "- ausencia de campos ADXL335 prohibidos: `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 108,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "- ausencia de campos ADXL335 prohibidos: `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 109,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "`gz_est`, `g_norm_est`, `voltage`, `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/DUAL_SYNC_PRECHECK_KX134.md",
+      "line": 109,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "`gz_est`, `g_norm_est`, `voltage`, `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/EXTERNAL_PC_QA_CHECKLIST.md",
+      "line": 67,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`;"
+    },
+    {
+      "file": "docs/kx134_migration/EXTERNAL_PC_QA_CHECKLIST.md",
+      "line": 67,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`;"
+    },
+    {
+      "file": "docs/kx134_migration/EXTERNAL_PC_QA_CHECKLIST.md",
+      "line": 67,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- `gx_est/gy_est/gz_est`;"
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 102,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "10. Confirmar que no aparecen `mv_x/mv_y/mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 102,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "10. Confirmar que no aparecen `mv_x/mv_y/mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 102,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "10. Confirmar que no aparecen `mv_x/mv_y/mv_z`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 103,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "11. Confirmar que no aparecen `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 103,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "11. Confirmar que no aparecen `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 103,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "11. Confirmar que no aparecen `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 103,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "11. Confirmar que no aparecen `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 50,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "- CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est`, `g_norm_est`, `voltage` ni `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 50,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "- CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est`, `g_norm_est`, `voltage` ni `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 50,
+      "pattern": "gz_est",
+      "allowed_context": true,
+      "text": "- CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est`, `g_norm_est`, `voltage` ni `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 50,
+      "pattern": "g_norm_est",
+      "allowed_context": true,
+      "text": "- CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est`, `g_norm_est`, `voltage` ni `millivolts`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_LIVE_PLOTS.md",
+      "line": 14,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "`|g|` se calcula solo para visualizacion como `sqrt(x_g^2 + y_g^2 + z_g^2)`. No se exporta como columna CSV, no se llama `g_norm_est` y no participa en analisis profundo."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_LIVE_PLOTS.md",
+      "line": 31,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- Las graficas no agregan `g_norm`, `g_norm_est`, `mv_*`, voltajes ni milivoltios al CSV."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 18,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "ADXL335 es analogico y su flujo historico usa `mv_x`, `mv_y`, `mv_z` y columnas"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 18,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "ADXL335 es analogico y su flujo historico usa `mv_x`, `mv_y`, `mv_z` y columnas"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 18,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "ADXL335 es analogico y su flujo historico usa `mv_x`, `mv_y`, `mv_z` y columnas"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 19,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "estimadas `gx_est`, `gy_est`, `gz_est`, `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 19,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "estimadas `gx_est`, `gy_est`, `gz_est`, `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 19,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "estimadas `gx_est`, `gy_est`, `gz_est`, `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 19,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "estimadas `gx_est`, `gy_est`, `gz_est`, `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 29,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "En modo KX134 no se acepta ni se exporta `mv_*`, `gx_est`, `gy_est`, `gz_est` ni"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 29,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "En modo KX134 no se acepta ni se exporta `mv_*`, `gx_est`, `gy_est`, `gz_est` ni"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 29,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "En modo KX134 no se acepta ni se exporta `mv_*`, `gx_est`, `gy_est`, `gz_est` ni"
+    },
+    {
+      "file": "docs/kx134_migration/GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 30,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "`g_norm_est`. La norma g puede calcularse solo para resumen interno."
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 31,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- `mv_x`, `mv_y`, `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 31,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- `mv_x`, `mv_y`, `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 31,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- `mv_x`, `mv_y`, `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 32,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- `gx_est`, `gy_est`, `gz_est`, `g_norm_est`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 32,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- `gx_est`, `gy_est`, `gz_est`, `g_norm_est`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 32,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- `gx_est`, `gy_est`, `gz_est`, `g_norm_est`"
+    },
+    {
+      "file": "docs/kx134_migration/KX134_EXPORT_METADATA_HARDENING.md",
+      "line": 32,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- `gx_est`, `gy_est`, `gz_est`, `g_norm_est`"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 20,
+      "pattern": "mv_x",
+      "allowed_context": true,
+      "text": "Campos ADXL335 historicos como `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 20,
+      "pattern": "mv_y",
+      "allowed_context": true,
+      "text": "Campos ADXL335 historicos como `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 20,
+      "pattern": "mv_z",
+      "allowed_context": true,
+      "text": "Campos ADXL335 historicos como `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 20,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "Campos ADXL335 historicos como `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 20,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "Campos ADXL335 historicos como `mv_x`, `mv_y`, `mv_z`, `gx_est`, `gy_est`,"
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 21,
+      "pattern": "gz_est",
+      "allowed_context": true,
+      "text": "`gz_est` y `g_norm_est` no son columnas actuales del CSV KX134."
+    },
+    {
+      "file": "docs/kx134_migration/LEGACY_ADXL335_NOTES.md",
+      "line": 21,
+      "pattern": "g_norm_est",
+      "allowed_context": true,
+      "text": "`gz_est` y `g_norm_est` no son columnas actuales del CSV KX134."
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 17,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "mV (`mv_x`, `mv_y`, `mv_z`)."
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 17,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "mV (`mv_x`, `mv_y`, `mv_z`)."
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 17,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "mV (`mv_x`, `mv_y`, `mv_z`)."
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 27,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- No `mv_x`"
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 28,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- No `mv_y`"
+    },
+    {
+      "file": "docs/kx134_migration/README.md",
+      "line": 29,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- No `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/REQUIREMENTS_BASELINE.md",
+      "line": 38,
+      "pattern": "mv_x",
+      "allowed_context": false,
+      "text": "- No `mv_x`"
+    },
+    {
+      "file": "docs/kx134_migration/REQUIREMENTS_BASELINE.md",
+      "line": 39,
+      "pattern": "mv_y",
+      "allowed_context": false,
+      "text": "- No `mv_y`"
+    },
+    {
+      "file": "docs/kx134_migration/REQUIREMENTS_BASELINE.md",
+      "line": 40,
+      "pattern": "mv_z",
+      "allowed_context": false,
+      "text": "- No `mv_z`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_006_FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 53,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- El firmware no imprime `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_006_FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 53,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- El firmware no imprime `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_006_FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 53,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- El firmware no imprime `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_006_FIRMWARE_SINGLE_NODE_KX134_I2C.md",
+      "line": 53,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- El firmware no imprime `gx_est/gy_est/gz_est/g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_015_GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 66,
+      "pattern": "gx_est",
+      "allowed_context": false,
+      "text": "- Campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` rechazados."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_015_GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 66,
+      "pattern": "gy_est",
+      "allowed_context": false,
+      "text": "- Campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` rechazados."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_015_GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 66,
+      "pattern": "gz_est",
+      "allowed_context": false,
+      "text": "- Campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` rechazados."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_015_GUI_KX134_STREAM_INTEGRATION.md",
+      "line": 66,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- Campos `mv_*` y `gx_est/gy_est/gz_est/g_norm_est` rechazados."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_016_GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 72,
+      "pattern": "gx_est",
+      "allowed_context": true,
+      "text": "- El CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est` ni `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_016_GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 72,
+      "pattern": "gy_est",
+      "allowed_context": true,
+      "text": "- El CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est` ni `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_016_GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 72,
+      "pattern": "gz_est",
+      "allowed_context": true,
+      "text": "- El CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est` ni `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_016_GUI_KX134_HARDWARE_VALIDATION.md",
+      "line": 72,
+      "pattern": "g_norm_est",
+      "allowed_context": true,
+      "text": "- El CSV no contiene `mv_*`, `gx_est`, `gy_est`, `gz_est` ni `g_norm_est`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_019_GUI_KX134_LIVE_PLOTS.md",
+      "line": 22,
+      "pattern": "g_norm_est",
+      "allowed_context": false,
+      "text": "- No se agregan `g_norm`, `g_norm_est`, `mv_*`, voltajes ni milivoltios al CSV."
+    }
+  ],
+  "docs_present": {
+    "docs/README.md": true,
+    "docs/assets/README.md": true,
+    "docs/assets/diagrams/kx134_architecture.md": true,
+    "docs/assets/diagrams/kx134_export_flow.md": true,
+    "docs/assets/diagrams/repository_structure.md": true,
+    "docs/kx134_migration/INDEX.md": true,
+    "docs/kx134_migration/REPOSITORY_STATUS.md": true,
+    "docs/kx134_migration/ARCHITECTURE_OVERVIEW.md": true,
+    "docs/kx134_migration/OPERATIONS_OVERVIEW.md": true,
+    "docs/kx134_migration/DEVELOPMENT_GUIDE.md": true,
+    "docs/kx134_migration/VALIDATION_SUMMARY.md": true,
+    "docs/kx134_migration/LEGACY_ADXL335_NOTES.md": true,
+    "docs/kx134_migration/REPOSITORY_MAINTENANCE.md": true,
+    "docs/kx134_migration/client/QUICK_START_GUIDE.md": true,
+    "docs/kx134_migration/client/USER_MANUAL_KX134_PROTOTYPE.md": true
+  },
+  "screenshots_present": [],
+  "git_hygiene_pass": true,
+  "forbidden_tracked": [],
+  "node_map_pass": true,
+  "node_map_checks": {
+    "prototype_delivery_package_ready": true,
+    "client_user_docs_ready": true,
+    "pcb_design_authorized": true,
+    "baquelada_revA_registered": true,
+    "baquelada_revA_status": true
+  },
+  "recommendation": "REPOSITORY_PRODUCTION_READY=YES_WITH_SCREENSHOTS_PENDING"
+}

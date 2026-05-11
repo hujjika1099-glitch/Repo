@@ -28,6 +28,7 @@
 - TICKET 024: COMPLETADO - Documentacion de usuario/cliente y guia de operacion.
 - TICKET 025: COMPLETADO DOCUMENTALMENTE - Definicion fisica para PCB/baquelada; PCB sigue bloqueada por decisiones fisicas pendientes.
 - TICKET 026: COMPLETADO - Registrar y auditar baquela/PCB RevA antes de pruebas electricas.
+- TICKET 027: COMPLETADO - Limpieza, documentacion profesional y readiness de repositorio KX134; screenshots GUI quedan pendientes como mejora no bloqueante.
 
 ## Tickets en curso o pendientes
 
@@ -35,7 +36,8 @@
 
 ## Tickets futuros recomendados
 
-- TICKET 027: Prueba electrica de baquelada RevA: continuidad, shorts, escala/mirror y power-on sin sensor.
+- TICKET 028: Cierre fisico de baquelada RevA por experto y registro de resultados: continuidad, shorts, escala/mirror y power-on sin sensor.
+- TICKET 028 opcional: icono corporativo, firma digital y QA visual scaling Windows 125/150.
 - FUTURO: Cierre de decisiones fisicas pendientes para PCB o reunion/levantamiento fisico con cliente.
 - FUTURO: Especificacion de PCB/baquelada final cuando se cierren decisiones fisicas.
 - FUTURO: Icono corporativo y firma digital si se requiere.
@@ -59,6 +61,7 @@
 - TICKET 024 agrega documentacion cliente para instalacion Windows, conexion hardware, operacion KX134, graficas live, exportacion CSV/JSON/summary, troubleshooting, manifiesto, checklists y limitaciones. La decision queda `CLIENT_USER_DOCS_READY=YES`, manteniendo `PCB_DESIGN_AUTHORIZED=NO`.
 - TICKET 025 crea formulario, especificacion fisica preliminar, matriz de decisiones, checklist de riesgos, pre-design review, JSON documental y validador para decisiones fisicas PCB. Como no hay respuestas cerradas para alimentacion, conectores, cableado, montaje, orientacion, ubicacion y ambiente, queda `PCB_PHYSICAL_DECISIONS_COMPLETE=NO` y `PCB_DESIGN_AUTHORIZED=NO`.
 - TICKET 026 registra la baquelada RevA creada externamente en Proteus con artefactos `Maestria.PDF` y `Maestria.SVG`, detecta dimensiones SVG `90.49 mm x 44.99 mm`, documenta revision visual `PASS_WITH_WARNINGS`, checklist de continuidad, pinout pendiente y plan de prueba. El usuario confirma que la RevA es para nodos sensores KX134 y se repite para Sensor 1/Sensor 2; el receptor no lleva baquela porque va directo al PC. La RevA queda `under_review`, no aceptada aun para uso de prototipo y `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 027 profesionaliza README, AGENTS, indices tecnicos, diagramas, mantenimiento, estado del repositorio y validador documental. El sistema principal queda documentado como KX134 dual; ADXL335 queda preservado como legacy. La baquelada RevA sigue bajo responsabilidad experta para pruebas fisicas/electricas posteriores; `PCB_DESIGN_AUTHORIZED=NO`.
 
 ## Regla de alcance
 

@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "prototype_ready_baquelada_reva_under_review_pcb_not_authorized",
+  "status": "repository_production_ready_prototype_ready_pcb_not_authorized",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -102,5 +102,7 @@
   "last_pcb_physical_definition_report": "reports/prototype_validation/TICKET_025_PCB_PHYSICAL_DEFINITION_SUMMARY.md",
   "baquelada_revA_registered": true,
   "baquelada_revA_status": "under_review",
-  "last_baquelada_revA_review_report": "reports/prototype_validation/TICKET_026_BAQUELADA_REVA_REVIEW_SUMMARY.md"
+  "last_baquelada_revA_review_report": "reports/prototype_validation/TICKET_026_BAQUELADA_REVA_REVIEW_SUMMARY.md",
+  "repository_production_ready": true,
+  "last_repository_readiness_report": "reports/repository_health/TICKET_027_REPOSITORY_PRODUCTION_READINESS_SUMMARY.md"
 }
