@@ -39,7 +39,7 @@
 - Receptor.
 - Cables.
 - Indicacion de puerto COM cuando se conecte.
-- Nota de que la PCB no autorizada sigue pendiente.
+- Nota de que la baquelada RevA funcional esta aceptada para uso de prototipo.
 
 ## Entrega digital al cliente
 

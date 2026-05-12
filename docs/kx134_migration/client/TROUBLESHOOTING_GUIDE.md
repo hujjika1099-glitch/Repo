@@ -91,7 +91,7 @@ Copie:
 
 ## Estado PCB
 
-La PCB no autorizada permanece bloqueada por decisiones fisicas/mecanicas.
+La baquelada RevA funcional esta aceptada para uso de prototipo. Si se reemplaza hardware, sensor o ESP32, debe actualizarse `node_map` y recalibrar segun corresponda.
 
 ## Cierre Final TICKET 028
 

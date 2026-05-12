@@ -42,7 +42,7 @@ El prototipo KX134 dual esta listo para entrega funcional.
 ## Advertencias
 
 - Sensor 1 tuvo 2 `seq_gaps` en la sesion controlada de 60 s; advertencia no bloqueante.
-- PCB no autorizada hasta cerrar decisiones fisicas/mecanicas.
+- RevA funcional aceptada para prototipo; produccion industrial repetible requiere DFM/BOM/Gerbers/QA si se solicita.
 - Icono corporativo pendiente.
 - Firma digital pendiente.
 - Scaling Windows 125/150 pendiente.

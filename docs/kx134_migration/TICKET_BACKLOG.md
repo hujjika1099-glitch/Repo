@@ -26,10 +26,11 @@
 - TICKET 022: COMPLETADO - Validacion de prototipo con sesion controlada y criterios para entrega/baquelada.
 - TICKET 023: COMPLETADO - Consolidar entrega tecnica del prototipo y documentacion final para cliente.
 - TICKET 024: COMPLETADO - Documentacion de usuario/cliente y guia de operacion.
-- TICKET 025: COMPLETADO DOCUMENTALMENTE - Definicion fisica para PCB/baquelada; PCB sigue bloqueada por decisiones fisicas pendientes.
+- TICKET 025: COMPLETADO DOCUMENTALMENTE - Definicion fisica preliminar para PCB/baquelada; el estado historico fue reemplazado por la validacion funcional experta de RevA en TICKET 028.
 - TICKET 026: COMPLETADO - Registrar y auditar baquela/PCB RevA antes de pruebas electricas.
 - TICKET 027: COMPLETADO - Limpieza, documentacion profesional y readiness de repositorio KX134; screenshots GUI quedan pendientes como mejora no bloqueante.
 - TICKET 028: COMPLETADO - Cierre final del proyecto KX134 con baquelada RevA funcional validada por experto y release candidate tecnico.
+- TICKET 029: COMPLETADO - Limpieza final de referencias historicas obsoletas en documentacion cliente, estado tecnico y reportes finales.
 
 ## Tickets en curso o pendientes
 
@@ -67,13 +68,14 @@
 - TICKET 019 agrego graficas live KX134 con Canvas, eventos de progreso del core, buffer visual por sensor y validacion manual satisfactoria con hardware.
 - TICKET 020 preparo PyInstaller onedir con launcher frozen-aware, manifest DPI, smoke del exe y validador de paquete; `dist/`, `build_work/`, `.venv`, `.exe` y `.zip` quedan como artefactos locales no commiteados.
 - TICKET 021 agrega checklist, script PowerShell y validador Python para QA externo; TICKET 021B cierra la validacion visual/manual externa con decision `READY_FOR_CLIENT_PROTOTYPE_QA=YES`. La captura hardware externa no se ejecuto y queda documentada como advertencia no bloqueante porque la captura hardware ya fue validada en el PC de desarrollo.
-- TICKET 022 valida una sesion controlada de prototipo de 60 s en `COM4` con Sensor 1 `5998` filas y Sensor 2 `6000` filas. La validacion de prototipo pasa con advertencia por `2` seq gaps en Sensor 1; `READY_FOR_PROTOTYPE_DELIVERY=YES` y `READY_FOR_PCB_DESIGN=NO` por decisiones fisicas pendientes.
-- TICKET 023 consolida el paquete documental de entrega del prototipo, corrige la semantica de recomendacion PCB y deja `PROTOTYPE_DELIVERY_PACKAGE_READY=YES` con `PCB_DESIGN_AUTHORIZED=NO`.
-- TICKET 024 agrega documentacion cliente para instalacion Windows, conexion hardware, operacion KX134, graficas live, exportacion CSV/JSON/summary, troubleshooting, manifiesto, checklists y limitaciones. La decision queda `CLIENT_USER_DOCS_READY=YES`, manteniendo `PCB_DESIGN_AUTHORIZED=NO`.
-- TICKET 025 crea formulario, especificacion fisica preliminar, matriz de decisiones, checklist de riesgos, pre-design review, JSON documental y validador para decisiones fisicas PCB. Como no hay respuestas cerradas para alimentacion, conectores, cableado, montaje, orientacion, ubicacion y ambiente, queda `PCB_PHYSICAL_DECISIONS_COMPLETE=NO` y `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 022 valida una sesion controlada de prototipo de 60 s en `COM4` con Sensor 1 `5998` filas y Sensor 2 `6000` filas. La validacion de prototipo pasa con advertencia por `2` seq gaps en Sensor 1 y `READY_FOR_PROTOTYPE_DELIVERY=YES`. La autorizacion fisica RevA fue cerrada posteriormente por validacion experta en TICKET 028.
+- TICKET 023 consolida el paquete documental de entrega del prototipo y corrige la semantica de recomendacion PCB. El estado final vigente queda reemplazado por TICKET 028: RevA funcional para prototipo y manufactura industrial pendiente solo si se solicita.
+- TICKET 024 agrega documentacion cliente para instalacion Windows, conexion hardware, operacion KX134, graficas live, exportacion CSV/JSON/summary, troubleshooting, manifiesto, checklists y limitaciones. La decision queda `CLIENT_USER_DOCS_READY=YES`.
+- TICKET 025 crea formulario, especificacion fisica preliminar, matriz de decisiones, checklist de riesgos, pre-design review, JSON documental y validador para decisiones fisicas PCB. Ese fue el estado documental previo; TICKET 028 cierra el uso de RevA para prototipo mediante validacion funcional experta.
 - TICKET 026 registra la baquelada RevA creada externamente en Proteus con artefactos `Maestria.PDF` y `Maestria.SVG`, detecta dimensiones SVG `90.49 mm x 44.99 mm`, documenta revision visual `PASS_WITH_WARNINGS`, checklist de continuidad, pinout pendiente y plan de prueba. Ese fue el estado anterior de revision documental; TICKET 028 lo reemplaza con validacion funcional experta y aceptacion para prototipo.
-- TICKET 027 profesionaliza README, AGENTS, indices tecnicos, diagramas, mantenimiento, estado del repositorio y validador documental. El sistema principal queda documentado como KX134 dual; ADXL335 queda preservado como legacy. La baquelada RevA sigue bajo responsabilidad experta para pruebas fisicas/electricas posteriores; `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 027 profesionaliza README, AGENTS, indices tecnicos, diagramas, mantenimiento, estado del repositorio y validador documental. El sistema principal queda documentado como KX134 dual; ADXL335 queda preservado como legacy. La responsabilidad fisica experta de RevA queda cerrada posteriormente en TICKET 028.
 - TICKET 028 incorpora el reporte del usuario experto: la baquelada RevA fue completada fisicamente y quedo totalmente funcional. Se acepta para uso de prototipo Sensor 1/Sensor 2, se cierra el proyecto como prototipo KX134 funcional y release candidate tecnico. La fabricacion industrial repetible queda fuera de alcance salvo solicitud de paquete DFM/BOM/Gerbers/QA.
+- TICKET 029 limpia referencias de estado anterior en documentacion cliente/tecnica vigente y deja como permitidas solo las referencias historicas contextualizadas de tickets previos.
 
 ## Regla de alcance
 

@@ -61,4 +61,4 @@ El CSV KX134 no debe incluir:
 
 - El prototipo fue validado a `100 Hz`, `921600` y `8 g`.
 - Si cambia `range_g`, recalibrar.
-- `PCB_DESIGN_AUTHORIZED = NO`; la PCB no autorizada no afecta la lectura de estos archivos, pero bloquea baquelada final.
+- La baquelada RevA funcional esta aceptada para uso de prototipo; la lectura de archivos no depende de un paquete DFM/BOM/Gerbers de manufactura industrial.

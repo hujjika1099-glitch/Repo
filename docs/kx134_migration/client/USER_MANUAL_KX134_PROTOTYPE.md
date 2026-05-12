@@ -68,7 +68,7 @@ El CSV conserva datos crudos y datos calibrados por sensor. El JSON describe ide
 
 - El prototipo no realiza analisis profundo de vibracion.
 - La GUI no configura `sample_rate_hz` en firmware todavia; ese envio sigue pendiente.
-- La PCB no autorizada requiere decisiones fisicas antes de avanzar.
+- La RevA funcional esta aceptada para uso de prototipo; produccion industrial repetible requiere paquete adicional si se solicita.
 - Si cambia `range_g`, sensor o ESP32, se debe recalibrar y revalidar.
 
 ## Procedimiento recomendado

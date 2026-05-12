@@ -63,4 +63,4 @@ Revise que Sensor 1 y Sensor 2 tengan muestras, que `invalid_lines` sea idealmen
 
 ## Estado PCB
 
-`PCB_DESIGN_AUTHORIZED = NO`. La captura/exportacion del prototipo esta lista, pero la PCB no autorizada requiere decisiones fisicas.
+La baquelada RevA fue completada y validada como funcional por el experto del proyecto. Esta aceptada para uso de prototipo. Si el cliente requiere fabricacion repetible o produccion industrial, se debe preparar un paquete adicional de DFM, BOM final, Gerbers y QA de manufactura.

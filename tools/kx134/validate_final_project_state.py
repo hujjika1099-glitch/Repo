@@ -1,4 +1,4 @@
-"""Validate the final KX134 project closeout state for TICKET 028."""
+"""Validate the final KX134 project closeout state."""
 
 from __future__ import annotations
 
@@ -50,6 +50,10 @@ OBSOLETE_PATTERNS = [
     "no aceptada para uso de prototipo",
     "BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = NO",
     "PCB_DESIGN_AUTHORIZED = NO",
+    "PCB no autorizada",
+    "baquelada no autorizada",
+    "decisiones fisicas pendientes",
+    "decisiones físicas pendientes",
 ]
 
 
@@ -67,7 +71,19 @@ ALLOWED_CONTEXT_MARKERS = [
     "previous",
     "ticket 026",
     "no se declara producto comercial",
+    "estado previo",
+    "estado anterior",
+    "antes de ticket 028",
+    "reemplaza",
+    "fue el estado anterior",
 ]
+
+
+HISTORICAL_ALLOWED_PREFIXES = (
+    "docs/kx134_migration/tickets/",
+    "docs/kx134_migration/pcb/",
+    "reports/final_release/TICKET_028_",
+)
 
 
 def read_text(rel_path: str) -> str:
@@ -86,6 +102,10 @@ def pattern_key(pattern: str) -> str:
         "no aceptada para uso de prototipo": "old_not_accepted_for_prototype",
         "BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = NO": "old_baquelada_not_accepted_flag",
         "PCB_DESIGN_AUTHORIZED = NO": "old_pcb_design_not_authorized_flag",
+        "PCB no autorizada": "old_pcb_not_authorized_text",
+        "baquelada no autorizada": "old_baquelada_not_authorized_text",
+        "decisiones fisicas pendientes": "old_pending_physical_decisions_text",
+        "decisiones físicas pendientes": "old_pending_physical_decisions_text",
     }.get(pattern, "old_state_reference")
 
 
@@ -96,7 +116,41 @@ def sanitize_text(text: str) -> str:
     return sanitized
 
 
-def scan_stale(output_rel_path: str) -> list[dict[str, object]]:
+def classify_stale(file_rel: str, lower_line: str) -> str:
+    if file_rel.startswith(HISTORICAL_ALLOWED_PREFIXES):
+        return "historical_allowed"
+    if any(marker in lower_line for marker in ALLOWED_CONTEXT_MARKERS):
+        return "historical_allowed"
+    if file_rel in {
+        "README.md",
+        "AGENTS.md",
+        "config/kx134_node_map.json",
+        "config/kx134_project_final_status.json",
+        "config/kx134_baquelada_revA_review.json",
+        "config/kx134_physical_design_decisions.json",
+    }:
+        return "blocking"
+    if file_rel.startswith("docs/kx134_migration/client/"):
+        return "blocking"
+    if file_rel.startswith("hardware/pcb/baquelada_revA/"):
+        return "blocking"
+    if file_rel in {
+        "docs/README.md",
+        "docs/kx134_migration/INDEX.md",
+        "docs/kx134_migration/REPOSITORY_STATUS.md",
+        "docs/kx134_migration/PROTOTYPE_DELIVERY_PACKAGE.md",
+        "docs/kx134_migration/PROJECT_FINAL_STATUS.md",
+        "docs/kx134_migration/RELEASE_CANDIDATE_NOTES.md",
+        "docs/kx134_migration/OPEN_ITEMS_AND_RISKS.md",
+        "docs/kx134_migration/PCB_BAQUELADA_CRITERIA.md",
+        "docs/kx134_migration/VALIDATION_SUMMARY.md",
+        "docs/kx134_migration/VALIDATION_EVIDENCE_MATRIX.md",
+    }:
+        return "blocking"
+    return "warning"
+
+
+def scan_stale(output_rel_path: str) -> dict[str, list[dict[str, object]]]:
     paths = [
         ROOT / "README.md",
         ROOT / "AGENTS.md",
@@ -112,22 +166,27 @@ def scan_stale(output_rel_path: str) -> list[dict[str, object]]:
         elif path.exists():
             files.extend([p for p in path.rglob("*") if p.suffix.lower() in {".md", ".json"}])
 
-    findings: list[dict[str, object]] = []
+    findings: dict[str, list[dict[str, object]]] = {
+        "blocking": [],
+        "warning": [],
+        "historical_allowed": [],
+    }
     for path in sorted(files):
-        if path.relative_to(ROOT).as_posix() == output_rel_path.replace("\\", "/"):
+        file_rel = path.relative_to(ROOT).as_posix()
+        if file_rel == output_rel_path.replace("\\", "/"):
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
         for line_no, line in enumerate(text.splitlines(), start=1):
             lower = line.lower()
             for pattern in OBSOLETE_PATTERNS:
                 if pattern.lower() in lower:
-                    allowed = any(marker in lower for marker in ALLOWED_CONTEXT_MARKERS)
-                    findings.append(
+                    severity = classify_stale(file_rel, lower)
+                    findings[severity].append(
                         {
-                            "file": path.relative_to(ROOT).as_posix(),
+                            "file": file_rel,
                             "line": line_no,
                             "pattern_key": pattern_key(pattern),
-                            "allowed_context": allowed,
+                            "severity": severity,
                             "text": sanitize_text(line.strip()[:220]),
                         }
                     )
@@ -193,18 +252,11 @@ def main() -> int:
     if failed_checks:
         failures.append(f"Final-state checks failed: {failed_checks}")
 
-    stale = scan_stale(args.output)
-    unallowed = [item for item in stale if not item["allowed_context"]]
-    if unallowed:
-        warnings.append("Some old-state references remain; review contexts listed in stale_references.")
-        # Only fail root current-state contradictions; historical docs can remain visible.
-        root_unallowed = [
-            item
-            for item in unallowed
-            if item["file"] in {"README.md", "AGENTS.md", "config/kx134_node_map.json", "config/kx134_project_final_status.json"}
-        ]
-        if root_unallowed:
-            failures.append(f"Unallowed root final-state contradictions: {root_unallowed}")
+    stale_by_severity = scan_stale(args.output)
+    if stale_by_severity["blocking"]:
+        failures.append(f"Blocking current-state stale references: {stale_by_severity['blocking']}")
+    if stale_by_severity["warning"]:
+        warnings.append("Non-blocking stale references remain outside final/current documentation scope.")
 
     output = {
         "pass": not failures,
@@ -215,9 +267,21 @@ def main() -> int:
         "baquelada_revA_functional_validated_by_expert": checks["node_baquelada_validated"],
         "baquelada_revA_accepted_for_prototype_use": checks["node_baquelada_accepted"],
         "production_manufacturing_package_ready": node.get("production_manufacturing_package_ready"),
+        "prototype_revA_ready": node.get("prototype_pcb_revA_authorized_for_use") is True,
+        "production_manufacturing_ready": node.get("production_manufacturing_package_ready") is True,
         "repository_final_state_ready": not failures,
         "checks": checks,
-        "stale_references": stale,
+        "stale_references": (
+            stale_by_severity["blocking"]
+            + stale_by_severity["warning"]
+            + stale_by_severity["historical_allowed"]
+        ),
+        "stale_references_by_severity": stale_by_severity,
+        "blocking_stale_references": stale_by_severity["blocking"],
+        "warning_stale_references": stale_by_severity["warning"],
+        "historical_allowed_references": stale_by_severity["historical_allowed"],
+        "docs_checked": [str(path) for path in REQUIRED_DOCS],
+        "current_state_consistent": not stale_by_severity["blocking"] and not failures,
     }
 
     out_path = ROOT / args.output

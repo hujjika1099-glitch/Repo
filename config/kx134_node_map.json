@@ -116,5 +116,7 @@
   "production_manufacturing_note": "Functional prototype and baquelada RevA are validated. Industrial repeatable manufacturing requires additional DFM/BOM/Gerber/QA package if requested.",
   "prototype_pcb_revA_authorized_for_use": true,
   "production_pcb_authorized": false,
-  "pcb_design_authorization_scope": "prototype RevA only; not mass production"
+  "pcb_design_authorization_scope": "prototype RevA only; not mass production",
+  "stale_reference_cleanup_done": true,
+  "last_stale_reference_cleanup_report": "reports/final_release/TICKET_029_STALE_REFERENCE_CLEANUP_SUMMARY.md"
 }

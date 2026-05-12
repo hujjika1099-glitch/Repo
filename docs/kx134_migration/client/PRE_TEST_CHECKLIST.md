@@ -17,4 +17,4 @@
 - [ ] Prueba corta de 10 s planificada.
 - [ ] Se sabe donde quedan CSV, JSON y summary.
 - [ ] Se recuerda que `sample_rate_hz` GUI->firmware esta pendiente.
-- [ ] Se confirma que PCB no autorizada no forma parte de esta prueba.
+- [ ] Se confirma que RevA funcional forma parte del prototipo y que produccion repetible queda fuera de esta prueba.

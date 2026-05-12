@@ -48,4 +48,4 @@ Evite ejecutar desde carpetas temporales o desde el ZIP.
 
 ## Estado de producto
 
-El prototipo esta listo para entrega funcional. `PCB_DESIGN_AUTHORIZED = NO`; la PCB no autorizada depende de decisiones fisicas y mecanicas pendientes.
+El prototipo esta listo para entrega funcional. La baquelada RevA fue validada como funcional por el experto del proyecto y esta aceptada para uso de prototipo. La fabricacion repetible o industrial requiere un paquete adicional de DFM, BOM final, Gerbers y QA de manufactura si el cliente lo solicita.

@@ -6,7 +6,7 @@ El sistema es un prototipo funcional KX134 dual. No es PCB final.
 
 - `PROTOTYPE_DELIVERY_PACKAGE_READY = YES`.
 - `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`; `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`.
-- PCB no autorizada hasta cerrar decisiones fisicas y mecanicas.
+- La RevA funcional esta aceptada para prototipo; produccion industrial repetible queda pendiente solo si el cliente requiere DFM/BOM/Gerbers/QA.
 
 ## Configuracion validada
 

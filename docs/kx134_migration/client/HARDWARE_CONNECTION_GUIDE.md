@@ -38,11 +38,11 @@
 - Si cambia una ESP32, actualizar `config/kx134_node_map.json`.
 - Si cambia `range_g`, recalibrar.
 - Si cambia frecuencia, revalidar firmware, GUI y exportacion.
-- La PCB no autorizada no debe iniciarse hasta cerrar alimentacion, conectores, longitudes, montaje, orientacion de ejes y ubicacion fisica de nodos.
+- La baquelada RevA funcional esta aceptada para uso de prototipo Sensor 1/Sensor 2.
 
 ## PCB
 
-Este documento no es un diagrama electrico final de PCB. La baquelada sigue pendiente de decisiones fisicas/mecanicas.
+Este documento no es un paquete de manufactura industrial. La RevA funcional se entrega como parte del prototipo; si se requiere fabricacion repetible, se debe preparar DFM, BOM final, Gerbers y QA de manufactura.
 
 ## Cierre Final TICKET 028
 

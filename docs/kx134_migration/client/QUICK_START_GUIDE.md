@@ -54,7 +54,7 @@ El prototipo KX134 dual captura aceleracion calibrada desde dos sensores SEN-175
 - No intercambie Sensor 1 y Sensor 2 sin actualizar `config/kx134_node_map.json`.
 - No cambie `range_g` sin recalibrar.
 - Si cambia un sensor fisico o una ESP32, actualice identidad y recalibre.
-- La PCB no autorizada sigue bloqueada por decisiones fisicas y mecanicas.
+- La RevA funcional esta aceptada para prototipo; fabricacion repetible requiere paquete adicional si el cliente lo solicita.
 
 ## Cierre Final TICKET 028
 
