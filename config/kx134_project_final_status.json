@@ -1,0 +1,49 @@
+{
+  "status_version": "kx134.project_final_status.v1",
+  "created_at": "2026-05-11T21:24:10-05:00",
+  "project_functional_complete": true,
+  "prototype_release_candidate_ready": true,
+  "prototype_delivery_package_ready": true,
+  "client_user_docs_ready": true,
+  "windows_package_prepared": true,
+  "baquelada_revA_functional_validated_by_expert": true,
+  "baquelada_revA_accepted_for_prototype_use": true,
+  "prototype_pcb_revA_authorized_for_use": true,
+  "production_manufacturing_package_ready": false,
+  "production_manufacturing_authorized": false,
+  "validated_configuration": {
+    "sample_rate_hz": 100,
+    "odr_hz": 100,
+    "range_g": 8,
+    "baudrate": 921600,
+    "espnow_channel": 1
+  },
+  "hardware": {
+    "sensor_1_mac": "D4:E9:F4:E9:8E:1C",
+    "sensor_2_mac": "D4:E9:F4:C3:37:14",
+    "receiver_mac": "00:4B:12:96:9A:80"
+  },
+  "software": {
+    "executable_name": "Sistema_Captura_Acelerometria.exe",
+    "gui": "KX134 Dual Capture with live plots",
+    "legacy_adxl335_preserved": true
+  },
+  "open_non_blocking_items": [
+    "corporate_icon_pending",
+    "digital_signature_pending",
+    "windows_scaling_125_150_pending",
+    "gui_to_firmware_sample_rate_command_pending"
+  ],
+  "manufacturing_open_items_if_required": [
+    "formal_DFM_review",
+    "final_BOM",
+    "Gerber_package",
+    "manufacturing_QA_plan",
+    "production_test_fixture"
+  ],
+  "decision": {
+    "ready_for_final_repository_closeout": true,
+    "ready_for_client_functional_delivery": true,
+    "ready_for_mass_production": false
+  }
+}

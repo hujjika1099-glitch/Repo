@@ -1,6 +1,6 @@
 {
   "topology_version": "kx134.dual_sensor_nodes_plus_receiver.v1",
-  "status": "repository_production_ready_prototype_ready_pcb_not_authorized",
+  "status": "project_functional_complete_baquelada_validated_release_candidate",
   "last_sync_precheck_report": "reports/kx134_test_runs/TICKET_014_DUAL_SYNC_PRECHECK_SUMMARY.md",
   "last_gui_hardware_validation_report": "reports/kx134_gui_validation/TICKET_016_GUI_HARDWARE_VALIDATION_SUMMARY.md",
   "last_export_hardening_report": "reports/kx134_gui_validation/TICKET_017_EXPORT_HARDENING_SUMMARY.md",
@@ -94,15 +94,27 @@
     "environmental_requirements_not_defined"
   ],
   "prototype_delivery_package_ready": true,
-  "pcb_design_authorized": false,
+  "pcb_design_authorized": true,
   "last_prototype_delivery_report": "reports/prototype_validation/TICKET_023_PROTOTYPE_DELIVERY_SUMMARY.md",
   "client_user_docs_ready": true,
   "last_client_documentation_report": "reports/prototype_validation/TICKET_024_CLIENT_DOCUMENTATION_SUMMARY.md",
   "pcb_physical_decisions_complete": false,
   "last_pcb_physical_definition_report": "reports/prototype_validation/TICKET_025_PCB_PHYSICAL_DEFINITION_SUMMARY.md",
   "baquelada_revA_registered": true,
-  "baquelada_revA_status": "under_review",
+  "baquelada_revA_status": "functional_validated_by_expert",
   "last_baquelada_revA_review_report": "reports/prototype_validation/TICKET_026_BAQUELADA_REVA_REVIEW_SUMMARY.md",
   "repository_production_ready": true,
-  "last_repository_readiness_report": "reports/repository_health/TICKET_027_REPOSITORY_PRODUCTION_READINESS_SUMMARY.md"
+  "last_repository_readiness_report": "reports/repository_health/TICKET_027_REPOSITORY_PRODUCTION_READINESS_SUMMARY.md",
+  "project_functional_complete": true,
+  "prototype_release_candidate_ready": true,
+  "baquelada_revA_functional_validated_by_expert": true,
+  "baquelada_revA_accepted_for_prototype_use": true,
+  "baquelada_revA_validation_authority": "project_expert_user",
+  "physical_hardware_validation_owner": "project_expert_user",
+  "repository_final_state_report": "reports/final_release/TICKET_028_FINAL_PROJECT_CLOSURE_SUMMARY.md",
+  "production_manufacturing_package_ready": false,
+  "production_manufacturing_note": "Functional prototype and baquelada RevA are validated. Industrial repeatable manufacturing requires additional DFM/BOM/Gerber/QA package if requested.",
+  "prototype_pcb_revA_authorized_for_use": true,
+  "production_pcb_authorized": false,
+  "pcb_design_authorization_scope": "prototype RevA only; not mass production"
 }

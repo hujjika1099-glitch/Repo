@@ -5,7 +5,7 @@
 El sistema es un prototipo funcional KX134 dual. No es PCB final.
 
 - `PROTOTYPE_DELIVERY_PACKAGE_READY = YES`.
-- `PCB_DESIGN_AUTHORIZED = NO`.
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`; `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`.
 - PCB no autorizada hasta cerrar decisiones fisicas y mecanicas.
 
 ## Configuracion validada
@@ -37,3 +37,13 @@ El sistema es un prototipo funcional KX134 dual. No es PCB final.
 - Los datos crudos se conservan en CSV.
 - `|g|` es visual, no columna CSV final.
 - No deben aparecer `mv_*`, voltajes, `gx_est/gy_est/gz_est` ni `g_norm` como columnas KX134.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

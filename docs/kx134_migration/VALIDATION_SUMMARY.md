@@ -17,8 +17,8 @@
 | Sesion controlada prototipo | TICKET 022 | PASS con advertencia |
 | Entrega tecnica prototipo | TICKET 023 | PASS |
 | Documentacion cliente | TICKET 024 | PASS |
-| Decisiones fisicas PCB | TICKET 025 | PENDING/BLOCKED |
-| Baquelada RevA | TICKET 026 | Registered, under_review |
+| Decisiones fisicas PCB | TICKET 025/028 | Cerradas para uso de prototipo por validacion experta |
+| Baquelada RevA | TICKET 026/028 | Functional validated by expert |
 
 ## Sesion Controlada De Prototipo
 
@@ -38,7 +38,19 @@
 ## Decision
 
 - `READY_FOR_PROTOTYPE_DELIVERY = YES`
-- `PCB_DESIGN_AUTHORIZED = NO`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `PROTOTYPE_PCB_REVA_AUTHORIZED_FOR_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
 
-La PCB sigue bloqueada por decisiones fisicas y por pruebas electricas pendientes
-de la baquelada RevA.
+La RevA queda aceptada para prototipo. La fabricacion industrial repetible queda
+fuera de alcance hasta contar con DFM, BOM final, Gerbers y QA de manufactura.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

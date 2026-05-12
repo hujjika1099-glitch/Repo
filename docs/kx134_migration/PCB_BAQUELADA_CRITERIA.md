@@ -49,15 +49,15 @@ Para avanzar a baquelada/PCB deben cumplirse:
 
 `READY_FOR_PCB_DESIGN = YES` solo si:
 
-- Sesion controlada pasa.
-- Arquitectura de tres ESP32 se mantiene.
-- Ubicacion fisica de sensores esta definida.
-- Orientacion de ejes esta definida.
-- Requisitos mecanicos del cliente estan definidos.
-- Alimentacion final esta definida.
-- Longitud de cableado esta definida.
-- Forma de montaje esta definida.
-- Se acepta que la captura se hara a 100 Hz / 8 g salvo decision posterior.
+- Existe revision DFM formal.
+- Existe BOM final.
+- Existen Gerbers finales.
+- Existe plan QA de manufactura.
+- Existe prueba de produccion/fixture.
+- Cliente solicita fabricacion repetible.
+
+
+- La configuracion 100 Hz / 8 g se conserva salvo nueva validacion.
 
 ## Advertencias
 
@@ -66,3 +66,13 @@ Para avanzar a baquelada/PCB deben cumplirse:
 - Si se reemplaza sensor o ESP32, actualizar `node_map` y calibracion.
 - Si se requiere 200/400/800 Hz, validar firmware, GUI y exportacion antes de PCB.
 - El envio de `sample_rate_hz` desde GUI al firmware sigue pendiente.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

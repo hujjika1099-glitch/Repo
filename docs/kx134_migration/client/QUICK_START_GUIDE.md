@@ -15,7 +15,7 @@ El prototipo KX134 dual captura aceleracion calibrada desde dos sensores SEN-175
 
 ## Que no incluye todavia
 
-- PCB/baquelada final. `PCB_DESIGN_AUTHORIZED = NO`.
+- Fabricacion industrial repetible; la RevA funcional esta aceptada para prototipo.
 - Firma digital del ejecutable.
 - Icono corporativo final.
 - Configuracion remota de `sample_rate_hz` desde GUI hacia firmware.
@@ -55,3 +55,13 @@ El prototipo KX134 dual captura aceleracion calibrada desde dos sensores SEN-175
 - No cambie `range_g` sin recalibrar.
 - Si cambia un sensor fisico o una ESP32, actualice identidad y recalibre.
 - La PCB no autorizada sigue bloqueada por decisiones fisicas y mecanicas.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

@@ -27,14 +27,15 @@ marcarlo siempre como legacy, historico o preservado.
 
 ## Estado Del Proyecto
 
-- Prototipo KX134 funcional listo para entrega tecnica.
+- Prototipo KX134 funcional completo y listo como release candidate tecnico.
 - Documentacion de cliente lista.
 - Ejecutable Windows preparado.
 - QA visual externa aprobada.
 - Sesion controlada de prototipo aprobada.
-- PCB final no autorizada.
-- Baquelada RevA registrada y en estado `under_review`.
-- Baquelada RevA no aceptada aun para uso de prototipo.
+- Baquelada RevA funcional validada por el experto del proyecto.
+- baquelada RevA funcional validada por el experto.
+- Baquelada RevA aceptada para uso de prototipo.
+- Produccion industrial/repetible no autorizada sin paquete DFM/BOM/Gerbers/QA.
 
 ## Reglas Para Agentes
 
@@ -42,7 +43,10 @@ marcarlo siempre como legacy, historico o preservado.
 - No modificar calibraciones sin ticket explicito.
 - No modificar GUI funcional salvo alcance autorizado.
 - No modificar empaquetado funcional salvo alcance autorizado.
-- No autorizar PCB ni baquelada final.
+- No afirmar fabricacion industrial/repetible sin evidencia DFM/BOM/Gerbers/QA.
+- No generar nuevos tickets de pruebas fisicas de baquelada salvo instruccion explicita del usuario.
+- Las pruebas fisicas y decisiones de hardware final quedan bajo responsabilidad del experto del proyecto.
+- CODEX puede actualizar documentacion/software, pero no debe intentar validar fisicamente la baquelada sin instruccion explicita.
 - No tocar `dist/`, `build_work/`, `.venv/`, `.exe` ni `.zip`.
 - No tocar data runtime ni CSV historicos.
 - Registrar cambios relevantes en `reports/change_log.md`.
@@ -62,7 +66,7 @@ gui/adxl_live_gui.py                 # GUI ADXL335 legacy
 config/kx134_node_map.json           # Fuente documental de nodos/estado
 config/calibrations/                 # Calibraciones KX134 por sensor
 docs/kx134_migration/client/         # Documentacion de usuario/cliente
-hardware/pcb/baquelada_revA/         # Artefactos RevA bajo revision
+hardware/pcb/baquelada_revA/         # RevA funcional validada por experto
 build_windows_app.ps1                # Build Windows actual
 sistema_captura_acelerometria.spec   # Spec PyInstaller actual
 ```
@@ -111,7 +115,7 @@ python tools\kx134\validate_repository_readiness.py --output reports\repository_
 ## Prohibiciones
 
 - No borrar el legado ADXL335.
-- No declarar PCB autorizada.
+- No declarar produccion industrial autorizada.
 - No commitear binarios.
 - No generar Gerbers, BOM final ni archivos PCB finales sin ticket especifico.
 - No introducir campos `mv_*`, voltajes o `g_norm` como columnas del CSV KX134.

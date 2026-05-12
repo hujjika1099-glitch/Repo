@@ -13,8 +13,20 @@
 | Windows packaging | TICKET 020 | `reports/kx134_gui_validation/TICKET_020_WINDOWS_PACKAGING_SUMMARY.md` | PASS | Icono/firma digital pendientes |
 | External QA | TICKET 021/021B | `reports/kx134_gui_validation/TICKET_021_EXTERNAL_PC_QA_SUMMARY.md` | PASS visual | Hardware externo no ejecutado |
 | Prototype validation | TICKET 022 | `reports/prototype_validation/TICKET_022_PROTOTYPE_VALIDATION_SUMMARY.md` | PASS | Sensor 1 tuvo 2 seq gaps, advertencia no bloqueante |
+| Baquelada RevA funcional | TICKET 028 | `config/kx134_baquelada_revA_review.json`, reporte experto del usuario | PASS | Valida prototipo, no produccion industrial repetible |
 
 ## Decision de cierre
 
 - `PROTOTYPE_DELIVERY_PACKAGE_READY = YES`
-- `PCB_DESIGN_AUTHORIZED = NO`
+- `PROTOTYPE_PCB_REVA_AUTHORIZED_FOR_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

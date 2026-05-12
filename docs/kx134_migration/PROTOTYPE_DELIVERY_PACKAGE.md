@@ -3,7 +3,7 @@
 ## Decision
 
 - `PROTOTYPE_DELIVERY_PACKAGE_READY = YES`
-- `PCB_DESIGN_AUTHORIZED = NO`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`; `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
 
 ## Que se entrega como prototipo
 
@@ -20,7 +20,7 @@
 
 ## Que no se entrega todavia
 
-- PCB/baquelada final.
+- Fabricacion industrial repetible; requiere DFM/BOM/Gerbers/QA si el cliente la solicita.
 - Firma digital del ejecutable.
 - Icono corporativo final.
 - Configuracion remota de `sample_rate_hz` desde GUI hacia firmware.
@@ -65,12 +65,19 @@ Resultados globales:
 
 - Sensor 1 tuvo 2 `seq_gaps`; es advertencia no bloqueante segun TICKET 022.
 - Hubo sospecha de congelamiento visual en un intento previo; la corrida final exporto correctamente.
-- La PCB queda bloqueada por decisiones fisicas/mecanicas.
+- La baquelada RevA queda funcional validada por experto y aceptada para prototipo; produccion repetible queda fuera de alcance.
 - Hardware externo no se probo con captura; la captura con hardware ya fue validada en PC de desarrollo.
 
 ## Proximo paso
 
-Elegir uno de dos caminos:
+El proyecto queda listo como release candidate funcional del prototipo. Siguientes pasos son opcionales: icono/firma/scaling, `sample_rate_hz` GUI->firmware o paquete de manufactura si se requiere produccion repetible.
 
-- TICKET 024 - Documentacion de usuario/cliente y guia de operacion.
-- TICKET 024 - Definicion fisica para PCB/baquelada: alimentacion, conectores, montaje y orientacion.
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

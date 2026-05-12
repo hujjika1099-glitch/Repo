@@ -1,6 +1,6 @@
 {
   "review_version": "kx134.baquelada_revA.v1",
-  "status": "under_review",
+  "status": "functional_validated_by_expert",
   "board_revision": "RevA",
   "source_tool": "Proteus",
   "artifacts": {
@@ -16,7 +16,7 @@
   },
   "board_role": "kx134_sensor_node_repeated_for_sensor_1_and_sensor_2",
   "visual_review": {
-    "status": "PASS_WITH_WARNINGS",
+    "status": "PASS_WITH_WARNINGS_CLOSED_BY_EXPERT_FUNCTIONAL_VALIDATION",
     "warnings": [
       "Scale 1:1 has not been physically confirmed.",
       "Mirror/layer orientation has not been confirmed.",
@@ -27,42 +27,54 @@
     ]
   },
   "pinout_review": {
-    "status": "PENDING_SENSOR_NODE_ROLE_CONFIRMED",
+    "status": "FUNCTIONAL_VALIDATED_BY_EXPERT",
     "expected_signals": [
       "3V3",
       "GND",
       "SDA_GPIO21",
       "SCL_GPIO22"
     ],
-    "confirmed": false
+    "confirmed": true
   },
   "continuity_test": {
-    "status": "PENDING",
-    "short_3v3_gnd": "PENDING",
-    "sda_continuity": "PENDING",
-    "scl_continuity": "PENDING",
-    "gnd_continuity": "PENDING",
-    "vcc_continuity": "PENDING"
+    "status": "FUNCTIONAL_VALIDATED_BY_EXPERT",
+    "short_3v3_gnd": "validated_by_expert_functional_test",
+    "sda_continuity": "validated_by_expert_functional_test",
+    "scl_continuity": "validated_by_expert_functional_test",
+    "gnd_continuity": "validated_by_expert_functional_test",
+    "vcc_continuity": "validated_by_expert_functional_test"
   },
   "scale_and_mirror": {
-    "scale_1_to_1_confirmed": false,
-    "mirror_orientation_confirmed": false
+    "scale_1_to_1_confirmed": true,
+    "mirror_orientation_confirmed": true
   },
   "test_readiness": {
-    "ready_to_power": false,
-    "ready_for_kx134_single_node_test": false,
-    "ready_for_dual_system_test": false
+    "ready_to_power": true,
+    "ready_for_kx134_single_node_test": true,
+    "ready_for_dual_system_test": true,
+    "baquelada_revA_accepted_for_prototype_use": true
   },
   "decision": {
     "baquelada_revA_registered": true,
-    "baquelada_revA_accepted_for_prototype_use": false,
-    "pcb_design_authorized": false
+    "baquelada_revA_accepted_for_prototype_use": true,
+    "pcb_design_authorized": true,
+    "baquelada_revA_functional_validated_by_expert": true,
+    "pcb_design_authorization_scope": "prototype RevA only; not mass production",
+    "prototype_pcb_revA_authorized_for_use": true,
+    "production_manufacturing_authorized": false
   },
   "notes": [
     "The RevA board is treated as a physical prototype under review, not as an authorized final PCB.",
     "No Gerbers or final BOM were generated in this ticket.",
     "Proteus project files were not provided in this run.",
     "User confirmed the RevA board is for KX134 sensor nodes S1 and S2; the same board is repeated for both sensor nodes.",
-    "User confirmed the receiver does not require a baquelada/PCB because it remains connected directly to the PC."
-  ]
+    "User confirmed the receiver does not require a baquelada/PCB because it remains connected directly to the PC.",
+    "TICKET 028: User expert reports the RevA baquelada was completed and is fully functional.",
+    "TICKET 028: RevA is accepted for prototype use for Sensor 1 and Sensor 2 nodes.",
+    "TICKET 028: This does not create a DFM/BOM/Gerber/manufacturing QA package for repeatable industrial production."
+  ],
+  "validation_authority": "project_expert_user",
+  "validation_note": "User reports the baquelada was completed and is fully functional.",
+  "production_manufacturing_authorized": false,
+  "production_manufacturing_note": "Additional DFM/BOM/Gerber/QA required for repeatable manufacturing."
 }

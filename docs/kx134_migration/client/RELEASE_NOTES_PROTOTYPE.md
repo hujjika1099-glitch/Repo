@@ -6,7 +6,7 @@ El prototipo KX134 dual esta listo para entrega funcional.
 
 - `PROTOTYPE_DELIVERY_PACKAGE_READY = YES`.
 - `CLIENT_USER_DOCS_READY = YES` cuando esta documentacion pase validacion.
-- `PCB_DESIGN_AUTHORIZED = NO`.
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`; `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`.
 
 ## Incluye
 
@@ -52,3 +52,13 @@ El prototipo KX134 dual esta listo para entrega funcional.
 ## Compatibilidad
 
 El flujo ADXL335 historico se conserva. La documentacion de este paquete se enfoca en KX134.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

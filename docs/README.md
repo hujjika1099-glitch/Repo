@@ -9,6 +9,10 @@ ADXL335.
 - [Indice KX134](kx134_migration/INDEX.md): mapa tecnico completo.
 - [Estado del repositorio](kx134_migration/REPOSITORY_STATUS.md): decisiones
   actuales y pendientes.
+- [Estado final del proyecto](kx134_migration/PROJECT_FINAL_STATUS.md): cierre
+  funcional y release candidate.
+- [Notas de release candidate](kx134_migration/RELEASE_CANDIDATE_NOTES.md)
+- [Checklist final de entrega](kx134_migration/FINAL_HANDOVER_CHECKLIST.md)
 
 ## Documentacion De Usuario
 
@@ -63,3 +67,13 @@ ADXL335.
 - `reports/prototype_validation/`: prototipo, cliente, PCB/baquelada.
 - `reports/repository_health/`: readiness documental del repositorio.
 - `reports/change_log.md`: registro tecnico de cambios.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

@@ -5,6 +5,9 @@ Este indice resume la documentacion vigente del sistema KX134 dual.
 ## Estado
 
 - [Estado del repositorio](REPOSITORY_STATUS.md)
+- [Estado final del proyecto](PROJECT_FINAL_STATUS.md)
+- [Release candidate](RELEASE_CANDIDATE_NOTES.md)
+- [Checklist final de entrega](FINAL_HANDOVER_CHECKLIST.md)
 - [Resumen tecnico](TECHNICAL_STATUS_SUMMARY.md)
 - [Paquete de entrega](PROTOTYPE_DELIVERY_PACKAGE.md)
 - [Pendientes y riesgos](OPEN_ITEMS_AND_RISKS.md)
@@ -55,3 +58,13 @@ Este indice resume la documentacion vigente del sistema KX134 dual.
 ## Tickets
 
 Los documentos por ticket viven en `docs/kx134_migration/tickets/`.
+
+## Cierre Final TICKET 028
+
+- `PROJECT_FUNCTIONAL_COMPLETE = YES`
+- `PROTOTYPE_RELEASE_CANDIDATE_READY = YES`
+- `BAQUELADA_REVA_FUNCTIONAL_VALIDATED_BY_EXPERT = YES`
+- `BAQUELADA_REVA_ACCEPTED_FOR_PROTOTYPE_USE = YES`
+- `PRODUCTION_MANUFACTURING_PACKAGE_READY = NO`
+
+La baquelada RevA fue completada fisicamente y validada como funcional por el experto del proyecto. Queda aceptada para uso de prototipo KX134 Sensor 1/Sensor 2. Esto no constituye paquete de fabricacion industrial repetible; si el cliente lo requiere, faltan DFM, BOM final, Gerbers y QA de manufactura.

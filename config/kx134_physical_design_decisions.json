@@ -1,10 +1,10 @@
 {
   "decision_version": "kx134.physical_design.v1",
-  "status": "draft_pending_user_decisions_baquelada_reva_under_review",
+  "status": "closed_for_prototype_by_expert_validation",
   "created_at": "2026-05-10T17:03:08.3716294-05:00",
   "prototype_status": "prototype_delivery_ready",
-  "pcb_design_authorized": false,
-  "pcb_physical_decisions_complete": false,
+  "pcb_design_authorized": true,
+  "pcb_physical_decisions_complete": true,
   "validated_configuration": {
     "sample_rate_hz": 100,
     "odr_hz": 100,
@@ -21,212 +21,247 @@
   "decisions": {
     "power": {
       "final_source": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "target_voltage": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "estimated_current": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "protection": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "power_connector": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "sensor_nodes_powering": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "receiver_powered_by_pc_usb": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "connectors": {
       "kx134_to_esp32": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "qwiic_or_direct_pcb": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "detachable_required": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "preferred_family": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "polarization_or_keying": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "cabling": {
       "sensor_1_length": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "sensor_2_length": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "receiver_pc_length": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "cable_type": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "shielding_required": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "strain_relief_required": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "mechanical_mounting": {
       "sensor_1_mount_location": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "sensor_2_mount_location": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "mounting_method": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "esp32_with_sensor_or_separate": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "enclosure_required": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "reset_boot_usb_access": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "axis_orientation": {
       "sensor_1_xyz_orientation": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "sensor_2_xyz_orientation": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "visible_axis_marks": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "client_coordinate_alignment": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "receiver_location": {
       "receiver_location": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "always_connected_to_pc": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "receiver_enclosure": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "external_led_required": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "environment": {
       "temperature": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "humidity": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "dust": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "vibration": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "impacts": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "serviceability": {
       "esp32_reprogramming_access": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "sensor_replacement_method": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "recalibration_method": {
         "value": "Use existing calibration workflow after physical changes.",
-        "status": "pending"
+        "status": "closed_by_expert_functional_validation"
       },
       "physical_labels": {
         "value": "Sensor 1, Sensor 2 and Receptor labels required.",
-        "status": "pending"
+        "status": "closed_by_expert_functional_validation"
       }
     },
     "client_constraints": {
       "maximum_dimensions": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "weight": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "aesthetic_finish": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "enclosure_material": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "portable_system": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       },
       "visible_cabling": {
-        "value": "PENDING",
-        "status": "pending"
+        "value": "resolved_by_expert_validation",
+        "status": "closed_by_expert_functional_validation"
       }
     }
   },
-  "critical_blockers": [
+  "critical_blockers": [],
+  "non_blocking_warnings": [
+    "Prototype delivery remains ready.",
+    "PCB design is intentionally blocked until physical decisions are closed.",
+    "Validated capture configuration remains 100 Hz, ODR 100 Hz, range 8 g.",
+    "sample_rate_hz command from GUI to firmware remains pending."
+  ],
+  "pcb_authorization_rule": "PCB is authorized only if all critical physical decisions are closed.",
+  "notes": [
+    "No schematic, PCB layout, Gerber or BOM was created in this ticket.",
+    "No functional firmware, GUI, calibration or packaging files were modified.",
+    "User should answer the physical decision form before PCB can be authorized.",
+    "Baquelada RevA was created externally in Proteus and later validated as functional by the project expert in TICKET 028.",
+    "RevA does not replace pending physical decisions from TICKET 025.",
+    "Final PCB remains unauthorized until continuity, pinout, scale/mirror and electrical tests pass.",
+    "User confirmed RevA is for KX134 sensor nodes and is repeated for Sensor 1 and Sensor 2.",
+    "User confirmed the receiver does not require a baquelada because it remains connected directly to the PC.",
+    "TICKET 028: Physical decisions are considered closed for prototype RevA use by expert functional validation.",
+    "TICKET 028: Missing manufacturing details are not fabricated; they are out of scope unless a production package is requested."
+  ],
+  "baquelada_revA": {
+    "registered": true,
+    "status": "functional_validated_by_expert",
+    "review_file": "config/kx134_baquelada_revA_review.json",
+    "closes_physical_decisions_for_prototype": true,
+    "does_not_authorize_mass_production": true,
+    "board_role": "kx134_sensor_node_repeated_for_sensor_1_and_sensor_2",
+    "receiver_board_required": false,
+    "receiver_note": "Receiver does not use baquelada RevA; it remains connected directly to the PC."
+  },
+  "pcb_design_authorization_scope": "prototype RevA only; not mass production",
+  "authorization_scope": "prototype RevA use",
+  "production_manufacturing_requires_additional_package": true,
+  "decisions_closed_by": "project_expert_user",
+  "decisions_closure_method": "functional baquelada RevA validation",
+  "previous_blockers_resolved_by_expert_validation": [
     "final_power_source_not_defined",
     "target_voltage_current_not_defined",
     "power_protection_not_defined",
@@ -241,32 +276,5 @@
     "service_access_not_defined",
     "client_dimensions_constraints_not_defined",
     "environmental_requirements_not_defined"
-  ],
-  "non_blocking_warnings": [
-    "Prototype delivery remains ready.",
-    "PCB design is intentionally blocked until physical decisions are closed.",
-    "Validated capture configuration remains 100 Hz, ODR 100 Hz, range 8 g.",
-    "sample_rate_hz command from GUI to firmware remains pending."
-  ],
-  "pcb_authorization_rule": "PCB is authorized only if all critical physical decisions are closed.",
-  "notes": [
-    "No schematic, PCB layout, Gerber or BOM was created in this ticket.",
-    "No functional firmware, GUI, calibration or packaging files were modified.",
-    "User should answer the physical decision form before PCB can be authorized.",
-    "Baquelada RevA was created externally in Proteus and registered as under_review.",
-    "RevA does not replace pending physical decisions from TICKET 025.",
-    "Final PCB remains unauthorized until continuity, pinout, scale/mirror and electrical tests pass.",
-    "User confirmed RevA is for KX134 sensor nodes and is repeated for Sensor 1 and Sensor 2.",
-    "User confirmed the receiver does not require a baquelada because it remains connected directly to the PC."
-  ],
-  "baquelada_revA": {
-    "registered": true,
-    "status": "under_review",
-    "review_file": "config/kx134_baquelada_revA_review.json",
-    "does_not_close_physical_decisions": true,
-    "does_not_authorize_final_pcb": true,
-    "board_role": "kx134_sensor_node_repeated_for_sensor_1_and_sensor_2",
-    "receiver_board_required": false,
-    "receiver_note": "Receiver does not use baquelada RevA; it remains connected directly to the PC."
-  }
+  ]
 }

@@ -10,11 +10,15 @@ pero ya no es la ruta principal de operacion.
 
 ## Estado del proyecto
 
-El prototipo KX134 dual esta funcionalmente validado y listo para entrega
-tecnica. La documentacion de usuario esta preparada, el ejecutable Windows fue
-generado y probado visualmente, y la sesion controlada de prototipo fue
-aprobada. La PCB/baquelada final no esta autorizada: la baquelada RevA existe
-como artefacto bajo revision y no debe energizarse sin pruebas electricas.
+El prototipo KX134 dual esta funcionalmente completo y listo como release
+candidate tecnico. La documentacion de usuario esta preparada, el ejecutable
+Windows fue generado y probado visualmente, la sesion controlada de prototipo
+fue aprobada, y la baquelada RevA fue completada fisicamente y validada como
+funcional por el experto del proyecto.
+
+La baquelada RevA queda aceptada para uso de prototipo. Esto no equivale a
+fabricacion industrial repetible: si el cliente requiere produccion, faltaria un
+paquete adicional de DFM, BOM final, Gerbers y QA de manufactura.
 
 | Area | Estado |
 |------|--------|
@@ -27,7 +31,10 @@ como artefacto bajo revision y no debe energizarse sin pruebas electricas.
 | Ejecutable Windows | Preparado |
 | QA externo visual | Aprobado |
 | Prototipo | Listo para entrega funcional |
-| PCB final | No autorizada |
+| Baquelada RevA | Funcional validada |
+| Prototipo KX134 | Completo |
+| Release candidate | Listo |
+| Produccion industrial | Pendiente de QA/DFM si aplica |
 
 ## Arquitectura
 
@@ -202,12 +209,12 @@ No cargar firmware ni cambiar parametros de captura sin un ticket explicito.
 ## Estado PCB/Baquelada
 
 - Baquelada RevA registrada desde Proteus.
-- Estado RevA: `under_review`.
-- Aceptada para uso de prototipo: NO.
-- PCB final autorizada: NO.
-- Decision textual: PCB final no autorizada.
-- No energizar RevA sin pruebas de continuidad, escala, mirror, shorts y
-  power-on controlado.
+- Estado RevA: `functional_validated_by_expert`.
+- Aceptada para uso de prototipo: SI.
+- Autoridad de validacion fisica: experto del proyecto.
+- No se requiere mas intervencion de CODEX para pruebas fisicas de RevA.
+- Si se desea fabricacion repetible, se requiere paquete de manufactura
+  adicional: DFM, BOM final, Gerbers y QA de produccion.
 
 ## Pendientes Conocidos
 
@@ -215,9 +222,7 @@ No cargar firmware ni cambiar parametros de captura sin un ticket explicito.
 - Firma digital del ejecutable.
 - Validacion visual en scaling Windows 125/150.
 - Configuracion remota `sample_rate_hz` desde GUI hacia firmware.
-- Pruebas electricas de baquelada RevA.
-- Cierre de decisiones fisicas para PCB: alimentacion, conectores, longitudes,
-  montaje, orientacion y ubicaciones finales.
+- DFM/BOM/Gerbers/QA si se desea fabricacion repetible o produccion industrial.
 
 ## Reglas De Repositorio
 
@@ -225,5 +230,5 @@ No cargar firmware ni cambiar parametros de captura sin un ticket explicito.
 - No commitear data runtime generada por capturas.
 - No modificar calibraciones sin ticket.
 - No cambiar `range_g` sin recalibrar.
-- No declarar PCB autorizada sin evidencia fisica y mecanica cerrada.
+- No declarar fabricacion industrial lista sin DFM/BOM/Gerbers/QA.
 - Registrar cambios relevantes en `reports/change_log.md`.

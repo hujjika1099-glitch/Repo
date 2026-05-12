@@ -1,0 +1,139 @@
+{
+  "pass": true,
+  "failures": [],
+  "warnings": [
+    "Some old-state references remain; review contexts listed in stale_references."
+  ],
+  "project_functional_complete": true,
+  "prototype_release_candidate_ready": true,
+  "baquelada_revA_functional_validated_by_expert": true,
+  "baquelada_revA_accepted_for_prototype_use": true,
+  "production_manufacturing_package_ready": false,
+  "repository_final_state_ready": true,
+  "checks": {
+    "node_project_functional_complete": true,
+    "node_release_candidate_ready": true,
+    "node_baquelada_validated": true,
+    "node_baquelada_accepted": true,
+    "node_production_package_false": true,
+    "final_project_complete": true,
+    "final_client_delivery": true,
+    "final_mass_production_false": true,
+    "review_status": true,
+    "review_accepted": true
+  },
+  "stale_references": [
+    {
+      "file": "docs/kx134_migration/client/CAPTURE_AND_EXPORT_GUIDE.md",
+      "line": 66,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "`<old_pcb_design_not_authorized_flag>`. La captura/exportacion del prototipo esta lista, pero la PCB no autorizada requiere decisiones fisicas."
+    },
+    {
+      "file": "docs/kx134_migration/client/OUTPUT_FILES_REFERENCE.md",
+      "line": 64,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`; la PCB no autorizada no afecta la lectura de estos archivos, pero bloquea baquelada final."
+    },
+    {
+      "file": "docs/kx134_migration/client/WINDOWS_INSTALLATION_GUIDE.md",
+      "line": 51,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "El prototipo esta listo para entrega funcional. `<old_pcb_design_not_authorized_flag>`; la PCB no autorizada depende de decisiones fisicas y mecanicas pendientes."
+    },
+    {
+      "file": "docs/kx134_migration/pcb/PCB_DECISION_MATRIX.md",
+      "line": 41,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/pcb/PCB_PHYSICAL_DESIGN_SPEC.md",
+      "line": 115,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/pcb/PCB_PRE_DESIGN_REVIEW.md",
+      "line": 31,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_023_PROTOTYPE_DELIVERY_PACKAGE.md",
+      "line": 55,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_024_CLIENT_USER_DOCUMENTATION.md",
+      "line": 11,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_024_CLIENT_USER_DOCUMENTATION.md",
+      "line": 46,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_025_PCB_PHYSICAL_DEFINITION.md",
+      "line": 12,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_025_PCB_PHYSICAL_DEFINITION.md",
+      "line": 59,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_026_BAQUELADA_REVA_REVIEW.md",
+      "line": 12,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_026_BAQUELADA_REVA_REVIEW.md",
+      "line": 69,
+      "pattern_key": "old_baquelada_not_accepted_flag",
+      "allowed_context": false,
+      "text": "- `<old_baquelada_not_accepted_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_026_BAQUELADA_REVA_REVIEW.md",
+      "line": 70,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_027_REPOSITORY_PRODUCTION_READINESS.md",
+      "line": 13,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`."
+    },
+    {
+      "file": "docs/kx134_migration/tickets/TICKET_027_REPOSITORY_PRODUCTION_READINESS.md",
+      "line": 65,
+      "pattern_key": "old_pcb_design_not_authorized_flag",
+      "allowed_context": false,
+      "text": "- `<old_pcb_design_not_authorized_flag>`"
+    }
+  ]
+}

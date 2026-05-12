@@ -29,17 +29,28 @@
 - TICKET 025: COMPLETADO DOCUMENTALMENTE - Definicion fisica para PCB/baquelada; PCB sigue bloqueada por decisiones fisicas pendientes.
 - TICKET 026: COMPLETADO - Registrar y auditar baquela/PCB RevA antes de pruebas electricas.
 - TICKET 027: COMPLETADO - Limpieza, documentacion profesional y readiness de repositorio KX134; screenshots GUI quedan pendientes como mejora no bloqueante.
+- TICKET 028: COMPLETADO - Cierre final del proyecto KX134 con baquelada RevA funcional validada por experto y release candidate tecnico.
 
 ## Tickets en curso o pendientes
 
 - Ninguno activo.
 
-## Tickets futuros recomendados
+## Estado final del proyecto
 
-- TICKET 028: Cierre fisico de baquelada RevA por experto y registro de resultados: continuidad, shorts, escala/mirror y power-on sin sensor.
-- TICKET 028 opcional: icono corporativo, firma digital y QA visual scaling Windows 125/150.
-- FUTURO: Cierre de decisiones fisicas pendientes para PCB o reunion/levantamiento fisico con cliente.
-- FUTURO: Especificacion de PCB/baquelada final cuando se cierren decisiones fisicas.
+- Proyecto funcional completo: YES.
+- Release candidate tecnico: YES.
+- Baquelada RevA funcional validada por experto: YES.
+- Baquelada RevA aceptada para uso de prototipo: YES.
+- Fabricacion industrial repetible: pendiente solo si el cliente requiere DFM/BOM/Gerbers/QA.
+
+## Tickets futuros opcionales
+
+- FUTURO OPCIONAL: Icono corporativo.
+- FUTURO OPCIONAL: Firma digital.
+- FUTURO OPCIONAL: QA visual scaling Windows 125/150.
+- FUTURO OPCIONAL: Envio de configuracion `sample_rate_hz` desde GUI a firmware.
+- FUTURO OPCIONAL: Paquete DFM/BOM/Gerbers/QA si se requiere fabricacion repetible.
+- FUTURO OPCIONAL: Manual PDF si se requiere entrega formal en PDF.
 - FUTURO: Icono corporativo y firma digital si se requiere.
 - FUTURO: Validacion hardware en PC externo si el cliente lo requiere.
 - FUTURO: Probar scaling Windows 125/150%.
@@ -60,8 +71,9 @@
 - TICKET 023 consolida el paquete documental de entrega del prototipo, corrige la semantica de recomendacion PCB y deja `PROTOTYPE_DELIVERY_PACKAGE_READY=YES` con `PCB_DESIGN_AUTHORIZED=NO`.
 - TICKET 024 agrega documentacion cliente para instalacion Windows, conexion hardware, operacion KX134, graficas live, exportacion CSV/JSON/summary, troubleshooting, manifiesto, checklists y limitaciones. La decision queda `CLIENT_USER_DOCS_READY=YES`, manteniendo `PCB_DESIGN_AUTHORIZED=NO`.
 - TICKET 025 crea formulario, especificacion fisica preliminar, matriz de decisiones, checklist de riesgos, pre-design review, JSON documental y validador para decisiones fisicas PCB. Como no hay respuestas cerradas para alimentacion, conectores, cableado, montaje, orientacion, ubicacion y ambiente, queda `PCB_PHYSICAL_DECISIONS_COMPLETE=NO` y `PCB_DESIGN_AUTHORIZED=NO`.
-- TICKET 026 registra la baquelada RevA creada externamente en Proteus con artefactos `Maestria.PDF` y `Maestria.SVG`, detecta dimensiones SVG `90.49 mm x 44.99 mm`, documenta revision visual `PASS_WITH_WARNINGS`, checklist de continuidad, pinout pendiente y plan de prueba. El usuario confirma que la RevA es para nodos sensores KX134 y se repite para Sensor 1/Sensor 2; el receptor no lleva baquela porque va directo al PC. La RevA queda `under_review`, no aceptada aun para uso de prototipo y `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 026 registra la baquelada RevA creada externamente en Proteus con artefactos `Maestria.PDF` y `Maestria.SVG`, detecta dimensiones SVG `90.49 mm x 44.99 mm`, documenta revision visual `PASS_WITH_WARNINGS`, checklist de continuidad, pinout pendiente y plan de prueba. Ese fue el estado anterior de revision documental; TICKET 028 lo reemplaza con validacion funcional experta y aceptacion para prototipo.
 - TICKET 027 profesionaliza README, AGENTS, indices tecnicos, diagramas, mantenimiento, estado del repositorio y validador documental. El sistema principal queda documentado como KX134 dual; ADXL335 queda preservado como legacy. La baquelada RevA sigue bajo responsabilidad experta para pruebas fisicas/electricas posteriores; `PCB_DESIGN_AUTHORIZED=NO`.
+- TICKET 028 incorpora el reporte del usuario experto: la baquelada RevA fue completada fisicamente y quedo totalmente funcional. Se acepta para uso de prototipo Sensor 1/Sensor 2, se cierra el proyecto como prototipo KX134 funcional y release candidate tecnico. La fabricacion industrial repetible queda fuera de alcance salvo solicitud de paquete DFM/BOM/Gerbers/QA.
 
 ## Regla de alcance
 
