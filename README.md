@@ -1,3 +1,16 @@
+<!-- CONTINUIDAD_DOCUMENTAL_20261107 -->
+### Documentación verificada · 7 de noviembre de 2026
+
+KX134 es la línea vigente; ADXL es antecedente. La aceptación experta del prototipo no equivale a un paquete industrial listo. Calibración, firmware y GUI se conservan.
+
+Base de código conservada al publicar esta revisión: `beb322eca9285206e9596c81f8a24cbeecdde461`.
+Los informes IEEE editables y sus PDF están en la biblioteca privada del responsable; el acceso requiere su cuenta autorizada.
+
+- [P40: informe, fuente LaTeX y trazabilidad](https://github.com/jd0x-sys/memoria-tecnica-personal/tree/main/proyectos/P40)
+
+Esta sección es un índice de navegación. La actualización documental no publica cambios de producto pendientes, no reanuda trabajos pausados ni modifica aprobaciones. El contenido anterior se conserva debajo como antecedente fechado.
+<!-- /CONTINUIDAD_DOCUMENTAL_20261107 -->
+
 # Sistema de Captura de Acelerometria KX134
 
 Repositorio del prototipo KX134 dual para captura de acelerometria en tiempo real.
